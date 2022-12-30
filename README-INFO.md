@@ -17,6 +17,8 @@
 'prettier:all' // 运行 prettier:docs、prettier:source
 ```
 
+[npm version版本升级](https://blog.csdn.net/weixin_41917948/article/details/105296353)
+
 ## build 目录下说明
 
 ``` shell

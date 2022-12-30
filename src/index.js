@@ -95,7 +95,7 @@ import isString from './type/isString.js'
 import isSymbol from './type/isSymbol.js'
 import isWx from './type/isWx.js'
 
-const version = '2.1.0'
+const version = '2.1.1-0'
 
 export default {
   version,

@@ -1,6 +1,6 @@
 {
   "name": "@bianpengfei/utils",
-  "version": "2.1.1-0",
+  "version": "2.1.1",
   "author": "bianpengfei",
   "license": "MIT",
   "main": "lib/b-utils.js",
@@ -25,19 +25,15 @@
     "husky": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
     "build:file-all": "node build/bin/build-entry-all.js",
     "build:entry-all": "npm run build:all-file && cross-env NODE_ENV=production rollup -c build/rollup.all-entry.js && terser lib/b-utils-all.min.js -m -o lib/b-utils-all.min.js",
-    "pub": "npm version prerelease && npm run build:all && npm publish --access public"
+    "pub": "npm version patch && npm run build:all && npm publish --access public"
   },
   "files": [
-    "src/base",
-    "src/decorator",
-    "src/dom",
-    "src/expand",
-    "src/math",
-    "src/static",
-    "src/type",
+    "src",
     "lib",
     "package.json",
-    "README.md"
+    "README.md",
+    ".prettierignore",
+    "prettier.config.js"
   ],
   "keywords": [
     "utils",
@@ -70,7 +66,7 @@
     "@babel/plugin-transform-runtime": "7.16.5",
     "@babel/preset-env": "7.16.5",
     "@babel/runtime": "7.16.5",
-    "@bianpengfei/utils": "latest",
+    "@bianpengfei/utils": "2.1.1-0",
     "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-json": "4.1.0",
@@ -88,15 +84,17 @@
     "glob": "7.2.0",
     "highlight.js": "11.6.0",
     "html2canvas": "1.4.0",
+    "husky": "8.0.2",
     "inquirer": "7.1.0",
     "json-templater": "1.2.0",
     "json2yaml": "1.1.0",
     "jspdf": "2.3.0",
     "jszip": "3.7.1",
+    "lint-staged": "13.0.3",
     "lodash": "4.17.21",
+    "npm-run-all": "4.1.5",
     "postcss": "8.4.5",
     "prettier": "2.5.1",
-    "npm-run-all": "4.1.5",
     "regenerator-runtime": "0.13.7",
     "rimraf": "2.5.4",
     "rollup": "2.62.0",
@@ -118,9 +116,7 @@
     "vuepress-plugin-zooming": "1.1.8",
     "vuepress-theme-vdoing": "1.12.5",
     "windicss-webpack-plugin": "1.7.3",
-    "yamljs": "0.3.0",
-    "husky": "8.0.2",
-    "lint-staged": "13.0.3"
+    "yamljs": "0.3.0"
   },
   "browserslist": [
     "> 1%",
