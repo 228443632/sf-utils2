@@ -62,11 +62,6 @@ import scrollToX from './dom/scrollToX.js'
 import scrollToY from './dom/scrollToY.js'
 import setStyle from './dom/setStyle.js'
 import _arguments from './Evil/_arguments.js'
-import batchDownloadZip from './expand/batchDownloadZip.js'
-import exportPdf from './expand/exportPdf.js'
-import lazyLoadImg from './expand/lazyLoadImg.js'
-import protocolCheck from './expand/protocolCheck.js'
-import storage from './expand/storage.js'
 import add from './math/add.js'
 import avg from './math/avg.js'
 import Decimal from './math/Decimal.js'
@@ -74,14 +69,12 @@ import div from './math/div.js'
 import mul from './math/mul.js'
 import sub from './math/sub.js'
 import sum from './math/sum.js'
-import getIpAddrSync from './nodejs/getIpAddrSync.js'
-import index from './nodejs/index.js'
-import readDirStructureSync from './nodejs/readDirStructureSync.js'
 import _typeof from './type/_typeof.js'
 import browser from './type/browser.js'
 import isAndroid from './type/isAndroid.js'
 import isArray from './type/isArray.js'
 import isArrayEmpty from './type/isArrayEmpty.js'
+import isAsyncFunction from './type/isAsyncFunction.js'
 import isBoolean from './type/isBoolean.js'
 import isBrowser from './type/isBrowser.js'
 import isDate from './type/isDate.js'
@@ -168,11 +161,6 @@ export default {
   scrollToY,
   setStyle,
   _arguments,
-  batchDownloadZip,
-  exportPdf,
-  lazyLoadImg,
-  protocolCheck,
-  storage,
   add,
   avg,
   Decimal,
@@ -180,14 +168,12 @@ export default {
   mul,
   sub,
   sum,
-  getIpAddrSync,
-  index,
-  readDirStructureSync,
   _typeof,
   browser,
   isAndroid,
   isArray,
   isArrayEmpty,
+  isAsyncFunction,
   isBoolean,
   isBrowser,
   isDate,
@@ -273,11 +259,6 @@ export {
   scrollToY,
   setStyle,
   _arguments,
-  batchDownloadZip,
-  exportPdf,
-  lazyLoadImg,
-  protocolCheck,
-  storage,
   add,
   avg,
   Decimal,
@@ -285,14 +266,12 @@ export {
   mul,
   sub,
   sum,
-  getIpAddrSync,
-  index,
-  readDirStructureSync,
   _typeof,
   browser,
   isAndroid,
   isArray,
   isArrayEmpty,
+  isAsyncFunction,
   isBoolean,
   isBrowser,
   isDate,
