@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "importHelpers": true,
+    "moduleResolution": "Node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "types": ["node", "@types/node"],
+    "paths": {
+      "@/*": ["src/*"],
+      "+root/*": [""],
+      "+libs/*": ["lib/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,21 @@
+// Head Config
+module.exports = [
+  ['link', { rel: 'icon', href: '/img/favicon.ico' }],
+  [
+    'meta',
+    {
+      name: 'keywords',
+      content: '@bianpengfei/utils，javascript，utils.js'
+    }
+  ],
+  ['meta', { name: 'theme-color', content: '#11a8cd' }]
+  // [
+  //   "script",
+  //   {
+  //     crossorigin: "anonymous",
+  //     async: true,
+  //     src:
+  //       "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4147143076931995"
+  //   }
+  // ],
+]

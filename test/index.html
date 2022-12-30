@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      /*.container {*/
+      /*  height: 100vh;*/
+      /*  overflow: auto;*/
+      /*}*/
+      .box-red {
+        width: 100%;
+        background: red;
+        height: 50vh;
+      }
+      .box-blue {
+        width: 100%;
+        background: blue;
+        height: 30vh;
+      }
+      .box-yellow {
+        width: 100%;
+        background: yellow;
+        height: 60vh;
+      }
+      .box-pink {
+        width: 100%;
+        background: pink;
+        height: 60vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box-red">1</div>
+      <div class="box-blue">2</div>
+      <div class="box-yellow">3</div>
+      <div class="box-pink">4</div>
+    </div>
+    <script src="./lib/b-utils.js"></script>
+    <script type="module">
+      import { info } from './mock.js'
+
+      console.log(
+        BUtils.treeToList({
+          tree: info.data,
+          props: { children: 'children' },
+          retainChild: true,
+          retainPaths: true,
+          retainAllChildren: true
+        })
+      )
+    </script>
+    <script>
+      const { uuid } = window.BUtils
+
+      const info = {
+        msg: null,
+        code: '200',
+        data: [
+          {
+            id: 2,
+            parentId: 1,
+            sort: null,
+            project: null,
+            name: '一、床位配置',
+            type: 0,
+            unit: null,
+            percentage: null,
+            formula: null,
+            leafFlag: null,
+            childrenList: [
+              {
+                id: 3,
+                parentId: 2,
+                sort: null,
+                project: null,
+                name: '（一）核定床位数',
+                type: 0,
+                unit: '张',
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: {
+                  id: 10001,
+                  parentId: 3,
+                  name: '（一）核定床位数 儿子'
+                },
+                targets: [
+                  {
+                    id: 1,
+                    accessId: '2-3-1',
+                    chapterId: 3,
+                    name: '核定床位数',
+                    val: 300.0,
+                    deptHasVal: true
+                  }
+                ]
+              },
+              {
+                id: 4,
+                parentId: 2,
+                sort: null,
+                project: null,
+                name: '（二）实际开放床位数',
+                type: 0,
+                unit: '张',
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: null,
+                targets: [
+                  {
+                    id: 2,
+                    accessId: '2-4-2',
+                    chapterId: 4,
+                    name: '实际开放床位数',
+                    val: 0.0,
+                    deptHasVal: false
+                  }
+                ]
+              },
+              {
+                id: 5,
+                parentId: 2,
+                sort: null,
+                project: null,
+                name: '（三）平均床位使用率',
+                type: 1,
+                unit: '%',
+                percentage: null,
+                formula: { chapterId: 5, targetIdMo: 3, targetIdDe: 4, expand: null },
+                leafFlag: null,
+                childrenList: null,
+                targets: [
+                  {
+                    id: 3,
+                    accessId: '2-5-3',
+                    chapterId: 5,
+                    name: '实际占用的总床日数',
+                    val: 0.0,
+                    deptHasVal: false
+                  },
+                  {
+                    id: 4,
+                    accessId: '2-5-4',
+                    chapterId: 5,
+                    name: '同期实际开放的总床日数',
+                    val: 0.0,
+                    deptHasVal: false
+                  }
+                ]
+              }
+            ],
+            targets: null
+          },
+          {
+            id: 6,
+            parentId: 1,
+            sort: null,
+            project: null,
+            name: '二、卫生技术人员配备',
+            type: 0,
+            unit: null,
+            percentage: null,
+            formula: null,
+            leafFlag: null,
+            childrenList: [
+              {
+                id: 7,
+                parentId: 6,
+                sort: null,
+                project: null,
+                name: '（一）卫生技术人员数与开放床位数比',
+                type: 1,
+                unit: 'X:1',
+                percentage: null,
+                formula: { chapterId: 7, targetIdMo: 5, targetIdDe: 6, expand: null },
+                leafFlag: null,
+                childrenList: null,
+                targets: [
+                  {
+                    id: 5,
+                    accessId: '6-7-5',
+                    chapterId: 7,
+                    name: '医院卫生技术人员数',
+                    val: 0.0,
+                    deptHasVal: false
+                  },
+                  {
+                    id: 6,
+                    accessId: '6-7-6',
+                    chapterId: 7,
+                    name: '同期医院实际开放床位数',
+                    val: 0.0,
+                    deptHasVal: false
+                  }
+                ]
+              },
+              {
+                id: 9,
+                parentId: 6,
+                sort: null,
+                project: null,
+                name: '（二）医院感染管理专职人员数与开放床位数比',
+                type: 1,
+                unit: 'X:1',
+                percentage: null,
+                formula: { chapterId: 9, targetIdMo: 9, targetIdDe: 10, expand: null },
+                leafFlag: null,
+                childrenList: null,
+                targets: [
+                  {
+                    id: 9,
+                    accessId: '6-9-9',
+                    chapterId: 9,
+                    name: '医院感染管理专职人员数',
+                    val: 0.0,
+                    deptHasVal: false
+                  },
+                  {
+                    id: 10,
+                    accessId: '6-9-10',
+                    chapterId: 9,
+                    name: '同期医院实际开放床位',
+                    val: 0.0,
+                    deptHasVal: false
+                  }
+                ]
+              }
+            ],
+            targets: null
+          },
+          {
+            id: 10,
+            parentId: 1,
+            sort: null,
+            project: null,
+            name: '三、相关科室资源配置',
+            type: 0,
+            unit: null,
+            percentage: null,
+            formula: null,
+            leafFlag: null,
+            childrenList: [
+              {
+                id: 11,
+                parentId: 10,
+                sort: null,
+                project: null,
+                name: '（一）急诊医学科',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 12,
+                    parentId: 11,
+                    sort: null,
+                    project: null,
+                    name: '1.固定急诊医师人数占急诊在岗医师人数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 12, targetIdMo: 11, targetIdDe: 12, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 11,
+                        accessId: '10-11-12-11',
+                        chapterId: 12,
+                        name: '医院注册的固定在急诊科的在岗医师数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 12,
+                        accessId: '10-11-12-12',
+                        chapterId: 12,
+                        name: '同期医院急诊科在岗医师总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 13,
+                    parentId: 11,
+                    sort: null,
+                    project: null,
+                    name: '2.固定急诊护士人数占急诊在岗护士人数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 13, targetIdMo: 13, targetIdDe: 14, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 13,
+                        accessId: '10-11-13-13',
+                        chapterId: 13,
+                        name: '医院注册的固定在急诊的在岗护士数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 14,
+                        accessId: '10-11-13-14',
+                        chapterId: 13,
+                        name: '同期医院急诊科在岗护士总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              },
+              {
+                id: 14,
+                parentId: 10,
+                sort: null,
+                project: null,
+                name: '（二）重症医学科',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 15,
+                    parentId: 14,
+                    sort: null,
+                    project: null,
+                    name: '1.重症医学科开放床位数占医院开放床位数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 15, targetIdMo: 15, targetIdDe: 16, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 15,
+                        accessId: '10-14-15-15',
+                        chapterId: 15,
+                        name: '重症医学科开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 16,
+                        accessId: '10-14-15-16',
+                        chapterId: 15,
+                        name: '同期医院开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 16,
+                    parentId: 14,
+                    sort: null,
+                    project: null,
+                    name: '2.重症医学科医师人数与重症医学科开放床位数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 16, targetIdMo: 17, targetIdDe: 18, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 17,
+                        accessId: '10-14-16-17',
+                        chapterId: 16,
+                        name: '医院注册的重症医学科在岗医师数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 18,
+                        accessId: '10-14-16-18',
+                        chapterId: 16,
+                        name: '同期重症医学科实际开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 17,
+                    parentId: 14,
+                    sort: null,
+                    project: null,
+                    name: '3.重症医学科护士人数与重症医学科开放床位数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 17, targetIdMo: 19, targetIdDe: 20, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 19,
+                        accessId: '10-14-17-19',
+                        chapterId: 17,
+                        name: '医院注册的重症医学科在岗护士数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 20,
+                        accessId: '10-14-17-20',
+                        chapterId: 17,
+                        name: '同期重症医学科实际开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              },
+              {
+                id: 18,
+                parentId: 10,
+                sort: null,
+                project: null,
+                name: '（三）麻醉科',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 19,
+                    parentId: 18,
+                    sort: null,
+                    project: null,
+                    name: '1.麻醉科医师数与手术间数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 19, targetIdMo: 21, targetIdDe: 22, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 21,
+                        accessId: '10-18-19-21',
+                        chapterId: 19,
+                        name: '医院注册的麻醉科在岗医师数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 22,
+                        accessId: '10-18-19-22',
+                        chapterId: 19,
+                        name: '同期医院手术室间数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 20,
+                    parentId: 18,
+                    sort: null,
+                    project: null,
+                    name: '2.麻醉科医师数与日均全麻手术台次比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 20, targetIdMo: 23, targetIdDe: 24, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 23,
+                        accessId: '10-18-20-23',
+                        chapterId: 20,
+                        name: '医院注册的麻醉科在岗医师数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 24,
+                        accessId: '10-18-20-24',
+                        chapterId: 20,
+                        name: '同期医院日均全麻手术台次数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              },
+              {
+                id: 21,
+                parentId: 10,
+                sort: null,
+                project: null,
+                name: '（四）中医科',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 22,
+                    parentId: 21,
+                    sort: null,
+                    project: null,
+                    name: '1.中医科开放床位数占医院开放床位数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 22, targetIdMo: 25, targetIdDe: 26, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 25,
+                        accessId: '10-21-22-25',
+                        chapterId: 22,
+                        name: '中医科开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 26,
+                        accessId: '10-21-22-26',
+                        chapterId: 22,
+                        name: '同期医院开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 23,
+                    parentId: 21,
+                    sort: null,
+                    project: null,
+                    name: '2.中医科中医类别医师人数与中医科开放床位数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 23, targetIdMo: 27, targetIdDe: 28, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 27,
+                        accessId: '10-21-23-27',
+                        chapterId: 23,
+                        name: '医院注册的中医科在岗中医类别医师人数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 28,
+                        accessId: '10-21-23-28',
+                        chapterId: 23,
+                        name: '同期中医科实际开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 24,
+                    parentId: 21,
+                    sort: null,
+                    project: null,
+                    name: '3.中医科护士人数与中医科开放床位数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 24, targetIdMo: 29, targetIdDe: 30, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 29,
+                        accessId: '10-21-24-29',
+                        chapterId: 24,
+                        name: '医院注册的中医科在岗护士人数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 30,
+                        accessId: '10-21-24-30',
+                        chapterId: 24,
+                        name: '同期中医科实际开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              },
+              {
+                id: 25,
+                parentId: 10,
+                sort: null,
+                project: null,
+                name: '（五）康复医学科',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 26,
+                    parentId: 25,
+                    sort: null,
+                    project: null,
+                    name: '1.康复科开放床位数占医院开放床位数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 26, targetIdMo: 31, targetIdDe: 32, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 31,
+                        accessId: '10-25-26-31',
+                        chapterId: 26,
+                        name: '康复科开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 32,
+                        accessId: '10-25-26-32',
+                        chapterId: 26,
+                        name: '同期医院开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 27,
+                    parentId: 25,
+                    sort: null,
+                    project: null,
+                    name: '2.康复科医师人数与康复科开放床位数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 27, targetIdMo: 33, targetIdDe: 34, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 33,
+                        accessId: '10-25-27-33',
+                        chapterId: 27,
+                        name: '医院注册的康复科在岗医师人数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 34,
+                        accessId: '10-25-27-34',
+                        chapterId: 27,
+                        name: '同期康复科实际开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 28,
+                    parentId: 25,
+                    sort: null,
+                    project: null,
+                    name: '3.康复科康复师人数与康复科开放床位数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 28, targetIdMo: 35, targetIdDe: 36, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 35,
+                        accessId: '10-25-28-35',
+                        chapterId: 28,
+                        name: '康复科在岗的康复师人数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 36,
+                        accessId: '10-25-28-36',
+                        chapterId: 28,
+                        name: '同期康复科开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 29,
+                    parentId: 25,
+                    sort: null,
+                    project: null,
+                    name: '4.康复科护士人数与康复科开放床位数比',
+                    type: 1,
+                    unit: 'X:1',
+                    percentage: null,
+                    formula: { chapterId: 29, targetIdMo: 37, targetIdDe: 38, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 37,
+                        accessId: '10-25-29-37',
+                        chapterId: 29,
+                        name: '在医院注册的康复科在岗护士人数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 38,
+                        accessId: '10-25-29-38',
+                        chapterId: 29,
+                        name: '同期康复科实际开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              },
+              {
+                id: 30,
+                parentId: 10,
+                sort: null,
+                project: null,
+                name: '（六）感染性疾病科',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 31,
+                    parentId: 30,
+                    sort: null,
+                    project: null,
+                    name: '1.固定医师人数占感染性疾病科在岗医师人数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 31, targetIdMo: 46, targetIdDe: 47, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 46,
+                        accessId: '10-30-31-46',
+                        chapterId: 31,
+                        name: '在医院注册的固定在感染性疾病科的在岗医师人数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 47,
+                        accessId: '10-30-31-47',
+                        chapterId: 31,
+                        name: '同期医院感染性疾病科在岗医师总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 32,
+                    parentId: 30,
+                    sort: null,
+                    project: null,
+                    name: '2.固定护士人数占感染性疾病科在岗护士人数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 32, targetIdMo: 48, targetIdDe: 49, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 48,
+                        accessId: '10-30-32-48',
+                        chapterId: 32,
+                        name: '在医院注册的感染性疾病科的在岗护士总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 49,
+                        accessId: '10-30-32-49',
+                        chapterId: 32,
+                        name: '同期医院感染性疾病科在岗护士总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 33,
+                    parentId: 30,
+                    sort: null,
+                    project: null,
+                    name: '3.感染性疾病科开放床位数占医院开放床位数的比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 33, targetIdMo: 50, targetIdDe: 51, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 50,
+                        accessId: '10-30-33-50',
+                        chapterId: 33,
+                        name: '感染性疾病科开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 51,
+                        accessId: '10-30-33-51',
+                        chapterId: 33,
+                        name: '同期医院开放床位数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              }
+            ],
+            targets: null
+          },
+          {
+            id: 35,
+            parentId: 1,
+            sort: null,
+            project: null,
+            name: '四、运行指标',
+            type: 0,
+            unit: null,
+            percentage: null,
+            formula: null,
+            leafFlag: null,
+            childrenList: [
+              {
+                id: 38,
+                parentId: 35,
+                sort: null,
+                project: null,
+                name: '（一）人员支出占业务支出的比重（人员经费占比）',
+                type: 1,
+                unit: '%',
+                percentage: null,
+                formula: { chapterId: 38, targetIdMo: 58, targetIdDe: 59, expand: null },
+                leafFlag: null,
+                childrenList: null,
+                targets: [
+                  {
+                    id: 58,
+                    accessId: '35-38-58',
+                    chapterId: 38,
+                    name: '人员经费',
+                    val: 0.0,
+                    deptHasVal: false
+                  },
+                  {
+                    id: 59,
+                    accessId: '35-38-59',
+                    chapterId: 38,
+                    name: '同期医疗活动费用',
+                    val: 0.0,
+                    deptHasVal: false
+                  }
+                ]
+              },
+              {
+                id: 46,
+                parentId: 35,
+                sort: null,
+                project: null,
+                name: '（二）收支结构情况',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 47,
+                    parentId: 46,
+                    sort: null,
+                    project: null,
+                    name: '1.医疗服务收入（不含药品、耗材、检查检验收入）占医疗收入比例',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 47, targetIdMo: 68, targetIdDe: 69, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 68,
+                        accessId: '35-46-47-68',
+                        chapterId: 47,
+                        name: '医疗服务收入',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 69,
+                        accessId: '35-46-47-69',
+                        chapterId: 47,
+                        name: '医疗收入',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 48,
+                    parentId: 46,
+                    sort: null,
+                    project: null,
+                    name: '2.收支结余（医疗盈余率）',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 48, targetIdMo: 70, targetIdDe: 71, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 70,
+                        accessId: '35-46-48-70',
+                        chapterId: 48,
+                        name: '医疗盈余',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 71,
+                        accessId: '35-46-48-71',
+                        chapterId: 48,
+                        name: '医疗活动收入',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 49,
+                    parentId: 46,
+                    sort: null,
+                    project: null,
+                    name: '3.资产负债率',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 49, targetIdMo: 72, targetIdDe: 73, expand: null },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 72,
+                        accessId: '35-46-49-72',
+                        chapterId: 49,
+                        name: '负债合计',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 73,
+                        accessId: '35-46-49-73',
+                        chapterId: 49,
+                        name: '资产合计',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              },
+              {
+                id: 50,
+                parentId: 35,
+                sort: null,
+                project: null,
+                name: '（三）费用控制情况',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 51,
+                    parentId: 50,
+                    sort: null,
+                    project: null,
+                    name: '1.门诊次均费用增幅',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 51, targetIdMo: 74, targetIdDe: 75, expand: 'increase' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 74,
+                        accessId: '35-50-51-74',
+                        chapterId: 51,
+                        name: '门诊患者次均医药费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 75,
+                        accessId: '35-50-51-75',
+                        chapterId: 51,
+                        name: '同期门诊患者次均医药费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 52,
+                    parentId: 50,
+                    sort: null,
+                    project: null,
+                    name: '2.门诊次均药品费用增幅',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 52, targetIdMo: 76, targetIdDe: 77, expand: 'increase' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 76,
+                        accessId: '35-50-52-76',
+                        chapterId: 52,
+                        name: '门诊患者次均药品费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 77,
+                        accessId: '35-50-52-77',
+                        chapterId: 52,
+                        name: '同期门诊患者次均药品费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 53,
+                    parentId: 50,
+                    sort: null,
+                    project: null,
+                    name: '3.住院次均费用增幅',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 53, targetIdMo: 78, targetIdDe: 79, expand: 'increase' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 78,
+                        accessId: '35-50-53-78',
+                        chapterId: 53,
+                        name: '出院患者次均医药费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 79,
+                        accessId: '35-50-53-79',
+                        chapterId: 53,
+                        name: '同期出院患者次均医药费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 54,
+                    parentId: 50,
+                    sort: null,
+                    project: null,
+                    name: '4.住院次均药品费用增幅',
+                    type: 1,
+                    unit: '%',
+                    percentage: null,
+                    formula: { chapterId: 54, targetIdMo: 80, targetIdDe: 81, expand: 'increase' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 80,
+                        accessId: '35-50-54-80',
+                        chapterId: 54,
+                        name: '出院患者次均药品费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 81,
+                        accessId: '35-50-54-81',
+                        chapterId: 54,
+                        name: '同期出院患者次均药品费用',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              }
+            ],
+            targets: null
+          },
+          {
+            id: 39,
+            parentId: 1,
+            sort: null,
+            project: null,
+            name: '五、科研指标',
+            type: 0,
+            unit: null,
+            percentage: null,
+            formula: null,
+            leafFlag: null,
+            childrenList: [
+              {
+                id: 40,
+                parentId: 39,
+                sort: null,
+                project: null,
+                name: '（一）新技术临床转化数量',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 42,
+                    parentId: 40,
+                    sort: null,
+                    project: null,
+                    name: '1.每百名卫生技术人员科研项目经费',
+                    type: 1,
+                    unit: '元',
+                    percentage: null,
+                    formula: { chapterId: 42, targetIdMo: 62, targetIdDe: 63, expand: '100' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 62,
+                        accessId: '39-40-42-62',
+                        chapterId: 42,
+                        name: '本年度科研项目立项经费总金额',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 63,
+                        accessId: '39-40-42-63',
+                        chapterId: 42,
+                        name: '同期医院卫生技术人员总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 41,
+                    parentId: 40,
+                    sort: null,
+                    project: null,
+                    name: '2.每百名卫生技术人员科技成果转化金额',
+                    type: 1,
+                    unit: '元',
+                    percentage: null,
+                    formula: { chapterId: 41, targetIdMo: 60, targetIdDe: 61, expand: '100' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 60,
+                        accessId: '39-40-41-60',
+                        chapterId: 41,
+                        name: '本年度科技成果转化总金额',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 61,
+                        accessId: '39-40-41-61',
+                        chapterId: 41,
+                        name: '同期医院卫生技术人员总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              },
+              {
+                id: 43,
+                parentId: 39,
+                sort: null,
+                project: null,
+                name: '（二）取得临床相关国家专利数量',
+                type: 0,
+                unit: null,
+                percentage: null,
+                formula: null,
+                leafFlag: null,
+                childrenList: [
+                  {
+                    id: 44,
+                    parentId: 43,
+                    sort: null,
+                    project: null,
+                    name: '1.每百名卫生技术人员发明专利数量',
+                    type: 1,
+                    unit: '项',
+                    percentage: null,
+                    formula: { chapterId: 44, targetIdMo: 64, targetIdDe: 65, expand: '100' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 64,
+                        accessId: '39-43-44-64',
+                        chapterId: 44,
+                        name: '本年度医院发明专利总项数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 65,
+                        accessId: '39-43-44-65',
+                        chapterId: 44,
+                        name: '同期医院卫生技术人员总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  },
+                  {
+                    id: 45,
+                    parentId: 43,
+                    sort: null,
+                    project: null,
+                    name: '2.每百名卫生技术人员实用新型专利数量',
+                    type: 1,
+                    unit: '项',
+                    percentage: null,
+                    formula: { chapterId: 45, targetIdMo: 66, targetIdDe: 67, expand: '100' },
+                    leafFlag: null,
+                    childrenList: null,
+                    targets: [
+                      {
+                        id: 66,
+                        accessId: '39-43-45-66',
+                        chapterId: 45,
+                        name: '本年度医院实用新型专利总项数',
+                        val: 0.0,
+                        deptHasVal: false
+                      },
+                      {
+                        id: 67,
+                        accessId: '39-43-45-67',
+                        chapterId: 45,
+                        name: '同期医院卫生技术人员总数',
+                        val: 0.0,
+                        deptHasVal: false
+                      }
+                    ]
+                  }
+                ],
+                targets: null
+              }
+            ],
+            targets: null
+          }
+        ]
+      }
+
+      console.log(
+        BUtils.flatten(info, (value, key) => {
+          console.log(value, key)
+          return value
+        })
+      )
+
+      console.log(BUtils.arrayToObj([{id: 1}, {id: 2}],  'id'),);
+    </script>
+  </body>
+</html>

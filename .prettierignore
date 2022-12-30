@@ -1,0 +1,7 @@
+**/node_modules/**
+**/public/**
+**/script/**
+**/framework/**
+/node_modules
+docs/.vuepress/compile/**
+

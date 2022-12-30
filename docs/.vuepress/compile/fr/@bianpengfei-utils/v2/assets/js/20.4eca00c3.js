@@ -1,0 +1,122 @@
+;(window.webpackJsonp = window.webpackJsonp || []).push([
+  [20],
+  {
+    871: function (t, e, s) {
+      'use strict'
+      s.r(e)
+      var o = s(41),
+        r = Object(o.a)(
+          {},
+          function () {
+            var t = this,
+              e = t.$createElement,
+              s = t._self._c || e
+            return s('ContentSlotsDistributor', { attrs: { 'slot-key': t.$parent.slotKey } }, [
+              s('p', [
+                s(
+                  'a',
+                  {
+                    attrs: {
+                      href: 'https://gitee.com/bianpengfei/bianpengfei/tree/master/b-utils',
+                      target: '_blank',
+                      rel: 'noopener noreferrer'
+                    }
+                  },
+                  [t._v('@bianpengfei/utils'), s('OutboundLink')],
+                  1
+                ),
+                t._v('提供一些基础对 dom、数据层面的转化、懒加载等方法，为简化开发、提高效率而生。\n'),
+                s('br'),
+                t._v('\n里面主要提供 '),
+                s('strong', [t._v('type')]),
+                t._v('、'),
+                s('strong', [t._v('base')]),
+                t._v('、'),
+                s('strong', [t._v('dom')]),
+                t._v('、'),
+                s('strong', [t._v('math')]),
+                t._v('、'),
+                s('strong', [t._v('decorator')]),
+                t._v('、'),
+                s('strong', [t._v('expand')]),
+                t._v('模块')
+              ]),
+              t._v(' '),
+              s('ul', [
+                s(
+                  'li',
+                  [s('RouterLink', { attrs: { to: '/pages/e3f3b0/' } }, [t._v('类型')]), t._v(' 对基础数据类型判断')],
+                  1
+                ),
+                t._v(' '),
+                s(
+                  'li',
+                  [
+                    s('RouterLink', { attrs: { to: '/pages/7e1357/' } }, [t._v('基础')]),
+                    t._v(' 核心，主要对数据结构进行转化，一些常见的树状结构转成 list，或者 list 转成 tree 树状结构')
+                  ],
+                  1
+                ),
+                t._v(' '),
+                s(
+                  'li',
+                  [
+                    s('RouterLink', { attrs: { to: '/pages/c256cd/' } }, [t._v('dom')]),
+                    t._v(' 封装大量对 dom 便捷操作')
+                  ],
+                  1
+                ),
+                t._v(' '),
+                s(
+                  'li',
+                  [
+                    s('RouterLink', { attrs: { to: '/pages/ad3feb/' } }, [t._v('数学')]),
+                    t._v(' 支持精确的 js 浮点型运算。')
+                  ],
+                  1
+                ),
+                t._v(' '),
+                s(
+                  'li',
+                  [
+                    s('RouterLink', { attrs: { to: '/pages/6e2c0b/' } }, [t._v('装饰器')]),
+                    t._v(' 支持精确的 js 浮点型运算。')
+                  ],
+                  1
+                ),
+                t._v(' '),
+                s(
+                  'li',
+                  [
+                    s('RouterLink', { attrs: { to: '/pages/fb9692/' } }, [t._v('拓展')]),
+                    t._v(
+                      ' 一些拓展方法，大多数是依赖第三方库进行封装方法。即：需要安装第三方库。或者一些方法占据内容过大，如对某一区域内部，文章图片懒加载，非常适用于服务端返回一串不规则的 html，里面夹杂着图片'
+                    )
+                  ],
+                  1
+                )
+              ]),
+              t._v(' '),
+              s('div', { staticClass: 'custom-block note' }, [
+                s('p', { staticClass: 'custom-block-title' }, [t._v('愿景')]),
+                t._v(' '),
+                s('p', [t._v('我的愿景就是能够快速相应开发，省去写平时大量用到的工具方法。'), s('br')])
+              ]),
+              t._v(' '),
+              s('div', { staticClass: 'custom-block warning' }, [
+                s('p', { staticClass: 'custom-block-title' }, [t._v('⚠️ 注意')]),
+                t._v(' '),
+                s('p', [t._v('🎲 表示用的比较少，考虑下一版本去除。'), s('br'), t._v('\n🔥 代表 比较常用的方法')])
+              ])
+            ])
+          },
+          [],
+          !1,
+          null,
+          null,
+          null
+        )
+      e.default = r.exports
+    }
+  }
+])
