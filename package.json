@@ -23,6 +23,7 @@
     "prettier:source": "prettier 'src/**/*.js' --config --ignore-unknown prettier.config.js --write",
     "prettier:all": "npm run prettier:docs && npm run prettier:source",
     "husky": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
+    "commitlint": "npx husky add .husky/commit-msg 'npx --no-install commitlint --edit \"$1\"'",
     "build:file-all": "node build/bin/build-entry-all.js",
     "build:entry-all": "npm run build:all-file && cross-env NODE_ENV=production rollup -c build/rollup.all-entry.js && terser lib/b-utils-all.min.js -m -o lib/b-utils-all.min.js",
     "pub": "npm version patch && npm run build:all && npm publish --access public"
@@ -54,8 +55,11 @@
     "registry": "https://registry.npmjs.org/"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,jsx,ts,tsx}": [
       "prettier --config --ignore-unknown .prettierrc.js --write --no-error-on-unmatched-pattern"
+    ],
+    "*.md": [
+      "prettier --write"
     ]
   },
   "strict": true,
@@ -66,7 +70,9 @@
     "@babel/plugin-transform-runtime": "7.16.5",
     "@babel/preset-env": "7.16.5",
     "@babel/runtime": "7.16.5",
-    "@bianpengfei/utils": "2.1.1-0",
+    "@bianpengfei/utils": "2.1.2",
+    "@commitlint/cli": "17.3.0",
+    "@commitlint/config-conventional": "17.3.0",
     "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-json": "4.1.0",
@@ -74,6 +80,7 @@
     "async-validator": "1.11.5",
     "babel-loader": "8.2.3",
     "babel-plugin-transform-object-assign": "6.22.0",
+    "commitlint": "17.3.0",
     "core-js": "3.21.1",
     "cross-env": "7.0.3",
     "crypto-js": "4.1.1",
