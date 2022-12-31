@@ -69,7 +69,7 @@ const template = render(MAIN_TEMPLATE, {
 
 fs.writeFileSync(OUTPUT_PATH, template)
 
-const PRETTIER_PATH = path.join(utils.ROOT_PATH, 'prettier.config.js')
+const PRETTIER_PATH = path.join(utils.ROOT_PATH, '.prettierrc.js')
 
 if (shell.exec(`prettier ${OUTPUT_PATH} --config --ignore-unknown ${PRETTIER_PATH} --write`).code !== 0) {
   shell.exit(1)

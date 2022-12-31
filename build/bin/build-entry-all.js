@@ -66,7 +66,7 @@ const template = render(MAIN_TEMPLATE, {
 
 fs.writeFileSync(OUTPUT_PATH, template)
 
-if (shell.exec('prettier "./src/index-all.js" --config --ignore-unknown ./prettier.config.js --write').code !== 0) {
+if (shell.exec('prettier "./src/index-all.js" --config --ignore-unknown ./.prettierrc.js --write').code !== 0) {
   shell.exit(1)
 }
 
