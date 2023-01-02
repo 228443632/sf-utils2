@@ -1,8 +1,8 @@
-import isArray from '../type/isArray'
-import isString from '../type/isString'
+import isArray from '@/base/isArray'
+import isString from '@/base/isString'
 import getStyle from './getStyle'
-import camelCase from '../base/camelCase'
-import kebabCase from '../base/kebabCase'
+import camelCase from '@/string/camelCase'
+import kebabCase from '@/string/kebabCase'
 import { _requestAnimationFrame } from './_constant'
 
 /**

@@ -1,4 +1,4 @@
-import throttle from '../base/throttle'
+import throttle from '@/function/throttle'
 import getStyle from '../dom/getStyle'
 import getParentScrollElement from '../dom/getParentScrollElement'
 import { _requestAnimationFrame } from '../dom/_constant'

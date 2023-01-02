@@ -1,5 +1,5 @@
 import getScrollLeft from './getScrollLeft'
-import isFunction from '../type/isFunction'
+import isFunction from '@/base/isFunction'
 import { _easeInOutQuad, _requestAnimationFrame } from './_constant'
 
 /**

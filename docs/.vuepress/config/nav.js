@@ -4,15 +4,17 @@ module.exports = [
   { text: '首页', link: '/' },
   {
     text: '指南',
-    link: '/pages/24112f/',
+    link: '/pages/021613/',
     items: [
-      { text: '快速开始 🔥', link: '/pages/24112f/' },
-      { text: '类型', link: '/pages/e3f3b0/' },
-      { text: '基础', link: '/pages/7e1357/' },
-      { text: 'dom', link: '/pages/c256cd/' },
-      { text: '数学', link: '/pages/ad3feb/' },
-      { text: '装饰器', link: '/pages/6e2c0b/' },
-      { text: '拓展', link: '/pages/fb9692/' }
+      { text: '01.快速开始 🔥', link: '/pages/021613/' },
+      { text: '02.基础-Base', link: '/pages/e3f3b0/' },
+      { text: '03.对象-Object', link: '/pages/xel48mk0o/' },
+      { text: '04.数组-Array', link: '/pages/x0sf8dktg/' },
+      { text: '05.方法-Function', link: '/pages/x059mk3g/' },
+      { text: '06.字符串-String', link: '/pages/xf6ds06/' },
+      { text: '07.数学-Math', link: '/pages/ad3feb/' },
+      { text: '08.dom', link: '/pages/c256cd/' },
+      { text: '09.拓展', link: '/pages/fb9692/' }
     ]
   },
   {

@@ -1,4 +1,4 @@
-import isArray from '../type/isArray'
+import isArray from '@/base/isArray'
 
 /**
  * 自动化注册 需要模块

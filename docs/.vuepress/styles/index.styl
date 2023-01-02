@@ -86,31 +86,6 @@ body .vuepress-plugin-demo-block__wrapper
       fill: $accentColor !important;
 
 
-@media (min-width: 720px)
-  body
-    font-size 15px
-  .content-wrapper
-    h1:nth-child(2)
-      display flex
-      align-items center
-      flex-wrap wrap
-      img
-        display inline-block
-
-  .sidebar-group
-    .sidebar-heading
-      font-size 1rem
-      padding: 0.2rem 1.5rem 0.2rem 1.25rem
-    .sidebar-group-items
-      li
-        .sidebar-link
-          font-size 14px
-          &.active
-            //background var(--textLightenColor)
-            font-weight 600
-            //color #fff
-
-
 table
   display: table;
   width: 100%;
@@ -188,6 +163,7 @@ table
       height 100%
       background #e5e7eb
     .right-menu-item
+      padding: 4px 15px!important
       &.active
         &:before
           border-radius 4px!important
@@ -206,6 +182,12 @@ table
 //          a
 //            font-weight: bold
 //
+
+.search-box
+  ul
+    &.suggestions
+      overflow-y auto
+      height calc(100vh - 60px)
 
 .theme-vdoing-content
   code
@@ -226,3 +208,76 @@ table
     background-color transparent
     border-radius: 8px
     -webkit-border-radius: 8px
+
+  body
+    font-size 15px
+  h1
+    font-size: 1.75rem
+  .content-wrapper
+    h1:nth-child(2)
+      display flex
+      align-items center
+      flex-wrap wrap
+      img
+        display inline-block
+
+  .sidebar
+    & > .sidebar-links
+      padding: 1rem 0!important;
+  .sidebar-group
+    .sidebar-heading
+      font-size 14px!important
+      padding: 0.2rem 1.5rem 0.2rem 1.25rem!important
+      line-height 1.4
+    .sidebar-group-items
+      padding-left 0.8em
+      padding-right 0.8em
+      li
+        .sidebar-link
+          font-size 13px
+          padding: 0.32rem 1rem 0.32rem 1.2rem;
+          //transition 0.3s background
+          &.active
+            color #fff
+            font-weight 500
+            border-left-color: transparent
+            background var(--primaryColor)
+            border-radius 4px
+    //color #fff
+    .sidebar > .sidebar-links > li:not(:first-child)
+      margin-top: 0.5rem!important
+  .nav-links
+    .nav-item
+      .nav-link
+        font-size 13px
+      .dropdown-wrapper
+        .dropdown-title
+          .title
+          .link-title
+            font-size 13px
+  .content-wrapper
+    .right-menu-wrapper
+      //position absolute
+      //right 0
+      width 250px!important
+      .right-menu-title
+        font-weight bold
+        font-size 13px!important
+      //display none
+      .right-menu-content
+        padding-top: 8px
+        &:before
+          content ''
+          position absolute
+          display none
+          background #e5e7eb
+        .right-menu-item
+          padding: 3px 10px!important
+          &.active
+            &:before
+              top 6px!important
+              border-radius 4px!important
+        .right-menu-item.level4
+          padding-left: 42px
+
+

@@ -1,6 +1,6 @@
 import { _ieVersion } from './_constant'
-import isObject from '../type/isObject'
-import camelCase from '../base/camelCase'
+import isPlainObject from '@/base/isPlainObject'
+import camelCase from '@/string/camelCase'
 
 /**
  * 设置元素样式
@@ -10,7 +10,7 @@ import camelCase from '../base/camelCase'
  */
 function setStyle(element, styleName, value) {
   if (!element || !styleName) return
-  if (isObject(styleName)) {
+  if (isPlainObject(styleName)) {
     for (let prop in styleName) {
       if (Object.prototype.hasOwnProperty.call(styleName, prop)) {
         setStyle(element, prop, styleName[prop])

@@ -71,5 +71,5 @@ module.exports = [
   //     zIndex: -1 // z-index property of the background, default: -1
   //   }
   // ],
-  ['cursor-effects']
+  // ['cursor-effects']
 ]

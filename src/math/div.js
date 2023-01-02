@@ -1,5 +1,5 @@
 import Decimal from './Decimal'
-import isNumber from '../type/isNumber'
+import isNumber from '@/base/isNumber'
 
 /**
  * 求arg1 除以 arg2

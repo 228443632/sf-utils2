@@ -11,6 +11,11 @@ import cleanup from 'rollup-plugin-cleanup'
 import banner from 'rollup-plugin-banner'
 import path from 'path'
 import externals from 'rollup-plugin-node-externals'
+import aliasPlugin from '@rollup/plugin-alias';
+
+const customResolver = resolve({
+  extensions: ['.mjs', '.js', '.jsx', '.json', '.sass', '.scss']
+});
 
 export const IS_DEV = process.env.NODE_ENV === 'development'
 export const IS_PRO = process.env.NODE_ENV === 'production'
@@ -26,6 +31,12 @@ export default {
     cleanup(),
     json(),
     resolve(),
+    aliasPlugin({
+      entries: [
+        { find: '@', replacement: path.join(ROOT_PATH, 'src') },
+      ],
+      customResolver,
+    }),
     commonjs({ sourceMap: false, ignoreTryCatch: false, transformMixedEsModules: true }),
     babel({
       exclude: 'node_modules/**', // 忽略 node_modules

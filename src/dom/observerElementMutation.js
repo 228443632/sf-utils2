@@ -1,4 +1,4 @@
-import debounce from '../base/debounce'
+import debounce from '@/function/debounce'
 import getStyle from './getStyle'
 import { _MutationObserver } from './_constant'
 

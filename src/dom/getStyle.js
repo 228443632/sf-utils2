@@ -1,5 +1,5 @@
 import { _ieVersion } from './_constant'
-import camelCase from '../base/camelCase'
+import camelCase from '@/string/camelCase'
 
 /**
  * 获取元素样式

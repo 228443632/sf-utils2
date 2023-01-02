@@ -1,9 +1,9 @@
 import JSZip from 'jszip/dist/jszip.min.js'
 import FileSaver from 'file-saver'
 import getHttpBlob from '../dom/getHttpBlob'
-import isObject from '../type/isObject'
-import isString from '../type/isString'
-import uuid from '../base/uuid'
+import isPlainObject from '@/base/isPlainObject'
+import isString from '@/base/isString'
+import uuid from '@/base/uuid'
 
 /**
  *  批量下载 （压缩包.zip）
@@ -26,7 +26,7 @@ export async function batchDownloadZip(urlList = [], fileName) {
   res.forEach((v, vi) => {
     let fileName = uuid() // 文件名
     let url = '' // 远程的url地址
-    if (isObject(_urlList[vi])) {
+    if (isPlainObject(_urlList[vi])) {
       fileName = _urlList[vi].name || _urlList[vi].url?.split('/')?.slice()?.pop()
       url = _urlList[vi].url
     } else if (isString(_urlList[vi])) {

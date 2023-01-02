@@ -1,4 +1,4 @@
-import isBrowser from '../type/isBrowser'
+import isBrowser from '@/base/isBrowser'
 
 /**
  * 获取ie 版本

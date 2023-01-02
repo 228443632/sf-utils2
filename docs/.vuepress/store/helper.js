@@ -75,19 +75,19 @@ export const make = {
  * @param reducers
  * @returns {{}}
  */
-export const useVuexPersistenceDecorator = (state, reducers) =>
-  Object.keys(reducers).reduce((pre, cur) => {
-    if (Object.prototype.toString.call(reducers[cur]).slice(8, -1) === 'Function') {
-      pre[cur] = function (...args) {
-        const __fn = {
-          @useVuexPersistence(state, VUE_PRESS_LOCALSTORAGE, [])
-          fn() {}
-        }
-        if (isBrowser) {
-          reducers[cur].apply(this, args)
-          __fn.fn()
-        }
-      }
-    }
-    return pre
-  }, {})
+// export const useVuexPersistenceDecorator = (state, reducers) =>
+//   Object.keys(reducers).reduce((pre, cur) => {
+//     if (Object.prototype.toString.call(reducers[cur]).slice(8, -1) === 'Function') {
+//       pre[cur] = function (...args) {
+//         const __fn = {
+//           @useVuexPersistence(state, VUE_PRESS_LOCALSTORAGE, [])
+//           fn() {}
+//         }
+//         if (isBrowser) {
+//           reducers[cur].apply(this, args)
+//           __fn.fn()
+//         }
+//       }
+//     }
+//     return pre
+//   }, {})

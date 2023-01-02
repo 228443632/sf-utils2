@@ -48,7 +48,7 @@ const ModulesTemplate = []
 FILE_PATHS.forEach(v => {
   const pathSplit = v.replace(/^\.\/(.*)\.\w+$/, '$1').split('/')
   const moduleName = pathSplit.slice().pop()
-  const dirs = pathSplit.slice(0, -1)
+  const dirs = pathSplit.slice(0, -1).map(v => v.match(/(\d+\.)?(.*)/)?.[2])
 
   if (!EXCLUDE_DIRS.includes(dirs[0]) && !EXCLUDE_FILES.includes(moduleName)) {
     importTemplate.push(

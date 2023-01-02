@@ -9,7 +9,8 @@ const ROOT_PATH = path.resolve(__dirname, '../../')
 const IS_PRO = process.env.NODE_ENV === 'production'
 
 // 打包静态资源前缀
-const BASE = IS_PRO ? '/fr/@bianpengfei-utils/v2/' : '/'
+// const BASE = IS_PRO ? '/fr/@bianpengfei-utils/v2/' : '/'
+const BASE = IS_PRO ? '/fr/@bianpengfei-utils/v3/' : '/'
 
 module.exports = {
   theme: 'vdoing',
@@ -23,6 +24,7 @@ module.exports = {
       ...(config.resolve || {}),
       alias: {
         '+root': ROOT_PATH,
+        '@': path.join(ROOT_PATH, 'src'),
         ...config.resolve.alias
       },
       extensions: [...config.resolve.extensions, ...['.js', '.vue', '.json']]
@@ -46,17 +48,15 @@ module.exports = {
     // console.log('导出成功')
   },
   base: BASE,
-  markdown: {
-    lineNumbers: true
-  },
   locales: {
     '/': {
       lang: 'zh-CN'
     }
   },
-  dest: path.resolve(ROOT_PATH, `docs/.vuepress/compile/fr/@bianpengfei-utils/v2`),
+  dest: path.resolve(ROOT_PATH, `docs/.vuepress/compile/fr/@bianpengfei-utils/v3`),
   markdown: {
-    extractHeaders: ['h2', 'h3', 'h4']
+    extractHeaders: ['h2', 'h3', 'h4'],
+    lineNumbers: true
   },
   head,
   themeConfig,

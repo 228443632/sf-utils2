@@ -1,5 +1,5 @@
-import isString from '../type/isString'
-import trim from '../base/trim'
+import isString from '@/base/isString'
+import trim from '@/string/trim'
 import getAbsOffsetTop from './getAbsOffsetTop'
 
 /**
