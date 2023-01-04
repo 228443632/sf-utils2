@@ -8,20 +8,19 @@ import _helperTreeBase from '../_helper/_helperTreeBase.js'
  */
 function eachTree({
   tree = [],
-  props = { id: 'id', parentId: 'parentId', children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
+  props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
   callbackList,
-  callbackItem
+  callbackItem,
+  isDeepClone = true
 }) {
   let defaultOptions = {
-    id: 'id',
-    parentId: 'parentId',
     children: 'children',
     order: false,
     orderField: 'order',
     orderBy: 'asc'
   }
   props = merge({}, defaultOptions, props)
-  return _helperTreeBase({ props, callbackList, callbackItem, tree })
+  return _helperTreeBase({ props, callbackList, callbackItem, tree, isDeepClone })
 }
 
 export default eachTree

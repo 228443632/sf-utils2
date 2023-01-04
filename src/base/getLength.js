@@ -1,5 +1,4 @@
-import _typeof from "@/base/_typeof";
-
+import _typeof from '@/base/_typeof'
 
 /**
  * 返回不同类型的的长度 （对象/数组/Map/Set/String）
@@ -8,17 +7,17 @@ import _typeof from "@/base/_typeof";
 function getLength(val) {
   let len = 0
   switch (_typeof(val)) {
-    case "Object": {
+    case 'Object': {
       len = Object.keys(val).length
       break
     }
-    case "String":
-    case "Array": {
+    case 'String':
+    case 'Array': {
       len = val.length
       break
     }
-    case "Map":
-    case "Set": {
+    case 'Map':
+    case 'Set': {
       len = val.size
       break
     }

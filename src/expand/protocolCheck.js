@@ -1,5 +1,4 @@
 let protocolCheck
-
 ;(function (f) {
   // if (typeof exports === 'object' && typeof module !== 'undefined') {
   //   // module.exports = f()

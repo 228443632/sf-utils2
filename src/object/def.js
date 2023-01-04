@@ -6,7 +6,7 @@
  * @param {Boolean} enumerable
  * @returns {*}
  * @example
- * 
+ *
  * let person = {name: '蔡徐坤'}
  * def(person, 'age', '100')
  */

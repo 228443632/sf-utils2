@@ -10,6 +10,7 @@ import arrayToObj from '@/array/arrayToObj'
  * @param {Function} callbackList 回调函数 节点list
  * @param {Function} callbackItem 回调函数 当前节点
  * @param {Array<String>} retainField 保留的字段
+ * @param {Boolean} isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
  */
 function listToTree({
@@ -18,7 +19,8 @@ function listToTree({
   props = { id: 'id', parentId: 'parentId', children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
   callbackList,
   callbackItem,
-  retainField = ['__rootNode__', '__pId__', '__level__']
+  retainField = ['__rootNode__', '__pId__', '__level__'],
+  isDeepClone = true
 }) {
   let defaultOptions = {
     id: 'id',
@@ -47,7 +49,7 @@ function listToTree({
     return _tree
   }
   let tree = _listToTreeFn({ list, root, props })
-  return _helperTreeBase({ props, callbackList, callbackItem, tree, retainField })
+  return _helperTreeBase({ props, callbackList, callbackItem, tree, retainField, isDeepClone })
 }
 
 export default listToTree

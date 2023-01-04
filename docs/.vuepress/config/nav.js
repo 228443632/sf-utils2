@@ -40,7 +40,8 @@ module.exports = [
     text: 'v' + version,
     items: [
       { text: 'v1.x', link: 'http://8.133.185.32/fr/@bianpengfei-utils/v1/' },
-      { text: 'v2.x', link: 'http://8.133.185.32/fr/@bianpengfei-utils/v2/' }
+      { text: 'v2.x', link: 'http://8.133.185.32/fr/@bianpengfei-utils/v2/' },
+      { text: 'v3.x', link: 'http://8.133.185.32/fr/@bianpengfei-utils/v3/' },
     ]
   },
   { text: '企业级后台模版', link: 'http://8.133.185.32/fr/pc-template/' }

@@ -8,6 +8,7 @@ import arrayToObj from './array/arrayToObj.js'
 import childNodesInList from './array/childNodesInList.js'
 import chunk from './array/chunk.js'
 import eachTree from './array/eachTree.js'
+import filterTree from './array/filterTree.js'
 import listToTree from './array/listToTree.js'
 import matchSubListGroup from './array/matchSubListGroup.js'
 import parentNodesInTree from './array/parentNodesInTree.js'
@@ -17,6 +18,7 @@ import _typeof from './base/_typeof.js'
 import browser from './base/browser.js'
 import commonRegex from './base/commonRegex.js'
 import formatSizeUnit from './base/formatSizeUnit.js'
+import getDateDiff from './base/getDateDiff.js'
 import getGlobalThis from './base/getGlobalThis.js'
 import getLength from './base/getLength.js'
 import inherits from './base/inherits.js'
@@ -113,7 +115,7 @@ import kebabCase from './string/kebabCase.js'
 import snakeCase from './string/snakeCase.js'
 import trim from './string/trim.js'
 
-const version = '3.0.0'
+const version = '3.0.0-beta-1.0'
 
 export default {
   version,
@@ -125,6 +127,7 @@ export default {
   childNodesInList,
   chunk,
   eachTree,
+  filterTree,
   listToTree,
   matchSubListGroup,
   parentNodesInTree,
@@ -134,6 +137,7 @@ export default {
   browser,
   commonRegex,
   formatSizeUnit,
+  getDateDiff,
   getGlobalThis,
   getLength,
   inherits,
@@ -241,6 +245,7 @@ export {
   childNodesInList,
   chunk,
   eachTree,
+  filterTree,
   listToTree,
   matchSubListGroup,
   parentNodesInTree,
@@ -250,6 +255,7 @@ export {
   browser,
   commonRegex,
   formatSizeUnit,
+  getDateDiff,
   getGlobalThis,
   getLength,
   inherits,

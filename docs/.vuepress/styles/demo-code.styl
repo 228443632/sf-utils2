@@ -29,7 +29,8 @@
   .demo-block .meta .code-content div[class*="language-"].line-numbers-mode::after {
     width: 2rem;
     background-color: var(--customBlockBg)!important;
-    border: none;
+    border-right: 1px solid var(--borderColor)!important;
+    //border: none;
   }
   .demo-block .meta .code-content div[class*="language-"].line-numbers-mode .line-numbers-wrapper .line-number {
     color: #f08d49!important;
@@ -232,7 +233,8 @@
   .demo-block .meta .code-content div[class*="language-"].line-numbers-mode::after {
     width: 2rem;
     background: var(--codeBg)!important;
-    border: none;
+    border-right: 1px solid var(--borderColor)!important;
+    //border: none;
   }
   .demo-block .meta .code-content div[class*="language-"].line-numbers-mode .line-numbers-wrapper .line-number {
     color: #f08d49!important;
@@ -283,6 +285,11 @@
   .demo-block .demo-content {
     padding: 24px;
     //background-color: var(--borderColor)!important;
+  }
+  .demo-block .meta .code-content div[class*="language-"].line-numbers-mode::after {
+    width: 2rem;
+    background: var(--codeBg)!important;
+    border: 1px solid var(--borderColor)!important;
   }
   .demo-block .meta {
     background: var(--codeBg)!important;
@@ -414,6 +421,11 @@
   .demo-block .meta .hljs-selector-class,
   .demo-block .meta .token.selector {
     color: #3182bd !important;
+  }
+  .demo-block .meta .code-content div[class*="language-"].line-numbers-mode::after {
+    width: 2rem;
+    background: var(--codeBg)!important;
+    border-right: 1px solid var(--borderColor)!important;
   }
 }
 

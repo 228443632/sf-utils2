@@ -1,47 +1,33 @@
+<!--
+ * @Description:
+ * @Author 卞鹏飞 <228443632@qq.com>
+ * @create 2023/1/4 22:31
+ -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-    <style>
-      /*.container {*/
-      /*  height: 100vh;*/
-      /*  overflow: auto;*/
-      /*}*/
-      .box-red {
-        width: 100%;
-        height: 50vh;
-      }
-      .box-blue {
-        width: 100%;
-        height: 30vh;
-      }
-      .box-yellow {
-        width: 100%;
-        height: 60vh;
-      }
-      .box-pink {
-        width: 100%;
-        height: 60vh;
-      }
-    </style>
   </head>
-  <body style="height: 100vh; overflow-y: auto">
-    <div class="container">
-      <div class="box-red">1</div>
-      <div class="box-blue">2</div>
-      <div class="box-yellow">3</div>
-      <div class="box-pink">4</div>
-    </div>
+  <body>
     <script src="./lib/b-utils.js"></script>
 
-    <script>
-      const {snakeCase, kebabCase,camelCase, capitalize, throttle, parentNodesInTree,childNodesInList, eachTree,treeToList,listToTree,matchSubListGroup,chunk, arrayToObj, uniq, convertPropToLower, merge,flatten,get, findPropPath,setPropPath, deepClone, formatSizeUnit, isWeakSet,isWeakMap,isMap,isFormData, isError, isValidDate, isDate,pageHelper,isFunction, isObject, uuid,parseURL, browser,uniqueId,isMobile, isPc, isNode, isBrowser, isString, isSymbol, isSet,isPromise,isInteger,isBoolean, isAsyncFunction,isSyncFunction,isPlainObject, isFloat,isArray, isNullable} = BUtils
-      let person = { name: '蔡徐坤' }
-      function sayHello() {
-        alert('hello world')
-      }
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
+    <div id="app">
+      {{ message }}
+
+      <input v-model="input"></input>
+
+      <input name="familyIllness" id="wu" type="radio" value="1">
+      <br>
+      <div style="height: calc(100vh - 100px); overflow-y: auto;background: #eee; padding: 0 12px;">
+        <pre>{{json}}</pre>
+      </div>
+    </div>
+
+
+    <script>
 
       const tree = [
         {
@@ -51,7 +37,7 @@
           children: [
             {
               id: 1001,
-              name: '香蕉A',
+              name: '香蕉A@',
               pId: 1,
               children: [
                 {
@@ -189,14 +175,81 @@
           pId: null
         }
       ]
-      // tree转化成list, 对应下面输出结果1
-      console.log(treeToList({tree: tree, props: {children: 'children'}}));
 
-      // tree转化成list，对应下面输出结果2
-      // 保留每一项节点 所有的子代以及所有子代下所有节点（平铺化）、保留每一项节点所经过的路径节点，字段为_pathNodes
-      console.log(treeToList({tree: tree, props: {children: 'children'}, retainPaths: true, retainAllChildren: true}));
+      const data  =  [{
+        id: 1,
+        label: '一级 76666',
+        children: [{
+          id: 4,
+          label: '二级 1-1',
+          children: [{
+            id: 9,
+            label: '三级 1-1-1'
+          }, {
+            id: 10,
+            label: '三级 1-1-2'
+          }]
+        }]
+      }, {
+        id: 2,
+        label: '一级 2',
+        children: [{
+          id: 5,
+          label: '二级 2-1'
+        }, {
+          id: 6,
+          label: '二级 2-2'
+        }]
+      }, {
+        id: 3,
+        label: '一级 3',
+        children: [{
+          id: 7,
+          label: '二级 3-1'
+        }, {
+          id: 8,
+          label: '二级 3-2'
+        }]
+      }]
+
+      // const treeData = BUtils.deepClone(data)
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: '香蕉A@',
+          input: '',
+          json: BUtils.deepClone(data)
+        },
+        mounted() {
+
+        },
+
+        watch: {
+          input(newVal) {
+            if (!newVal) {
+              this.json = data
+              return
+            }
+            this.json = filterTree({
+              tree: data,
+              retainChild: true,
+              callbackItem: (...args) => {
+                const [item] = args
+                // console.log('')
+                // console.log('callbackItem', args)
+                return item.label.includes(newVal)
+              }
+            })
+          }
+        }
+      })
+
+      const { filterTree } = BUtils
+
 
 
     </script>
+
   </body>
 </html>

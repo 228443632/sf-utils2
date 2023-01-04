@@ -1,9 +1,10 @@
 import isArray from '@/base/isArray'
 import merge from '../object/merge'
 import def from '@/object/def'
+import deepClone from '@/object/deepClone'
 
 /**
- * 获取节点 经过的所有父节点 轨迹
+ * 获取节点 经过的所有父节点 轨迹节点
  * @param listObj
  * @param ID
  * @returns {any[]}
@@ -30,6 +31,7 @@ function _getNodePathItem(listObj = {}, ID = '') {
  * @param retainChild 是否保留每一项中的 直接子节点
  * @param retainPaths 是否返回每一项节点所经过的路径节点
  * @param retainAllChildren 是否返回每一项节点 所有的子代以及所有子代下所有节点（平铺化）
+ * @param {Boolean} isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
  */
 //  Object.defineProperty(item, '_id', { writable: false, value: `${item._pId}-${index + 1}` })
@@ -38,15 +40,18 @@ function treeToList({
   props = { children: 'children' },
   retainChild = false,
   retainPaths = false,
-  retainAllChildren = false
+  retainAllChildren = false,
+  isDeepClone = true
 }) {
   let defaultProps = { children: 'children' }
   props = merge({}, defaultProps, props)
 
+  if (isDeepClone) tree = deepClone(tree)
+
   const _list = []
   const _PID = '@'
   let _listObj = {}
-  const treeToListFn = ({ tree = [], props = { children: 'children' }, retainChild = false, PID = '0' }) => {
+  const treeToListFn = ({ tree = [], props = { children: 'children' }, retainChild = false, PID = '@' }) => {
     if (isArray(tree) && tree.length) {
       tree.forEach((item, index) => {
         let _pId = item.__pId__ ?? PID

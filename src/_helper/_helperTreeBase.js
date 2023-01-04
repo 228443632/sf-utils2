@@ -6,6 +6,42 @@
 import isArray from '@/base/isArray.js'
 import merge from '@/object/merge.js'
 import def from '@/object/def'
+import deepClone from '@/object/deepClone'
+import isString from '@/base/isString'
+
+/**
+ * 获取经过路径集合
+ * @param {String} str
+ * @return {String[]}
+ */
+export function _getPathLists(str) {
+  const pathLists = []
+  const splitString = '-'
+  const splitArray = str.split(splitString)
+  splitArray.forEach((v, vi, arr) => {
+    if (vi > 1) {
+      pathLists.push(arr.slice(0, vi).join(splitString))
+    }
+  })
+  pathLists.push(str)
+  return pathLists
+}
+
+/**
+ * 判断aPath是否包含bPath
+ * @param {String} aPath
+ * @param {String} bPath
+ * @return {Boolean}
+ */
+export function _includesChildPath(aPath, bPath) {
+  if (isString(aPath) && isString(bPath)) {
+    const idx = aPath.indexOf(bPath)
+    if (idx === 0 && aPath.substr(bPath.length, 1) === '-') {
+      return true
+    }
+  }
+  return false
+}
 
 /**
  * 遍历树型结构，并添加额外参数
@@ -14,10 +50,18 @@ import def from '@/object/def'
  * @param {Function} callbackList 回调函数 节点list
  * @param {Function} callbackItem 回调函数 当前节点
  * @param {Array<String>} retainField 保留的字段数组
+ * @param {Boolean} isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
  * @private
  */
-const _helperTreeBase = ({ tree = [], props = {}, callbackList = null, callbackItem = null, retainField = [] }) => {
+const _helperTreeBase = ({
+  tree = [],
+  props = {},
+  callbackList = null,
+  callbackItem = null,
+  retainField = [],
+  isDeepClone = true
+}) => {
   let defaultProps = {
     id: 'id',
     parentId: 'parentId',
@@ -36,6 +80,8 @@ const _helperTreeBase = ({ tree = [], props = {}, callbackList = null, callbackI
 
   let _isCbListBreak = false
   let _isCbItemBreak = false
+
+  if (isDeepClone) tree = deepClone(tree)
 
   let _fn = ({ tree = [], parentNode = null, rootNode = null }) => {
     if (isArray(tree)) {
