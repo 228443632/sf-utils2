@@ -26,7 +26,7 @@
     "commitlint": "npx husky add .husky/commit-msg 'npx --no-install commitlint --edit \"$1\"'",
     "build:file-all": "node build/bin/build-entry-all.js",
     "build:entry-all": "npm run build:all-file && cross-env NODE_ENV=production rollup -c build/rollup.all-entry.js && terser lib/b-utils-all.min.js -m -o lib/b-utils-all.min.js",
-    "pub": "npm version prerelease && npm run build:all && npm publish --access public"
+    "pub": "npm version prerelease && npm run build:all && npm publish --access public && node build/bin/upgrade-package.js"
   },
   "files": [
     "src",
@@ -46,7 +46,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/bianpengfei/bianpengfei/tree/master/b-utils/v2"
+    "url": "https://gitee.com/bianpengfei/bianpengfei-utils"
   },
   "dependencies": {
     "decimal.js-light": "2.5.1"
@@ -70,7 +70,7 @@
     "@babel/plugin-transform-runtime": "7.16.5",
     "@babel/preset-env": "7.16.5",
     "@babel/runtime": "7.16.5",
-    "@bianpengfei/utils": "3.0.0-beta-1.0",
+    "@bianpengfei/utils": "3.0.0-beta-1.1",
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
     "@rollup/plugin-alias": "3.1.9",

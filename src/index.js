@@ -115,7 +115,7 @@ import kebabCase from './string/kebabCase.js'
 import snakeCase from './string/snakeCase.js'
 import trim from './string/trim.js'
 
-const version = '3.0.0-beta-1.0'
+const version = '3.0.0-beta-1.1'
 
 export default {
   version,
