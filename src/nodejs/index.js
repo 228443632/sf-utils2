@@ -3,7 +3,7 @@
 const getIpAddrSync = require('./getIpAddrSync.js')
 const readDirStructureSync = require('./readDirStructureSync.js')
 
-const version = '3.0.0-beta-1.1'
+const version = '1.0.2-1'
 
 module.exports = {
   version,

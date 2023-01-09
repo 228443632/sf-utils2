@@ -15,7 +15,7 @@
     "build:all": "rimraf lib && npm-run-all --parallel prettier:source build:entry build:entry-cdn build:modules",
     "build:file": "node build/bin/build-entry.js && node build/bin/build-entry-nodejs.js",
     "build:entry-cdn": "cross-env NODE_ENV=production rollup -c build/rollup.entry-cdn.js && terser lib/index.global.js -m -o lib/index.global.min.js",
-    "build:entry": "npm run build:file && cross-env NODE_ENV=production rollup -c build/rollup.entry.js && rollup -c build/rollup.entry-cdn.js && terser lib/index.min.js -m -o lib/index.min.js",
+    "build:entry": "npm run build:file && cross-env NODE_ENV=production rollup -c build/rollup.entry.js && rollup -c build/rollup.entry-cdn.js && terser lib/index.global.js -m -o lib/index.min.js",
     "build:modules": "cross-env NODE_ENV=production rollup -c build/rollup.modules.js && cross-env NODE_ENV=production rollup -c build/rollup.modules.nodejs.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs && touch docs/.vuepress/compile/fr/@bianpengfei-utils/v3/.spa",
