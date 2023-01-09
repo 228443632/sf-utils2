@@ -11,7 +11,7 @@ export default () => {
     input: 'src/index.js',
     output: [
       {
-        file: 'lib/b-utils.min.js',
+        file: 'lib/index.global.js',
         format: 'umd',
         name: 'BUtils',
         exports: 'auto'

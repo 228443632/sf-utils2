@@ -8,9 +8,9 @@ import { isBrowser } from './store/helper'
 
 // import { Base } from '+root/src/'
 
-// import { parseURL } from '+root/lib/b-utils.js'
-//
-// console.log(parseURL('google.com')) // {}
+import { parseURL } from '+root/lib/b-utils.js'
+
+console.log(parseURL('google.com')) // {}
 // console.log(parseURL('http://url.com/#page#?name=Adam&surname=Smith#'))
 
 export default ({

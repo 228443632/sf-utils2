@@ -30,13 +30,13 @@ import def from './def'
  *   _path: '',
  *   obj: {
  *     id: '---',
- *     _path: 'obj'，
+ *     __path__: 'obj'，
  *     hos: {
  *       location: {
  *         name: '卫生院',
- *         _path: 'obj|hos|location'
+ *         __path__: 'obj|hos|location'
  *       },
- *       _path: 'obj|hos'
+ *       __path__: 'obj|hos'
  *     }
  *   }
  * }

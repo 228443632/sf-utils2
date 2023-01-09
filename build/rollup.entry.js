@@ -5,6 +5,7 @@
  */
 import { terser } from 'rollup-plugin-terser'
 import rollupConfigBase from './rollup.base'
+import pkg from '../package.json'
 
 export default () => {
   return {
@@ -12,9 +13,9 @@ export default () => {
     input: 'src/index.js',
     output: [
       {
-        file: 'lib/b-utils.js',
+        file: `lib/index.js`,
         format: 'umd',
-        name: 'BUtils',
+        name: pkg.globalName,
         exports: 'auto',
         plugins: [
           terser({
@@ -26,12 +27,12 @@ export default () => {
         ]
       },
       {
-        file: 'lib/b-utils.common.js',
+        file: `lib/index.cjs.js`,
         format: 'cjs',
         exports: 'auto'
       },
       {
-        file: 'lib/b-utils.esm.js',
+        file: `lib/index.esm.js`,
         format: 'esm',
         exports: 'auto'
       }
