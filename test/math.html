@@ -5,37 +5,73 @@
  -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
+    <script src="./lib/index.umd.js"></script>
+    <script>
+      console.log(
+        butils.omit({ 1: 'w3242', name: '23' }, function () {
+          console.log('arguments', ...arguments)
+          return false
+        })
+      )
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
-<script src="./lib/index.umd.js"></script>
-<script>
+      const object = { a: 1, b: '2', c: 3 }
+      console.log(butils.pick(object, (item, key) => ['a', 'c'].includes(key)))
 
-  console.log($sf.omit({1: 'w3242', name: '23'}, function() {
-    console.log('arguments', ...arguments)
-    return false
-  }));
+      var users = [
+        { user: 'fred', age: 1 },
+        { user: 'barney', age: 34 },
+        { user: 'fred', age: 40 },
+        { user: 'barney', age: 90 }
+      ]
 
+      // 以 `user` 升序排序 再  `age` 以降序排序。
+      console.log(butils.orderBy(users, ['age', 'user'], ['desc', 'desc']))
+      // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
 
-  const object = { 'a': 1, 'b': '2', 'c': 3 };
-  console.log($sf.pick(object, (item, key) => ['a', 'c'].includes(key)));
+      const obj1 = {
+        name: 1,
+        formula: { chapterId: 9999,kkk: undefined },
+        targets: [{id: '----'}]
+      }
 
-  var users = [
-    { 'user': 'fred',   'age': 1 },
-    { 'user': 'barney', 'age': 34 },
-    { 'user': 'fred',   'age': 40 },
-    { 'user': 'barney', 'age': 90 }
-  ];
-
-  // 以 `user` 升序排序 再  `age` 以降序排序。
-  console.log($sf.orderBy(users, ['age', 'user'], ['desc', 'desc']));
-  // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
-
-
-</script>
-</body>
+      const obj2 = {
+        id: 5,
+        parentId: 2,
+        sort: null,
+        project: null,
+        name: '（三）平均床位使用率',
+        type: 1,
+        unit: '%',
+        percentage: null,
+        formula: { chapterId: 5, targetIdMo: 3, targetIdDe: 4, expand: null },
+        leafFlag: null,
+        childrenList: null,
+        targets: [
+          {
+            id: 3,
+            accessId: '2-5-3',
+            chapterId: 5,
+            name: '实际占用的总床日数',
+            val: 0.0,
+            deptHasVal: false
+          },
+          {
+            id: 4,
+            accessId: '2-5-4',
+            chapterId: 5,
+            name: '同期实际开放的总床日数',
+            val: 0.0,
+            deptHasVal: false
+          }
+        ]
+      }
+      console.log('结果', butils.deepMerge(obj1, obj2))
+    </script>
+  </body>
 </html>

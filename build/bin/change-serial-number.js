@@ -8,9 +8,9 @@ const path2 = require('path')
 const utils = require('../utils')
 
 const config = {
-  dir: path2.join(utils.ROOT_PATH, 'docs/01.指南/02.基础Base'), // 目标目录
-  startFile: 'isNullable.md', // 开始文件名称 包括
-  endFile: 'isMobile.md', // 结束文件名称 包括
+  dir: path2.join(utils.ROOT_PATH, 'docs/01.指南/03.对象-Object'), // 目标目录
+  startFile: 'convertPropToLower.md', // 开始文件名称 包括
+  endFile: '', // 结束文件名称 包括
   step: 3  // 增长步数
 }
 

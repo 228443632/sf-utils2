@@ -28,3 +28,4 @@ yarn.lock
 test/lib
 lib
 src/index.js
+/docs/.vuepress/compile/
