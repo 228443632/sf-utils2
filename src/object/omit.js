@@ -26,7 +26,7 @@ function omit(obj = {}, predicate) {
     // 数组
     const tempObj = arrayToObj(predicate)
     Object.entries(obj).forEach(([k, v]) => {
-      if (hasOwn(tempObj, k))  delete innerObj[k]
+      if (hasOwn(tempObj, k)) delete innerObj[k]
     })
   } else if (isFunction(predicate)) {
     // 是方法

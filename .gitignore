@@ -27,3 +27,4 @@ yarn.lock
 
 test/lib
 lib
+src/index.js
