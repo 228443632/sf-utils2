@@ -4,7 +4,7 @@
  * @return {boolean}
  * @description 拓展: js中共有7种数据类型: Number,Undefined,Null,String,Boolean,Object,Symbol
  */
-function isPrimitive (value){
+function isPrimitive(value) {
   return (
     typeof value === 'string' ||
     typeof value === 'number' ||

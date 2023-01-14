@@ -3,10 +3,10 @@
 const getIpAddrSync = require('./getIpAddrSync.js')
 const readDirStructureSync = require('./readDirStructureSync.js')
 
-const version = '1.0.2-2'
+const version = '1.0.2-3'
 
 module.exports = {
-  version,
-  getIpAddrSync,
-  readDirStructureSync
+   version,
+  	getIpAddrSync,
+	readDirStructureSync
 }

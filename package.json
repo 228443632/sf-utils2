@@ -1,6 +1,6 @@
 {
   "name": "@bianpengfei/utils",
-  "version": "1.0.2-3",
+  "version": "3.0.2",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "http://8.133.185.32/fr/@bianpengfei-utils/v3/",
@@ -26,7 +26,7 @@
     "husky": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
     "commitlint": "npx husky add .husky/commit-msg 'npx --no-install commitlint --edit \"$1\"'",
     "build:file-all": "node build/bin/build-entry-all.js",
-    "pub": "npm version prerelease && npm run build:all && npm publish --access public && node build/bin/upgrade-package.js"
+    "pub": "npm version patch && npm run build:all && npm publish --access public && node build/bin/upgrade-package.js"
   },
   "globalName": "butils",
   "files": [
