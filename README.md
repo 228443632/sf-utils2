@@ -31,14 +31,14 @@ yarn add @bianpengfei/utils
 
 ```js
 // 运行在esm中
-import BUtils from '@bianpengfei/utils'
+import butils from '@bianpengfei/utils'
 
-BUtils.uuid()
+butils.uuid()
 ```
 
 ## cdn 使用
 
 ```js
-window.bUtils.uuid()
+window.butils.uuid()
 // Type.isNumber
 ```

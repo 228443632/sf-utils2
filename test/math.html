@@ -12,8 +12,30 @@
 <body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
+<script src="./lib/index.umd.js"></script>
 <script>
-  console.log(dayjs('2020-03-30').diff('2020-01-31', 'month'));
+
+  console.log($sf.omit({1: 'w3242', name: '23'}, function() {
+    console.log('arguments', ...arguments)
+    return false
+  }));
+
+
+  const object = { 'a': 1, 'b': '2', 'c': 3 };
+  console.log($sf.pick(object, (item, key) => ['a', 'c'].includes(key)));
+
+  var users = [
+    { 'user': 'fred',   'age': 1 },
+    { 'user': 'barney', 'age': 34 },
+    { 'user': 'fred',   'age': 40 },
+    { 'user': 'barney', 'age': 90 }
+  ];
+
+  // 以 `user` 升序排序 再  `age` 以降序排序。
+  console.log($sf.orderBy(users, ['age', 'user'], ['desc', 'desc']));
+  // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+
+
 </script>
 </body>
 </html>

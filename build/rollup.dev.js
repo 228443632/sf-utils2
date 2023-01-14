@@ -16,13 +16,13 @@ export default {
     {
       file: path.join(ROOT_PATH, `test/${pkg.jsdelivr}`),
       format: 'umd',
-      name: 'BUtils',
+      name: pkg.globalName,
       exports: 'auto'
     },
     {
       file: path.join(ROOT_PATH, `test/${pkg.main}`),
       format: 'umd',
-      name: 'BUtils',
+      name: pkg.globalName,
       exports: 'auto'
     },
     {

@@ -1,18 +1,18 @@
 {
-  "name": "@sf/utils",
+  "name": "@bianpengfei/utils",
   "version": "1.0.2-2",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "http://8.133.185.32/fr/@bianpengfei-utils/v3/",
-  "alias-name": "@sf/utils",
-  "main": "lib/index.js",
+  "alias-name": "sfutils",
+  "main": "lib/index.umd.js",
   "module": "lib/index.esm.js",
   "unpkg": "lib/index.min.js",
   "type": "commonjs",
-  "jsdelivr": "lib/index.global.min.js",
+  "jsdelivr": "lib/index.umd.min.js",
   "scripts": {
     "dev": "npm run build:file && cross-env NODE_ENV=development rollup -c build/rollup.dev.js -w ",
-    "build:all": "rimraf lib && npm-run-all --parallel prettier:source build:entry build:entry-cdn build:modules",
+    "build:all": "rimraf lib && npm-run-all --parallel prettier:source build:entry build:modules",
     "build:file": "node build/bin/build-entry.js && node build/bin/build-entry-nodejs.js",
     "build:entry-cdn": "cross-env NODE_ENV=production rollup -c build/rollup.entry-cdn.js && terser lib/index.global.js -m -o lib/index.global.min.js",
     "build:entry": "npm run build:file && cross-env NODE_ENV=production rollup -c build/rollup.entry.js && rollup -c build/rollup.entry-cdn.js && terser lib/index.global.js -m -o lib/index.min.js",
@@ -28,7 +28,7 @@
     "build:file-all": "node build/bin/build-entry-all.js",
     "pub": "npm version prerelease && npm run build:all && npm publish --access public && node build/bin/upgrade-package.js"
   },
-  "globalName": "$sf",
+  "globalName": "butils",
   "files": [
     "src",
     "lib",

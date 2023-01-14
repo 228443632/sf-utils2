@@ -4,6 +4,7 @@
  * @create 2021/12/25 12:50
  */
 import rollupConfigBase from './rollup.base'
+import pkg from '../package.json'
 
 export default () => {
   return {
@@ -13,7 +14,7 @@ export default () => {
       {
         file: 'lib/index.global.js',
         format: 'umd',
-        name: 'BUtils',
+        name: pkg.globalName,
         exports: 'auto'
       }
     ],

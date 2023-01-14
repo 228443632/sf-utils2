@@ -14,8 +14,8 @@ const BASE = IS_PRO ? '/fr/@bianpengfei-utils/v3/' : '/'
 
 module.exports = {
   theme: 'vdoing',
-  title: '@bianpengfei/utils.js',
-  description: '@bianpengfei/utils.js 官方文档',
+  title: '@bianpengfei/utils',
+  description: '@bianpengfei/utils 官方文档',
   shouldPrefetch: () => false,
   shouldPreload: () => false,
   configureWebpack: (config, isServer) => {

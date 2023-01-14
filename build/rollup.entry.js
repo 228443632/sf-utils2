@@ -13,7 +13,7 @@ export default () => {
     input: 'src/index.js',
     output: [
       {
-        file: `lib/index.js`,
+        file: `lib/index.umd.js`,
         format: 'umd',
         name: pkg.globalName,
         exports: 'auto',

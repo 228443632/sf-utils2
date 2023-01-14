@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /img/logo.svg
-heroText: '@bianpengfei/utils.js'
+heroText: '@bianpengfei/utils'
 tagline: 🚀为简化开发而生
 actionText: 快速开始
 actionLink: /pages/24112f/

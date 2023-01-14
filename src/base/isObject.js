@@ -4,7 +4,7 @@
  * @returns {boolean}
  */
 function isPlainObject(val) {
-  return typeof val === 'object'
+  return val !== null && typeof val === 'object'
 }
 
 export default isPlainObject

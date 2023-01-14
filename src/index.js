@@ -11,6 +11,7 @@ import eachTree from './array/eachTree.js'
 import filterTree from './array/filterTree.js'
 import listToTree from './array/listToTree.js'
 import matchSubListGroup from './array/matchSubListGroup.js'
+import orderBy from './array/orderBy.js'
 import parentNodesInTree from './array/parentNodesInTree.js'
 import treeToList from './array/treeToList.js'
 import uniq from './array/uniq.js'
@@ -43,6 +44,7 @@ import isNull from './base/isNull.js'
 import isNullable from './base/isNullable.js'
 import isNumber from './base/isNumber.js'
 import isObject from './base/isObject.js'
+import isp from './base/isp.js'
 import isPc from './base/isPc.js'
 import isPlainObject from './base/isPlainObject.js'
 import isPromise from './base/isPromise.js'
@@ -58,6 +60,7 @@ import pageHelper from './base/pageHelper.js'
 import parseJsonNoError from './base/parseJsonNoError.js'
 import parseURL from './base/parseURL.js'
 import requireAllModule from './base/requireAllModule.js'
+import toRawType from './base/toRawType.js'
 import uniqueId from './base/uniqueId.js'
 import uuid from './base/uuid.js'
 import batchElsPosInContainer from './dom/batchElsPosInContainer.js'
@@ -86,6 +89,7 @@ import compareNpmVersion from './function/compareNpmVersion.js'
 import debounce from './function/debounce.js'
 import debounceDtor from './function/debounceDtor.js'
 import noop from './function/noop.js'
+import once from './function/once.js'
 import queuePromises from './function/queuePromises.js'
 import sleep from './function/sleep.js'
 import throttle from './function/throttle.js'
@@ -107,7 +111,11 @@ import findPropPath from './object/findPropPath.js'
 import flatten from './object/flatten.js'
 import flattenGet from './object/flattenGet.js'
 import get from './object/get.js'
+import hasOwn from './object/hasOwn.js'
+import looseEqual from './object/looseEqual.js'
 import merge from './object/merge.js'
+import omit from './object/omit.js'
+import pick from './object/pick.js'
 import setPropPath from './object/setPropPath.js'
 import camelCase from './string/camelCase.js'
 import capitalize from './string/capitalize.js'
@@ -115,7 +123,7 @@ import kebabCase from './string/kebabCase.js'
 import snakeCase from './string/snakeCase.js'
 import trim from './string/trim.js'
 
-const version = '1.0.2-1'
+const version = '1.0.2-2'
 
 export default {
   version,
@@ -130,6 +138,7 @@ export default {
   filterTree,
   listToTree,
   matchSubListGroup,
+  orderBy,
   parentNodesInTree,
   treeToList,
   uniq,
@@ -162,6 +171,7 @@ export default {
   isNullable,
   isNumber,
   isObject,
+  isp,
   isPc,
   isPlainObject,
   isPromise,
@@ -177,6 +187,7 @@ export default {
   parseJsonNoError,
   parseURL,
   requireAllModule,
+  toRawType,
   uniqueId,
   uuid,
   batchElsPosInContainer,
@@ -205,6 +216,7 @@ export default {
   debounce,
   debounceDtor,
   noop,
+  once,
   queuePromises,
   sleep,
   throttle,
@@ -226,7 +238,11 @@ export default {
   flatten,
   flattenGet,
   get,
+  hasOwn,
+  looseEqual,
   merge,
+  omit,
+  pick,
   setPropPath,
   camelCase,
   capitalize,
@@ -248,6 +264,7 @@ export {
   filterTree,
   listToTree,
   matchSubListGroup,
+  orderBy,
   parentNodesInTree,
   treeToList,
   uniq,
@@ -280,6 +297,7 @@ export {
   isNullable,
   isNumber,
   isObject,
+  isp,
   isPc,
   isPlainObject,
   isPromise,
@@ -295,6 +313,7 @@ export {
   parseJsonNoError,
   parseURL,
   requireAllModule,
+  toRawType,
   uniqueId,
   uuid,
   batchElsPosInContainer,
@@ -323,6 +342,7 @@ export {
   debounce,
   debounceDtor,
   noop,
+  once,
   queuePromises,
   sleep,
   throttle,
@@ -344,7 +364,11 @@ export {
   flatten,
   flattenGet,
   get,
+  hasOwn,
+  looseEqual,
   merge,
+  omit,
+  pick,
   setPropPath,
   camelCase,
   capitalize,
