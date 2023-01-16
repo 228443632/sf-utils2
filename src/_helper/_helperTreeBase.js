@@ -43,10 +43,18 @@ export function _includesChildPath(aPath, bPath) {
   return false
 }
 
+
 /**
  * 遍历树型结构，并添加额外参数
  * @param {array} tree 树形
- * @param {object} props 自增字段
+ * @param {{
+      id?: 'id',
+      parentId?: 'parentId',
+      children?: 'children',
+      order?: false,
+      orderField?: 'order',
+      orderBy?: 'asc'
+    }} props 自增字段
  * @param {Function} callbackList 回调函数 节点list
  * @param {Function} callbackItem 回调函数 当前节点
  * @param {Array<String>} retainField 保留的字段数组

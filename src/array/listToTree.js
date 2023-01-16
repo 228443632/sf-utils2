@@ -6,10 +6,10 @@ import arrayToObj from '@/array/arrayToObj'
  * 把返回的数据集list 转换成 Tree
  * @param {array} list 要转换的数据集
  * @param {string | number} root 根节点
- * @param {object} props 自增字段
+ * @param {{ id?: 'id', parentId?: 'parentId', children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 自增字段
  * @param {Function} callbackList 回调函数 节点list
  * @param {Function} callbackItem 回调函数 当前节点
- * @param {Array<String>} retainField 保留的字段
+ * @param {['__rootNode__', '__pId__', '__level__']} retainField 保留的字段
  * @param {Boolean} isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
  */

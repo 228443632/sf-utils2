@@ -1,4 +1,4 @@
-import _helperDeepMerge from "@/_helper/_helperDeepMerge";
+import _helperDeepMerge from '@/_helper/_helperDeepMerge'
 
 /**
  * 深合并对象

@@ -12,7 +12,7 @@ import merge from '@/object/merge'
 /**
  * 根据回调函数过滤树状
  * @param {Array<any>} tree 树状结构
- * @param {Object} props 属性映射
+ * @param {{ children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 属性映射
  * @param {Boolean} retainChild 是否保留子孙节点
  * @param {Function} callbackList 每一层树list 回调函数
  * @param {Function} callbackItem 每一项回调函数

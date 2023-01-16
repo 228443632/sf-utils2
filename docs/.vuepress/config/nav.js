@@ -33,10 +33,6 @@ module.exports = [
     ]
   },
   {
-    text: 'ueditor',
-    items: [{ text: 'ueditor文档', link: '/ueditor/3ef857/' }]
-  },
-  {
     text: 'v' + version,
     items: [
       { text: 'v1.x', link: 'http://8.133.185.32/fr/@bianpengfei-utils/v1/' },

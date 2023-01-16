@@ -4,7 +4,7 @@
  *
  * @param {Function} callback 回调
  * @param {Number} wait 多少秒毫 默认值 20 毫秒
- * @param {Object} options 参数{leading: 是否在之前执行, trailing: 是否在之后执行}
+ * @param {{ leading?: true, trailing?: false }} options 参数{leading: 是否在之前执行, trailing: 是否在之后执行}
  * @return {Function}
  */
 function throttle(callback, wait = 20, options = { leading: true, trailing: false }) {

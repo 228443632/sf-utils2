@@ -30,15 +30,19 @@
         { user: 'barney', age: 90 }
       ]
 
+      console.log('b', butils.arrayToObj(users, 'age', { valueType: 'object' }))
+
       // 以 `user` 升序排序 再  `age` 以降序排序。
       console.log(butils.orderBy(users, ['age', 'user'], ['desc', 'desc']))
       // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
 
       const obj1 = {
         name: 1,
-        formula: { chapterId: 9999,kkk: undefined },
-        targets: [{id: '----'}]
+        formula: { chapterId: 9999, kkk: undefined },
+        targets: [{ id: '----' }]
       }
+
+      butils.listToTree({retainField: ["__level__", "__rootNode__", "__pId__"]})
 
       const obj2 = {
         id: 5,

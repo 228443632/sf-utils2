@@ -4,7 +4,7 @@ const { listToTree, deepClone } = require('@bianpengfei/utils')
 
 /**
  * 根据路径 获取其下所有子文件包括文件夹路径，返回平面list 和 树状tree
- * @param dir
+ * @param {String} dir 目录
  * @returns {{tree: *, list: {path: *, relativePath: *, id: *, type: *, parentId: string}[]}}
  */
 function readDirStructureSync(dir = '') {

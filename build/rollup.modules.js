@@ -6,6 +6,10 @@
 
 import rollupConfigBase from './rollup.base.js'
 import glob from 'glob'
+import dts from 'rollup-plugin-dts'
+import json from '@rollup/plugin-json'
+import path2 from 'path'
+import { ROOT_PATH } from './utils.mjs'
 
 export default () => {
   const input = {}
@@ -22,16 +26,50 @@ export default () => {
       }
       input[filePath] = v
     })
-    console.log(input)
+    console.log('测试', input)
   }
 
-  return {
-    ...rollupConfigBase,
-    input,
-    output: {
-      dir: 'lib',
-      format: 'esm',
-      exports: 'auto'
+  const dtsCommonInputObj = Object.entries(input).reduce((p, [k, v]) => {
+    if (/^(?!expand\/)/.test(k)) {
+      p[k] = v
     }
-  }
+    return p
+  }, {})
+
+  const dtsExpandInputObj = Object.entries(input).reduce((p, [k, v]) => {
+    if (/^expand\//.test(k)) {
+      p[k] = v
+    }
+    return p
+  }, {})
+
+  const dtsPlugins = [dts(), json()]
+
+  const dtsInputs = {...dtsCommonInputObj, ...dtsExpandInputObj}
+
+  return [
+    {
+      ...rollupConfigBase,
+      input,
+      output: {
+        dir: 'lib',
+        format: 'esm',
+        exports: 'auto'
+      }
+    },
+
+    /* 单独生成声明文件 */
+    {
+      input: dtsInputs,
+      plugins: dtsPlugins,
+      output: {
+        dir: 'lib',
+        format: 'esm',
+        assetFileNames: `[name].d.ts`
+      }
+    },
+
+    // ...dtsRollUpConfigs
+    // ...dtsRollUpConfigs
+  ]
 }

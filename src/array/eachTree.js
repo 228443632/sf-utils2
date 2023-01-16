@@ -3,8 +3,11 @@ import _helperTreeBase from '../_helper/_helperTreeBase.js'
 
 /**
  * 从树结构中遍历
- * @param tree
- * @param callbackFn
+ * @param {Array<any>} tree 树状结构
+ * @param {{children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 属性映射
+ * @param {Function} callbackList 每一层树list 回调函数
+ * @param {Function} callbackItem 每一项回调函数
+ * @param {Boolean} isDeepClone 是否深度克隆原树型对象
  */
 function eachTree({
   tree = [],

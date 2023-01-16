@@ -29,3 +29,5 @@ test/lib
 lib
 src/index.js
 /docs/.vuepress/compile/
+/src/nodejs/index.js
+/index.d.ts

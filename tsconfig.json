@@ -1,26 +1,32 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "CommonJS",
     "strict": true,
     "jsx": "preserve",
+    "baseUrl": "./",
     "allowJs": true,
     "importHelpers": true,
+    "removeComments": false,
+    "declaration": true,
+    "declarationMap": false,
+    "outDir": "./ts", // 指定输出目录
+    "declarationDir": "./file", // 指定生成声明文件存放目录
+    "emitDeclarationOnly": true, // 只生成声明文件，而不会生成js文件
     "moduleResolution": "Node",
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
-    "sourceMap": true,
-    "baseUrl": ".",
+    "sourceMap": false,
     "resolveJsonModule": true,
-    "noEmit": true,
-    "types": ["node", "@types/node"],
+    "noEmitOnError": false,
     "paths": {
       "@/*": ["src/*"],
       "+root/*": [""],
       "+libs/*": ["lib/*"]
     }
   },
-  "exclude": ["node_modules", "dist"]
+//  "exclude": ["node_modules", "dist", "lib"],
+  "include": ["src"]
 }

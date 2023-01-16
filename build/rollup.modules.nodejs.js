@@ -6,6 +6,8 @@
 
 import rollupConfigBase from './rollup.base.js'
 import glob from 'glob'
+import dts from "rollup-plugin-dts";
+import json from "@rollup/plugin-json";
 
 export default () => {
   const input = {}
@@ -22,13 +24,24 @@ export default () => {
 
   console.log('input', input)
 
-  return {
-    ...rollupConfigBase,
-    input,
-    output: {
-      dir: 'lib/nodejs',
-      format: 'cjs',
-      exports: 'auto'
+  return [
+    {
+      ...rollupConfigBase,
+      input,
+      output: {
+        dir: 'lib/nodejs',
+        format: 'cjs',
+        exports: 'auto'
+      }
+    },
+    /* 单独生成声明文件 */
+    {
+      input: 'src/nodejs/index.js',
+      plugins: [dts(), json()],
+      output: {
+        format: 'cjs',
+        file: 'lib/nodejs/index.d.ts'
+      }
     }
-  }
+  ]
 }

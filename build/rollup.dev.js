@@ -47,6 +47,9 @@ export default {
     serve({
       open: true,
       port: 4444,
+      headers: {
+        "Access-Control-Allow-Origin": "*",  // 本地服务允许跨域
+      },
       contentBase: [path.resolve(ROOT_PATH, 'test')],
       openPage: 'index.html'
       // onListening: function (server) {

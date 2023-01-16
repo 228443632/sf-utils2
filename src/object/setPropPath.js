@@ -4,8 +4,8 @@ import def from './def'
 
 /**
  * 设置对象给每个对象设置路径名
- * @param data 对象
- * @param field
+ * @param {Object} data 对象
+ * @param {'__path__' | String} field
  * @returns {*}
  * example:
  * {

@@ -3,39 +3,54 @@
  * @Author bianpengfei
  * @create 2021/12/25 12:50
  */
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 import rollupConfigBase from './rollup.base'
 import pkg from '../package.json'
 
+import dts from 'rollup-plugin-dts'
+import json from '@rollup/plugin-json'
+
 export default () => {
-  return {
-    ...rollupConfigBase,
-    input: 'src/index.js',
-    output: [
-      {
-        file: `lib/index.umd.js`,
-        format: 'umd',
-        name: pkg.globalName,
-        exports: 'auto',
-        plugins: [
-          terser({
-            toplevel: true,
-            compress: {
-              pure_funcs: ['console.warn']
-            }
-          })
-        ]
-      },
-      {
-        file: `lib/index.cjs.js`,
-        format: 'cjs',
-        exports: 'auto'
-      },
-      {
-        file: `lib/index.esm.js`,
+  return [
+    {
+      ...rollupConfigBase,
+      input: 'src/index.js',
+      output: [
+        {
+          file: `lib/index.umd.js`,
+          format: 'umd',
+          name: pkg.globalName,
+          exports: 'auto',
+          plugins: [
+            terser({
+              toplevel: true,
+              compress: {
+                pure_funcs: ['console.warn']
+              }
+            })
+          ]
+        },
+        {
+          file: `lib/index.cjs.js`,
+          format: 'cjs',
+          exports: 'auto'
+        },
+        {
+          file: `lib/index.esm.js`,
+          format: 'esm',
+          exports: 'auto'
+        }
+      ]
+    },
+
+    /* 单独生成声明文件 */
+    {
+      input: 'src/index.js',
+      plugins: [dts(), json()],
+      output: {
         format: 'esm',
-        exports: 'auto'
+        file: 'index.d.ts'
       }
-    ]
-  }
+    }
+  ]
 }

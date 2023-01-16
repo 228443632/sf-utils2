@@ -1,9 +1,11 @@
 import isArray from '@/base/isArray'
+import isFunction from '@/base/isFunction'
 
 /**
  * 将数组转成obj
  * @param {Object[]} array 数组
- * @param {String} PK 主键
+ * @param {String|Function} property 主键
+ * @param {{valueType: 'object' | 'array'}} options
  * @returns {*}
  * @example
  *
@@ -31,14 +33,40 @@ import isArray from '@/base/isArray'
  * }
  *
  */
-function arrayToObj(array = [], PK = '') {
+
+function arrayToObj(array = [], property, options = { valueType: 'object' }) {
   if (isArray(array)) {
+    // 如果property是Function
+    if (isFunction(property)) {
+      const object = {}
+      array.forEach((v, vi) => property(object, v, vi))
+      return object
+    }
+    const valueType = String(options?.valueType).toLowerCase() || 'object'
+    // 非Function，且property存在
+    if (property) {
+      return array.reduce((pre, cur) => {
+        const value = cur?.[property]
+        if (value) {
+          if (valueType === 'array') {
+            if (!isArray(pre[value])) pre[value] = []
+            pre[value].push(cur)
+          } else {
+            pre[value] = cur
+          }
+        }
+        return pre
+      }, {})
+    }
+    // property不存在时
     return array.reduce((pre, cur) => {
-      if (PK) {
-        const PKValue = cur?.[PK]
-        PKValue && (pre[PKValue] = cur)
-      } else {
-        cur && (pre[cur] = cur)
+      if (cur) {
+        if (valueType === 'array') {
+          if (!isArray(pre[cur])) pre[cur] = []
+          pre[cur].push(cur)
+        } else {
+          pre[cur] = cur
+        }
       }
       return pre
     }, {})

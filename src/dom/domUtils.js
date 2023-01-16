@@ -7,6 +7,7 @@ import { _requestAnimationFrame } from './_constant'
 
 /**
  * Dom表格最大行
+ * @param {HTMLTableElement} table
  * @unfile
  * @module BSE.domUtils
  */
@@ -25,6 +26,7 @@ function _getTableMaxRows(table) {
 
 /**
  * Dom表格最大列
+ * @param {HTMLTableElement} table
  * @unfile
  * @module BSE.domUtils
  */
@@ -55,7 +57,7 @@ function _getTableMaxCols(table) {
 const domUtils = {
   /**
    * 将 RGB 值转换为十六进制颜色代码。
-   * @param rgb
+   * @param {String} rgb
    * @returns {*}
    * @example
    * RGBToHex(`rgba('255, 165, 1')`); // '#ffa501'
@@ -69,7 +71,7 @@ const domUtils = {
 
   /**
    * 则将颜色代码转换为rgb()或字符串
-   * @param hex
+   * @param {String} hex
    * @returns {string}
    * @example
    * hexToRGB(`#ffa501`) // rgb(255, 165, 1)
@@ -521,8 +523,6 @@ const domUtils = {
 
   /**
    * 使用、和方法创建一个发布/订阅（发布-订阅）事件中心。emitonoff
-   * @returns {{hub: null, emit(*, *): void, off(*, *): void, on(*, *): void}}
-   * @example
    *   const handler = data => console.log(data);
    *   const hub = createEventHub();
    *   let increment = 0;
@@ -540,15 +540,55 @@ const domUtils = {
    * // Unsubscribe: stop a specific handler from listening to the 'message' event
    *   hub.off('message', handler);
    */
+
+  /**
+   * @description 使用、和方法创建一个发布/订阅（发布-订阅）事件中心。emitonoff
+   *   const handler = data => console.log(data);
+   *   const hub = createEventHub();
+   *   let increment = 0;
+   *
+   * // Subscribe: listen for different types of events
+   *   hub.on('message', handler);
+   *   hub.on('message', () => console.log('Message event fired'));
+   *   hub.on('increment', () => increment++);
+   *
+   * // Publish: emit events to invoke all handlers subscribed to them, passing the data to them as an argument
+   *   hub.emit('message', 'hello world'); // logs 'hello world' and 'Message event fired'
+   *   hub.emit('message', { hello: 'world' }); // logs the object and 'Message event fired'
+   *   hub.emit('increment'); // `increment` variable is now 1
+   *
+   * // Unsubscribe: stop a specific handler from listening to the 'message' event
+   *   hub.off('message', handler);
+   *
+   * @return {{hub: null, emit(String, any): void, off(String, Function): void, on(String, Function): void}}
+   */
   eventBus: () => ({
+    /**
+     * @return {{}}
+     */
     hub: Object.create(null),
+    /**
+     * emit事件
+     * @param {String} event 事件名
+     * @param {any} data 值
+     */
     emit(event, data) {
       ;(this.hub[event] || []).forEach(handler => handler(data))
     },
+    /**
+     * on事件
+     * @param {String} event 事件名
+     * @param {Function} handler
+     */
     on(event, handler) {
       if (!this.hub[event]) this.hub[event] = []
       this.hub[event].push(handler)
     },
+    /**
+     * off事件
+     * @param {String} event 事件名
+     * @param {Function} handler
+     */
     off(event, handler) {
       const i = (this.hub[event] || []).findIndex(h => h === handler)
       if (i > -1) this.hub[event].splice(i, 1)

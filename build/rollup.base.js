@@ -11,11 +11,12 @@ import cleanup from 'rollup-plugin-cleanup'
 import banner from 'rollup-plugin-banner'
 import path from 'path'
 import externals from 'rollup-plugin-node-externals'
-import aliasPlugin from '@rollup/plugin-alias';
+import aliasPlugin from '@rollup/plugin-alias'
+
 
 const customResolver = resolve({
   extensions: ['.mjs', '.js', '.jsx', '.json', '.sass', '.scss']
-});
+})
 
 export const IS_DEV = process.env.NODE_ENV === 'development'
 export const IS_PRO = process.env.NODE_ENV === 'production'
@@ -24,11 +25,11 @@ export const ROOT_PATH = path.resolve(__dirname, '../')
 const year = new Date().getFullYear()
 
 export default {
-  external: ['html2canvas', 'jspdf', 'crypto-js'], // /@babel\/runtime/,
+  external: ['html2canvas', 'jspdf', 'crypto-js', 'jszip', 'file-saver'], // /@babel\/runtime/,
   plugins: [
     externals(),
     banner(`<%= pkg.name %>\n(c) 2020-${year} v<%= pkg.version %>\nby <%= pkg.author %>`),
-    cleanup(),
+    cleanup({comments: 'all', compactComments: false}),
     json(),
     resolve(),
     aliasPlugin({

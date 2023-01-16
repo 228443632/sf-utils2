@@ -1,4 +1,4 @@
-import JSZip from 'jszip/dist/jszip.min.js'
+import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 import getHttpBlob from '../dom/getHttpBlob'
 import isPlainObject from '@/base/isPlainObject'

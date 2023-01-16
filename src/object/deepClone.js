@@ -2,7 +2,7 @@ import _typeof from '@/base/_typeof'
 
 /**
  * 浅拷贝/深拷贝
- * @param {Object} obj 对象/数组
+ * @param {Object|Array|object} obj 对象/数组
  * @param {Boolean} isDeep 是否深度拷贝 默认是
  * @return {Object}
  */

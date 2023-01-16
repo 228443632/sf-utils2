@@ -56,7 +56,7 @@ const directionsType = {
  * 排序
  * @param {Object[]|String[]|Number[]} list
  * @param {String[]} properties
- * @param {String[]} directions
+ * @param {('ase' | 'desc' | 'up' | 'down')[]} directions
  * @example
  *   var users = [
  *     { 'user': 'fred',   'age': 48 },
