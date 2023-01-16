@@ -1,16 +1,16 @@
 import throttle from '@/function/throttle'
 import getStyle from '../dom/getStyle'
 import getParentScrollElement from '../dom/getParentScrollElement'
-import { _requestAnimationFrame } from '../dom/_constant'
-import isElementVisibleInViewport from '../dom/isElementVisibleInViewport'
+import { _requestAnimationFrame } from '@/dom/_constant'
+import isElementVisibleInViewport from '@/dom/isElementVisibleInViewport'
 
 /**
  * 封装视图的 懒加载图片
- * @param {NodeList | HTMLElement} imgWrapDOM img标签包裹的view视图  类型数组 或者 元素对象
- * @param {HTMLElement} scrollView 滚动区域
- * @param {Boolean}transition 是否开启过度动画 默认开启
- * @param {Boolean} errorReload 图片加载是否 显示重新加载图片，默认是true
- * @param {Object} viewportOptions
+ * @param imgWrapDOM img标签包裹的view视图  类型数组 或者 元素对象 {NodeList | HTMLElement}
+ * @param scrollView 滚动区域 {HTMLElement}
+ * @param transition 是否开启过度动画 默认开启 {Boolean}
+ * @param errorReload 图片加载是否 显示重新加载图片，默认是true {Boolean}
+ * @param viewportOptions {Object}
  * @returns {{elImgList: NodeListOf<HTMLElementTagNameMap[string]> | NodeListOf<Element> | NodeListOf<SVGElementTagNameMap[string]>, previewImgList: []}}
  */
 function lazyLoadImg({

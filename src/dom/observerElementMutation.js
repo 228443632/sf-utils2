@@ -4,8 +4,8 @@ import { _MutationObserver } from './_constant'
 
 /**
  * 监听元素属性变化，例如宽度、高度
- * @param {Function} callback
- * @param {Object} options
+ * @param callback 回调函数 {Function}
+ * @param options 选项 {Object}
  * @returns {*}
  */
 function observerElementMutation({

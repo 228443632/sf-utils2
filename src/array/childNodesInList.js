@@ -3,10 +3,10 @@ import arrayToObj from '@/array/arrayToObj'
 
 /**
  * 根据 父节点id 获取其 所有子节点信息
- * @param {Array} list 列表
- * @param {string | number} parentId 父节点唯一标识值
+ * @param list 列表
+ * @param parentId 父节点唯一标识值
  * @param {{ id: 'id', parentId: 'parentId' }} props 数据字段映射
- * @param {String} returnType 返回数据类型  可选值  item：子节点具体信息  id：只保留子节点id， 默认值item
+ * @param {'item'|'id'} returnType 返回数据类型  可选值  item：子节点具体信息  id：只保留子节点id， 默认值item
  * @returns {*[]}
  */
 function childNodesInList({

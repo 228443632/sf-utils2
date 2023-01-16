@@ -6,17 +6,22 @@ import listToTree from '@/array/listToTree'
 import isPlainObject from '@/base/isPlainObject'
 import def from '@/object/def'
 import deepClone from '@/object/deepClone'
-import { _includesChildPath, _getPathLists } from '@/_helper/_helperTreeBase'
+import {
+  _includesChildPath,
+  _getPathLists,
+  __callbackListInterface,
+  __callbackItemInterface
+} from '@/_helper/_helperTreeBase'
 import merge from '@/object/merge'
 
 /**
  * 根据回调函数过滤树状
- * @param {Array<any>} tree 树状结构
+ * @param tree 树状结构
  * @param {{ children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 属性映射
- * @param {Boolean} retainChild 是否保留子孙节点
- * @param {Function} callbackList 每一层树list 回调函数
- * @param {Function} callbackItem 每一项回调函数
- * @param {Boolean} isDeepClone 是否深度克隆原树型对象
+ * @param retainChild 是否保留子孙节点
+ * @param callbackList 每一层树list 回调函数
+ * @param callbackItem 每一项回调函数
+ * @param isDeepClone 是否深度克隆原树型对象
  * @returns {*}
  */
 function filterTree({
@@ -24,8 +29,8 @@ function filterTree({
   props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
   retainChild = false,
   isDeepClone = true,
-  callbackItem,
-  callbackList
+  callbackList = __callbackListInterface,
+  callbackItem = __callbackItemInterface
 }) {
   if (!isFunction(callbackItem)) return tree
   if (isDeepClone) tree = deepClone(tree)

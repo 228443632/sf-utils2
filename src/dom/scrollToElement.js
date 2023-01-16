@@ -5,11 +5,11 @@ import scrollToY from './scrollToY'
 
 /**
  * @description 垂直滚动到某个元素位置
- * @param {string | HTMLElement} target 目标元素
- * @param {{}} scrollElement 滚动元素
- * @param {Function} cb 滚动结束后回掉方法
- * @param {number} duration 滚动时长
- * @param {number} offsetTop 偏移量
+ * @param target 目标元素 {string | HTMLElement}
+ * @param scrollElement 滚动元素 {{}}
+ * @param cb 滚动结束后回掉方法 {Function}
+ * @param duration 滚动时长 {number}
+ * @param offsetTop 偏移量 {number}
  */
 function scrollToElement({ target = '', scrollElement = null, cb = () => {}, duration = 400, offsetTop = 0 }) {
   let targetDOM = target

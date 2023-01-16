@@ -26,12 +26,12 @@ function _getNodePathItem(listObj = {}, ID = '') {
 
 /**
  * 将tree结构 转化成 list
- * @param {Array} tree 要转换的tree数据集
- * @param { { children?: 'children' }} props 自定义字段
- * @param {Boolean} retainChild 是否保留每一项中的 直接子节点
- * @param {Boolean} retainPaths 是否返回每一项节点所经过的路径节点
- * @param {Boolean} retainAllChildren 是否返回每一项节点 所有的子代以及所有子代下所有节点（平铺化）
- * @param {Boolean} isDeepClone 是否深度克隆原树型对象
+ * @param tree 要转换的tree数据集
+ * @param {{children?: 'children' }} props 自定义字段
+ * @param retainChild 是否保留每一项中的 直接子节点
+ * @param retainPaths 是否返回每一项节点所经过的路径节点
+ * @param retainAllChildren 是否返回每一项节点 所有的子代以及所有子代下所有节点（平铺化）
+ * @param isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
  */
 //  Object.defineProperty(item, '_id', { writable: false, value: `${item._pId}-${index + 1}` })

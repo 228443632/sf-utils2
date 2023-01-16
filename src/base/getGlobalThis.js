@@ -1,7 +1,6 @@
 /**
- * @Description: 获取全局的 globalThis
- * @Author bianpengfei
- * @create 2022/4/4 19:35
+ * 获取全局globalThis
+ * @return {Window|(WorkerGlobalScope & Window)|*}
  */
 function getGlobalThis() {
   if (typeof self !== 'undefined') {

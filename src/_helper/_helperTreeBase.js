@@ -10,6 +10,21 @@ import deepClone from '@/object/deepClone'
 import isString from '@/base/isString'
 
 /**
+ * @param {Array} list 每个节点下子节点数组
+ * @param {Object} parentObj 父节点对象
+ */
+export const __callbackListInterface = (list, parentObj) => {}
+
+/**
+ * @param {Object} item 当前树节点
+ * @param {Number} index 当前树节点索引
+ * @param {Array} list 当前树节点数组
+ * @param {Object} parentObj 父节点
+ * @return {void|boolean}
+ */
+export const __callbackItemInterface = (item, index, list, parentObj) => {}
+
+/**
  * 获取经过路径集合
  * @param {String} str
  * @return {String[]}
@@ -45,7 +60,7 @@ export function _includesChildPath(aPath, bPath) {
 
 /**
  * 遍历树型结构，并添加额外参数
- * @param {array} tree 树形
+ * @param tree 树形
  * @param {{
       id?: 'id',
       parentId?: 'parentId',
@@ -54,19 +69,19 @@ export function _includesChildPath(aPath, bPath) {
       orderField?: 'order',
       orderBy?: 'asc'
     }} props 自增字段
- * @param {Function} callbackList 回调函数 节点list
- * @param {Function} callbackItem 回调函数 当前节点
- * @param {Array<String>} retainField 保留的字段数组
- * @param {Boolean} isDeepClone 是否深度克隆原树型对象
+ * @param callbackList 回调函数 节点list
+ * @param callbackItem 回调函数 当前节点
+ * @param {['__id__', '__rootNode__', '__pId__', '__level__']} retainField 保留的字段数组
+ * @param isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
  * @private
  */
 const _helperTreeBase = ({
   tree = [],
   props = {},
-  callbackList = null,
-  callbackItem = null,
-  retainField = [],
+  callbackList = __callbackListInterface,
+  callbackItem = __callbackItemInterface,
+  retainField = ['__id__', '__rootNode__', '__pId__', '__level__'],
   isDeepClone = true
 }) => {
   let defaultProps = {

@@ -4,9 +4,9 @@ import getAbsOffsetTop from './getAbsOffsetTop'
 
 /**
  * 元素批量元素在 父的滚动视图位置（只针对 垂直滚动有效）
- * @param {Array<NodeList> | Array<String>} els 元素集合
+ * @param els 元素集合 {Array<NodeList> | Array<String>}
  * @param {HTMLElement} scrollDom 滚动的容器元素
- * @param {Number} offsetTop 顶部偏移量
+ * @param offsetTop 顶部偏移量 {Number}
  */
 function batchElsPosInContainer({ els = [], scrollDom, offsetTop = 0 }) {
   if (!scrollDom) {

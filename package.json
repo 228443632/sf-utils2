@@ -37,7 +37,9 @@
     "README.md",
     ".prettierignore",
     ".prettierrc.js",
-    "index.d.ts"
+    "index.d.ts",
+    "tsconfig.json",
+    "yarn.lock"
   ],
   "keywords": [
     "utils",
@@ -73,7 +75,7 @@
     "@babel/plugin-transform-runtime": "7.16.5",
     "@babel/preset-env": "7.16.5",
     "@babel/runtime": "7.16.5",
-    "@bianpengfei/utils": "3.0.5",
+    "@bianpengfei/utils": "3.0.6",
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
     "@rollup/plugin-alias": "3.1.9",

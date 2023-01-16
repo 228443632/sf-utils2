@@ -1,19 +1,20 @@
 import merge from '@/object/merge'
-import _helperTreeBase from '../_helper/_helperTreeBase.js'
+import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } from '../_helper/_helperTreeBase.js'
 
 /**
  * 从树结构中遍历
- * @param {Array<any>} tree 树状结构
+ * @param tree 树状结构
  * @param {{children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 属性映射
- * @param {Function} callbackList 每一层树list 回调函数
- * @param {Function} callbackItem 每一项回调函数
- * @param {Boolean} isDeepClone 是否深度克隆原树型对象
+ * @param callbackList 每一层树list 回调函数
+ * @param callbackItem 每一项回调函数
+ * @param isDeepClone 是否深度克隆原树型对象
+ * @return {*[]}
  */
 function eachTree({
   tree = [],
   props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
-  callbackList,
-  callbackItem,
+  callbackList = __callbackListInterface,
+  callbackItem = __callbackItemInterface,
   isDeepClone = true
 }) {
   let defaultOptions = {

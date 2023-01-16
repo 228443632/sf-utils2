@@ -4,7 +4,7 @@ import isObject from '@/base/isObject'
  * 判断两个值是否相等，包含对象，数组，以及原始值的判断, 只比较内部结构和数据
  * @param {any} a
  * @param {any} b
- * @return {false|this is string[]|boolean|*}
+ * @return {boolean}
  */
 function looseEqual(a, b) {
   if (a === b) return true

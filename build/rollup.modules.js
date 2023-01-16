@@ -8,8 +8,6 @@ import rollupConfigBase from './rollup.base.js'
 import glob from 'glob'
 import dts from 'rollup-plugin-dts'
 import json from '@rollup/plugin-json'
-import path2 from 'path'
-import { ROOT_PATH } from './utils.mjs'
 
 export default () => {
   const input = {}
@@ -43,9 +41,17 @@ export default () => {
     return p
   }, {})
 
+  const dtsNodejsInputObj = Object.entries(input).reduce((p, [k, v]) => {
+    if (/^nodejs\//.test(k)) {
+      p[k] = v
+    }
+    return p
+  }, {})
+
+
   const dtsPlugins = [dts(), json()]
 
-  const dtsInputs = {...dtsCommonInputObj, ...dtsExpandInputObj}
+  const dtsInputs = {...dtsCommonInputObj, ...dtsExpandInputObj, ...dtsNodejsInputObj}
 
   return [
     {

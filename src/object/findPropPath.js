@@ -3,9 +3,9 @@ import isPlainObject from '@/base/isPlainObject'
 
 /**
  * 根据findField 从对象中依次遍历出所有符合（属性）key === findField，路径
- * @param {object} data 对象
- * @param {string} findField 要查找的属性名
- * @param {object} props 自定义属性名
+ * @param data 对象 {object}
+ * @param findField 要查找的属性名 {string}
+ * @param props 自定义属性名 {object}
  * @returns {*[]}
  */
 function findPropPath({ data = {}, findField = 'name', props = { key: '__path__', value: '__value__' } }) {

@@ -3,8 +3,8 @@ import isArray from '@/base/isArray'
 
 /**
  * 将某个对象或数组里的所有的对象属性转成 大写或者小写
- * @param {object | array} data
- * @param {boolean} toLowerCase 是否转成小写  可选值 true false 默认值 true
+ * @param data 原对象 {object | array}
+ * @param toLowerCase 是否转成小写  可选值 true false 默认值 true {boolean}
  * @returns {{}}
  */
 function convertPropToLower({ data = {}, toLowerCase = true }) {
