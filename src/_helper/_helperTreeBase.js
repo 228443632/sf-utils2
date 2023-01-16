@@ -43,7 +43,6 @@ export function _includesChildPath(aPath, bPath) {
   return false
 }
 
-
 /**
  * 遍历树型结构，并添加额外参数
  * @param {array} tree 树形
