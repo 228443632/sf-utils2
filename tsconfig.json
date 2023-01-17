@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
+    "target": "ES6",
+    "module": "ESNext",
     "strict": true,
     "jsx": "preserve",
     "baseUrl": "./",
@@ -10,8 +10,8 @@
     "removeComments": false,
     "declaration": true,
     "declarationMap": false,
-    "outDir": "./ts", // 指定输出目录
-    "declarationDir": "./file", // 指定生成声明文件存放目录
+    "outDir": "./lib", // 指定输出目录
+    "declarationDir": "./lib", // 指定生成声明文件存放目录
     "emitDeclarationOnly": true, // 只生成声明文件，而不会生成js文件
     "moduleResolution": "Node",
     "experimentalDecorators": true,
@@ -27,6 +27,6 @@
       "+libs/*": ["lib/*"]
     }
   },
-//  "exclude": ["node_modules", "dist", "lib"],
+  //  "exclude": ["node_modules", "dist", "lib"],
   "include": ["src"]
 }

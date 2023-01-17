@@ -41,17 +41,9 @@ export default () => {
     return p
   }, {})
 
-  const dtsNodejsInputObj = Object.entries(input).reduce((p, [k, v]) => {
-    if (/^nodejs\//.test(k)) {
-      p[k] = v
-    }
-    return p
-  }, {})
-
-
   const dtsPlugins = [dts(), json()]
 
-  const dtsInputs = {...dtsCommonInputObj, ...dtsExpandInputObj, ...dtsNodejsInputObj}
+  const dtsInputs = {...dtsCommonInputObj, ...dtsExpandInputObj}
 
   return [
     {

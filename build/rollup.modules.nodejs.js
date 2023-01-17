@@ -3,7 +3,6 @@
  * @Author bianpengfei
  * @create 2021/12/25 12:50
  **/
-
 import rollupConfigBase from './rollup.base.js'
 import glob from 'glob'
 import dts from "rollup-plugin-dts";
@@ -22,25 +21,36 @@ export default () => {
     console.log(input)
   }
 
+  const dtsNodejsInputObj = Object.entries(input).reduce((p, [k, v]) => {
+    if (/^nodejs\//.test(k)) {
+      p[k] = v
+    }
+    return p
+  }, {})
+
+  console.log('dtsNodejsInputObj', dtsNodejsInputObj)
+
+
   console.log('input', input)
 
   return [
+    // {
+    //   ...rollupConfigBase,
+    //   input,
+    //   output: {
+    //     dir: 'lib/nodejs',
+    //     format: 'cjs',
+    //     exports: 'auto'
+    //   }
+    // },
+    /* 单独生成声明文件 */
     {
-      ...rollupConfigBase,
       input,
+      plugins: [dts(), json()],
       output: {
         dir: 'lib/nodejs',
         format: 'cjs',
-        exports: 'auto'
-      }
-    },
-    /* 单独生成声明文件 */
-    {
-      input: 'src/nodejs/index.js',
-      plugins: [dts(), json()],
-      output: {
-        format: 'cjs',
-        file: 'lib/nodejs/index.d.ts'
+        assetFileNames: '[name].d.ts'
       }
     }
   ]

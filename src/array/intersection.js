@@ -8,7 +8,7 @@ import isPrimitive from '@/base/isPrimitive'
  * @param {String|unknown} property
  * @return {[string, any]|*[]}
  */
-function intersection(array, property = undefined) {
+function intersection(array, property) {
   const arrayFlatten = array.flat(Infinity) || []
   const arrayObj$property = arrayToObj(arrayFlatten, property, { valueType: 'array' })
   const [array$0] = arrayFlatten
