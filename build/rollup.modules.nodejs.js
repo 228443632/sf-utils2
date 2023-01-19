@@ -34,15 +34,15 @@ export default () => {
   console.log('input', input)
 
   return [
-    // {
-    //   ...rollupConfigBase,
-    //   input,
-    //   output: {
-    //     dir: 'lib/nodejs',
-    //     format: 'cjs',
-    //     exports: 'auto'
-    //   }
-    // },
+    {
+      ...rollupConfigBase,
+      input,
+      output: {
+        dir: 'lib/nodejs',
+        format: 'cjs',
+        exports: 'auto'
+      }
+    },
     /* 单独生成声明文件 */
     {
       input,

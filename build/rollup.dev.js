@@ -19,17 +19,17 @@ export default {
       name: pkg.globalName,
       exports: 'auto'
     },
-    {
-      file: path.join(ROOT_PATH, `test/${pkg.main}`),
-      format: 'umd',
-      name: pkg.globalName,
-      exports: 'auto'
-    },
-    {
-      exports: 'auto',
-      file: path.join(ROOT_PATH, `test/${pkg.module}`),
-      format: 'es'
-    }
+    // {
+    //   file: path.join(ROOT_PATH, `test/${pkg.main}`),
+    //   format: 'umd',
+    //   name: pkg.globalName,
+    //   exports: 'auto'
+    // },
+    // {
+    //   exports: 'auto',
+    //   file: path.join(ROOT_PATH, `test/${pkg.module}`),
+    //   format: 'es'
+    // }
   ],
   watch: {
     // 监听的文件

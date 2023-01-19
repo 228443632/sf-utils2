@@ -33,7 +33,7 @@
       console.log('b', butils.arrayToObj(users, 'age', { valueType: 'object' }))
 
       // 以 `user` 升序排序 再  `age` 以降序排序。
-      console.log(butils.orderBy(users, ['age', 'user'], ['desc', 'desc']))
+      console.log(butils.orderBy(users, ['age', 'user'], ['up', 'desc']))
       // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
 
       const obj1 = {
@@ -75,8 +75,6 @@
           }
         ]
       }
-      console.log('结果', butils.deepMerge())
-
 
     </script>
   </body>

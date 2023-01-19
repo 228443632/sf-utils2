@@ -1,6 +1,6 @@
 /**
  * 获取全局globalThis
- * @return {Window|(WorkerGlobalScope & Window)|*}
+ * @return {Window|*}
  */
 function getGlobalThis() {
   if (typeof self !== 'undefined') {

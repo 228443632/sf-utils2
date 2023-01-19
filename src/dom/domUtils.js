@@ -62,7 +62,7 @@ const domUtils = {
    * @example
    * RGBToHex(`rgba('255, 165, 1')`); // '#ffa501'
    */
-  RGBToHex: rgb => {
+  RGBToHex(rgb) {
     if (/^rgba?/.test(rgb)) {
       const [r, g, b] = rgb.match(/\d+/g, Number).map(v => +v)
       return '#' + ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0')
@@ -76,7 +76,7 @@ const domUtils = {
    * @example
    * hexToRGB(`#ffa501`) // rgb(255, 165, 1)
    */
-  hexToRGB: hex => {
+  hexToRGB(hex) {
     let alpha = false,
       h = hex.slice(hex.startsWith('#') ? 1 : 0)
     if (h.length === 3) h = [...h].map(x => x + x).join('')
@@ -457,7 +457,7 @@ const domUtils = {
    * formatDuration(34325055574);
    * // '397 days, 6 hours, 44 minutes, 15 seconds, 574 milliseconds'
    */
-  formatDuration: ms => {
+  formatDuration(ms) {
     if (ms < 0) ms = -ms
     const time = {
       day: Math.floor(ms / 86400000),
@@ -488,7 +488,7 @@ const domUtils = {
    * gcd(8, 36); // 4
    * gcd(...[12, 8, 32]); // 4
    */
-  gcd: (...arr) => {
+  gcd(...arr) {
     const _gcd = (x, y) => (!y ? x : domUtils.gcd(y, x % y))
     return [...arr].reduce((a, b) => _gcd(a, b))
   },
@@ -504,7 +504,7 @@ const domUtils = {
    * prettyBytes(-27145424323.5821, 5); // '-27.145 GB'
    * prettyBytes(123456789, 3, false); // '123MB'
    */
-  prettyBytes: (num, precision = 3, addSpace = true) => {
+  prettyBytes(num, precision = 3, addSpace = true) {
     const UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     if (Math.abs(num) < 1) return num + (addSpace ? ' ' : '') + UNITS[0]
     const exponent = Math.min(Math.floor(Math.log10(num < 0 ? -num : num) / 3), UNITS.length - 1)

@@ -13,7 +13,6 @@ import path from 'path'
 import externals from 'rollup-plugin-node-externals'
 import aliasPlugin from '@rollup/plugin-alias'
 
-
 const customResolver = resolve({
   extensions: ['.mjs', '.js', '.jsx', '.json', '.sass', '.scss']
 })
@@ -27,9 +26,11 @@ const year = new Date().getFullYear()
 export default {
   external: ['html2canvas', 'jspdf', 'crypto-js', 'jszip', 'file-saver'], // /@babel\/runtime/,
   plugins: [
-    externals(),
+    // externals({
+    //   browser: true,
+    // }),
     banner(`<%= pkg.name %>\n(c) 2020-${year} v<%= pkg.version %>\nby <%= pkg.author %>`),
-    cleanup({comments: 'all', compactComments: false}),
+    cleanup(),
     json(),
     resolve(),
     aliasPlugin({

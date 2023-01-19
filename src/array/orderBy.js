@@ -1,5 +1,6 @@
 import isArray from '@/base/isArray'
 import isNullable from '@/base/isNullable'
+import _helperArraySort from '@/_helper/_helperArraySort'
 
 /**
  * 比较 从大到小
@@ -17,9 +18,9 @@ function compareAse(c = []) {
         }
         curKey = c[++i]
       }
-      return a[curKey] < b[curKey] ? -1 : 1
+      return _helperArraySort._helperAse(a[curKey], b[curKey])
     }
-    return a < b ? -1 : 1
+    return _helperArraySort._helperAse(a, b)
   }
 }
 
@@ -39,9 +40,9 @@ function compareDesc(c) {
         }
         curKey = c[++i]
       }
-      return a[curKey] < b[curKey] ? 1 : -1
+      return _helperArraySort._helperDesc(a[curKey], b[curKey])
     }
-    return a < b ? 1 : -1
+    return _helperArraySort._helperDesc(a, b)
   }
 }
 

@@ -15,6 +15,28 @@ export default () => {
     {
       ...rollupConfigBase,
       input: 'src/index.js',
+      external: [
+        ...rollupConfigBase.external,
+        /@babel\/runtime/
+      ],
+      output: [
+        {
+          file: `lib/index.cjs.js`,
+          format: 'cjs',
+          exports: 'auto'
+        },
+        {
+          file: `lib/index.esm.js`,
+          format: 'esm',
+          exports: 'auto'
+        }
+      ]
+    },
+
+    // /@babel\/runtime/
+    {
+      ...rollupConfigBase,
+      input: 'src/index.js',
       output: [
         {
           file: `lib/index.umd.js`,
@@ -30,16 +52,6 @@ export default () => {
             })
           ]
         },
-        {
-          file: `lib/index.cjs.js`,
-          format: 'cjs',
-          exports: 'auto'
-        },
-        {
-          file: `lib/index.esm.js`,
-          format: 'esm',
-          exports: 'auto'
-        }
       ]
     },
 

@@ -8,6 +8,7 @@ import merge from '@/object/merge.js'
 import def from '@/object/def'
 import deepClone from '@/object/deepClone'
 import isString from '@/base/isString'
+import _helperArraySort, { _helperAse } from '@/_helper/_helperArraySort'
 
 /**
  * @param {Array} list 每个节点下子节点数组
@@ -59,6 +60,16 @@ export function _includesChildPath(aPath, bPath) {
 }
 
 /**
+ * 方向
+ */
+const sortType = {
+  ase: _helperArraySort._helperDesc, // 从小到大
+  desc: _helperArraySort._helperDesc, // 从大到小
+  up: _helperArraySort._helperDesc, // 从小到大
+  down: _helperArraySort._helperDesc // 从大到小
+}
+
+/**
  * 遍历树型结构，并添加额外参数
  * @param tree 树形
  * @param {{
@@ -78,7 +89,14 @@ export function _includesChildPath(aPath, bPath) {
  */
 const _helperTreeBase = ({
   tree = [],
-  props = {},
+  props = {
+    id: 'id',
+    parentId: 'parentId',
+    children: 'children',
+    order: false,
+    orderField: 'order',
+    orderBy: 'asc'
+  },
   callbackList = __callbackListInterface,
   callbackItem = __callbackItemInterface,
   retainField = ['__id__', '__rootNode__', '__pId__', '__level__'],
@@ -110,9 +128,7 @@ const _helperTreeBase = ({
       !_isCbListBreak && (_isCbListBreak = !!(callbackList && callbackList(tree, parentNode)))
       props.order &&
         tree.sort((a, b) =>
-          props.orderBy.toString().toLowerCase() == 'asc'
-            ? a?.[props.orderField] - b?.[props.orderField]
-            : b?.[props.orderField] - a?.[props.orderField]
+          sortType[String(props.orderBy).toLowerCase()]?.(a?.[props.orderField], b?.[props.orderField])
         )
       tree.forEach((v, vi) => {
         let _pId = parentNode?.__id__ || '@'
