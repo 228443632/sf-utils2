@@ -1,4 +1,4 @@
-import arrayToObj from '@/array/arrayToObj'
+import arrayToMap from '@/array/arrayToMap'
 import uniq from '@/array/uniq'
 import isPrimitive from '@/base/isPrimitive'
 
@@ -9,15 +9,16 @@ import isPrimitive from '@/base/isPrimitive'
  * @return {[string, any]|*[]}
  */
 function intersection(array, property) {
-  const arrayFlatten = array.flat(Infinity) || []
-  const arrayObj$property = arrayToObj(arrayFlatten, property, { valueType: 'array' })
+  const arrayFlatten = array.flat(1) || []
+  console.log('array', arrayFlatten)
+  const arrayMap$property = arrayToMap(arrayFlatten, property, { valueType: 'array' })
   const [array$0] = arrayFlatten
-  const result = Object.entries(arrayObj$property).reduce((pre, [k, v]) => {
-    if (v?.length > 1) {
-      pre.push(...v)
+  const result = []
+  arrayMap$property.forEach((v, k) => {
+    if (v?.length === array.length) {
+      result.push(...v)
     }
-    return pre
-  }, [])
+  })
   if (isPrimitive(array$0)) {
     return uniq(result)
   }

@@ -42,7 +42,7 @@
         targets: [{ id: '----' }]
       }
 
-      butils.listToTree({retainField: ["__level__", "__rootNode__", "__pId__"]})
+      butils.listToTree({ retainField: ['__level__', '__rootNode__', '__pId__'] })
 
       const obj2 = {
         id: 5,
@@ -76,6 +76,22 @@
         ]
       }
 
+      const list = [
+        { empId: 1, empName: '蔡徐坤' },
+        { empId: 2, empName: '小明' }
+      ]
+
+      console.log(butils.arrayToMap(list, 'empId'))
+
+      butils.ramCache.setItem('sd', { id: 2324 }, 3)
+      butils.ramCache.setItem('1', 1, 2.4)
+      butils.ramCache.setItem('2', 2, 2)
+
+      console.log(butils.ramCache.setItem('sd', { id: 2324 }, 3))
+
+      setTimeout(() => {
+        console.log(butils.ramCache.getItemsAll())
+      }, 2500)
     </script>
   </body>
 </html>

@@ -12,7 +12,7 @@
  */
 function def(obj, key, val = undefined, enumerable = false) {
   return Object.defineProperty(obj, key, {
-    value: val,
+    value: obj[key] ?? undefined,
     enumerable: !!enumerable,
     writable: true,
     configurable: true

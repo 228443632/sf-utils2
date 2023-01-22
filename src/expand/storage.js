@@ -28,7 +28,7 @@ const _storage = {
   /**
    * 设置item
    * @param {String} key 键名
-   * @param {any} value 值
+   * @param {*} value 值
    * @param {Number} expire 过期时间 单位秒
    */
   setItem(key, value, expire = 0) {
@@ -38,7 +38,7 @@ const _storage = {
 
     if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
 
-    expire = (expire ? expire : this.__config.expire) * 1000
+    expire = (expire ?? this.__config.expire) * 1000
     let data = {
       value: value, // 存储值
       time: Date.now(), //存值时间戳
