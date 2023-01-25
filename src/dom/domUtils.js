@@ -565,7 +565,6 @@ const domUtils = {
    *
    * // Unsubscribe: stop a specific handler from listening to the 'message' event
    *   hub.off('message', handler);
-   * @return {{offEntire(String): void, dispatchEvent(): void, removeEventListener(): void, hub: null, removeListenerEventEntire(): void, emit(String, ...[*]): void, off(String, Function): void, on(String, Function): void, addEventListener(): void}}
    */
   eventBus: () => ({
     /**

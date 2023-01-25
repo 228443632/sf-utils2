@@ -7,7 +7,6 @@ const getPrefixKey = (prefix, key) => {
 
 /**
  * 内容缓存对象
- * @type {{removeItem(String): void, data: {}, size(): number, clear(): void, getItem(String): *, setItem(String, *): void}}
  */
 const cache = {
   __config: {

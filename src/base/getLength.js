@@ -21,6 +21,10 @@ function getLength(val) {
       len = val.size
       break
     }
+    case 'Blob': {
+      len = val.size
+      break
+    }
     default: {
       break
     }

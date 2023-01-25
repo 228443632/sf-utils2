@@ -34,7 +34,8 @@ const commonRegex = {
   SOCIAL_CODE: /^([0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}|[1-9]\d{14})$/, // 社会信用代码
   TENCENT_QQ: /[1-9][0-9]{4,}/, // 腾讯QQ
   POST_CODE: /[1-9]\d{5}(?!\d)/, // 中国邮编
-  BLANK_ROW: /\n\s*\r/ // 空白行校验
+  BLANK_ROW: /\n\s*\r/, // 空白行校验
+  REMOVE_CSS_UNIT: /(rem|px|vw|vh|%)$/ // css单位
 }
 
 export default commonRegex
