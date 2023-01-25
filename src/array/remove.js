@@ -1,6 +1,6 @@
 /**
  * 从数组中移除一个元素
- * @param {array} array
+ * @param {Array} array
  * @param {*} ele
  * @return {*}
  * @example

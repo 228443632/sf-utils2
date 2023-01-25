@@ -2,7 +2,7 @@ import arrayToObj from '@/array/arrayToObj'
 
 /**
  * 数组去重
- * @param {array} list
+ * @param {Array} list
  * @param {string|unknown} property 如果传入是 Object[] 数据结构，以property为主键去重
  * @return {*[]}
  */

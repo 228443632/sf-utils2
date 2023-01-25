@@ -127,7 +127,7 @@ const domUtils = {
   /**
    * 移除多个style属性名
    * @param {Element} element
-   * @param {array<string>} styleNames
+   * @param {Array<string>} styleNames
    */
   removeStyles(element, styleNames = []) {
     let names = isArray(styleNames) ? styleNames : [styleNames]
@@ -187,7 +187,7 @@ const domUtils = {
   /**
    * 移除所有属性
    * @param {Element} element node元素节点
-   * @param {array} exclude 要排除的属性
+   * @param {Array} exclude 要排除的属性
    */
   removeAllAttributes(element, exclude = []) {
     let removeNames = []
@@ -205,7 +205,7 @@ const domUtils = {
   /**
    * 批量添加className
    * @param {Element} ele
-   * @param {array} classNames
+   * @param {Array} classNames
    */
   addClasses(ele, classNames = []) {
     ele.classList.add(...classNames)
@@ -480,8 +480,8 @@ const domUtils = {
 
   /**
    * 计算任意维数中两点之间的距离
-   * @param {array<number>} a
-   * @param {array<number>} b
+   * @param {Array<number>} a
+   * @param {Array<number>} b
    * @returns {number}
    */
   euclideanDistance: (a, b) => Math.hypot(...Object.keys(a).map(k => b[k] - a[k])),

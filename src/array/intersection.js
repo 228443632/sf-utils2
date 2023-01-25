@@ -4,7 +4,7 @@ import isPrimitive from '@/base/isPrimitive'
 
 /**
  * 获取多个数组的交集
- * @param {array[]} array
+ * @param {Array[]} array
  * @param {string|unknown} property
  * @return {[string, any]|*[]}
  */

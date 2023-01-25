@@ -11,7 +11,7 @@ import isString from '@/base/isString'
 import _helperArraySort, { _helperAse } from '@/_helper/_helperArraySort'
 
 /**
- * @param {array} list 每个节点下子节点数组
+ * @param {Array} list 每个节点下子节点数组
  * @param {Object} parentObj 父节点对象
  */
 export const __callbackListInterface = (list, parentObj) => {}
@@ -19,7 +19,7 @@ export const __callbackListInterface = (list, parentObj) => {}
 /**
  * @param {Object} item 当前树节点
  * @param {number} index 当前树节点索引
- * @param {array} list 当前树节点数组
+ * @param {Array} list 当前树节点数组
  * @param {Object} parentObj 父节点
  * @return {void|boolean}
  */

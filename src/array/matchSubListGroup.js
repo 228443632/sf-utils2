@@ -2,7 +2,7 @@ import isArray from '@/base/isArray'
 
 /**
  * 匹配子列表,形成树状
- * @param {array} data
+ * @param {Array} data
  * @example
  *data = [
             {

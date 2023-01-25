@@ -1,6 +1,6 @@
 /**
  * 支持批量加载css 和 jsm 例子：loadRemoteScriptOrCss(['https://unpkg.com/element-ui/lib/theme-chalk/index.css', 'https://unpkg.com/element-ui/lib/index.js'])
- * @param {array} urlList 类型 Array | String
+ * @param {Array} urlList 类型 Array | String
  * @returns {Promise<void>}
  */
 async function loadJsOrCssMulSync(urlList = []) {

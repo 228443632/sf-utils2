@@ -1,6 +1,6 @@
 /**
  * 分片加载
- * @param {array} data 数据
+ * @param {Array} data 数据
  * @param {Function} beforeCb 开始之前执行
  * @param {Function} cb 回调函数
  * @param {Function} afterCb 结束后回调

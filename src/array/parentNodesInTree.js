@@ -2,7 +2,7 @@ import isArray from '@/base/isArray'
 
 /**
  * 根据树状子节点id,依次找到所有父节点路径
- * @param tree 原数据，树状结构 {array}
+ * @param tree 原数据，树状结构 {Array}
  * @param id 要查找的子节点主键值 {string | number}
  * @param {{ id?: 'id', children?: 'children' }} props 自定义键名
  * @returns {*[]}

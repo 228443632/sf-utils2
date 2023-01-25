@@ -4,7 +4,7 @@ import getAbsOffsetTop from './getAbsOffsetTop'
 
 /**
  * 元素批量元素在 父的滚动视图位置（只针对 垂直滚动有效）
- * @param els 元素集合 {array<NodeList> | Array<string>}
+ * @param els 元素集合 {Array<NodeList> | Array<string>}
  * @param {HTMLElement} scrollDom 滚动的容器元素
  * @param offsetTop 顶部偏移量 {number}
  */
