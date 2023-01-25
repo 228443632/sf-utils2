@@ -3,7 +3,7 @@ import isFunction from '@/base/isFunction'
 
 /**
  * 去除数组中的无效/无用值
- * @param {Array} array
+ * @param {array} array
  * @param {(item:any, index:number, arr:any[]) => boolean} callbackFn
  * @return {*}
  * @example

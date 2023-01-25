@@ -4,7 +4,7 @@ import _helperArraySort from '@/_helper/_helperArraySort'
 
 /**
  * 比较 从大到小
- * @param {String[]} c 对象属性名
+ * @param {string[]} c 对象属性名
  * @return {(function(*, *): void)|*}
  */
 function compareAse(c = []) {
@@ -26,7 +26,7 @@ function compareAse(c = []) {
 
 /**
  * 比较 从小到大
- * @param {String} c 对象属性名
+ * @param {string} c 对象属性名
  * @return {(function(*, *): void)|*}
  */
 function compareDesc(c) {
@@ -55,8 +55,8 @@ const directionsType = {
 
 /**
  * 排序
- * @param {Object[]|String[]|Number[]} list
- * @param {String[]} properties
+ * @param {Object[]|string[]|number[]} list
+ * @param {string[]} properties
  * @param {('ase' | 'desc' | 'up' | 'down')[]} directions
  * @example
  *   var users = [

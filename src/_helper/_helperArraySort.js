@@ -1,7 +1,7 @@
 /**
  * 生序
- * @param {Number|String} a
- * @param {Number|String} b
+ * @param {number|String} a
+ * @param {number|String} b
  * @return {number}
  * @private
  */
@@ -11,8 +11,8 @@ export function _helperAse(a, b) {
 
 /**
  * 降序
- * @param {Number|String} a
- * @param {Number|String} b
+ * @param {number|String} a
+ * @param {number|String} b
  * @return {number}
  * @private
  */

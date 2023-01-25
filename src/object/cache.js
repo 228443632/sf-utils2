@@ -7,6 +7,7 @@ const getPrefixKey = (prefix, key) => {
 
 /**
  * 内容缓存对象
+ * @version v3.0.9+
  */
 const cache = {
   __config: {
@@ -19,9 +20,9 @@ const cache = {
 
   /**
    * 设置内存缓存对象
-   * @param {String} key
+   * @param {string} key
    * @param {*} value
-   * @param {Number} expire 过期时间 单位秒
+   * @param {number} expire 过期时间 单位秒
    */
   setItem(key, value, expire) {
     if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
@@ -36,8 +37,8 @@ const cache = {
 
   /**
    * 获取内存缓存对象
-   * @param {String} key
-   * @param {Boolean} autoRetain 是否自动延续
+   * @param {string} key
+   * @param {boolean} autoRetain 是否自动延续
    * @return {*}
    */
   getItem(key, autoRetain = false) {
@@ -58,7 +59,7 @@ const cache = {
 
   /**
    * 移除item
-   * @param {String} key
+   * @param {string} key
    */
   removeItem(key) {
     key = getPrefixKey(this.prefix, key)

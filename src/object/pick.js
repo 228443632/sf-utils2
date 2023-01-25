@@ -9,7 +9,8 @@ import isFunction from '@/base/isFunction'
 /**
  * 创建一个对象，这个对象组成为从 object 中经 predicate 判断为真值的属性
  * @param {Object} obj
- * @param {String|String[]|Function} predicate
+ * @param {string|String[]|Function} predicate
+ * @version v3.0.4+
  * @return {{}|*|*[]}
  */
 function pick(obj = {}, predicate) {

@@ -1,6 +1,6 @@
 /**
  * 将字符串转成蛇形命名法
- * @param {String} str
+ * @param {string} str
  * @returns {string}
  */
 function snakeCase(str) {

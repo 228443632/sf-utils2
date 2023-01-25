@@ -1,6 +1,7 @@
 /**
  * 删除字符串中的HTMl标签
- * @param {String} str
+ * @param {string} str
+ * @version v3.0.10+
  * @return {*}
  * @example
  * stripHTMLTags(`<div>234242<i>---</i>></div>`) => 234242--->

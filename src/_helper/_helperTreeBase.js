@@ -11,15 +11,15 @@ import isString from '@/base/isString'
 import _helperArraySort, { _helperAse } from '@/_helper/_helperArraySort'
 
 /**
- * @param {Array} list 每个节点下子节点数组
+ * @param {array} list 每个节点下子节点数组
  * @param {Object} parentObj 父节点对象
  */
 export const __callbackListInterface = (list, parentObj) => {}
 
 /**
  * @param {Object} item 当前树节点
- * @param {Number} index 当前树节点索引
- * @param {Array} list 当前树节点数组
+ * @param {number} index 当前树节点索引
+ * @param {array} list 当前树节点数组
  * @param {Object} parentObj 父节点
  * @return {void|boolean}
  */
@@ -27,8 +27,8 @@ export const __callbackItemInterface = (item, index, list, parentObj) => {}
 
 /**
  * 获取经过路径集合
- * @param {String} str
- * @return {String[]}
+ * @param {string} str
+ * @return {string[]}
  */
 export function _getPathLists(str) {
   str = String(str || '')
@@ -46,9 +46,9 @@ export function _getPathLists(str) {
 
 /**
  * 判断aPath是否包含bPath
- * @param {String} aPath
- * @param {String} bPath
- * @return {Boolean}
+ * @param {string} aPath
+ * @param {string} bPath
+ * @return {boolean}
  */
 export function _includesChildPath(aPath, bPath) {
   if (isString(aPath) && isString(bPath)) {

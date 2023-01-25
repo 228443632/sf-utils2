@@ -6,7 +6,7 @@ import deepClone from '@/object/deepClone'
 /**
  * 获取节点 经过的所有父节点 轨迹节点
  * @param {Object} listObj
- * @param {String|Number} ID
+ * @param {string|number} ID
  * @returns {any[]}
  */
 function _getNodePathItem(listObj = {}, ID = '') {

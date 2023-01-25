@@ -188,7 +188,7 @@ class Print {
         }
   /**
    * 设置指定dom元素高度，通过获取该dom元素现有高度，并设置
-   * @param {Array} arr
+   * @param {array} arr
    */
   setDomHeight(arr) {
     if (arr && arr.length) {

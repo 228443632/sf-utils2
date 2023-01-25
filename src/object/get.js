@@ -3,7 +3,7 @@ import _helperObjectFlatten from '@/_helper/_helperObjectFlatten'
 /**
  * 获取对象的属性的值，如果值为 undefined，则返回默认值
  * @param {Object} obj
- * @param {String} property
+ * @param {string} property
  * @param {*} defaultValue
  * @returns {*}
  */

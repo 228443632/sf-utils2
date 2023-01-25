@@ -1,6 +1,7 @@
 /**
  * 转义HTML
- * @param {String} str
+ * @param {string} str
+ * @version v3.0.10+
  * @return {*}
  */
 function escapeHTML(str) {

@@ -4,8 +4,8 @@ import isString from '@/base/isString'
 
 /**
  * 导出页面为PDF格式，依赖【缺少 html2canvas库】：推荐版本1.4.0；依赖【缺少 jspdf库】：推荐版本2.3.0
- * @param {String | HTMLHtmlElement} target 目标元素
- * @param  {String }  title 导出的文件名
+ * @param {string | HTMLHtmlElement} target 目标元素
+ * @param  {string }  title 导出的文件名
  * @returns {Promise<void>}
  */
 async function exportPdf(target, title) {

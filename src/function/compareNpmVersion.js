@@ -24,8 +24,8 @@ const _versionMapToList = (version = '') => {
 
 /**
  * 比较npm A 和 B版本大小
- * @param {String} a
- * @param {String} b
+ * @param {string} a
+ * @param {string} b
  * @returns {number}
  * @description 返回-1: a < b, 1: a > b, 0: a = b
  */

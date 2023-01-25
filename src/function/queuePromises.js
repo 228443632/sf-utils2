@@ -1,6 +1,6 @@
 /**
  * 执行异步队列，异步请求函数数组
- * @param {Array<Promise>} asyncTasks
+ * @param {array<Promise>} asyncTasks
  * @param {*} initValue 初始化值
  * @returns {*}
  */

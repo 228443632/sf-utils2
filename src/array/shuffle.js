@@ -1,6 +1,6 @@
 /**
  * 洗牌算法随机
- * @param {Array} array
+ * @param {array} array
  * @return {*[]}
  */
 function shuffle(array = []) {

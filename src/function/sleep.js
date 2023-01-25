@@ -1,6 +1,6 @@
 /**
  * 休眠
- * @param {Number} duration ms
+ * @param {number} duration ms
  * @returns {Promise<unknown>}
  */
 function sleep(duration = 200) {

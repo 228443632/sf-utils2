@@ -1,10 +1,10 @@
 /**
  * 分片加载
- * @param {Array} data 数据
+ * @param {array} data 数据
  * @param {Function} beforeCb 开始之前执行
  * @param {Function} cb 回调函数
  * @param {Function} afterCb 结束后回调
- * @param {Number} loopLength 每次分片的大小
+ * @param {number} loopLength 每次分片的大小
  * @param {Function} afterCb 运行结束回掉函数
  */
 import { _requestAnimationFrame } from './_constant'

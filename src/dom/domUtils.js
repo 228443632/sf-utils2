@@ -57,7 +57,7 @@ function _getTableMaxCols(table) {
 const domUtils = {
   /**
    * 将 RGB 值转换为十六进制颜色代码。
-   * @param {String} rgb
+   * @param {string} rgb
    * @returns {*}
    * @example
    * RGBToHex(`rgba('255, 165, 1')`); // '#ffa501'
@@ -71,7 +71,7 @@ const domUtils = {
 
   /**
    * 则将颜色代码转换为rgb()或字符串
-   * @param {String} hex
+   * @param {string} hex
    * @returns {string}
    * @example
    * hexToRGB(`#ffa501`) // rgb(255, 165, 1)
@@ -127,7 +127,7 @@ const domUtils = {
   /**
    * 移除多个style属性名
    * @param {Element} element
-   * @param {Array<String>} styleNames
+   * @param {array<string>} styleNames
    */
   removeStyles(element, styleNames = []) {
     let names = isArray(styleNames) ? styleNames : [styleNames]
@@ -139,7 +139,7 @@ const domUtils = {
   /**
    * 移除style属性名
    * @param {Element} element
-   * @param {String} name
+   * @param {string} name
    */
   removeStyle(element, name = '') {
     if (element.style.removeProperty) {
@@ -155,7 +155,7 @@ const domUtils = {
   /**
    * 获取属性名
    * @param {Element} element
-   * @param {String} attrName
+   * @param {string} attrName
    */
   getAttribute(element, attrName = '') {
     return element.getAttribute(attrName)
@@ -187,7 +187,7 @@ const domUtils = {
   /**
    * 移除所有属性
    * @param {Element} element node元素节点
-   * @param {Array} exclude 要排除的属性
+   * @param {array} exclude 要排除的属性
    */
   removeAllAttributes(element, exclude = []) {
     let removeNames = []
@@ -205,7 +205,7 @@ const domUtils = {
   /**
    * 批量添加className
    * @param {Element} ele
-   * @param {Array} classNames
+   * @param {array} classNames
    */
   addClasses(ele, classNames = []) {
     ele.classList.add(...classNames)
@@ -224,7 +224,7 @@ const domUtils = {
   /**
    * 判断是否含有class
    * @param {Element} ele
-   * @param {String} className
+   * @param {string} className
    * @returns {*}
    */
   hasClass(ele, className = '') {
@@ -390,7 +390,7 @@ const domUtils = {
 
   /**
    * cm 转成 px
-   * @param {Number | String} cm
+   * @param {number | String} cm
    */
   cmToPx(cm) {
     const DPI = domUtils.getDpi()
@@ -400,7 +400,7 @@ const domUtils = {
 
   /**
    * px 转成 cm
-   * @param {Number | String} px
+   * @param {number | String} px
    */
   pxToCm(px) {
     const DPI = domUtils.getDpi()[0]
@@ -410,7 +410,7 @@ const domUtils = {
 
   /**
    * 去除换行空格
-   * @param {String} str
+   * @param {string} str
    **/
   trimSpace(str) {
     return str.replace(/\n+\s*/g, () => '')
@@ -451,7 +451,7 @@ const domUtils = {
 
   /**
    * 返回给定毫秒数的人类可读格式。
-   * @param {Number} ms
+   * @param {number} ms
    * @example
    * formatDuration(1001); // '1 second, 1 millisecond'
    * formatDuration(34325055574);
@@ -480,8 +480,8 @@ const domUtils = {
 
   /**
    * 计算任意维数中两点之间的距离
-   * @param {Array<Number>} a
-   * @param {Array<Number>} b
+   * @param {array<number>} a
+   * @param {array<number>} b
    * @returns {number}
    */
   euclideanDistance: (a, b) => Math.hypot(...Object.keys(a).map(k => b[k] - a[k])),
@@ -502,8 +502,8 @@ const domUtils = {
   /**
    * 将字节数转换为人类可读的字符串。
    * @param num
-   * @param {Number} precision 精度
-   * @param {Boolean}addSpace 默认情况下在数字和单位之间添加空格
+   * @param {number} precision 精度
+   * @param {boolean}addSpace 默认情况下在数字和单位之间添加空格
    * @returns {string}
    * @example
    * prettyBytes(1000); // '1 KB'
@@ -573,7 +573,7 @@ const domUtils = {
     hub: Object.create(null),
     /**
      * emit事件
-     * @param {String} event 事件名
+     * @param {string} event 事件名
      * @param {any} data 值
      */
     emit(event, ...data) {
@@ -581,7 +581,7 @@ const domUtils = {
     },
     /**
      * on事件
-     * @param {String} event 事件名
+     * @param {string} event 事件名
      * @param {Function} handler
      */
     on(event, handler) {
@@ -604,7 +604,7 @@ const domUtils = {
     },
     /**
      * off事件
-     * @param {String} event 事件名
+     * @param {string} event 事件名
      * @param {Function} handler
      */
     off(event, handler) {
@@ -622,7 +622,7 @@ const domUtils = {
 
     /**
      * 移除当前相关所有事件
-     * @param {String} event 事件名
+     * @param {string} event 事件名
      */
     offEntire(event) {
       if (event) delete this.hub[event]
@@ -736,8 +736,8 @@ const domUtils = {
 
   /**
    * 将 hex转成rgba
-   * @param {String} hex
-   * @param {Number|String} opacity
+   * @param {string} hex
+   * @param {number|String} opacity
    * @returns {`rgba(${string})`}
    */
   hexToRgba(hex = '', opacity) {

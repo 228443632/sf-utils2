@@ -8,8 +8,8 @@ import isElementVisibleInViewport from '@/dom/isElementVisibleInViewport'
  * 封装视图的 懒加载图片
  * @param imgWrapDOM img标签包裹的view视图  类型数组 或者 元素对象 {NodeList | HTMLElement}
  * @param scrollView 滚动区域 {HTMLElement}
- * @param transition 是否开启过度动画 默认开启 {Boolean}
- * @param errorReload 图片加载是否 显示重新加载图片，默认是true {Boolean}
+ * @param transition 是否开启过度动画 默认开启 {boolean}
+ * @param errorReload 图片加载是否 显示重新加载图片，默认是true {boolean}
  * @param viewportOptions {Object}
  * @returns {{elImgList: NodeListOf<HTMLElementTagNameMap[string]> | NodeListOf<Element> | NodeListOf<SVGElementTagNameMap[string]>, previewImgList: []}}
  */

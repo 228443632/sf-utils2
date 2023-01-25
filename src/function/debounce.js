@@ -3,7 +3,7 @@
  * 默认在定时器之后执行
  *
  * @param {Function} callback 回调
- * @param {Number} wait 多少秒毫 默认值是300毫秒
+ * @param {number} wait 多少秒毫 默认值是300毫秒
  * @param {{ leading?: false, trailing?: true } | Boolean} options 参数{leading: 是否在之前执行, trailing: 是否在之后执行}
  * @return {Function}
  */

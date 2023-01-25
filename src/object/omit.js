@@ -9,7 +9,8 @@ import isFunction from '@/base/isFunction'
 /**
  * 反向版  pick; 这个方法一个对象，这个对象由忽略属性之外的object自身和继承的可枚举属性组成。（注：可以理解为删除object对象的属性）。
  * @param {Object} obj
- * @param {String|String[]|Function} predicate
+ * @param {string|String[]|Function} predicate
+ * @version v3.0.4+
  * @return {{}|*|*[]}
  */
 function omit(obj = {}, predicate) {

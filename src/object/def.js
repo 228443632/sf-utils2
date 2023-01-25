@@ -1,9 +1,9 @@
 /**
- * 定义属性
+ * 定义属性[不可枚举]
  * @param {Object} obj
- * @param {String} key
+ * @param {string} key
  * @param {*} val
- * @param {Boolean} enumerable
+ * @param {boolean} enumerable
  * @returns {*}
  * @example
  *

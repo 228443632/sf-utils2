@@ -4,7 +4,7 @@ import isFunction from '@/base/isFunction'
 /**
  * 将数组转成obj
  * @param {Object[]} array 数组
- * @param {String|Function} property 主键
+ * @param {string|Function} property 主键
  * @param {{valueType: 'object' | 'array'}} options
  * @returns {*}
  * @example

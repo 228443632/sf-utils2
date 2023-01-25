@@ -2,7 +2,7 @@ import isString from '@/base/isString.js'
 
 /**
  * 首字母大写
- * @param {String}  str
+ * @param {string}  str
  * @returns {string|*}
  */
 function capitalize(str) {

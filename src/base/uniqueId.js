@@ -1,8 +1,8 @@
 /**
  * 获取一个全局唯一标识
  *
- * @param {String} prefix 前缀
- * @return {String}
+ * @param {string} prefix 前缀
+ * @return {string}
  */
 let __uniqueId = 0
 function uniqueId(prefix) {

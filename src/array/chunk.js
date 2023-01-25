@@ -3,9 +3,9 @@ import isArray from '@/base/isArray'
 /**
  * 将一个数组分割成大小的组。如果数组不能被平均分配，那么最后一块将是剩下的元素
  *
- * @param {Array} array 数组
- * @param {Number} size 每组大小
- * @return {Array}
+ * @param {array} array 数组
+ * @param {number} size 每组大小
+ * @return {array}
  */
 function chunk(array, size) {
   let index

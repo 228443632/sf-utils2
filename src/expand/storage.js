@@ -27,9 +27,9 @@ const _storage = {
 
   /**
    * 设置item
-   * @param {String} key 键名
+   * @param {string} key 键名
    * @param {*} value 值
-   * @param {Number} expire 过期时间 单位秒
+   * @param {number} expire 过期时间 单位秒
    */
   setItem(key, value, expire = 0) {
     if (value === '' || value === null || value === undefined) {
@@ -52,8 +52,8 @@ const _storage = {
 
   /**
    * 获取key
-   * @param {String} key 键名
-   * @param {Boolean} autoRetain 是否自动延续
+   * @param {string} key 键名
+   * @param {boolean} autoRetain 是否自动延续
    * @returns {null|*}
    */
   getItem(key, autoRetain = false) {
@@ -87,7 +87,7 @@ const _storage = {
 
   /**
    * 是否存在
-   * @param {String} key
+   * @param {string} key
    * @returns {boolean}
    */
   has(key) {
@@ -113,7 +113,7 @@ const _storage = {
 
   /**
    * 根据索引获取key
-   * @param {Number} index
+   * @param {number} index
    * @returns {*}
    */
   getForIndex(index) {
@@ -148,7 +148,7 @@ const _storage = {
 
   /**
    * 根据key 删除某一个item
-   * @param {String} key
+   * @param {string} key
    */
   removeItem(key) {
     window[this.__config.type].removeItem(this.autoAddPrefix(key))
@@ -163,7 +163,7 @@ const _storage = {
 
   /**
    * 名称前自动添加前缀
-   * @param {String} key
+   * @param {string} key
    */
   autoAddPrefix(key) {
     const prefix = this.__config.prefix ? this.__config.prefix + '_' : ''
@@ -172,7 +172,7 @@ const _storage = {
 
   /**
    * 移除已添加的前缀
-   * @param {String} key
+   * @param {string} key
    */
   autoRemovePrefix(key) {
     const len = this.__config.prefix ? this.__config.prefix.length + 1 : ''

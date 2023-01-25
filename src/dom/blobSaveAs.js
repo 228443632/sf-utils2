@@ -1,7 +1,7 @@
 /**
  * 保存
  * @param {Blob} blob
- * @param {String} filename
+ * @param {string} filename
  */
 function blobSaveAs(blob, filename) {
   if (window?.navigator?.msSaveOrOpenBlob) {
