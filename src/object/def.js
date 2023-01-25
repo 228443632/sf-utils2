@@ -11,12 +11,13 @@
  * def(person, 'age', '100')
  */
 function def(obj, key, val = undefined, enumerable = false) {
-  return Object.defineProperty(obj, key, {
-    value: obj[key] ?? undefined,
+  const attribute = {
     enumerable: !!enumerable,
     writable: true,
     configurable: true
-  })
+  }
+  if (val !== undefined) attribute.value = val
+  return Object.defineProperty(obj, key, attribute)
 }
 
 export default def

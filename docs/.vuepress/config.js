@@ -24,6 +24,7 @@ module.exports = {
       ...(config.resolve || {}),
       alias: {
         '+root': ROOT_PATH,
+        '@root': ROOT_PATH,
         '@': path.join(ROOT_PATH, 'src'),
         ...config.resolve.alias
       },

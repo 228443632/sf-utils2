@@ -32,8 +32,8 @@ function filterTree({
   callbackList = __callbackListInterface,
   callbackItem = __callbackItemInterface
 }) {
-  if (!isFunction(callbackItem)) return tree
   if (isDeepClone) tree = deepClone(tree)
+  if (!isFunction(callbackItem) || callbackItem === __callbackItemInterface) return tree
 
   let defaultOptions = {
     children: 'children',

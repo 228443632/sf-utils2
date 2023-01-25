@@ -31,6 +31,7 @@ export const __callbackItemInterface = (item, index, list, parentObj) => {}
  * @return {String[]}
  */
 export function _getPathLists(str) {
+  str = String(str || '')
   const pathLists = []
   const splitString = '-'
   const splitArray = str.split(splitString)
@@ -125,7 +126,12 @@ const _helperTreeBase = ({
 
   let _fn = ({ tree = [], parentNode = null, rootNode = null }) => {
     if (isArray(tree)) {
-      !_isCbListBreak && (_isCbListBreak = !!(callbackList && callbackList(tree, parentNode)))
+      !_isCbListBreak &&
+        (_isCbListBreak = !!(
+          callbackList &&
+          callbackList !== __callbackListInterface &&
+          callbackList(tree, parentNode)
+        ))
       props.order &&
         tree.sort((a, b) =>
           sortType[String(props.orderBy).toLowerCase()]?.(a?.[props.orderField], b?.[props.orderField])
@@ -136,7 +142,12 @@ const _helperTreeBase = ({
         retainFieldObj.__pId__ && def(v, '__pId__', _pId)
         retainFieldObj.__level__ && def(v, '__level__', String(v.__pId__).split('-').length)
         retainFieldObj.__rootNode__ && def(v, '__rootNode__', rootNode || (v.__depth__ == 1 && v) || null)
-        !_isCbItemBreak && (_isCbItemBreak = !!(callbackItem && callbackItem(v, vi, tree, parentNode)))
+        !_isCbItemBreak &&
+          (_isCbItemBreak = !!(
+            callbackItem &&
+            callbackItem !== __callbackItemInterface &&
+            callbackItem(v, vi, tree, parentNode)
+          ))
         // console.log('将list转成树状结', props.children, v[props.children], v.name, v)
         _fn({
           tree: v[props.children],
