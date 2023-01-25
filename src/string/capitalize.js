@@ -4,6 +4,8 @@ import isString from '@/base/isString.js'
  * 首字母大写
  * @param {string}  str
  * @returns {string|*}
+ * @example
+ * capitalize('cell_item') => Cell_item
  */
 function capitalize(str) {
   if (!isString(str)) return str

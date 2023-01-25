@@ -13,6 +13,11 @@ const defaultOpts = {
  * @param {Object} data
  * @param {defaultOpts} options
  * @return {*}
+ * @example
+ * template(`<div>姓名：{{userName}}，年纪：{{age}}</div>`, {userName: '张三', age: 10})
+ * =>
+ * <div>姓名：张三，年纪：10</div>
+ *
  */
 function template(str, data = {}, options = defaultOpts) {
   const defaultOpts = {

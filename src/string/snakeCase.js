@@ -2,6 +2,12 @@
  * 将字符串转成蛇形命名法
  * @param {string} str
  * @returns {string}
+ * @example
+ * snakeCase('PascalCase') => pascal_case
+ * snakeCase('Title Case') => title_case
+ * snakeCase('dot.case') => dot_case
+ * snakeCase(undefined) => ''
+ * snakeCase(null) => ''
  */
 function snakeCase(str) {
   if (!str) return ''

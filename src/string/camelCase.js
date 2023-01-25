@@ -2,6 +2,8 @@
  * 将字符串里出现 - _ : 字符链接起来的字符串，统一改成驼峰命名
  * @param {string} str
  * @returns {*}
+ * @example
+ * camelCase('user-name') => userName
  */
 function camelCase(str) {
   const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g
