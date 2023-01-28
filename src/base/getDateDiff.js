@@ -24,7 +24,7 @@ function _helperTimeStamp(val) {
  * 格式化时间戳间距  2日24时33分20秒
  * @param {number|String} startDate
  * @param {number|String} endDate
- * @returns {string}
+ * @returns {string}  2日24时33分20秒
  */
 function getDateDiff(startDate, endDate = new Date().valueOf()) {
   const startTimeStamp = _helperTimeStamp(startDate)

@@ -24,7 +24,7 @@ const cache = {
    * @param {*} value
    * @param {number} expire 过期时间 单位秒
    */
-  setItem(key, value, expire) {
+  setItem(key, value, expire = 0) {
     if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
     expire = (expire ?? this.__config.expire) * 1000
     key = getPrefixKey(this.prefix, key)
