@@ -24,7 +24,7 @@ export const ROOT_PATH = path.resolve(__dirname, '../')
 const year = new Date().getFullYear()
 
 export default {
-  external: ['html2canvas', 'jspdf', 'crypto-js', 'jszip', 'file-saver'], // /@babel\/runtime/,
+  external: ['html2canvas', 'jspdf', 'crypto-js', 'jszip', 'file-saver', '@bianpengfei/utils'], // /@babel\/runtime/,
   plugins: [
     // externals({
     //   browser: true,

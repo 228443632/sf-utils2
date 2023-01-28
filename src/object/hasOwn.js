@@ -5,8 +5,7 @@
  * @return {boolean}
  */
 function hasOwn(obj = {}, property = '') {
-  const ownFn = Object?.hasOwn || Object.prototype.hasOwnProperty.call
-  return ownFn(obj, property)
+  return Object?.hasOwn ? Object.hasOwn(obj, property) : Object.prototype.hasOwnProperty.call(obj, property)
 }
 
 export default hasOwn
