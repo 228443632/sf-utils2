@@ -21,24 +21,56 @@
     <script src="./lib/index.umd.js"></script>
     <script type="module">
       import info from './info.js'
+      import info2 from './mock2.js'
 
-      const distObj$sort = butils.arrayToObj(info.distict, 'sort')
-      const dictList = info.distict.map(v => {
-        if (v.sort?.length === 2) {
-          // 当是省级
+      // const distObj$sort = butils.arrayToObj(info.distict, 'sort')
+      // const dictList = info.distict.map(v => {
+      //   if (v.sort?.length === 2) {
+      //     // 当是省级
+      //     v._parentId = null
+      //   } else {
+      //     let tmpPId = v.sort.slice(0, -2)
+      //     const parentObj =
+      //       distObj$sort[tmpPId] || distObj$sort[(tmpPId = tmpPId.slice(0, -2))] || distObj$sort[tmpPId.slice(0, -2)]
+      //     v._parentId = parentObj?.sort || undefined
+      //   }
+      //   v._id = v.sort
+      //   v._sort = +v.sort
+      //   return v
+      // })
+      // const tree = butils.listToTree({
+      //   list: dictList,
+      //   root: null,
+      //   isDeepClone: false,
+      //   props: {
+      //     id: '_id',
+      //     parentId: '_parentId',
+      //     children: 'children',
+      //     order: true,
+      //     orderField: '_sort',
+      //     orderBy: 'desc'
+      //   }
+      // })
+
+
+      // 生成父子关系
+      info2.forEach(v => {
+        v._id = v?.key
+        v._sort = parseInt(v.sort)
+        if (v?.key?.length === 1) {
+          // 长度等于1
           v._parentId = null
-        } else {
-          let tmpPId = v.sort.slice(0, -2)
-          const parentObj =
-            distObj$sort[tmpPId] || distObj$sort[(tmpPId = tmpPId.slice(0, -2))] || distObj$sort[tmpPId.slice(0, -2)]
-          v._parentId = parentObj?.sort || undefined
+        } else if (v?.key?.length === 3) {
+          // 长度等于3
+          v._parentId = v?.key.at?.(0)
+        } else if (v?.key?.length > 3) {
+          // 长度大于3
+          v._parentId = v?.key.slice(0, -1)
         }
-        v._id = v.sort
-        v._sort = +v.sort
-        return v
       })
+
       const tree = butils.listToTree({
-        list: dictList,
+        list: info2,
         root: null,
         isDeepClone: false,
         props: {
@@ -50,13 +82,7 @@
           orderBy: 'desc'
         }
       })
-
-      console.log('distictClone', dictList, tree)
-
-      const arr = [1, 2, 3, 4, 5, 6, 7, 8]
-
-      console.log(butils.shuffle(arr));
-
+      console.log(tree)
     </script>
   </body>
 </html>

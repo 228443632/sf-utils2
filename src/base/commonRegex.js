@@ -35,7 +35,11 @@ const commonRegex = {
   TENCENT_QQ: /[1-9][0-9]{4,}/, // 腾讯QQ
   POST_CODE: /[1-9]\d{5}(?!\d)/, // 中国邮编
   BLANK_ROW: /\n\s*\r/, // 空白行校验
-  REMOVE_CSS_UNIT: /(rem|px|vw|vh|%)$/ // css单位
+  REMOVE_CSS_UNIT: /(rem|px|vw|vh|%)$/, // css单位
+  REPLACE_FILE_NAME: /^\.\/(.*)\.\w+$/, // 匹配文件 replace(/^\.\/(.*)\.\w+$/, `$1`)
+  getFileName(str) {
+    return str.replace(this.REPLACE_FILE_NAME, '$1')
+  }
 }
 
 export default commonRegex
