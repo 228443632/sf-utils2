@@ -36,16 +36,16 @@ function requireAllModule({ requireContext, exclude = [], include = [], type = '
   if (isNoEmptyArray.apply(exclude) && isNoEmptyArray.apply(include)) {
     throw new Error('include 和 exclude字段不能同时共用')
   }
-  const requireAll = (context) => {
+  const requireAll = context => {
     if (type == 'webpack') {
       // 是webpack
       return context.keys().reduce((pre, cur) => {
         const _key = cur // cur.replace(/^\.\/(.*)\.\w+$/, '$1')
         const value = mode === MODE_TYPE.sync ? context(cur) : () => context(cur)
         if (isNoEmptyArray.apply(include)) {
-          include.some((v) => new RegExp(v).test(_key)) && pre.push([value, _key])
+          include.some(v => new RegExp(v).test(_key)) && pre.push([value, _key])
         } else if (isNoEmptyArray.apply(exclude)) {
-          exclude.every((v) => v !== _key) && pre.push([value, _key])
+          exclude.every(v => v !== _key) && pre.push([value, _key])
         } else if (isEmptyArray.apply(include) && isEmptyArray.apply(exclude)) {
           pre.push([value, _key])
         }
@@ -57,9 +57,9 @@ function requireAllModule({ requireContext, exclude = [], include = [], type = '
         const _key = cur // cur.replace(/^\.\/(.*)\.\w+$/, '$1')
         const value = context(cur)
         if (isNoEmptyArray.apply(include)) {
-          include.some((v) => new RegExp(v).test(_key)) && pre.push([value, _key])
+          include.some(v => new RegExp(v).test(_key)) && pre.push([value, _key])
         } else if (isNoEmptyArray.apply(exclude)) {
-          exclude.every((v) => v !== _key) && pre.push([value, _key])
+          exclude.every(v => v !== _key) && pre.push([value, _key])
         } else if (isEmptyArray.apply(include) && isEmptyArray.apply(exclude)) {
           pre.push([value, _key])
         }
