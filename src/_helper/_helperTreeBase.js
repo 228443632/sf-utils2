@@ -8,7 +8,7 @@ import merge from '@/object/merge.js'
 import def from '@/object/def'
 import deepClone from '@/object/deepClone'
 import isString from '@/base/isString'
-import _helperArraySort, { _helperAse } from '@/_helper/_helperArraySort'
+import _helperArraySort from '@/_helper/_helperArraySort'
 
 /**
  * @param {Array} list 每个节点下子节点数组
@@ -120,7 +120,7 @@ const _helperTreeBase = ({
   props = merge({}, defaultProps, props || {})
 
   let _isCbListBreak = false
-  let _isCbItemBreak = false
+  // let _isCbItemBreak = false
 
   if (isDeepClone) tree = deepClone(tree)
 
@@ -138,16 +138,27 @@ const _helperTreeBase = ({
         )
       tree.forEach((v, vi) => {
         let _pId = parentNode?.__id__ || '@'
+        def(v, '__loop__', !(parentNode?.__loop__ === false)) // 是否可以循环
         def(v, '__id__', `${_pId}-${vi}`)
         retainFieldObj.__pId__ && def(v, '__pId__', _pId)
         retainFieldObj.__level__ && def(v, '__level__', String(v.__pId__).split('-').length)
         retainFieldObj.__rootNode__ && def(v, '__rootNode__', rootNode || (v.__depth__ == 1 && v) || null)
-        !_isCbItemBreak &&
-          (_isCbItemBreak = !!(
-            callbackItem &&
-            callbackItem !== __callbackItemInterface &&
-            callbackItem(v, vi, tree, parentNode)
-          ))
+
+        if (
+          callbackItem &&
+          callbackItem !== __callbackItemInterface &&
+          (parentNode?.__loop__ === true || !parentNode)
+        ) {
+          callbackItem(v, vi, tree, parentNode) && def(v, '__loop__', false)
+        }
+
+        // 历史
+        // !_isCbItemBreak &&
+        //   (_isCbItemBreak = !!(
+        //     callbackItem &&
+        //     callbackItem !== __callbackItemInterface &&
+        //     callbackItem(v, vi, tree, parentNode)
+        //   ))
         // console.log('将list转成树状结', props.children, v[props.children], v.name, v)
         _fn({
           tree: v[props.children],
