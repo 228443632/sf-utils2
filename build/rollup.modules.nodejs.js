@@ -5,8 +5,8 @@
  **/
 import rollupConfigBase from './rollup.base.js'
 import glob from 'glob'
-import dts from "rollup-plugin-dts";
-import json from "@rollup/plugin-json";
+import dts from 'rollup-plugin-dts'
+import json from '@rollup/plugin-json'
 
 export default () => {
   const input = {}
@@ -29,7 +29,6 @@ export default () => {
   }, {})
 
   console.log('dtsNodejsInputObj', dtsNodejsInputObj)
-
 
   console.log('input', input)
 

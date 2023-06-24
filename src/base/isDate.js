@@ -6,7 +6,7 @@ import _typeof from '@/base/_typeof'
  * @returns {boolean}
  */
 function isDate(val) {
-  return _typeof(val) === 'Date'
+  return _typeof(val) === 'Date' || new Date(val) != 'Invalid Date'
 }
 
 export default isDate

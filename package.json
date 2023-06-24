@@ -1,6 +1,6 @@
 {
-  "name": "@bianpengfei/utils",
-  "version": "3.0.15",
+  "name": "sf-utils2",
+  "version": "3.0.17",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "http://8.133.185.32/fr/@bianpengfei-utils/v3/",
@@ -34,7 +34,7 @@
     "pub:prepatch": "npm version prepatch && npm run pub",
     "no-pub": "npm run build:all"
   },
-  "globalName": "butils",
+  "globalName": "sfutils",
   "files": [
     "src",
     "lib",
@@ -86,7 +86,7 @@
     "@babel/plugin-transform-runtime": "7.16.5",
     "@babel/preset-env": "7.16.5",
     "@babel/runtime": "7.16.5",
-    "@bianpengfei/utils": "3.0.12-1",
+    "sf-utils2": "3.0.16",
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
     "@rollup/plugin-alias": "3.1.9",
@@ -133,8 +133,6 @@
     "shelljs": "0.8.5",
     "vuepress": "1.8.2",
     "vuepress-plugin-cursor-effects": "1.1.2",
-    "vuepress-plugin-demo-block": "0.7.2",
-    "vuepress-plugin-demo-container-v2": "2.3.4",
     "vuepress-plugin-fulltext-search": "2.2.1",
     "vuepress-plugin-one-click-copy": "1.0.2",
     "vuepress-plugin-ribbon": "1.1.2",

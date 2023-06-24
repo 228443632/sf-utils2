@@ -5,8 +5,8 @@
  */
 
 const path = require('path')
-const pkg = require("../package.json");
-const path2 = require("path")
+const pkg = require('../package.json')
+const path2 = require('path')
 
 /**
  * 根项目路径
@@ -14,7 +14,6 @@ const path2 = require("path")
  */
 const ROOT_PATH = path.resolve(__dirname, '../')
 const ENTRY_NAME = path2.basename(pkg.main, path2.extname(pkg.main))
-
 
 module.exports = {
   ROOT_PATH,

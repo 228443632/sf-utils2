@@ -1,4 +1,5 @@
 // const loveMe = require('./../plugins/love-me')
+const demoContainerV2 = require('../plugins/vuepress-plugin-demo-container-v2')
 
 // Plugin Config
 module.exports = [
@@ -62,7 +63,7 @@ module.exports = [
     }
   ],
   ['fulltext-search'],
-  ['demo-container-v2'],
+  [demoContainerV2],
   // [
   //   'ribbon',
   //   {

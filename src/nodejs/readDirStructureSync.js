@@ -1,6 +1,6 @@
 const path2 = require('path')
 const fs = require('fs')
-const { listToTree } = require('@bianpengfei/utils')
+const { listToTree } = require('sf-utils2')
 
 /**
  * 根据路径 获取其下所有子文件包括文件夹路径，返回平面list 和 树状tree

@@ -5,7 +5,7 @@ module.exports = [
     'meta',
     {
       name: 'keywords',
-      content: '@bianpengfei/utils，javascript，utils.js'
+      content: 'sfutils，javascript，utils.js'
     }
   ],
   ['meta', { name: 'theme-color', content: '#11a8cd' }]

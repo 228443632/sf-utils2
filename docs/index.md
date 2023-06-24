@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /img/logo.svg
-heroText: '@bianpengfei/utils'
+heroText: 'sf-utils2'
 tagline: 🚀为简化开发而生
 actionText: 快速开始
 actionLink: /pages/24112f/
@@ -23,9 +23,9 @@ postList: none
 ```shell
 
 # 安装
-yarn add @bianpengfei/utils # 或者：npm install @bianpengfei/utils
+yarn add sf-utils2 # 或者：npm install sfutils
 
 # 开始引入
-import { uuid } from '@bianpengfei/utils'
+import { uuid } from 'sf-utils2'
 uuid()
 ```

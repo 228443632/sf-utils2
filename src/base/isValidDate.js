@@ -1,7 +1,7 @@
 import isDate from '@/base/isDate'
 
 /**
- * 判断是否是一个WeakMap对象
+ * 判断是否是一个合法的date
  * @param {any} val
  * @returns {boolean}
  */

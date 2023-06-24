@@ -13,7 +13,7 @@ import uuid from '@/base/uuid'
  *           url: 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.31/vue.cjs1111.js',
  *           name: 'hellowrold.js'
  *         },
- *         'https://cdn.jsdelivr.net/npm/@bianpengfei/utils/lib/b-utils.min.js'
+ *         'https://cdn.jsdelivr.net/npm/sf-utils2/lib/b-utils.min.js'
  * ],
  * @param fileName  压缩包名称
  * @returns {Promise<*[]>}
