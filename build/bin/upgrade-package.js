@@ -9,7 +9,7 @@ const path2 = require('path')
 const utils = require('../utils')
 const shell = require('shelljs')
 
-const devDependencies = ['@bianpengfei/utils']
+const devDependencies = [pkg.name]
 
 const map = {
   npm: {
@@ -35,4 +35,4 @@ setTimeout(() => {
   }
 
   console.log('[build entry] DONE:', __filename)
-}, 3000)
+}, 1000 * 30) // 半分钟

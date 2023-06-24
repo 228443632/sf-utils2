@@ -45,9 +45,9 @@ export {
   {{modules}}
 }
 
-const global = getGlobalThis()
-def(global, '$sf', ${pkg.globalName})
 `
+// const global = getGlobalThis()
+// def(global, '$sf', ${pkg.globalName})
 
 const importTemplate = []
 const ModulesTemplate = []

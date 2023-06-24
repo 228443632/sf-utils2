@@ -31,15 +31,15 @@ yarn add sfutils
 
 ```js
 // 运行在esm中
-import butils from 'sf-utils2'
+import sfutils from 'sf-utils2'
 
-butils.uuid()
+sfutils.uuid()
 ```
 
 ## cdn 使用
 
 ```js
-window.butils.uuid()
+window.sfutils.uuid()
 // Type.isNumber
 ```
 

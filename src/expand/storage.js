@@ -15,7 +15,7 @@ const _storage = {
   __config: {
     // 类型 window.localStorage,window.sessionStorage,
     type: 'localStorage', // 本地存储类型 sessionStorage
-    prefix: 'BUtils_0.0.1', // 名称前缀 建议：项目名 + 项目版本
+    prefix: 'sfutils_0.0.1', // 名称前缀 建议：项目名 + 项目版本
     expire: 1, //过期时间 单位：秒
     isEncrypt: true // 默认加密 为了调试方便, 开发过程中可以不加密
   },
