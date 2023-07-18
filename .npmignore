@@ -1,1 +1,3 @@
 src/Evil/*.js
+yarn.*
+yarn-error.log

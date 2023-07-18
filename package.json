@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.0.17",
+  "version": "3.0.19",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "http://8.133.185.32/fr/@bianpengfei-utils/v3/",
@@ -32,6 +32,7 @@
     "pub:minor": "npm version minor && npm run pub",
     "pub:patch": "npm version patch && npm run pub",
     "pub:prepatch": "npm version prepatch && npm run pub",
+    "release": "release-it patch",
     "no-pub": "npm run build:all"
   },
   "globalName": "sfutils",
@@ -97,7 +98,9 @@
     "@rollup/plugin-terser": "0.3.0",
     "async-validator": "1.11.5",
     "babel-loader": "8.2.3",
+    "@release-it/conventional-changelog": "6.0.0",
     "babel-plugin-transform-object-assign": "6.22.0",
+    "release-it": "16.1.0",
     "commitlint": "17.3.0",
     "core-js": "3.21.1",
     "cross-env": "7.0.3",
@@ -155,5 +158,57 @@
     "ie 11",
     "Android > 4.1",
     "Firefox > 20"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  },
+  "release-it": {
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "header": "# Changelog",
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "✨新功能"
+            },
+            {
+              "type": "fix",
+              "section": "🐞问题修复"
+            },
+            {
+              "type": "style",
+              "section": "🌈样式"
+            },
+            {
+              "type": "docs",
+              "section": "📃文档"
+            },
+            {
+              "type": "perf",
+              "section": "🎉优化"
+            }
+          ]
+        },
+        "infile": "CHANGELOG.md"
+      }
+    },
+    "git": {
+      "commitMessage": "chore(release): v${version}",
+      "requireCleanWorkingDir": false
+    },
+    "github": {
+      "release": false,
+      "draft": false
+    },
+    "npm": {
+      "publish": false
+    },
+    "hooks": {
+      "after:bump": "echo 更新版本成功"
+    }
+  }
 }

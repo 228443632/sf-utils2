@@ -2,12 +2,11 @@ import Decimal from './Decimal'
 
 /**
  * 相减去
- * @param arg1
- * @param arg2
+ * @param {any[]} args
  * @returns {number}
  */
-function sub(arg1, arg2) {
-  return +new Decimal(+arg1 || 0).sub(+arg2 || 0).toFixed()
+function sub(...args) {
+  return +args.slice(1).reduce((pre, cur) => pre.sub(+cur || 0), new Decimal(+args[0] || 0)).toFixed()
 }
 
 export default sub
