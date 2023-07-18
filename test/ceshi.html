@@ -14,8 +14,162 @@
     <script src="./lib/index.umd.js"></script>
 
     <script>
-      console.log(sfutils);
-      console.log(sfutils.sum(1, 0.222222, 333));
+      const {treeToList} = sfutils
+
+      const tree = [
+        {
+          id: 1,
+          name: '香蕉',
+          pId: null,
+          children: [
+            {
+              id: 1001,
+              name: '香蕉A',
+              pId: 1,
+              children: [
+                {
+                  id: 1001001,
+                  name: '香蕉A-儿子',
+                  pId: 1001,
+                  children: [
+                    {
+                      id: 1001001001,
+                      name: '香蕉A-儿子-儿子',
+                      pId: 1001001
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              id: 1002,
+              name: '香蕉B',
+              pId: 1,
+              children: [
+                {
+                  id: 1002002,
+                  name: '香蕉B-儿子',
+                  pId: 1002
+                }
+              ]
+            },
+            {
+              id: 1003,
+              name: '香蕉C',
+              pId: 1,
+              children: [
+                {
+                  id: 1003003,
+                  name: '香蕉C-儿子',
+                  pId: 1003
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: '苹果',
+          pId: null,
+          children: [
+            {
+              id: 1004,
+              name: '苹果A',
+              pId: 2,
+              children: [
+                {
+                  id: 1004004,
+                  name: '苹果A-儿子',
+                  pId: 1004
+                }
+              ]
+            },
+            {
+              id: 1007,
+              name: '苹果D',
+              pId: 2
+            },
+            {
+              id: 1008,
+              name: '苹果D',
+              pId: 2
+            },
+            {
+              id: 1009,
+              name: '苹果C',
+              pId: 2
+            }
+          ]
+        },
+        {
+          id: 3,
+          name: '橘子',
+          pId: null,
+          children: [
+            {
+              id: 1005,
+              name: '橘子C',
+              pId: 3,
+              children: [
+                {
+                  id: 1005005,
+                  name: '橘子C-儿子',
+                  pId: 1005
+                }
+              ]
+            },
+            {
+              id: 1006,
+              name: '橘子B',
+              pId: 3,
+              children: [
+                {
+                  id: 1006006,
+                  name: '橘子B-儿子',
+                  pId: 1006
+                }
+              ]
+            },
+            {
+              id: 1010,
+              name: '橘子A',
+              pId: 3
+            }
+          ]
+        },
+        {
+          id: 4,
+          name: '西瓜',
+          pId: null,
+          children: [
+            {
+              id: 1012,
+              name: '西瓜B',
+              pId: 4,
+              children: [
+                {
+                  id: 1013,
+                  name: '西瓜B-儿子',
+                  pId: 1012
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 1011,
+          name: '西瓜A',
+          pId: null
+        }
+      ]
+
+      const menusList = treeToList({
+        tree: tree,
+        retainPaths: true,
+        retainAllChildren: true
+      })
+
+      console.log(menusList)
     </script>
   </body>
 </html>

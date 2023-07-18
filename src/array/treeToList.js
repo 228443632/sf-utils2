@@ -2,6 +2,7 @@ import isArray from '@/base/isArray'
 import merge from '../object/merge'
 import def from '@/object/def'
 import deepClone from '@/object/deepClone'
+import { _includesChildPath } from '@/_helper/_helperTreeBase'
 
 /**
  * 获取节点 经过的所有父节点 轨迹节点
@@ -92,11 +93,14 @@ function treeToList({
         v,
         '__allChildren__',
         _list.filter(o => {
-          const idx = String(o.__pId__).indexOf(v.__id__)
-          const hasChild = !!o[props.children]?.length // 是否含有子节点
-          if (!hasChild && idx == 0 && String(o.__id__).substr(v.__id__.length, 1) == '-') {
+          if (_includesChildPath(o.__id__, v.__id__)) {
             return true
           }
+          // const idx = String(o.__pId__).indexOf(v.__id__)
+          // const hasChild = !!o[props.children]?.length // 是否含有子节点
+          // if (!hasChild && idx == 0 && String(o.__id__).substr(v.__id__.length, 1) == '-') {
+          //   return true
+          // }
         })
       )
     }
