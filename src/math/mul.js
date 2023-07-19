@@ -6,7 +6,7 @@ import Decimal from './Decimal'
  * @returns {number}
  */
 function mul(...args) {
-  return +args.reduce((pre, cur) => pre.mul(+cur || 0), new Decimal(0)).toFixed()
+  return +args.reduce((pre, cur) => pre.mul(+cur || 0), new Decimal(1)).toFixed()
 }
 
 export default mul
