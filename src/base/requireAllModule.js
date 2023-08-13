@@ -55,7 +55,7 @@ function requireAllModule({ requireContext, exclude = [], include = [], type = '
       // 是vite
       return Object.keys(context).reduce((pre, cur) => {
         const _key = cur // cur.replace(/^\.\/(.*)\.\w+$/, '$1')
-        const value = context(cur)
+        const value = mode === MODE_TYPE.sync ? context[cur] : () => context[cur]
         if (isNoEmptyArray.apply(include)) {
           include.some(v => new RegExp(v).test(_key)) && pre.push([value, _key])
         } else if (isNoEmptyArray.apply(exclude)) {
