@@ -1,5 +1,8 @@
+import getGlobalThis from '@/base/getGlobalThis'
+import parseJsonNoError from '@/base/parseJsonNoError'
 /**
  * @description 使用、和方法创建一个发布/订阅（发布-订阅）事件中心。emitonoff
+ *  支持跨浏览器共享
  *   const handler = data => console.log(data);
  *   const hub = _helperEventBus();
  *   let increment = 0;
@@ -18,18 +21,52 @@
  *   hub.off('message', handler);
  */
 function _helperEventBus() {
+  const __opts = {
+    storageKey: '__hub__broadcastChannel'
+    // crossTabsMsgType: null // BroadcastChannel storage
+  }
   return {
     /**
+     * 全局参数
+     * @return {{}}
+     */
+    __opts, // 参数
+
+    /**
+     * @return {BroadcastChannel|null}
+     */
+    broadcastChannel: (function () {
+      const global = getGlobalThis()
+      if ('BroadcastChannel' in global) {
+        return new BroadcastChannel(__opts.storageKey)
+      }
+    })(),
+
+    /**
+     * 基座
      * @return {{}}
      */
     hub: Object.create(null),
+
+    /**
+     * 跨越tabs 共享
+     * @return {{}}
+     */
+    crossHub: Object.create(null),
+
     /**
      * emit事件
      * @param {string} event 事件名
-     * @param {any} data 值
+     * @param {any[]} data 值
      */
     emit(event, ...data) {
       ;(this.hub[event] || []).forEach(handler => handler?.(...data))
+      if (this.broadcastChannel) {
+        this.broadcastChannel.postMessage(data)
+      } else {
+        const global = getGlobalThis()
+        global.localStorage.setItem(this.__opts.storageKey, JSON.stringify([...data, Number(new Date())]))
+      }
     },
     /**
      * on事件
@@ -40,7 +77,27 @@ function _helperEventBus() {
     on(event, handler) {
       if (!this.hub[event]) this.hub[event] = []
       this.hub[event].push(handler)
+      if (!this.crossHub[event]) this.crossHub[event] = []
+      let handler2
+      if (this.broadcastChannel) {
+        handler2 = (...args) => {
+          const $0 = args[0]
+          return handler.call(this, ...$0?.data, ...args)
+        }
+        this.broadcastChannel.addEventListener('message', handler2)
+      } else {
+        const global = getGlobalThis()
+        handler2 = (...args) => {
+          const $0 = args[0]
+          if ($0?.key == this.__opts.storageKey) {
+            return handler.call(this, ...(parseJsonNoError($0?.newValue) || []).slice(0, -1), ...args)
+          }
+        }
+        global.addEventListener('storage', handler2)
+      }
+      this.crossHub[event].push(handler2)
       if (handler) handler.off = () => this.off(event, handler)
+      if (handler2) handler2.off = () => this.off(event, handler2)
       return handler
     },
     /**
@@ -66,6 +123,20 @@ function _helperEventBus() {
       const i = (this.hub[event] || []).findIndex(h => h === handler)
       if (i > -1) this.hub[event]?.splice?.(i, 1)
       if (this.hub[event]?.length === 0) delete this.hub[event]
+
+      // 跨tab
+      const j = (this.crossHub[event] || []).findIndex(h => h === handler)
+      if (j > -1) {
+        const handler2 = this.crossHub[event]?.[j]
+        if (this.broadcastChannel) {
+          this.broadcastChannel.remove('message', handler2)
+        } else {
+          const global = getGlobalThis()
+          global.addEventListener('storage', handler2)
+        }
+        this.crossHub[event]?.splice?.(j, 1)
+      }
+      if (this.crossHub[event]?.length === 0) delete this.crossHub[event]
     },
     /**
      * off事件
@@ -79,8 +150,13 @@ function _helperEventBus() {
      * @param {string} event 事件名
      */
     offEntire(event) {
-      if (event) delete this.hub[event]
-      else this.hub = Object.create({})
+      if (event) {
+        delete this.hub[event]
+        delete this.crossHub[event]
+      } else {
+        this.hub = Object.create({})
+        this.crossHub = Object.create({})
+      }
     },
     /**
      * 移除当前相关所有事件

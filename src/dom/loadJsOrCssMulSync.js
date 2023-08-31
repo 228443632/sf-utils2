@@ -1,9 +1,13 @@
+import uniq from '@/array/uniq'
+import arrayToObj from '@/array/arrayToObj'
+
 /**
  * 支持批量加载css 和 jsm 例子：loadRemoteScriptOrCss(['https://unpkg.com/element-ui/lib/theme-chalk/index.css', 'https://unpkg.com/element-ui/lib/index.js'])
  * @param {Array} urlList 类型 Array | String
- * @returns {Promise<void>}
+ * @returns {Promise<Awaited<unknown>[]>}
  */
 async function loadJsOrCssMulSync(urlList = []) {
+  urlList = uniq(urlList)
   const getTypeFromUrl = url => {
     // eslint-disable-next-line no-useless-escape
     const _type = /\.[^\.]+$/.exec(url)[0]
@@ -66,6 +70,12 @@ async function loadJsOrCssMulSync(urlList = []) {
   /* eslint-disable no-param-reassign */
   const loadElement = element =>
     new Promise(resolve => {
+      const cssList = Array.from(document.querySelectorAll('link')).map(v => v.href)
+      const scriptList = Array.from(document.querySelectorAll('script'))
+        .map(v => v.src)
+        .filter(Boolean)
+      const listObj = arrayToObj(cssList.concat(scriptList))
+      if (listObj[element.src || element.href]) resolve('已存在')
       const head = document?.getElementsByTagName('head')[0]
       head.appendChild(element)
       if (element.readyState) {
@@ -83,7 +93,7 @@ async function loadJsOrCssMulSync(urlList = []) {
   try {
     const list = formatFileList(urlList)
     const elementList = list.map(createElement)
-    await Promise.all(
+    return await Promise.all(
       elementList.map(i => {
         return loadElement(i)
       })

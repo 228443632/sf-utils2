@@ -29,21 +29,43 @@
   <body style="height: 100vh; overflow-y: auto">
     <div class="container">
       <button onclick="download()">下载</button>
+      <button onclick="onSendMsg()">发送消息</button>
+      <button onclick="onLocalChange()">local发生变化</button>
     </div>
     <script src="./lib/index.umd.js"></script>
 
     <script>
       function download() {
-        sfutils.downloadFile(
-          {
-            url: 'https://info22.compassedu.hk/ad/225/1637553399694.png?imageView2/3/q/100|imageslim',
-            filename: 'hello.png',
-            method: 'POST',
-            headers: {}
-          }
-        )
+        sfutils.downloadFile({
+          url: 'https://info22.compassedu.hk/ad/225/1637553399694.png?imageView2/3/q/100|imageslim',
+          filename: 'hello.png',
+          method: 'POST',
+          headers: {}
+        })
       }
 
+      const bc = new BroadcastChannel('AlienZHOU')
+
+      bc.onmessage = function (e) {
+        const data = e.data
+          console.log('e', e)
+        const text = '[receive] ' + data.msg + ' —— tab ' + data.from
+        console.log('[BroadcastChannel] receive message:', text)
+      }
+
+      function onSendMsg() {
+        console.log('发送了')
+        bc.postMessage([1, 2, 3])
+        console.log(bc)
+      }
+
+      function onLocalChange() {
+        localStorage.setItem('ceshi', Number(new Date()))
+      }
+
+      window.addEventListener('storage', e => {
+        console.log('[storage]]', e)
+      })
     </script>
 
     <script></script>

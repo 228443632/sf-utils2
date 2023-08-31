@@ -10,9 +10,18 @@
     <title>Title</title>
   </head>
   <body>
-    <script src="./lib/b-utils.js"></script>
+    <script src="./lib/index.umd.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+		  const func = async () => {
+			const res = 	await Promise.all([sfutils.loadJsOrCssMulSync(['https://cdn.jsdel2ivr.net/npm/vue@2/dist/vue.js', 'https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js', 'https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js']),
+        ])
+				console.log('res', res)
+      }
+			func()
+    </script>
 
     <div id="app">
       {{ message }}
@@ -212,14 +221,14 @@
         }]
       }]
 
-      // const treeData = BUtils.deepClone(data)
+      // const treeData = sfutils.deepClone(data)
 
       var app = new Vue({
         el: '#app',
         data: {
           message: '香蕉A@',
           input: '',
-          json: BUtils.deepClone(data)
+          json: sfutils.deepClone(data)
         },
         mounted() {
 
@@ -245,7 +254,7 @@
         }
       })
 
-      const { filterTree } = BUtils
+      const { filterTree } = sfutils
 
 
 

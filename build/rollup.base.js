@@ -20,24 +20,25 @@ const customResolver = resolve({
 export const IS_DEV = process.env.NODE_ENV === 'development'
 export const IS_PRO = process.env.NODE_ENV === 'production'
 export const ROOT_PATH = path.resolve(__dirname, '../')
+import { visualizer } from 'rollup-plugin-visualizer'
+
 
 const year = new Date().getFullYear()
 
 export default {
-  external: ['html2canvas', 'jspdf', 'crypto-js', 'jszip', 'file-saver', '@bianpengfei/utils'], // /@babel\/runtime/,
+  external: ['html2canvas', 'jspdf', 'crypto-js', 'jszip', 'file-saver', '@bianpengfei/utils', 'sf-utils2'], // /@babel\/runtime/,
   plugins: [
     // externals({
     //   browser: true,
     // }),
+    visualizer(),
     banner(`<%= pkg.name %>\n(c) 2020-${year} v<%= pkg.version %>\nby <%= pkg.author %>`),
     cleanup(),
     json(),
     resolve(),
     aliasPlugin({
-      entries: [
-        { find: '@', replacement: path.join(ROOT_PATH, 'src') },
-      ],
-      customResolver,
+      entries: [{ find: '@', replacement: path.join(ROOT_PATH, 'src') }],
+      customResolver
     }),
     commonjs({ sourceMap: false, ignoreTryCatch: false, transformMixedEsModules: true }),
     babel({

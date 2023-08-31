@@ -5,6 +5,10 @@
  */
 function loadJsSync(url = '', callback) {
   return new Promise(resolve => {
+    const scripts = Array.from(document.scripts)
+      .map(v => v.src)
+      .filter(Boolean)
+    if (scripts.find(v => v == url)) return resolve('已存在')
     let script = document.createElement('script'),
       fn = callback || function () {}
     script.type = 'text/javascript'
