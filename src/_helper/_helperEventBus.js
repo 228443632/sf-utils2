@@ -65,7 +65,8 @@ function _helperEventBus() {
         this.broadcastChannel.postMessage(data)
       } else {
         const global = getGlobalThis()
-        global.localStorage.setItem(this.__opts.storageKey, JSON.stringify([...data, Number(new Date())]))
+        global?.localStorage &&
+          global.localStorage.setItem(this.__opts.storageKey, JSON.stringify([...data, Number(new Date())]))
       }
     },
     /**
@@ -75,6 +76,7 @@ function _helperEventBus() {
      * @return {*|Function}
      */
     on(event, handler) {
+      if (!handler) return
       if (!this.hub[event]) this.hub[event] = []
       this.hub[event].push(handler)
       if (!this.crossHub[event]) this.crossHub[event] = []
@@ -85,21 +87,25 @@ function _helperEventBus() {
           return handler.call(this, ...$0?.data, ...args)
         }
         this.broadcastChannel.addEventListener('message', handler2)
+        this.crossHub[event].push(handler2)
       } else {
         const global = getGlobalThis()
-        handler2 = (...args) => {
-          const $0 = args[0]
-          if ($0?.key == this.__opts.storageKey) {
-            return handler.call(this, ...(parseJsonNoError($0?.newValue) || []).slice(0, -1), ...args)
+        if (global && 'addEventListener' in global) {
+          handler2 = (...args) => {
+            const $0 = args[0]
+            if ($0?.key == this.__opts.storageKey) {
+              return handler.call(this, ...(parseJsonNoError($0?.newValue) || []).slice(0, -1), ...args)
+            }
           }
+          global.addEventListener('storage', handler2)
+          this.crossHub[event].push(handler2)
         }
-        global.addEventListener('storage', handler2)
       }
-      this.crossHub[event].push(handler2)
       if (handler) handler.off = () => this.off(event, handler)
       if (handler2) handler2.off = () => this.off(event, handler2)
       return handler
     },
+
     /**
      * fire事件
      * @description 等同emit
@@ -114,6 +120,7 @@ function _helperEventBus() {
     addEventListener() {
       return this.on.apply(this, arguments)
     },
+
     /**
      * off事件
      * @param {string} event 事件名
@@ -132,12 +139,15 @@ function _helperEventBus() {
           this.broadcastChannel.remove('message', handler2)
         } else {
           const global = getGlobalThis()
-          global.addEventListener('storage', handler2)
+          if (global && 'addEventListener' in global) {
+            global.addEventListener('storage', handler2)
+          }
         }
         this.crossHub[event]?.splice?.(j, 1)
       }
       if (this.crossHub[event]?.length === 0) delete this.crossHub[event]
     },
+
     /**
      * off事件
      * @description 等同于off事件
@@ -145,6 +155,7 @@ function _helperEventBus() {
     removeEventListener() {
       this.off.apply(this, arguments)
     },
+
     /**
      * 移除当前相关所有事件
      * @param {string} event 事件名
@@ -158,6 +169,7 @@ function _helperEventBus() {
         this.crossHub = Object.create({})
       }
     },
+
     /**
      * 移除当前相关所有事件
      * @description 等同于off事件
@@ -165,6 +177,7 @@ function _helperEventBus() {
     removeListenerEventEntire() {
       this.offEntire.apply(this, arguments)
     },
+
     /**
      * 清除订阅副作用
      * @param fnEffects
