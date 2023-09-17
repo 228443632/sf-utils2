@@ -5,6 +5,8 @@ import isArray from '@/base/isArray'
  * 将某个对象或数组里的所有的对象属性转成 大写或者小写
  * @param data 原对象 {object | array}
  * @param toLowerCase 是否转成小写  可选值 true false 默认值 true {boolean}
+ * @deprecated
+ * @description 建议去使用 transformObjectKeys 方法
  * @returns {{}}
  */
 function convertPropToLower({ data = {}, toLowerCase = true }) {

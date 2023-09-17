@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.0.23",
+  "version": "3.0.24-beta-3",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "http://8.133.185.32/fr/@bianpengfei-utils/v3/",
@@ -8,7 +8,6 @@
   "main": "lib/index.umd.js",
   "module": "lib/index.esm.js",
   "unpkg": "lib/index.umd.min.js",
-  "type": "commonjs",
   "jsdelivr": "lib/index.umd.min.js",
   "types": "./index.d.ts",
   "scripts": {
@@ -27,7 +26,7 @@
     "husky": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
     "commitlint": "npx husky add .husky/commit-msg 'npx --no-install commitlint --edit \"$1\"'",
     "build:file-all": "node build/bin/build-entry-all.js",
-    "pub": "npm run no-pub && npm publish --access public && node build/bin/upgrade-package.js",
+    "pub": "npm run no-pub && npm publish --access public",
     "pub:major": "npm version major && npm run pub",
     "pub:minor": "npm version minor && npm run pub",
     "pub:patch": "npm version patch && npm run pub",
@@ -133,7 +132,7 @@
     "rollup-plugin-node-externals": "3.1.2",
     "rollup-plugin-serve": "1.1.0",
     "rollup-plugin-visualizer": "5.9.2",
-    "sf-utils2": "3.0.20",
+    "sf-utils2": "3.0.24-beta-3",
     "shelljs": "0.8.5",
     "vuepress": "1.8.2",
     "vuepress-plugin-cursor-effects": "1.1.2",
