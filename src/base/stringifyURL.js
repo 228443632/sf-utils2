@@ -1,6 +1,7 @@
 import parseURL from '@/base/parseURL'
 import deepMerge from '@/object/deepMerge'
 import merge from '@/object/merge'
+import getGlobalThis from '@/base/getGlobalThis'
 
 /**
  * 加工url，将query参数合并到url上
@@ -18,7 +19,8 @@ function stringifyURL(url, query = {}, isDeepMerge = true) {
   if (!/^https?/.test(url)) url = `${defaultPrefix}${url}`
   let queryObj = parseURL(url) || {}
   const pathName = url?.split?.('?')?.at?.(0) || url
-  const urlInstance = new URL(pathName)
+  const globalThis = getGlobalThis()
+  const urlInstance = new globalThis.URL(pathName)
   const newQueryObj = isDeepMerge ? deepMerge(queryObj, query) : merge(queryObj, query)
   Object.entries(newQueryObj).forEach(([k, v]) => {
     urlInstance.searchParams.set(k, v)
