@@ -24,7 +24,8 @@
     "paths": {
       "@/*": ["src/*"],
       "+root/*": [""],
-      "+libs/*": ["lib/*"]
+      "+libs/*": ["lib/*"],
+      "sf-utils/*": ["src/*"]
     }
   },
   //  "exclude": ["node_modules", "dist", "lib"],

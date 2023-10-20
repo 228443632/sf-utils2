@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.0.24-beta-6",
+  "version": "3.0.24-beta-8",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "http://8.133.185.32/fr/@bianpengfei-utils/v3/",
@@ -11,7 +11,7 @@
   "jsdelivr": "lib/index.umd.min.js",
   "types": "./index.d.ts",
   "scripts": {
-    "dev": "npm run build:init-entry && cross-env NODE_ENV=development rollup -c build/rollup.dev.js -w ",
+    "dev": "yarn link sf-utils2 && npm run build:init-entry && cross-env NODE_ENV=development rollup -c build/rollup.dev.js -w ",
     "build:all": "rimraf lib && npm-run-all --parallel prettier:source build:entry build:modules",
     "build:init-entry": "node build/bin/build-entry.js && node build/bin/build-entry-nodejs.js",
     "build:entry": "npm run build:init-entry && cross-env NODE_ENV=production rollup -c build/rollup.entry.js  && terser lib/index.umd.js -m -o lib/index.umd.min.js",
@@ -132,7 +132,6 @@
     "rollup-plugin-node-externals": "3.1.2",
     "rollup-plugin-serve": "1.1.0",
     "rollup-plugin-visualizer": "5.9.2",
-    "sf-utils2": "3.0.24-beta-3",
     "shelljs": "0.8.5",
     "vuepress": "1.8.2",
     "vuepress-plugin-cursor-effects": "1.1.2",

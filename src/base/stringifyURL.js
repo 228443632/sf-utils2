@@ -1,7 +1,4 @@
-import parseURL from '@/base/parseURL'
-import deepMerge from '@/object/deepMerge'
-import merge from '@/object/merge'
-import getGlobalThis from '@/base/getGlobalThis'
+import { parseURL, deepMerge, merge, getGlobalThis } from 'sf-utils2'
 
 /**
  * 加工url，将query参数合并到url上
@@ -17,7 +14,10 @@ function stringifyURL(url, query = {}, isDeepMerge = true) {
   if (!url) return console.error('传入的url不能为空')
   const defaultPrefix = 'http://xxx/'
   if (!/^https?/.test(url)) url = `${defaultPrefix}${url}`
-  let queryObj = parseURL(url) || {}
+  let queryObj = Object.entries(parseURL(url) || {}).reduce((pre, [k, v]) => {
+    pre[k] = decodeURIComponent(v)
+    return pre
+  }, {})
   const pathName = url?.split?.('?')?.at?.(0) || url
   const globalThis = getGlobalThis()
   const urlInstance = new globalThis.URL(pathName)

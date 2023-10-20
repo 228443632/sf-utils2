@@ -37,7 +37,10 @@ export default {
     json(),
     resolve(),
     aliasPlugin({
-      entries: [{ find: '@', replacement: path.join(ROOT_PATH, 'src') }],
+      entries: [
+        { find: '@', replacement: path.join(ROOT_PATH, 'src') },
+        { find: 'sf-utils2', replacement: path.join(ROOT_PATH, 'src') },
+      ],
       customResolver
     }),
     commonjs({ sourceMap: false, ignoreTryCatch: false, transformMixedEsModules: true }),

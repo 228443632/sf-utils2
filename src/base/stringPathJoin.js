@@ -8,7 +8,7 @@ function stringPathJoin(...args) {
   const endRegex = /\/\/?$/
   const paths = args
     .reduce((pre, cur, curIdx) => {
-      cur = String(cur).replace(startRegex, '')
+      cur = String(cur).trim().replace(startRegex, '')
       if (curIdx != args.length - 1) {
         // 如果是非最后一个
         cur = cur.replace(endRegex, '')
