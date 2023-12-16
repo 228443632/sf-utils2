@@ -28,11 +28,13 @@ function _getNodePathItem(listObj = {}, ID = '') {
 /**
  * 将tree结构 转化成 list
  * @param tree 要转换的tree数据集
- * @param {{children?: 'children' }} props 自定义字段
+ * @param props 自定义字段
+ * @param {string} [props.children] 自定义字段-children属性
  * @param retainChild 是否保留每一项中的 直接子节点
  * @param retainPaths 是否返回每一项节点所经过的路径节点
  * @param retainAllChildren 是否返回每一项节点 所有的子代以及所有子代下所有节点（平铺化）
  * @param isDeepClone 是否深度克隆原树型对象
+ * @param retainParent 是否深度保留父节点
  * @returns {*[]}
  */
 //  Object.defineProperty(item, '_id', { writable: false, value: `${item._pId}-${index + 1}` })
@@ -42,7 +44,8 @@ function treeToList({
   retainChild = false,
   retainPaths = false,
   retainAllChildren = false,
-  isDeepClone = true
+  isDeepClone = true,
+  retainParent = false
 }) {
   let defaultProps = { children: 'children' }
   props = merge({}, defaultProps, props)
@@ -72,7 +75,7 @@ function treeToList({
   }
   treeToListFn({ tree, props, retainChild, PID: _PID })
 
-  if (retainPaths || retainAllChildren) {
+  if (retainPaths || retainAllChildren || retainParent) {
     _listObj = _list.reduce((pre, cur) => {
       if (cur) {
         pre[cur.__id__] = cur
@@ -110,6 +113,9 @@ function treeToList({
       def(v, '__pathNodes__', _getNodePathItem(_listObj, v.__id__))
     }
     def(v, '__level__', String(v.__pId__).split('-').length) // 当前节点处于深度（即第几层）
+    if (retainParent) {
+      def(v, '__parentNode__', _listObj[v.__pId__])
+    }
   })
 
   return _list

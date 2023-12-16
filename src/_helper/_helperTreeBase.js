@@ -100,7 +100,8 @@ const _helperTreeBase = ({
   },
   callbackList = __callbackListInterface,
   callbackItem = __callbackItemInterface,
-  retainField = ['__id__', '__rootNode__', '__pId__', '__level__'],
+  retainField = [],
+  // extraField = [`__pathIdsList__`],
   isDeepClone = true
 }) => {
   let defaultProps = {
@@ -111,7 +112,7 @@ const _helperTreeBase = ({
     orderField: 'order',
     orderBy: 'asc'
   }
-  let defaultRetainField = ['__id__', '__rootNode__', '__pId__', '__level__']
+  let defaultRetainField = ['__id__', '__rootNode__', '__pId__', '__level__', '__index__', '__parentNode__']
 
   retainField = [...defaultRetainField, retainField || []]
 
@@ -143,7 +144,8 @@ const _helperTreeBase = ({
         retainFieldObj.__pId__ && def(v, '__pId__', _pId)
         retainFieldObj.__level__ && def(v, '__level__', String(v.__pId__).split('-').length)
         retainFieldObj.__rootNode__ && def(v, '__rootNode__', rootNode || (v.__depth__ == 1 && v) || null)
-
+        retainFieldObj.__parentNode__ && def(v, '__parentNode__', parentNode)
+        retainFieldObj.__index__ && def(v, '__index__', vi)
         if (
           callbackItem &&
           callbackItem !== __callbackItemInterface &&

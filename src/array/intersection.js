@@ -5,8 +5,10 @@ import isPrimitive from '@/base/isPrimitive'
 /**
  * 获取多个数组的交集
  * @param {Array[]} array
- * @param {string|unknown} property
+ * @param {string|unknown} [property]
  * @return {[string, any]|*[]}
+ * @example
+ * intersection([[1, 2, 3, 5], [2, 3, 5, 8]])
  */
 function intersection(array, property) {
   const arrayFlatten = array.flat(1) || []
@@ -24,5 +26,13 @@ function intersection(array, property) {
   }
   return result
 }
+
+// console.log(
+//   'intersection',
+//   intersection([
+//     [1, 2, 3, 5],
+//     [2, 3, 5, 8]
+//   ])
+// )
 
 export default intersection
