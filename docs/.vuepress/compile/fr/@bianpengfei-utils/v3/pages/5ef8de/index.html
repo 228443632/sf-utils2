@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>throttleDtor【截流装饰器】 | sf-utils2</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/fr/@bianpengfei-utils/v3/img/favicon.ico">
+    <meta name="description" content="sfutils 官方文档">
+    <meta name="keywords" content="sfutils，javascript，utils.js">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/fr/@bianpengfei-utils/v3/assets/css/1.styles.9e72c6fd.css" as="style"><link rel="preload" href="/fr/@bianpengfei-utils/v3/assets/js/app.7b20c313.js" as="script"><link rel="preload" href="/fr/@bianpengfei-utils/v3/assets/js/3.7899d471.js" as="script"><link rel="preload" href="/fr/@bianpengfei-utils/v3/assets/js/20.382adaec.js" as="script">
+    <link rel="stylesheet" href="/fr/@bianpengfei-utils/v3/assets/css/1.styles.9e72c6fd.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fr/@bianpengfei-utils/v3/" class="home-link router-link-active"><img src="/fr/@bianpengfei-utils/v3/img/logo.svg" alt="sf-utils2" class="logo"> <span class="site-name can-hide">sf-utils2</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/fr/@bianpengfei-utils/v3/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="指南" class="dropdown-title"><a href="/fr/@bianpengfei-utils/v3/pages/021613/" class="link-title">指南</a> <span class="title" style="display:none;">指南</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/021613/" class="nav-link">01.快速开始 🔥</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/e3f3b0/" class="nav-link">02.基础-Base</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/xel48mk0o/" class="nav-link">03.对象-Object</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/x0sf8dktg/" class="nav-link">04.数组-Array</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/x059mk3g/" class="nav-link">05.方法-Function</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/xf6ds06/" class="nav-link">06.字符串-String</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/ad3feb/" class="nav-link">07.数学-Math</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/c256cd/" class="nav-link">08.dom</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/fb9692/" class="nav-link">09.拓展</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Webpack5.x" class="dropdown-title"><!----> <span class="title" style="display:;">Webpack5.x</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/learn-webpack5-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  webpack5.x教程学习
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><!----> <span class="title" style="display:;">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/linux/c2d867/" class="nav-link">例子</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><!----> <span class="title" style="display:;">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/nginx/063ce9/" class="nav-link">教程 🔥</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/nginx/319be7/" class="nav-link">例子配置</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="v3.0.26" class="dropdown-title"><!----> <span class="title" style="display:;">v3.0.26</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/@bianpengfei-utils/v1/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  v1.x
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/@bianpengfei-utils/v2/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  v2.x
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/@bianpengfei-utils/v3/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  v3.x
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="http://8.133.185.32/fr/pc-template/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  企业级后台模版
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/fr/@bianpengfei-utils/v3/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="指南" class="dropdown-title"><a href="/fr/@bianpengfei-utils/v3/pages/021613/" class="link-title">指南</a> <span class="title" style="display:none;">指南</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/021613/" class="nav-link">01.快速开始 🔥</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/e3f3b0/" class="nav-link">02.基础-Base</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/xel48mk0o/" class="nav-link">03.对象-Object</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/x0sf8dktg/" class="nav-link">04.数组-Array</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/x059mk3g/" class="nav-link">05.方法-Function</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/xf6ds06/" class="nav-link">06.字符串-String</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/ad3feb/" class="nav-link">07.数学-Math</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/c256cd/" class="nav-link">08.dom</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/pages/fb9692/" class="nav-link">09.拓展</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Webpack5.x" class="dropdown-title"><!----> <span class="title" style="display:;">Webpack5.x</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/learn-webpack5-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  webpack5.x教程学习
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><!----> <span class="title" style="display:;">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/linux/c2d867/" class="nav-link">例子</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><!----> <span class="title" style="display:;">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/nginx/063ce9/" class="nav-link">教程 🔥</a></li><li class="dropdown-item"><!----> <a href="/fr/@bianpengfei-utils/v3/nginx/319be7/" class="nav-link">例子配置</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="v3.0.26" class="dropdown-title"><!----> <span class="title" style="display:;">v3.0.26</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/@bianpengfei-utils/v1/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  v1.x
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/@bianpengfei-utils/v2/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  v2.x
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="http://8.133.185.32/fr/@bianpengfei-utils/v3/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  v3.x
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="http://8.133.185.32/fr/pc-template/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  企业级后台模版
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>快速开始</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>基础-Base</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>对象-Object</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>数组-Array✨✨✨</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>方法-Function</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/fr/@bianpengfei-utils/v3/pages/x059mk3g/" class="sidebar-link">序言 👏</a></li><li><a href="/fr/@bianpengfei-utils/v3/pages/f774f6/" class="sidebar-link">debounceDtor【去抖装饰器】</a></li><li><a href="/fr/@bianpengfei-utils/v3/pages/5ef8de/" aria-current="page" class="active sidebar-link">throttleDtor【截流装饰器】</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/fr/@bianpengfei-utils/v3/pages/5ef8de/#_1-示例" class="sidebar-link">1.示例</a></li><li class="sidebar-sub-header level2"><a href="/fr/@bianpengfei-utils/v3/pages/5ef8de/#_2-入参说明" class="sidebar-link">2.入参说明</a></li><li class="sidebar-sub-header level2"><a href="/fr/@bianpengfei-utils/v3/pages/5ef8de/#_3-源码" class="sidebar-link">3.源码</a></li></ul></li><li><a href="/fr/@bianpengfei-utils/v3/pages/25e0d8/" class="sidebar-link">throttle【截流】</a></li><li><a href="/fr/@bianpengfei-utils/v3/pages/84239d/" class="sidebar-link">debounce【去抖】</a></li><li><a href="/fr/@bianpengfei-utils/v3/pages/xd7t4srg/" class="sidebar-link">to【异步错误处理】🔥🔥🔥</a></li><li><a href="/fr/@bianpengfei-utils/v3/pages/x4138a7n/" class="sidebar-link">queuePromises【执行异步队列】</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>字符串-String</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>数学-Math</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>节点-dom</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>拓展</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>nodejs</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="placeholder"></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">throttleDtor【截流装饰器】<!----></h1>  <div class="theme-vdoing-content content__default"><div class="custom-block note"><p class="custom-block-title">描述</p> <p>截流装饰器</p></div> <h2 id="_1-示例"><a href="#_1-示例" class="header-anchor">#</a> 1.示例</h2> <div class="demo-block demo-zh-CN demo-" data-v-2185ec14><div class="demo-content" data-v-2185ec14><div><div><el-divider>请打开控制台查看打印日志</el-divider> <div style="height:400px;margin-top:14px;overflow-x:hidden;overflow-y:auto;width:100%;border:1px solid #ccc;"><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        1
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        2
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        3
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        4
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        5
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        6
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        7
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        8
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        9
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        10
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        11
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        12
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        13
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        14
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        15
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        16
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        17
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        18
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        19
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        20
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        21
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        22
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        23
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        24
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        25
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        26
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        27
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        28
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        29
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        30
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        31
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        32
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        33
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        34
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        35
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        36
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        37
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        38
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        39
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        40
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        41
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        42
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        43
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        44
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        45
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        46
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        47
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        48
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        49
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        50
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        51
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        52
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        53
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        54
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        55
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        56
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        57
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        58
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        59
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        60
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        61
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        62
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        63
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        64
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        65
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        66
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        67
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        68
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        69
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        70
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        71
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        72
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        73
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        74
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        75
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        76
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        77
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        78
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        79
+      </div><div style="width:100%;height:50px;background:#eee;margin:12px 10px;display:flex;align-items:center;justify-content:center;">
+        80
+      </div></div></div></div></div> <div class="meta" data-v-2185ec14><!----> <div class="code-content" data-v-2185ec14><div class="language-vue line-numbers-mode" data-v-2185ec14><pre class="language-vue" data-v-2185ec14><code data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;</span>template</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+  <span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;</span>div</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+    <span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;</span>el-divider</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>请打开控制台查看打印日志<span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;/</span>el-divider</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+    <span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;</span>div</span>
+      <span class="token special-attr" data-v-2185ec14><span class="token attr-name" data-v-2185ec14>style</span><span class="token attr-value" data-v-2185ec14><span class="token punctuation attr-equals" data-v-2185ec14>=</span><span class="token punctuation" data-v-2185ec14>&quot;</span><span class="token value css language-css" data-v-2185ec14><span class="token property" data-v-2185ec14>height</span><span class="token punctuation" data-v-2185ec14>:</span> 400px<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>margin-top</span><span class="token punctuation" data-v-2185ec14>:</span> 14px<span class="token punctuation" data-v-2185ec14>;</span><span class="token property" data-v-2185ec14>overflow-x</span><span class="token punctuation" data-v-2185ec14>:</span> hidden<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>overflow-y</span><span class="token punctuation" data-v-2185ec14>:</span> auto<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>width</span><span class="token punctuation" data-v-2185ec14>:</span> 100%<span class="token punctuation" data-v-2185ec14>;</span><span class="token property" data-v-2185ec14>border</span><span class="token punctuation" data-v-2185ec14>:</span> 1px solid #ccc</span><span class="token punctuation" data-v-2185ec14>&quot;</span></span></span>
+      <span class="token attr-name" data-v-2185ec14>ref</span><span class="token attr-value" data-v-2185ec14><span class="token punctuation attr-equals" data-v-2185ec14>=</span><span class="token punctuation" data-v-2185ec14>&quot;</span>wrap<span class="token punctuation" data-v-2185ec14>&quot;</span></span>
+    <span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+      <span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;</span>div</span>
+        <span class="token attr-name" data-v-2185ec14>v-for</span><span class="token attr-value" data-v-2185ec14><span class="token punctuation attr-equals" data-v-2185ec14>=</span><span class="token punctuation" data-v-2185ec14>&quot;</span>item in 80<span class="token punctuation" data-v-2185ec14>&quot;</span></span>
+        <span class="token attr-name" data-v-2185ec14>:key</span><span class="token attr-value" data-v-2185ec14><span class="token punctuation attr-equals" data-v-2185ec14>=</span><span class="token punctuation" data-v-2185ec14>&quot;</span>item<span class="token punctuation" data-v-2185ec14>&quot;</span></span>
+        <span class="token special-attr" data-v-2185ec14><span class="token attr-name" data-v-2185ec14>style</span><span class="token attr-value" data-v-2185ec14><span class="token punctuation attr-equals" data-v-2185ec14>=</span><span class="token punctuation" data-v-2185ec14>&quot;</span><span class="token value css language-css" data-v-2185ec14><span class="token property" data-v-2185ec14>width</span><span class="token punctuation" data-v-2185ec14>:</span> 100%<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>height</span><span class="token punctuation" data-v-2185ec14>:</span> 50px<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>background</span><span class="token punctuation" data-v-2185ec14>:</span> #eee<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>margin</span><span class="token punctuation" data-v-2185ec14>:</span> 12px 10px<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>display</span><span class="token punctuation" data-v-2185ec14>:</span> flex<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>align-items</span><span class="token punctuation" data-v-2185ec14>:</span> center<span class="token punctuation" data-v-2185ec14>;</span> <span class="token property" data-v-2185ec14>justify-content</span><span class="token punctuation" data-v-2185ec14>:</span> center</span><span class="token punctuation" data-v-2185ec14>&quot;</span></span></span>
+      <span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+        {{ item }}
+      <span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;/</span>div</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+    <span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;/</span>div</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+  <span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;/</span>div</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+<span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;/</span>template</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+
+<span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;</span>script</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span><span class="token script" data-v-2185ec14><span class="token language-javascript" data-v-2185ec14>
+<span class="token keyword" data-v-2185ec14>import</span> <span class="token punctuation" data-v-2185ec14>{</span> throttleDtor <span class="token punctuation" data-v-2185ec14>}</span> <span class="token keyword" data-v-2185ec14>from</span> <span class="token string" data-v-2185ec14>'sf-utils2'</span>
+<span class="token keyword" data-v-2185ec14>export</span> <span class="token keyword" data-v-2185ec14>default</span> <span class="token punctuation" data-v-2185ec14>{</span>
+  <span class="token function" data-v-2185ec14>mounted</span><span class="token punctuation" data-v-2185ec14>(</span><span class="token punctuation" data-v-2185ec14>)</span> <span class="token punctuation" data-v-2185ec14>{</span>
+    <span class="token keyword" data-v-2185ec14>this</span><span class="token punctuation" data-v-2185ec14>.</span>$refs<span class="token punctuation" data-v-2185ec14>.</span>wrap<span class="token punctuation" data-v-2185ec14>.</span><span class="token function" data-v-2185ec14>addEventListener</span><span class="token punctuation" data-v-2185ec14>(</span><span class="token string" data-v-2185ec14>'scroll'</span><span class="token punctuation" data-v-2185ec14>,</span> <span class="token keyword" data-v-2185ec14>this</span><span class="token punctuation" data-v-2185ec14>.</span>onScroll<span class="token punctuation" data-v-2185ec14>,</span> <span class="token boolean" data-v-2185ec14>false</span><span class="token punctuation" data-v-2185ec14>)</span>
+  <span class="token punctuation" data-v-2185ec14>}</span><span class="token punctuation" data-v-2185ec14>,</span>
+  <span class="token literal-property property" data-v-2185ec14>methods</span><span class="token operator" data-v-2185ec14>:</span> <span class="token punctuation" data-v-2185ec14>{</span>
+    @<span class="token function" data-v-2185ec14>throttleDtor</span><span class="token punctuation" data-v-2185ec14>(</span><span class="token number" data-v-2185ec14>20</span><span class="token punctuation" data-v-2185ec14>)</span>
+    <span class="token function" data-v-2185ec14>onScroll</span><span class="token punctuation" data-v-2185ec14>(</span><span class="token parameter" data-v-2185ec14>e</span><span class="token punctuation" data-v-2185ec14>)</span> <span class="token punctuation" data-v-2185ec14>{</span>
+      console<span class="token punctuation" data-v-2185ec14>.</span><span class="token function" data-v-2185ec14>log</span><span class="token punctuation" data-v-2185ec14>(</span>e<span class="token punctuation" data-v-2185ec14>)</span>
+    <span class="token punctuation" data-v-2185ec14>}</span>
+  <span class="token punctuation" data-v-2185ec14>}</span><span class="token punctuation" data-v-2185ec14>,</span>
+
+  <span class="token function" data-v-2185ec14>beforeDestroy</span><span class="token punctuation" data-v-2185ec14>(</span><span class="token punctuation" data-v-2185ec14>)</span> <span class="token punctuation" data-v-2185ec14>{</span>
+    <span class="token keyword" data-v-2185ec14>this</span><span class="token punctuation" data-v-2185ec14>.</span>$refs<span class="token punctuation" data-v-2185ec14>.</span>wrap<span class="token punctuation" data-v-2185ec14>.</span><span class="token function" data-v-2185ec14>removeEventListener</span><span class="token punctuation" data-v-2185ec14>(</span><span class="token string" data-v-2185ec14>'scroll'</span><span class="token punctuation" data-v-2185ec14>,</span> <span class="token keyword" data-v-2185ec14>this</span><span class="token punctuation" data-v-2185ec14>.</span>onScroll<span class="token punctuation" data-v-2185ec14>,</span> <span class="token boolean" data-v-2185ec14>false</span><span class="token punctuation" data-v-2185ec14>)</span>
+  <span class="token punctuation" data-v-2185ec14>}</span>
+<span class="token punctuation" data-v-2185ec14>}</span>
+</span></span><span class="token tag" data-v-2185ec14><span class="token tag" data-v-2185ec14><span class="token punctuation" data-v-2185ec14>&lt;/</span>script</span><span class="token punctuation" data-v-2185ec14>&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper" data-v-2185ec14><span class="line-number" data-v-2185ec14>1</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>2</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>3</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>4</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>5</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>6</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>7</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>8</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>9</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>10</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>11</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>12</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>13</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>14</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>15</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>16</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>17</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>18</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>19</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>20</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>21</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>22</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>23</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>24</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>25</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>26</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>27</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>28</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>29</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>30</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>31</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>32</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>33</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>34</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>35</span><br data-v-2185ec14><span class="line-number" data-v-2185ec14>36</span><br data-v-2185ec14></div></div></div></div> <div class="demo-block-control" style="width:unset;" data-v-2185ec14><i class="caret-bottom icon" data-v-2185ec14 data-v-2185ec14></i> <span style="display:none;" data-v-2185ec14 data-v-2185ec14>显示代码</span> <span class="copy-action" style="display:;" data-v-2185ec14>复制代码</span> <span class="copy-action copy-action-success" style="display:none;" data-v-2185ec14 data-v-2185ec14>复制代码</span></div></div><h2 id="_2-入参说明"><a href="#_2-入参说明" class="header-anchor">#</a> 2.入参说明</h2> <table><thead><tr><th>参数</th> <th>说明</th> <th>类型</th> <th>是否必填</th> <th>默认值</th></tr></thead> <tbody><tr><td>wait</td> <td>截流时间</td> <td><code>Number</code></td> <td></td> <td>20</td></tr></tbody></table> <h2 id="_3-源码"><a href="#_3-源码" class="header-anchor">#</a> 3.源码</h2> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">import</span> throttle <span class="token keyword">from</span> <span class="token string">'@/function/throttle'</span>
+
+<span class="token comment">/**
+ * 函数防抖装饰器
+ * @param {number} wait 需要延迟的毫秒数。
+ * @param {Object} options 参数{leading: 是否在之前执行, trailing: 是否在之后执行} 默认在定时器之前执行 leading = true
+ */</span>
+<span class="token keyword">function</span> <span class="token function">throttleDtor</span><span class="token punctuation">(</span><span class="token parameter">wait <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">,</span> options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> name<span class="token punctuation">,</span> descriptor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    descriptor<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token function">throttle</span><span class="token punctuation">(</span>descriptor<span class="token punctuation">.</span>value<span class="token punctuation">,</span> wait<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> throttleDtor
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div></div></div> <div class="page-slot page-slot-bottom">
+    <div class="wwads-cn wwads-horizontal" data-id="135" style="width:100%;max-height:90px;"></div>
+  </div> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2023/06/24, 19:35:48</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/fr/@bianpengfei-utils/v3/pages/f774f6/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">debounceDtor【去抖装饰器】</div></a> <a href="/fr/@bianpengfei-utils/v3/pages/25e0d8/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">throttle【截流】</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/fr/@bianpengfei-utils/v3/pages/f774f6/" class="prev">debounceDtor【去抖装饰器】</a></span> <span class="next"><a href="/fr/@bianpengfei-utils/v3/pages/25e0d8/">throttle【截流】</a>→
+      </span></p></div></div></div> <!----></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2023
+    <span><a href="http://8.133.185.32/fr/@bianpengfei-utils/" target="_blank" style="font-weight:bold">bianpengfei</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <div class="custom-html-window custom-html-window-rb" style="display:;"><div class="custom-wrapper"><span class="close-but">×</span> <div>
+    <div class="wwads-cn wwads-vertical" data-id="135" style="max-width:200px;"></div>
+    <script>
+        var ele = document.querySelector('.wwads-vertical').parentElement.parentElement;
+        ele.style.maxHeight = 'unset';
+        ele.firstChild.hidden = true;
+    </script>
+  </div></div></div></div><div class="global-ui"><canvas id="vuepress-canvas-cursor"></canvas></div></div>
+    <script src="/fr/@bianpengfei-utils/v3/assets/js/app.7b20c313.js" defer></script><script src="/fr/@bianpengfei-utils/v3/assets/js/3.7899d471.js" defer></script><script src="/fr/@bianpengfei-utils/v3/assets/js/20.382adaec.js" defer></script>
+  </body>
+</html>

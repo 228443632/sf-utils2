@@ -27,16 +27,37 @@ export const __callbackItemInterface = (item, index, list, parentObj) => {}
 
 /**
  * 获取经过路径集合
- * @param {string} str
+ * @param {string} str 值
+ * @param {'-'|'/'|'|'|string} sep
  * @return {string[]}
  */
-export function _getPathLists(str) {
+export function _getPathLists(str, sep = '/') {
   str = String(str || '')
   const pathLists = []
-  const splitString = '-'
+  const splitString = sep || '-'
   const splitArray = str.split(splitString)
-  splitArray.forEach((v, vi, arr) => {
+  splitArray.forEach((_, vi, arr) => {
     if (vi > 1) {
+      pathLists.push(arr.slice(0, vi).join(splitString))
+    }
+  })
+  pathLists.push(str)
+  return pathLists
+}
+
+/**
+ * 获取经过路径集合，所有
+ * @param {string} str 值
+ * @param {'-'|'/'|'|'|string} sep
+ * @return {string[]}
+ */
+export function _getAllPathLists(str, sep = '/') {
+  str = String(str || '')
+  const pathLists = []
+  const splitString = sep || '-'
+  const splitArray = str.split(splitString)
+  splitArray.forEach((_, vi, arr) => {
+    if (vi >= 1) {
       pathLists.push(arr.slice(0, vi).join(splitString))
     }
   })
@@ -70,22 +91,32 @@ const sortType = {
   down: _helperArraySort._helperDesc // 从大到小
 }
 
+const DEFAULT_PROPS = {
+  id: 'id',
+  parentId: 'parentId',
+  children: 'children',
+  order: false,
+  orderField: 'order',
+  orderBy: 'asc'
+}
+
+const DEFAULT_RETAIN_FIELD = ['__id__', '__rootNode__', '__pId__', '__level__', '__index__', '__parentNode__']
+
 /**
  * 遍历树型结构，并添加额外参数
  * @param tree 树形
- * @param {{
-      id?: 'id',
-      parentId?: 'parentId',
-      children?: 'children',
-      order?: false,
-      orderField?: 'order',
-      orderBy?: 'asc'
-    }} props 自增字段
+ * @param {object} props 自增字段
  * @param callbackList 回调函数 节点list
  * @param callbackItem 回调函数 当前节点
  * @param {['__id__', '__rootNode__', '__pId__', '__level__']} retainField 保留的字段数组
  * @param isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
+ * @param {string|'id'|'key'} [props.id] props
+ * @param {string|'pid'|'parentId'|'pId'} [props.parentId]
+ * @param {string|'children'|'child'|'childs'|'childList'} [props.children]
+ * @param {boolean} [props.order]
+ * @param {string|'order'} [props.orderField]
+ * @param {string|'aes'|'desc'|'AES'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy]
  * @private
  */
 const _helperTreeBase = ({
@@ -104,21 +135,19 @@ const _helperTreeBase = ({
   // extraField = [`__pathIdsList__`],
   isDeepClone = true
 }) => {
-  let defaultProps = {
-    id: 'id',
-    parentId: 'parentId',
-    children: 'children',
-    order: false,
-    orderField: 'order',
-    orderBy: 'asc'
-  }
-  let defaultRetainField = ['__id__', '__rootNode__', '__pId__', '__level__', '__index__', '__parentNode__']
+  // let defaultProps = {
+  //   id: 'id',
+  //   parentId: 'parentId',
+  //   children: 'children',
+  //   order: false,
+  //   orderField: 'order',
+  //   orderBy: 'asc'
+  // }
+  // let defaultRetainField = ['__id__', '__rootNode__', '__pId__', '__level__', '__index__', '__parentNode__']
 
-  retainField = [...defaultRetainField, retainField || []]
-
-  let retainFieldObj = retainField.reduce((pre, cur) => (pre[cur] = true) && pre, {})
-
-  props = merge({}, defaultProps, props || {})
+  retainField = [...DEFAULT_RETAIN_FIELD, ...(retainField || [])]
+  const retainFieldObj = retainField.reduce((pre, cur) => ((pre[cur] = true), pre), {})
+  props = merge({}, DEFAULT_PROPS, props || {})
 
   let _isCbListBreak = false
   // let _isCbItemBreak = false

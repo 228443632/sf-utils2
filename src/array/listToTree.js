@@ -6,11 +6,17 @@ import arrayToObj from '@/array/arrayToObj'
  * 把返回的数据集list 转换成 Tree
  * @param list 要转换的数据集
  * @param root 根节点
- * @param {{ id?: 'id', parentId?: 'parentId', children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 自增字段
- * @param callbackList 回调函数 节点list
- * @param callbackItem 回调函数 当前节点
+ * @param {{ id?: 'id', parentId?: 'parentId', children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 映射属性
+ * @param {string|'id'|'key'} [props.id]
+ * @param {string|'pid'|'parentId'|'pId'} [props.parentId]
+ * @param {string|'children'|'child'|'childs'|'childList'} [props.children]
+ * @param {boolean} [props.order]
+ * @param {string|'order'} [props.orderField]
+ * @param {string|'aes'|'desc'|'AES'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy] * @param callbackList 回调函数 节点list
  * @param {['__rootNode__', '__pId__', '__level__']} retainField 保留的字段
- * @param isDeepClone 是否深度克隆原树型对象
+ * @param callbackList
+ * @param callbackItem 回调函数 当前节点
+ * @param isDeepClone 是否深度克隆
  * @returns {*[]}
  */
 function listToTree({
@@ -22,7 +28,7 @@ function listToTree({
   retainField = ['__rootNode__', '__pId__', '__level__'],
   isDeepClone = true
 }) {
-  let defaultOptions = {
+  let defProps = {
     id: 'id',
     parentId: 'parentId',
     children: 'children',
@@ -30,7 +36,7 @@ function listToTree({
     orderField: 'order',
     orderBy: 'asc'
   }
-  props = merge({}, defaultOptions, props)
+  props = merge({}, defProps, props)
 
   const _listToTreeFn = ({ list = [], root = 0, props = { id: 'id', parentId: 'parentId', children: 'children' } }) => {
     let _tree = []
