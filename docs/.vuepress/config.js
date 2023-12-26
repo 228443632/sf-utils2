@@ -10,7 +10,7 @@ const IS_PRO = process.env.NODE_ENV === 'production'
 
 // 打包静态资源前缀
 // const BASE = IS_PRO ? '/fr/@bianpengfei-utils/v2/' : '/'
-const BASE = IS_PRO ? '/fr/@bianpengfei-utils/v3/' : '/'
+const BASE = IS_PRO ? '/bianpengfei-utils/v3/' : '/'
 
 module.exports = {
   theme: 'vdoing',
@@ -54,7 +54,7 @@ module.exports = {
       lang: 'zh-CN'
     }
   },
-  dest: path.resolve(ROOT_PATH, `docs/.vuepress/compile/fr/@bianpengfei-utils/v3`),
+  dest: path.resolve(ROOT_PATH, `docs/.vuepress/compile/fr/bianpengfei-utils/v3`),
   markdown: {
     extractHeaders: ['h2', 'h3', 'h4'],
     lineNumbers: true
