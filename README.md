@@ -3,7 +3,7 @@
 主要把平时用到的工具函数封装起来，🚀 为简化开发而生，里面主要涉及到 `基础数据类型校验`、`懒加载`、`数据结构转化`、`浮点型数学计算`、`拓展`
 等
 
-[文档这里 👇](http://8.133.185.32/fr/@bianpengfei-utils/v3/)
+[文档这里 👇](https://bianpengfei.gitee.io/bianpengfei-utils/v3/)
 
 # 1.快速开始
 
