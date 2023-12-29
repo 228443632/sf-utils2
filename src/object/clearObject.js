@@ -18,7 +18,7 @@ function clearObject(object, strict = true) {
     // 普通对象
     object: () => {
       if (isPlainObject(object)) {
-        const keys = strict ? Object.getOwnPropertyNames(object) : Object.keys(object);
+        const keys = strict ? Object.getOwnPropertyNames(object) : Object.keys(object)
         keys.forEach(propertyName => delete object[propertyName])
       }
       return object

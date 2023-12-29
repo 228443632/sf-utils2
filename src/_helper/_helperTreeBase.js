@@ -31,7 +31,7 @@ export const __callbackItemInterface = (item, index, list, parentObj) => {}
  * @param {'-'|'/'|'|'|string} sep
  * @return {string[]}
  */
-export function _getPathLists(str, sep = '/') {
+export function _getPathLists(str, sep = '') {
   str = String(str || '')
   const pathLists = []
   const splitString = sep || '-'
