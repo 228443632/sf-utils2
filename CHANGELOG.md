@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.1](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.0...v3.1.1) (2023-12-29)
+
+
+### 📃文档
+
+* 更新文档 ([2c37762](https://gitee.com/bianpengfei/bianpengfei-utils/commit/2c3776257afa61a5feabb4230e13471c2b6f3723))
+
+
+### 🐞问题修复
+
+* 修复filterTree过滤内容错误问题 ([a44f08f](https://gitee.com/bianpengfei/bianpengfei-utils/commit/a44f08f7f3818cc1cced9e6b061d3bacaf9ded1d))
+
 ## [3.1.0](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.0.26...v3.1.0) (2023-12-27)
 
 
