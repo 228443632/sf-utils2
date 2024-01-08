@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.1.1",
+  "version": "3.1.3",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "https://bianpengfei.gitee.io/bianpengfei-utils/v3/",
@@ -11,6 +11,7 @@
   "jsdelivr": "lib/index.umd.min.js",
   "types": "./index.d.ts",
   "scripts": {
+    "prepare": "yarn husky",
     "dev": "yarn link sf-utils2 && npm run build:init-entry && cross-env NODE_ENV=development rollup -c build/rollup.dev.js -w ",
     "build:all": "rimraf lib && npm-run-all --parallel prettier:source build:entry build:modules",
     "build:init-entry": "node build/bin/build-entry.js && node build/bin/build-entry-nodejs.js",
@@ -30,10 +31,11 @@
     "pub:minor": "npm version minor && npm run pub",
     "pub:patch": "npm version patch && npm run pub",
     "pub:prepatch": "npm version prepatch && npm run pub",
-    "release": "release-it && yarn docs:build",
+    "release": "release-it patch && yarn docs:build",
     "no-pub": "npm run build:all",
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
-    "pub": "npm run no-pub && npm publish --access public"
+    "pub": "npm run no-pub && npm publish --access public --registry https://registry.npmjs.org/",
+    "pub-self": "npm run no-pub && npm publish --access public --registry http://121.40.137.13:8200/"
   },
   "globalName": "sfutils",
   "files": [
@@ -66,7 +68,7 @@
     "deepmerge": "4.2.2"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry2": "https://registry.npmjs.org/"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -143,6 +145,7 @@
     "vuepress-plugin-zooming": "1.1.8",
     "vuepress-theme-vdoing": "1.12.8",
     "windicss-webpack-plugin": "1.7.3",
+    "xe-utils": "3.5.14",
     "yamljs": "0.3.0",
     "yargs-parser": "21.1.1"
   },

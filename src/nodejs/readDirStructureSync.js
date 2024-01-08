@@ -3,9 +3,19 @@ const fs = require('fs')
 const { listToTree } = require('sf-utils2')
 
 /**
+ * @type {{path: string, relativePath: string, parentPath: string, children: ListType[], isRoot: boolean, rootDir: string,ext: string, id: string|number, type: 'dir'|'file'|'unknown'|undefined, parentId: string, fileName: string | undefined | null}[]}}
+ */
+const ListType = undefined
+
+/**
+ * @type {ListType[]}
+ */
+const TreeType = undefined
+
+/**
  * 根据路径 获取其下所有子文件包括文件夹路径，返回平面list 和 树状tree
  * @param {string} dir 目录
- * @returns {{tree: *, list: {path: *, relativePath: *, id: *, type: *, parentId: string, fileName: string | undefined | null}[]}}
+ * @returns {{tree: TreeType, list: ListType}}
  */
 function readDirStructureSync(dir = '') {
   const itors = (dirName, result = []) => {

@@ -3,10 +3,11 @@ import isFunction from '@/base/isFunction'
 import isPlainObject from '@/base/isPlainObject'
 import isArray from '@/base/isArray'
 import arrayToObj from '@/array/arrayToObj'
+import { PlainObjectType } from '@/_helper/_types'
 
 /**
  * 普通对象 平铺化flatten
- * @param {Object} obj
+ * @param {PlainObjectType} obj
  * @param {Function} cb
  * @returns {*}
  * @private

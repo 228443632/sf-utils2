@@ -1,35 +1,13 @@
-import _typeof from '@/base/_typeof'
+import getSize from "@/base/getSize";
 
 /**
  * 返回不同类型的的长度 （对象/数组/Map/Set/String）
  * @param {any} val
+ * @return {number}
+ * @deprecated 方法迁移到getSize中
  */
 function getLength(val) {
-  let len = 0
-  switch (_typeof(val)) {
-    case 'Object': {
-      len = Object.keys(val).length
-      break
-    }
-    case 'String':
-    case 'Array': {
-      len = val.length
-      break
-    }
-    case 'Map':
-    case 'Set': {
-      len = val.size
-      break
-    }
-    case 'Blob': {
-      len = val.size
-      break
-    }
-    default: {
-      break
-    }
-  }
-  return len
+  return getSize(val)
 }
 
 export default getLength
