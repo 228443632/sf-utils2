@@ -5,14 +5,6 @@
  */
 
 /**
- * @typedef {Object} Address
- * @property {string} street - The street name.
- * @property {string} city - The city name.
- * @property {string} state - The state or province.
- * @property {string} zipCode - The ZIP code.
- */
-
-/**
  * 普通对象
  * @type {{[K: string]: any}|object|any}
  * @typedef {{[K: string]: any}|object|any}
@@ -20,6 +12,5 @@
 export const PlainObjectType = undefined
 
 export default {
-  PlainObjectType,
-  Address
+  PlainObjectType
 }
