@@ -12,7 +12,6 @@ function lowerCamelCase(str) {
 
 export default lowerCamelCase
 
-
 // console.log(lowerCamelCase('user-name')); // 结果：UserName
 // console.log(lowerCamelCase('hello-world_name')); // 结果：HelloWorldName
 // console.log(lowerCamelCase('cell_item')); // 结果：CellItem

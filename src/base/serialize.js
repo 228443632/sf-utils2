@@ -1,4 +1,4 @@
-import {PlainObjectType} from '@/_helper/_types'
+import { PlainObjectType } from '@/_helper/_types'
 // import 'core-js/stable/url-search-params'
 
 /**
@@ -9,12 +9,12 @@ import {PlainObjectType} from '@/_helper/_types'
  * serialize({id: 123, name: 'test1'} => id=123&name=test1
  */
 function serialize(query) {
-	query ||= {}
-	const params = new URLSearchParams();
-	for (let [key, value] of Object.entries(query)) {
-		params.append(key, value)
-	}
-	return params.toString()
+  query ||= {}
+  const params = new URLSearchParams()
+  for (let [key, value] of Object.entries(query)) {
+    params.append(key, value)
+  }
+  return params.toString()
 }
 
 export default serialize

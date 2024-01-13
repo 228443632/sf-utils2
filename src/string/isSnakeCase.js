@@ -4,7 +4,7 @@
  * @return {boolean}
  */
 function isSnakeCase(str) {
-	return /^[a-z]+(?:_[a-z]+)*$/.test(str)
+  return /^[a-z]+(?:_[a-z]+)*$/.test(str)
 }
 
 export default isSnakeCase

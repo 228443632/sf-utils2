@@ -1,4 +1,4 @@
-import getSize from "@/base/getSize";
+import getSize from '@/base/getSize'
 
 /**
  * 返回不同类型的的长度 （对象/数组/Map/Set/String）
