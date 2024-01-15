@@ -1,11 +1,24 @@
 import isArray from '@/base/isArray'
 import isFunction from '@/base/isFunction'
+import isString from "@/base/isString";
+import isNullable from "@/base/isNullable";
+
+/**
+ * 根据数组 从对象中获取属性，并且以｜进行分割
+ * @param {object} object
+ * @param {string|string[]} properties
+ * @returns {*}
+ */
+export const getPropValue = (object, properties) => {
+  if (isString(properties)) return object?.[properties]
+  return properties.map(prop => object?.[prop]).filter(Boolean).join(`|`)
+}
 
 /**
  * 将数组转成Map类型
  * @param {Object[]} array 数组
- * @param {string|Function} property 主键
- * @param {{valueType: 'object' | 'array'}} options
+ * @param {string|Function|string[]} [property] 主键
+ * @param {{valueType?: 'object' | 'array', retainKeyWithNull?: boolean}} [options] 是否保留未定义的属性值
  * @return {Map<any, any>|{}|*}
  * @example
  *
@@ -33,7 +46,7 @@ import isFunction from '@/base/isFunction'
    size:4
  *
  */
-function arrayToMap(array = [], property, options = { valueType: 'object' }) {
+function arrayToMap(array = [], property, options = { valueType: 'object', retainKeyWithNull: false }) {
   if (isArray(array)) {
     // 如果property是Function
     if (isFunction(property)) {
@@ -45,7 +58,8 @@ function arrayToMap(array = [], property, options = { valueType: 'object' }) {
     // 非Function，且property存在
     if (property) {
       return array.reduce((pre, cur) => {
-        const value = cur?.[property]
+        let value = getPropValue(cur, property)
+        if (options.retainKeyWithNull && isNullable(value))  value = 'undefined'
         if (value) {
           if (valueType === 'array') {
             if (!isArray(pre.get(value))) pre.set(value, [])
@@ -59,6 +73,7 @@ function arrayToMap(array = [], property, options = { valueType: 'object' }) {
     }
     // property不存在时
     return array.reduce((pre, cur) => {
+      if (options.retainKeyWithNull && isNullable(value)) cur = 'undefined'
       if (cur) {
         if (valueType === 'array') {
           if (!isArray(pre.get(cur))) pre.set(cur, [])
@@ -73,3 +88,47 @@ function arrayToMap(array = [], property, options = { valueType: 'object' }) {
   return new Map()
 }
 export default arrayToMap
+
+/**
+ * @example
+ */
+/**
+// 多个属性名
+const list = [
+  { empId: 1, empName: '蔡徐坤' },
+  { empId: 2, empName: '小明' },
+  { empId: 3, empName: '蔡徐坤' },
+]
+console.log(arrayToMap(list, ['empId', 'empName']))
+// =>
+// [
+//  ['1|蔡徐坤', {empId: 1, empName: '蔡徐坤'}],
+//  ['2|小明', {empId: 2, empName: '小明'}],
+//  ['3|蔡徐坤', {empId: 3, empName: '蔡徐坤'}]
+// ]
+
+
+// 单个属性名
+const list2 = [
+  { empId: 1, empName: '蔡徐坤' },
+  { empId: 2, empName: '小明' },
+  { empId: 3, empName: '蔡徐坤' },
+]
+console.log(arrayToMap(list2, 'empId'))
+// =>
+// [
+//  ['1', {empId: 1, empName: '蔡徐坤'}],
+//  ['2', {empId: 2, empName: '小明'}],
+//  ['3', {empId: 3, empName: '蔡徐坤'}]
+// ]
+
+const list3 = [1, 2, 3, '4']
+console.log(arrayToMap(list3));
+// =>
+// [
+//   [1, 1]
+//   [2, 2],
+//   [3, 3],
+//   [4, '4']
+// ]
+ */
