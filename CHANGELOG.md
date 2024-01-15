@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.5](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.4...v3.1.5) (2024-01-15)
+
+
+### ✨新功能
+
+* update to 3.1.4, 完善arrayToMap、arrayToObj, 新增arrayDiff、和difference方法 ([a177b83](https://gitee.com/bianpengfei/bianpengfei-utils/commit/a177b835e2ec10b58cf040af62a75f3654a00ace))
+* 完善docs ([3b10e5c](https://gitee.com/bianpengfei/bianpengfei-utils/commit/3b10e5c83e7a5efbbb52efc09828bb68aab5a4d6))
+
 ## [3.1.4](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.3...v3.1.4) (2024-01-13)
 
 
