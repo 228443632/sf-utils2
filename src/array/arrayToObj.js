@@ -3,7 +3,6 @@ import isFunction from '@/base/isFunction'
 import { getPropValue } from '@/array/arrayToMap'
 import isNullable from '@/base/isNullable'
 
-
 /**
  * 将数组转成obj
  * @param {any[]} array 数组

@@ -1,6 +1,7 @@
 const { version } = require('../../../package.json')
 
 module.exports = [
+  { text: '版本v' + version, link: '/' },
   { text: '首页', link: '/' },
   {
     text: '指南',

@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.1.7](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.5...v3.1.7) (2024-01-24)
+
+
+### 📃文档
+
+* 更新文档 ([9752f35](https://gitee.com/bianpengfei/bianpengfei-utils/commit/9752f35508ccc73813cace63aded458c0118bca8))
+
+## [3.1.7-0](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.5...v3.1.7-0) (2024-01-24)
+
+
+### 📃文档
+
+* 更新文档 ([9752f35](https://gitee.com/bianpengfei/bianpengfei-utils/commit/9752f35508ccc73813cace63aded458c0118bca8))
+
 ## [3.1.5](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.4...v3.1.5) (2024-01-15)
 
 

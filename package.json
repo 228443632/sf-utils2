@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.1.5",
+  "version": "3.1.7",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "https://bianpengfei.gitee.io/bianpengfei-utils/v3/",
@@ -20,7 +20,8 @@
     "build:entry-cdn": "cross-env NODE_ENV=production rollup -c build/rollup.entry-cdn.js && terser lib/index.umd.js -m -o lib/index.umd.min.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs && touch docs/.vuepress/compile/fr/@bianpengfei-utils/v3/.spa",
-    "docs:deploy": "npm run docs:build && sh docs/bin/deploy.sh",
+    "docs:deploy": "npm run docs:build && yarn commit:docs",
+    "commit:docs": "sh docs/bin/deploy.sh",
     "prettier:docs": "prettier 'docs/01.指南/**/*.md' --config --ignore-unknown .prettierrc.js --write",
     "prettier:source": "prettier 'src/**/*.js' --config --ignore-unknown .prettierrc.js --write",
     "prettier:all": "npm run prettier:docs && npm run prettier:source",
@@ -35,7 +36,8 @@
     "no-pub": "npm run build:all",
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
     "pub": "npm run no-pub && npm publish --access public --registry https://registry.npmjs.org/",
-    "pub-self": "npm run no-pub && npm publish --access public --registry http://121.40.137.13:8200/"
+    "pub:inner": "npm publish --access public --registry http://121.40.137.13:8200/",
+    "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub"
   },
   "globalName": "sfutils",
   "files": [

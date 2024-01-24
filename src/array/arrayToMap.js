@@ -1,7 +1,7 @@
 import isArray from '@/base/isArray'
 import isFunction from '@/base/isFunction'
-import isString from "@/base/isString";
-import isNullable from "@/base/isNullable";
+import isString from '@/base/isString'
+import isNullable from '@/base/isNullable'
 
 /**
  * 根据数组 从对象中获取属性，并且以｜进行分割
@@ -11,7 +11,10 @@ import isNullable from "@/base/isNullable";
  */
 export const getPropValue = (object, properties) => {
   if (isString(properties)) return object?.[properties]
-  return properties.map(prop => object?.[prop]).filter(Boolean).join(`|`)
+  return properties
+    .map(prop => object?.[prop])
+    .filter(Boolean)
+    .join(`|`)
 }
 
 /**
@@ -59,7 +62,7 @@ function arrayToMap(array = [], property, options = { valueType: 'object', retai
     if (property) {
       return array.reduce((pre, cur) => {
         let value = getPropValue(cur, property)
-        if (options.retainKeyWithNull && isNullable(value))  value = 'undefined'
+        if (options.retainKeyWithNull && isNullable(value)) value = 'undefined'
         if (value) {
           if (valueType === 'array') {
             if (!isArray(pre.get(value))) pre.set(value, [])
