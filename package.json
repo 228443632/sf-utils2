@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.1.7",
+  "version": "3.1.8-0",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "https://bianpengfei.gitee.io/bianpengfei-utils/v3/",
@@ -37,7 +37,8 @@
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
     "pub": "npm run no-pub && npm publish --access public --registry https://registry.npmjs.org/",
     "pub:inner": "npm publish --access public --registry http://121.40.137.13:8200/",
-    "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub"
+    "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub",
+    "replase:prepatch": "release-it prepatch && npm run build:all && npm run pub:inner && npm run pub"
   },
   "globalName": "sfutils",
   "files": [
