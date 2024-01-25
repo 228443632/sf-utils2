@@ -1,5 +1,7 @@
 # Changelog
 
+## [3.1.9-0](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.8-0...v3.1.9-0) (2024-01-25)
+
 ## [3.1.8-0](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.7...v3.1.8-0) (2024-01-25)
 
 

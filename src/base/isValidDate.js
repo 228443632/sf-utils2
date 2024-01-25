@@ -9,7 +9,7 @@ import isNullable from '@/base/isNullable'
  */
 function isValidDate(val) {
   if (isNullable(val)) return false
-  return isDate(val)
+  return isDate(new Date(val))
 }
 
 export default isValidDate
