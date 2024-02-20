@@ -9,7 +9,7 @@ import def from '@/object/def'
 import deepClone from '@/object/deepClone'
 import isString from '@/base/isString'
 import _helperArraySort from '@/_helper/_helperArraySort'
-import arrayToObj from "@/array/arrayToObj";
+import arrayToObj from '@/array/arrayToObj'
 
 /**
  * @param {Array} list 每个节点下子节点数组
@@ -102,7 +102,6 @@ const DEFAULT_PROPS = {
 }
 
 const DEFAULT_RETAIN_FIELD = ['__id__', '__rootNode__', '__pId__', '__level__', '__index__', '__parentNode__']
-
 
 /**
  * @typedef {'__pathIds__', '__pathIdsObj__'} RetainField
