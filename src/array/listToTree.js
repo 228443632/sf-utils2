@@ -3,6 +3,9 @@ import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } fro
 import arrayToObj from '@/array/arrayToObj'
 
 /**
+ * @typedef {'__pathIds__', '__pathIdsObj__'} RetainField
+ */
+/**
  * 把返回的数据集list 转换成 Tree
  * @param list 要转换的数据集
  * @param root 根节点
@@ -13,7 +16,7 @@ import arrayToObj from '@/array/arrayToObj'
  * @param {boolean} [props.order]
  * @param {string|'order'} [props.orderField]
  * @param {string|'aes'|'desc'|'AES'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy] * @param callbackList 回调函数 节点list
- * @param {['__rootNode__', '__pId__', '__level__']} retainField 保留的字段
+ * @param {RetainField[]} retainField 保留的字段
  * @param callbackList
  * @param callbackItem 回调函数 当前节点
  * @param isDeepClone 是否深度克隆
@@ -25,7 +28,7 @@ function listToTree({
   props = { id: 'id', parentId: 'parentId', children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
   callbackList = __callbackListInterface,
   callbackItem = __callbackItemInterface,
-  retainField = ['__rootNode__', '__pId__', '__level__'],
+  retainField = [],
   isDeepClone = true
 }) {
   let defProps = {

@@ -63,7 +63,7 @@
 			]
 
 			// 将list转成树状结构
-			console.log(sfutils.listToTree({ list: list, root: null, props: { id: 'id', parentId: 'pId', children: 'children' } }))
+			console.log(sfutils.listToTree({ list: list, root: null, props: { id: 'id', parentId: 'pId', children: 'children' }, retainField: ['__pathIds__'] }))
 
 
       function download() {

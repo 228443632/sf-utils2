@@ -25,7 +25,7 @@
     "prettier:docs": "prettier 'docs/01.指南/**/*.md' --config --ignore-unknown .prettierrc.js --write",
     "prettier:source": "prettier 'src/**/*.js' --config --ignore-unknown .prettierrc.js --write",
     "prettier:all": "npm run prettier:docs && npm run prettier:source",
-    "husky": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
+    "husky": "husky install && rimraf .husky/pre-commit && npx husky add .husky/pre-commit 'npx lint-staged'",
     "commitlint": "npx husky add .husky/commit-msg 'npx --no-install commitlint --edit \"$1\"'",
     "build:file-all": "node build/bin/build-entry-all.js",
     "pub:major": "npm version major && npm run pub",
@@ -37,8 +37,7 @@
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
     "pub": "npm run no-pub && npm publish --access public --registry https://registry.npmjs.org/",
     "pub:inner": "npm publish --access public --registry http://121.40.137.13:8200/",
-    "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub",
-    "replase:prepatch": "release-it prepatch && npm run build:all && npm run pub:inner && npm run pub"
+    "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub"
   },
   "globalName": "sfutils",
   "files": [

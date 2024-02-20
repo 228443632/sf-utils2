@@ -5,10 +5,10 @@ import { _easeInOutQuad, _requestAnimationFrame } from './_constant'
 /**
  * 水平滚动
  * @param {HTMLElement} el 滚动的dom
- * @param {number} start 起始位置 默认是 scrollLeft
+ * @param {number} [start] 起始位置 默认是 scrollLeft
  * @param {number} to  滑动末端位置
- * @param {number} duration  滚动持续时间
- * @param {Function} callback  结束回调事件
+ * @param {number} [duration]  滚动持续时间
+ * @param {Function} [callback]  结束回调事件
  */
 function scrollToX(el, start = 0, to, duration = 500, callback) {
   function elMoveX(el, scrollLeft = 0) {

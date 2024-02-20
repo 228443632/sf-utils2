@@ -9,6 +9,7 @@ import def from '@/object/def'
 import deepClone from '@/object/deepClone'
 import isString from '@/base/isString'
 import _helperArraySort from '@/_helper/_helperArraySort'
+import arrayToObj from "@/array/arrayToObj";
 
 /**
  * @param {Array} list 每个节点下子节点数组
@@ -41,7 +42,7 @@ export function _getPathLists(str, sep = '') {
       pathLists.push(arr.slice(0, vi).join(splitString))
     }
   })
-  pathLists.push(str)
+  str && pathLists.push(str)
   return pathLists
 }
 
@@ -102,13 +103,18 @@ const DEFAULT_PROPS = {
 
 const DEFAULT_RETAIN_FIELD = ['__id__', '__rootNode__', '__pId__', '__level__', '__index__', '__parentNode__']
 
+
+/**
+ * @typedef {'__pathIds__', '__pathIdsObj__'} RetainField
+ */
+
 /**
  * 遍历树型结构，并添加额外参数
  * @param tree 树形
  * @param {object} props 自增字段
  * @param callbackList 回调函数 节点list
  * @param callbackItem 回调函数 当前节点
- * @param {['__id__', '__rootNode__', '__pId__', '__level__']} retainField 保留的字段数组
+ * @param {RetainField[]} retainField 保留的字段数组  __pathIds__ 保留经过路径的__id__集合
  * @param isDeepClone 是否深度克隆原树型对象
  * @returns {*[]}
  * @param {string|'id'|'key'} [props.id] props
@@ -171,6 +177,15 @@ const _helperTreeBase = ({
         def(v, '__loop__', !(parentNode?.__loop__ === false)) // 是否可以循环
         def(v, '__id__', `${_pId}-${vi}`)
         retainFieldObj.__pId__ && def(v, '__pId__', _pId)
+        retainFieldObj.__pId__ && def(v, '__pId__', _pId)
+        retainFieldObj.__pId__ && def(v, '__pId__', _pId)
+
+        retainFieldObj.__pathIds__ && def(v, '__pathIds__', _getPathLists(v.__id__, '-'))
+        if (retainFieldObj.__pathIdsObj__) {
+          v.__pathIds__ ||= _getPathLists(v.__pathIds__, '-') || []
+          def(v, '__pathIds__')
+          def(v, '__pathIdsObj__', arrayToObj(v.__pathIds__))
+        }
         retainFieldObj.__level__ && def(v, '__level__', String(v.__pId__).split('-').length)
         retainFieldObj.__rootNode__ && def(v, '__rootNode__', rootNode || (v.__depth__ == 1 && v) || null)
         retainFieldObj.__parentNode__ && def(v, '__parentNode__', parentNode)

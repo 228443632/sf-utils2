@@ -1,55 +1,155 @@
----
-title: checkedParentNodeInTree【树形数据中只选中父节点】 🔥
-date: 2022-01-24 15:32:27
-permalink: /pages/139baf9/
-article: false
----
+// const tree = [
+//   {
+//     id: 1,
+//     name: '香蕉',
+//     pId: null,
+//     children: [
+//       {
+//         id: 1001,
+//         name: '香蕉A',
+//         pId: 1,
+//         children: [
+//           {
+//             id: 1001001,
+//             name: '香蕉A-儿子',
+//             pId: 1001,
+//             children: [
+//               {
+//                 id: 1001001001,
+//                 name: '香蕉A-儿子-儿子',
+//                 pId: 1001001
+//               }
+//             ]
+//           }
+//         ]
+//       },
+//       {
+//         id: 1002,
+//         name: '香蕉B',
+//         pId: 1,
+//         children: [
+//           {
+//             id: 1002002,
+//             name: '香蕉B-儿子',
+//             pId: 1002
+//           }
+//         ]
+//       },
+//       {
+//         id: 1003,
+//         name: '香蕉C',
+//         pId: 1,
+//         children: [
+//           {
+//             id: 1003003,
+//             name: '香蕉C-儿子',
+//             pId: 1003
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     id: 2,
+//     name: '苹果',
+//     pId: null,
+//     children: [
+//       {
+//         id: 2004,
+//         name: '苹果A',
+//         pId: 2,
+//         children: [
+//           {
+//             id: 2004004,
+//             name: '苹果A-儿子',
+//             pId: 2004
+//           },
+//           {
+//             id: 2004005,
+//             name: '苹果A-儿子2',
+//             pId: 2004
+//           },
+//           {
+//             id: 2004006,
+//             name: '苹果A-儿子2',
+//             pId: 2004
+//           }
+//         ]
+//       },
+//       {
+//         id: 2007,
+//         name: '苹果D',
+//         pId: 2
+//       },
+//       {
+//         id: 2008,
+//         name: '苹果D',
+//         pId: 2
+//       },
+//       {
+//         id: 2009,
+//         name: '苹果C',
+//         pId: 2
+//       }
+//     ]
+//   },
+//   {
+//     id: 3,
+//     name: '橘子',
+//     pId: null,
+//     children: [
+//       {
+//         id: 3005,
+//         name: '橘子C',
+//         pId: 3,
+//         children: [
+//           {
+//             id: 3005005,
+//             name: '橘子C-儿子',
+//             pId: 3005
+//           }
+//         ]
+//       },
+//       {
+//         id: 3006,
+//         name: '橘子B',
+//         pId: 3,
+//         children: [
+//           {
+//             id: 3006006,
+//             name: '橘子B-儿子',
+//             pId: 3006
+//           }
+//         ]
+//       },
+//       {
+//         id: 3010,
+//         name: '橘子A',
+//         pId: 3
+//       }
+//     ]
+//   },
+//   {
+//     id: 4,
+//     name: '西瓜',
+//     pId: null,
+//     children: [
+//       {
+//         id: 4012,
+//         name: '西瓜B',
+//         pId: 4,
+//         children: [
+//           {
+//             id: 4013,
+//             name: '西瓜B-儿子',
+//             pId: 4012
+//           }
+//         ]
+//       }
+//     ]
+//   }
+// ]
 
-::: note 描述
-从集合中，去除父子同时存在的 keys，只选中父节点， <Badge text="3.0.25-beta-4+" type="success" vertical="middle"/>
-:::
-
-## 1.示例
-
-::: details 输出结果，点开查看 👇
-
-```js
-checkedParentNodeInTree({ tree, keys: [2, 2004, 2004004, 2004005, 1, 1001], props: { children: 'children', id: 'id' } })
-```
-
-:::
-
-## 2.入参说明
-
-### 主入参
-
-| 参数       | 说明                                              | 类型                    | 是否必填 | 默认值 |
-| ---------- | ------------------------------------------------- | ----------------------- | -------- | ------ |
-| tree       | 原数据，树状结构                                  | `Array`                 | 是       |        |
-| keys       | 原有的 keys 集合                                  | `Object`                | 否       |        |
-| props      | 属性映射[详情见下 👇](/pages/139baf9/#props-对象) | `Object`                | 否       |        |
-| cache      | 缓存[详情见下 👇](/pages/139baf9/#cache-对象)     | `Object`                | 否       |        |
-| currentKey | 当前选择的 key，记住当前选中的 key                | `String` <br/> `Number` | 否       |        |
-
-### props 对象
-
-| 参数     | 说明                 | 类型     | 是否必填 | 默认值   |
-| -------- | -------------------- | -------- | -------- | -------- |
-| id       | 自身主键名，唯一标识 | `String` | 否       | id       |
-| children | 树状 children 键名   | `String` | 否       | children |
-
-### cache 对象
-
-| 参数            | 说明                                                  | 类型     | 是否必填 | 默认值 |
-| --------------- | ----------------------------------------------------- | -------- | -------- | ------ |
-| treeObjById     | tree 转换成对象结构，其中键名值是由`props.id`决定的   | `Object` | 否       |        |
-| treeObjBy**id** | tree 转换成对象结构，其中键名值是由递归`__id__`决定的 | `Object` | 否       |        |
-
-## 3.源码
-
-::: details 源码，点开查看 👈
-
-```js
 import eachTree from '@/array/eachTree'
 import orderBy from '@/array/orderBy'
 import isArray from '@/base/isArray'
@@ -60,7 +160,7 @@ import { _getPathLists, _includesChildPath } from '@/_helper/_helperTreeBase'
 import merge from '@/object/merge'
 
 /**
- * 从集合中，去除父子同时存在的keys，只选中父节点
+ * 从集合中，去除父子同时存在的keys，只显示父节点（当父节点下所有子节点都选中时）
  * 比如地区选择器，如果先选择江苏，然后选择无锡，那么这里的key，只会存在无锡
  * 如果江苏下，所有的城市都已经选择了，那么只会存在江苏
  * @param tree 树形数据
@@ -71,11 +171,12 @@ import merge from '@/object/merge'
  * @param {string[]} [props.children]
  * @param {string} [props.id]
  * @param {undefined|Function} [props.treeObjById]
- * @param {undefined｜Function} [props.treeObjBy__id__]
+ * @param {any|Function} [props.treeObjBy__id__]
+ * @param {'SHOW_PARENT'} [props.showCheckedStrategy] 定义选中项回填的方式。SHOW_CHILD: 只显示选中的子节点。SHOW_PARENT: 只显示父节点（当父节点下所有子节点都选中时）
  * @example
- * checkedParentNodeInTree({ tree, keys: [2, 2004, 2004004, 2004005, 1, 1001], props: {children: 'children', id: 'id'} })
+ * formatStrategyIdsInTree({ tree, keys: [2, 2004, 2004004, 2004005, 1, 1001], props: {children: 'children', id: 'id'} })
  */
-function checkedParentNodeInTree({
+function formatStrategyIdsInTree({
   tree = [],
   keys = [],
   currentKey = [],
@@ -164,7 +265,7 @@ function checkedParentNodeInTree({
 
   const ids = uniq(plainKeys.filter(v => !delNodesMap.has(v)).concat(addKeys))
 
-  // console.log('checkedParentNodeInTree', { addNodesMap, delNodesMap, ids, keys })
+  // console.log('formatStrategyIdsInTree', { addNodesMap, delNodesMap, ids, keys })
 
   if (isArray(keys[0])) {
     return ids.map(v => {
@@ -180,9 +281,6 @@ function checkedParentNodeInTree({
 }
 
 // 2, 2004, 2004004, 2004005,
-// console.log(checkedParentNodeInTree({ keys: [2, 2004, 2004004, 2004005, 1, 1001], tree }))
+// console.log(formatStrategyIdsInTree({ keys: [2, 2004, 2004004, 2004005, 1, 1001, 1002, 1003], tree }))
 
-export default checkedParentNodeInTree
-```
-
-:::
+export default formatStrategyIdsInTree

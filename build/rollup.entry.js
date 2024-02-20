@@ -47,7 +47,7 @@ export default () => {
             terser({
               toplevel: true,
               compress: {
-                pure_funcs: ['console.warn']
+                pure_funcs: ['console.warn', 'console.log']
               }
             })
           ]
