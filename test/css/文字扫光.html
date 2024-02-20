@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    .example3 {
+      border: 4px solid transparent;
+      border-radius: 99px;
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      background-image: linear-gradient(to right, #fff, #fff),
+      linear-gradient(to right, #8f41e9, #578aef);
+    }
+
+    .example1 {
+      &.out {
+        padding: 4px;
+        border-radius: 4px;
+        background: linear-gradient(to right, red, blue);
+      }
+      .in {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="gradient-border">Hello, world!</div>
+<div class="example1 out">
+  <div class="in">两层元素</div>
+</div>
+
+<div class="example3 out">
+  两层元素
+</div>
+</body>
+</html>

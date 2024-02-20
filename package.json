@@ -32,7 +32,7 @@
     "pub:minor": "npm version minor && npm run pub",
     "pub:patch": "npm version patch && npm run pub",
     "pub:prepatch": "npm version prepatch && npm run pub",
-    "release": "release-it patch && yarn docs:build",
+    "release": "release-it patch && yarn no-pub && yarn docs:build",
     "no-pub": "npm run build:all",
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
     "pub": "npm run no-pub && npm publish --access public --registry https://registry.npmjs.org/",
