@@ -2,6 +2,9 @@ import merge from '@/object/merge'
 import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } from '../_helper/_helperTreeBase.js'
 
 /**
+ * @typedef {'__pathIds__', '__pathIdsObj__'} RetainField
+ */
+/**
  * 从树结构中遍历
  * @param tree 树状结构
  * @param {{children?: 'children', order?: false, orderField?: 'order', orderBy?: 'asc' }} props 属性映射 * @param {string|'pid'|'parentId'|'pId'} [props.parentId]
@@ -12,6 +15,7 @@ import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } fro
  * @param callbackList 每一层树list 回调函数
  * @param callbackItem 每一项回调函数
  * @param isDeepClone 是否深度克隆原树型对象
+ * @param {RetainField[]} retainField 保留的字段
  * @return {*[]}
  */
 function eachTree({
@@ -19,7 +23,8 @@ function eachTree({
   props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
   callbackList = __callbackListInterface,
   callbackItem = __callbackItemInterface,
-  isDeepClone = true
+  isDeepClone = true,
+  retainField = []
 }) {
   let defaultOptions = {
     children: 'children',
@@ -28,7 +33,7 @@ function eachTree({
     orderBy: 'asc'
   }
   props = merge({}, defaultOptions, props)
-  return _helperTreeBase({ props, callbackList, callbackItem, tree, isDeepClone })
+  return _helperTreeBase({ props, callbackList, callbackItem, tree, isDeepClone, retainField })
 }
 
 export default eachTree

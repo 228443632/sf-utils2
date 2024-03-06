@@ -4,11 +4,14 @@ import arrayToMap from '@/array/arrayToMap'
 import uniq from '@/array/uniq'
 
 /**
+ * @typedef {function(any, any):boolean|number} ConditionFn
+ */
+/**
  * 比较两数组之间值的不同，存在数组1中，不存在数组2中
  * 本质上是求出哪些是删除的
  * @param {Array} array1 数组1
  * @param {Array} array2 数组2
- * @param {string|function(a:any, b?:any):boolean|number} [condition] 条件
+ * @param {string|ConditionFn} [condition] 条件
  * @returns {*[]}
  */
 function differenceBy(array1, array2, condition) {

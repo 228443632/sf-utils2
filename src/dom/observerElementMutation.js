@@ -11,9 +11,11 @@ import { _MutationObserver } from './_constant'
 
 /**
  * 监听元素属性变化，例如宽度、高度
- * @param {Function} callback 回调函数 {Function}
- * @param {Options} options 选项
- * @returns {*}
+ * @param callback 回调函数 {Function}
+ * @param {object} options 选项
+ * @param {HTMLElement} [options.el]
+ * @param {number} [options.debounceTime]  防抖时间
+ * @param {MutationObserverInit} [options.observerOptions]
  */
 function observerElementMutation({
   callback = () => {},

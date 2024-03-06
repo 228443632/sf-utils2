@@ -6,7 +6,7 @@ import isFunction from '@/base/isFunction'
  * 垂直滚动
  * @param {HTMLElement} el domElement  滚动的dom
  * @param {number} [start] 起始位置 默认是 scrollTop
- * @param {number} to  滑动末端位置
+ * @param {number} [to]  滑动末端位置
  * @param {number} [duration]  滚动持续时间
  * @param {Function} [callback]  结束回调事件
  */
