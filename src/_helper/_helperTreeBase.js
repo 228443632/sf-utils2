@@ -83,6 +83,16 @@ export function _includesChildPath(aPath, bPath) {
 }
 
 /**
+ * 根据自动生成id 返回对应nodes节点
+ * @param {string} __id__
+ * @param {Record<string, object>} treeCacheObjBy__id__
+ * @returns {*[]|*[]}
+ */
+export const _getPathNodes = (__id__, treeCacheObjBy__id__) => {
+  return _getPathLists(__id__, '-').map(o => treeCacheObjBy__id__[o]) || []
+}
+
+/**
  * 方向
  */
 const sortType = {

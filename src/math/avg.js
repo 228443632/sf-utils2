@@ -4,10 +4,10 @@ import sum from './sum'
 /**
  * 求平均值  avg(...[1, 2, 3])
  * @param args
- * @returns {number}
+ * @returns {string}
  */
 function avg(...args) {
-  return +new Decimal(sum(...args)).div(args.length).toFixed()
+  return new Decimal(sum(...args)).div(args.length).toFixed()
 }
 
 export default avg

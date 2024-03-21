@@ -1,14 +1,16 @@
 import Decimal from './Decimal'
+import { getNumString } from '@/_helper/_helperNumber'
 
 /**
- * 相减去
+ * 相减
  * @param {any[]} args
- * @returns {number}
+ * @returns {string}
  */
 function sub(...args) {
-  return +args
+  return args
+    .filter(Boolean)
     .slice(1)
-    .reduce((pre, cur) => pre.sub(+cur || 0), new Decimal(+args[0] || 0))
+    .reduce((pre, cur) => pre.sub(getNumString(cur)), new Decimal(getNumString(args[0])))
     .toFixed()
 }
 
