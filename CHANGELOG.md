@@ -1,8 +1,19 @@
 # Changelog
 
-- feat: 支持超过 18 位浮点型数值运算 (03c2152)
-- docs: 优化更新文档说明 (b33ca1f)
-- docs: 优化更新文档说明 (8c528b6)
+## [3.1.11](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.10...v3.1.11) (2024-03-21)
+
+### 📃 文档
+
+- 优化更新文档说明 ([b33ca1f](https://gitee.com/bianpengfei/bianpengfei-utils/commit/b33ca1f320b08b9b473461975a336733fcc22084))
+- 优化更新文档说明 ([8c528b6](https://gitee.com/bianpengfei/bianpengfei-utils/commit/8c528b638f54ce1e570661d316d22a2d48ddf2c4))
+
+### ✨ 新功能
+
+- 支持超过 18 位浮点型数值运算 ([03c2152](https://gitee.com/bianpengfei/bianpengfei-utils/commit/03c215203c9c01c14488bab522b05513953888d8))
+
+* feat: 支持超过 18 位浮点型数值运算 (03c2152)
+* docs: 优化更新文档说明 (b33ca1f)
+* docs: 优化更新文档说明 (8c528b6)
 
 ## [3.1.10](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.9...v3.1.10) (2024-02-20)
 
