@@ -33,10 +33,10 @@ function getTargetScrollLocation(target, parent, align) {
   let differenceY = null
   let targetWidth = null
   let targetHeight = null
-  let leftAlign = align && align.left != null ? align.left : 0.5
-  let topAlign = align && align.top != null ? align.top : 0.5
-  let leftOffset = align && align.leftOffset != null ? align.leftOffset : 0
-  let topOffset = align && align.topOffset != null ? align.topOffset : 0
+  let leftAlign = align?.left ?? 0.5
+  let topAlign = align?.top ?? 0.5
+  let leftOffset = align.leftOffset ?? 0
+  let topOffset = align.topOffset ?? 0
   let leftScalar = leftAlign
   let topScalar = topAlign
 
@@ -58,11 +58,12 @@ function getTargetScrollLocation(target, parent, align) {
     x = offsetLeft + targetWidth * leftScalar - parent.clientWidth * leftScalar
     y = offsetTop + targetHeight * topScalar - parent.clientHeight * topScalar
     x = Math.max(Math.min(x, parent.scrollWidth - parent.clientWidth), 0)
-    y = Math.max(Math.min(y, parent.scrollHeight - parent.clientHeight), 0)
+    y = Math.max(y, 0) //   y = Math.max(Math.min(y, parent.scrollHeight - parent.clientHeight), 0)
     x -= leftOffset
     y -= topOffset
     differenceX = x - parent.scrollLeft
     differenceY = y - parent.scrollTop
+    // console.log('y', targetPosition.top, y, differenceY, parent.scrollTop)
   }
 
   return {

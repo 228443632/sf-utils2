@@ -10,8 +10,8 @@ import { getNumString } from '@/_helper/_helperNumber'
  *
  * As with JavaScript numbers, (-0).toFixed(0) is '0', but e.g. (-0.00001).toFixed(0) is '-0'.
  *
- * @param dp {number} Decimal places. Integer, 0 to MAX_DIGITS inclusive.
- * @param rm {number} Rounding mode. Integer, 0 to 8 inclusive.
+ * @param [dp] {number} Decimal places. Integer, 0 to MAX_DIGITS inclusive.
+ * @param [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
  *
  * (-0).toFixed(0) is '0', but (-0.1).toFixed(0) is '-0'.
  * (-0).toFixed(1) is '0.0', but (-0.01).toFixed(1) is '-0.0'.
