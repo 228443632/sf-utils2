@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.13](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.12...v3.1.13) (2024-03-26)
+
+### 🐞 问题修复
+
+- 修复 scrollToElement 偏移量是负的问题 ([9635a43](https://gitee.com/bianpengfei/bianpengfei-utils/commit/9635a43eb26d78d299daa0b877f62f502ad672d6))
+
 ## [3.1.12](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.11...v3.1.12) (2024-03-26)
 
 ### ✨ 新功能
