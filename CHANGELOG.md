@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.14](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.13...v3.1.14) (2024-03-26)
+
+### 🐞 问题修复
+
+- 修复 scrollIntoView 偏移量是负的问题 ([bd89f64](https://gitee.com/bianpengfei/bianpengfei-utils/commit/bd89f64575fb7ce9c05509a5e58020ddfb2d837a))
+
 ## [3.1.13](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.12...v3.1.13) (2024-03-26)
 
 ### 🐞 问题修复
