@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.12](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.11...v3.1.12) (2024-03-26)
+
+### ✨ 新功能
+
+- 新增 toFixed、scrollInToView 方法 ([e36ce51](https://gitee.com/bianpengfei/bianpengfei-utils/commit/e36ce5107cc79462a0ad8e983dbf6452943ff632))
+
 ## [3.1.11](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.10...v3.1.11) (2024-03-21)
 
 ### 📃 文档
