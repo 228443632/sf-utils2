@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.15](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.14...v3.1.15) (2024-04-07)
+
+### 🐞 问题修复
+
+- 修复 div 如果分母时 0 时，报错 ([d7d63aa](https://gitee.com/bianpengfei/bianpengfei-utils/commit/d7d63aa53daad47ff494171f85b555b25d863472))
+
 ## [3.1.14](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.13...v3.1.14) (2024-03-26)
 
 ### 🐞 问题修复
