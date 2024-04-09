@@ -2,7 +2,7 @@ import uniq from '@/array/uniq'
 import arrayToObj from '@/array/arrayToObj'
 
 /**
- * 支持批量加载css 和 jsm 例子：loadRemoteScriptOrCss(['https://unpkg.com/element-ui/lib/theme-chalk/index.css', 'https://unpkg.com/element-ui/lib/index.js'])
+ * 支持批量加载css 和 jsm 例子：loadJsOrCssMulSync(['https://unpkg.com/element-ui/lib/theme-chalk/index.css', 'https://unpkg.com/element-ui/lib/index.js'])
  * @param {Array} urlList 类型 Array | String
  * @returns {Promise<Awaited<unknown>[]>}
  */

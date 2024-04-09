@@ -29,7 +29,7 @@ function scrollToElement({ target = '', scrollElement = null, cb = () => {}, dur
   }
   if (targetDOM?.nodeType == 1) {
     // 是元素
-    const to = getAbsOffsetTop(targetDOM, scrollElement) - offsetTop
+    const to = getAbsOffsetTop(targetDOM, scrollElement) + offsetTop
     const scrollTop = scrollElement.scrollTop
     scrollToY(scrollElement, scrollTop, to, duration, cb)
   }
