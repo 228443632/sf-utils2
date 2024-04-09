@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.16](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.15...v3.1.16) (2024-04-09)
+
+### 🐞 问题修复
+
+- 回退版本 ([429bfc8](https://gitee.com/bianpengfei/bianpengfei-utils/commit/429bfc82b76300daa62d3d922f3c644f85b53dd1))
+
 ## [3.1.15](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.14...v3.1.15) (2024-04-07)
 
 ### 🐞 问题修复
