@@ -1,5 +1,7 @@
 # Changelog
 
+## [3.1.17](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.17-0...v3.1.17) (2024-04-15)
+
 ## [3.1.16](https://gitee.com/bianpengfei/bianpengfei-utils/compare/v3.1.15...v3.1.16) (2024-04-09)
 
 ### 🐞 问题修复
