@@ -15,7 +15,8 @@ function div(...args) {
   return args
     .slice(1)
     .reduce((pre, cur) => {
-      if (!getNumString(cur) || cur == '0') return new Decimal(0) // 如果分母是 0，则返回0
+      const numString = getNumString(cur)
+      if (numString == '0' || !numString || cur == '0') return new Decimal(0) // 如果分母是 0，则返回0
       return pre.div(cur)
     }, new Decimal(getNumString(args[0])))
     .toFixed()
