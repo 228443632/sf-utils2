@@ -1,4 +1,7 @@
-import { parseURL, deepMerge, merge, getGlobalThis } from 'sf-utils2'
+import parseURL from '@/base/parseURL'
+import merge from '@/object/merge'
+import deepMerge from '@/object/deepMerge'
+import getGlobalThis from '@/base/getGlobalThis'
 
 /**
  * 加工url，将query参数合并到url上
