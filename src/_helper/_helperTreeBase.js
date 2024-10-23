@@ -120,11 +120,12 @@ const DEFAULT_RETAIN_FIELD = ['__id__', '__rootNode__', '__pId__', '__level__', 
 /**
  * 遍历树型结构，并添加额外参数
  * @param tree 树形
- * @param {object} props 自增字段
- * @param callbackList 回调函数 节点list
- * @param callbackItem 回调函数 当前节点
- * @param {RetainField[]} retainField 保留的字段数组  __pathIds__ 保留经过路径的__id__集合
- * @param isDeepClone 是否深度克隆原树型对象
+ * @param {object} [props] 自增字段
+ * @param [callbackList] 回调函数 节点list
+ * @param [callbackItem] 回调函数 当前节点
+ * @param {RetainField[]} [retainField] 保留的字段数组  __pathIds__ 保留经过路径的__id__集合
+ * @param [isDeepClone] 是否深度克隆原树型对象
+ * @param [traversalOrder] {'preorder'|'postorder'} 树的遍历顺序 可选值 preorder 先进行父->子、 postorder 后进行子->父
  * @returns {*[]}
  * @param {string|'id'|'key'} [props.id] props
  * @param {string|'pid'|'parentId'|'pId'} [props.parentId]
@@ -148,7 +149,8 @@ const _helperTreeBase = ({
   callbackItem = __callbackItemInterface,
   retainField = [],
   // extraField = [`__pathIdsList__`],
-  isDeepClone = true
+  isDeepClone = true,
+  traversalOrder = 'preorder' // 默认先序遍历, 可选值 preorder 先进行父->子、 postorder 后进行子->父
 }) => {
   // let defaultProps = {
   //   id: 'id',
@@ -172,6 +174,7 @@ const _helperTreeBase = ({
   let _fn = ({ tree = [], parentNode = null, rootNode = null }) => {
     if (isArray(tree)) {
       !_isCbListBreak &&
+        tree.length &&
         (_isCbListBreak = !!(
           callbackList &&
           callbackList !== __callbackListInterface &&
@@ -199,12 +202,16 @@ const _helperTreeBase = ({
         retainFieldObj.__rootNode__ && def(v, '__rootNode__', rootNode || (v.__depth__ == 1 && v) || null)
         retainFieldObj.__parentNode__ && def(v, '__parentNode__', parentNode)
         retainFieldObj.__index__ && def(v, '__index__', vi)
-        if (
-          callbackItem &&
-          callbackItem !== __callbackItemInterface &&
-          (parentNode?.__loop__ === true || !parentNode)
-        ) {
-          callbackItem(v, vi, tree, parentNode) && def(v, '__loop__', false)
+
+        // 先序遍历：先处理父节点，再处理子节点
+        if (traversalOrder == 'preorder') {
+          if (
+            callbackItem &&
+            callbackItem !== __callbackItemInterface &&
+            (parentNode?.__loop__ === true || !parentNode)
+          ) {
+            callbackItem(v, vi, tree, parentNode) && def(v, '__loop__', false)
+          }
         }
 
         // 历史
@@ -215,11 +222,24 @@ const _helperTreeBase = ({
         //     callbackItem(v, vi, tree, parentNode)
         //   ))
         // console.log('将list转成树状结', props.children, v[props.children], v.name, v)
+
+        // 继续递归遍历
         _fn({
           tree: v[props.children],
           parentNode: v,
           rootNode: v.__level__ == 1 ? v : rootNode
         })
+
+        // 后序遍历：先处理子节点，再处理父节点
+        if (traversalOrder == 'postorder') {
+          if (
+            callbackItem &&
+            callbackItem !== __callbackItemInterface &&
+            (parentNode?.__loop__ === true || !parentNode)
+          ) {
+            callbackItem(v, vi, tree, parentNode) && def(v, '__loop__', false)
+          }
+        }
       })
     }
   }

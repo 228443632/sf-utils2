@@ -19,9 +19,9 @@
     "build:modules": "cross-env NODE_ENV=production rollup -c build/rollup.modules.js && cross-env NODE_ENV=production rollup -c build/rollup.modules.nodejs.js",
     "build:entry-cdn": "cross-env NODE_ENV=production rollup -c build/rollup.entry-cdn.js && terser lib/index.umd.js -m -o lib/index.umd.min.js",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs && touch docs/.vuepress/compile/fr/@bianpengfei-utils/v3/.spa",
+    "docs:build": "vuepress build docs && touch docs/.vuepress/compile/fr/bianpengfei-utils/v3/.spa",
     "docs:deploy": "npm run docs:build && yarn commit:docs",
-    "commit:docs": "sh docs/bin/deploy.sh",
+    "commit:docs": "node ./build/deploy.js",
     "prettier:docs": "prettier 'docs/01.指南/**/*.md' --config --ignore-unknown .prettierrc.js --write",
     "prettier:source": "prettier 'src/**/*.js' --config --ignore-unknown .prettierrc.js --write",
     "prettier:all": "npm run prettier:docs && npm run prettier:source",
@@ -149,7 +149,10 @@
     "windicss-webpack-plugin": "1.7.3",
     "xe-utils": "3.5.14",
     "yamljs": "0.3.0",
-    "yargs-parser": "21.1.1"
+    "yargs-parser": "21.1.1",
+    "scp2": "0.5.0",
+    "ssh2": "1.7.0",
+    "ora": "5.4.1"
   },
   "resolutions": {
     "vue-router": "3.5.3",
