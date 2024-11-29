@@ -1,3 +1,5 @@
+import isPromise from '@/base/isPromise'
+
 /**
  * 方便处理异步promise错误处理
  * @param { Promise } promise
@@ -7,17 +9,29 @@
  * @example
  * const [res, err] = await asyncTo(api.xxxx)
  */
-function to(promise, errorExt = {}) {
-  return promise
-    .then(function (data) {
-      return [data, undefined]
-    })
-    .catch(function (err) {
-      if (errorExt) {
-        Object.assign(err, errorExt)
-      }
-      return [undefined, err]
-    })
+async function to(promise, errorExt = {}) {
+  if (isPromise(promise)) {
+    return promise
+      .then(function (data) {
+        return [data, undefined]
+      })
+      .catch(function (err) {
+        if (errorExt) {
+          Object.assign(err, errorExt)
+        }
+        return [undefined, err]
+      })
+  }
+
+  try {
+    const data = await promise
+    return [data, undefined]
+  } catch (err) {
+    if (errorExt) {
+      Object.assign(err, errorExt)
+    }
+    return [undefined, err]
+  }
 }
 
 export default to
