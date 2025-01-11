@@ -1,3 +1,5 @@
+import isNativeFunction from '@/base/isNativeFunction'
+
 /**
  * 检测当前方法是否是原生js提供的
  * @param {*} Ctor
@@ -10,9 +12,12 @@
  * isNative(() => {})
  * =>
  * false
+ * @deprecated
+ *
+ * 请去使用 @link{isNativeFunction}
  */
 function isNative(Ctor) {
-  return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+  return isNativeFunction(Ctor)
 }
 
 export default isNative

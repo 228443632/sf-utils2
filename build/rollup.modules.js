@@ -11,7 +11,7 @@ import json from '@rollup/plugin-json'
 
 export default () => {
   const input = {}
-  const files = glob.sync('./src/*/**.js')
+  const files = glob.sync('./src/*/**.{js,ts}')
   if (Array.isArray(files)) {
     files.forEach(v => {
       const pathSplit = v.replace(/^\.\/(.*)\.\w+$/, '$1').split('/')
@@ -43,7 +43,7 @@ export default () => {
 
   const dtsPlugins = [dts(), json()]
 
-  const dtsInputs = {...dtsCommonInputObj, ...dtsExpandInputObj}
+  const dtsInputs = { ...dtsCommonInputObj, ...dtsExpandInputObj }
 
   return [
     {
@@ -65,7 +65,7 @@ export default () => {
         format: 'esm',
         assetFileNames: `[name].d.ts`
       }
-    },
+    }
 
     // ...dtsRollUpConfigs
     // ...dtsRollUpConfigs
