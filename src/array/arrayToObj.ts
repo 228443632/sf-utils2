@@ -1,7 +1,14 @@
+// @ts-nocheck
+
 import isArray from '@/base/isArray'
 import isFunction from '@/base/isFunction'
 import { getPropValue } from '@/array/arrayToMap'
 import isNullable from '@/base/isNullable'
+
+type TOptions = Partial<{
+  valueType: 'object' | 'array'
+  retainKeyWithNull?: boolean
+}>
 
 /**
  * 将数组转成obj
@@ -36,7 +43,11 @@ import isNullable from '@/base/isNullable'
  *
  */
 
-function arrayToObj(array = [], property, options = { valueType: 'object', retainKeyWithNull: false }) {
+function arrayToObj(
+  array: any[] = [],
+  property: string | string[],
+  options: TOptions = { valueType: 'object', retainKeyWithNull: false }
+): any {
   if (isArray(array)) {
     // 如果property是Function
     if (isFunction(property)) {

@@ -12,9 +12,11 @@ import banner from 'rollup-plugin-banner'
 import path from 'path'
 import externals from 'rollup-plugin-node-externals'
 import aliasPlugin from '@rollup/plugin-alias'
+import terser from '@rollup/plugin-terser'
+import typescript from '@rollup/plugin-typescript'
 
 const customResolver = resolve({
-  extensions: ['.mjs', '.js', '.jsx', '.json', '.sass', '.scss']
+  extensions: ['.mjs', '.ts', '.js', '.jsx', '.json', '.sass', '.scss']
 })
 
 export const IS_DEV = process.env.NODE_ENV === 'development'
@@ -22,12 +24,12 @@ export const IS_PRO = process.env.NODE_ENV === 'production'
 export const ROOT_PATH = path.resolve(__dirname, '../')
 import { visualizer } from 'rollup-plugin-visualizer'
 
-
 const year = new Date().getFullYear()
 
 export default {
   external: ['html2canvas', 'jspdf', 'crypto-js', 'jszip', 'file-saver', '@bianpengfei/utils', 'sf-utils2'], // /@babel\/runtime/,
   plugins: [
+    typescript(),
     // externals({
     //   browser: true,
     // }),
@@ -39,7 +41,7 @@ export default {
     aliasPlugin({
       entries: [
         { find: '@', replacement: path.join(ROOT_PATH, 'src') },
-        { find: 'sf-utils2', replacement: path.join(ROOT_PATH, 'src') },
+        { find: 'sf-utils2', replacement: path.join(ROOT_PATH, 'src') }
       ],
       customResolver
     }),
@@ -64,5 +66,12 @@ export default {
     getBabelOutputPlugin({
       allowAllFormats: true
     })
-  ]
+    // IS_PRO &&
+    //   terser({
+    //     toplevel: true,
+    //     compress: {
+    //       pure_funcs: ['console.warn', 'console.log']
+    //     }
+    //   })
+  ].filter(Boolean)
 }

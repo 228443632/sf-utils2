@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import arrayToObj from '@/array/arrayToObj'
 
 /**
@@ -6,7 +8,7 @@ import arrayToObj from '@/array/arrayToObj'
  * @param {string} [property] 如果传入是 Object[] 数据结构，以property为主键去重
  * @return {*[]}
  */
-export const uniq = (list = [], property) => {
+export const uniq = (list: any[] = [], property: string | string[]): any[] => {
   if (property) {
     const listObj = arrayToObj(list, property)
     return [...new Set(list.map(v => v[property]))].map(v => listObj[v])

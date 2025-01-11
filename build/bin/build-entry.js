@@ -14,7 +14,7 @@ const pkg = require('../../package.json')
 const utils = require('../utils')
 
 const OUTPUT_PATH = path.join(utils.ROOT_PATH, 'src/index.js')
-const FILE_PATHS = glob.sync('./src/*/**.js').map(v => v.replace('src/', ''))
+const FILE_PATHS = glob.sync('./src/*/**.{js,ts}').map(v => v.replace('src/', ''))
 
 const EXCLUDE_DIRS = ['expand', 'nodejs'] // 排出的文件夹
 

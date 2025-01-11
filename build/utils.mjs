@@ -18,7 +18,14 @@ const __dirname = dirname(__filename)
 export const ROOT_PATH = path2.resolve(__dirname, '../')
 export const ENTRY_NAME = path2.basename(pkg.main, path2.extname(pkg.main))
 
+/**
+ * dts 文件路径
+ * @type {string}
+ */
+export const DTS_PATH = path2.join(ROOT_PATH, 'index.d.ts')
+
 export default {
   ROOT_PATH,
-  ENTRY_NAME
+  ENTRY_NAME,
+  DTS_PATH
 }

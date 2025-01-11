@@ -6,7 +6,7 @@ import getGlobalThis from '@/base/getGlobalThis'
 /**
  * 加工url，将query参数合并到url上
  * @param {string} url 地址
- * @param {{[key:any]: any}} query 参数
+ * @param {{[key:string|symbol]: any}} query 参数
  * @param {boolean} isDeepMerge 是否需要深度合并
  * @return {string|void}
  * @example

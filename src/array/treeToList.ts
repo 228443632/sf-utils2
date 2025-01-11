@@ -1,8 +1,11 @@
+// @ts-nocheck
+
 import isArray from '@/base/isArray'
 import merge from '../object/merge'
 import def from '@/object/def'
 import deepClone from '@/object/deepClone'
 import { _includesChildPath } from '@/_helper/_helperTreeBase'
+import { TTreeToListProp } from '@/_types/_helperTreeBaseType'
 
 /**
  * 获取节点 经过的所有父节点 轨迹节点
@@ -40,7 +43,7 @@ function _getNodePathItem(listObj = {}, ID = '') {
 //  Object.defineProperty(item, '_id', { writable: false, value: `${item._pId}-${index + 1}` })
 function treeToList({
   tree = [],
-  props = { children: 'children' },
+  props = { children: 'children' } as TTreeToListProp,
   retainChild = false,
   retainPaths = false,
   retainAllChildren = false,
@@ -61,6 +64,9 @@ function treeToList({
         let _pId = item.__pId__ ?? PID
         def(item, '__pId__', _pId)
         def(item, '__id__', `${_pId}-${index}`)
+        def(item, '__prevNode__', tree[index - 1])
+        def(item, '__index__', index)
+        def(item, '__nextNode__', tree[index + 1])
         _list.push(item)
         if (isArray(item[props.children]) && item[props.children].length) {
           treeToListFn({

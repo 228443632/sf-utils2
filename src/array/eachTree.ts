@@ -1,5 +1,14 @@
+// @ts-nocheck
+
 import merge from '@/object/merge'
 import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } from '../_helper/_helperTreeBase.js'
+import {
+  TCallbackItemInterface,
+  TCallbackListInterface,
+  TEachTreeProps,
+  TEachTreeRetainField,
+  TEachTreeTraversalOrder
+} from '@/_types/_helperTreeBaseType'
 
 /**
  * @typedef {('__pathIds__'|'__pathIdsObj__')[]} RetainField
@@ -21,12 +30,12 @@ import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } fro
  */
 function eachTree({
   tree = [],
-  props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
-  callbackList = __callbackListInterface,
-  callbackItem = __callbackItemInterface,
+  props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' } as TEachTreeProps,
+  callbackList = __callbackListInterface as TCallbackListInterface,
+  callbackItem = __callbackItemInterface as TCallbackItemInterface,
   isDeepClone = true,
-  retainField = [],
-  traversalOrder = 'preorder' // 默认先序遍历, 可选值 preorder 先进行父->子、 postorder 后进行子->父
+  retainField = [] as TEachTreeRetainField[],
+  traversalOrder = 'preorder' as TEachTreeTraversalOrder // 默认先序遍历, 可选值 preorder 先进行父->子、 postorder 后进行子->父
 }) {
   let defaultOptions = {
     children: 'children',

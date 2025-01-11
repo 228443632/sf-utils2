@@ -10,6 +10,7 @@ import deepClone from '@/object/deepClone'
 import isString from '@/base/isString'
 import _helperArraySort from '@/_helper/_helperArraySort'
 import arrayToObj from '@/array/arrayToObj'
+import isNullable from '@/base/isNullable'
 
 /**
  * @param {Array} list 每个节点下子节点数组
@@ -111,7 +112,16 @@ const DEFAULT_PROPS = {
   orderBy: 'asc'
 }
 
-const DEFAULT_RETAIN_FIELD = ['__id__', '__rootNode__', '__pId__', '__level__', '__index__', '__parentNode__']
+const DEFAULT_RETAIN_FIELD = [
+  '__id__',
+  '__rootNode__',
+  '__pId__',
+  '__level__',
+  '__index__',
+  '__parentNode__',
+  '__prevNode__',
+  '__nextNode__'
+]
 
 /**
  * @typedef {'__pathIds__', '__pathIdsObj__'} RetainField
@@ -171,6 +181,9 @@ const _helperTreeBase = ({
 
   if (isDeepClone) tree = deepClone(tree)
 
+  // 为了兼容，需要把当前节点push到nodeList中
+  const nodeList = [] // node集合
+
   let _fn = ({ tree = [], parentNode = null, rootNode = null }) => {
     if (isArray(tree)) {
       !_isCbListBreak &&
@@ -191,6 +204,54 @@ const _helperTreeBase = ({
         retainFieldObj.__pId__ && def(v, '__pId__', _pId)
         retainFieldObj.__pId__ && def(v, '__pId__', _pId)
         retainFieldObj.__pId__ && def(v, '__pId__', _pId)
+
+        def(v, '__treeCache__', {})
+
+        // 所有子节点集合
+        if (retainFieldObj.__allChildList__ || retainFieldObj.__allLeafChildList__) {
+          nodeList.push(v)
+
+          Object.defineProperty(v, '__allChildList__', {
+            get() {
+              const cache = v.__treeCache__
+              if (isNullable(cache?.__allChildList__)) {
+                v.__treeCache__.__allChildList__ = nodeList.filter(
+                  cNode => cNode[props.id] != v[props.id] && _includesChildPath(cNode.__id__, v.__id__)
+                )
+              }
+              return cache?.__allChildList__
+            },
+            set(val) {
+              v.__treeCache__ ||= {}
+              v.__treeCache__.__allChildList__ = val
+            },
+            enumerable: false
+          })
+        }
+
+        // 所有没有子节点的节点集合
+        if (retainFieldObj.__allLeafChildList__) {
+          Object.defineProperty(v, '__allLeafChildList__', {
+            get() {
+              const cache = v.__treeCache__
+              if (isNullable(cache?.__allLeafChildList__)) {
+                const allChildrenList = v?.__allChildList__ || []
+                v.__treeCache__.__allLeafChildList__ = allChildrenList.filter(
+                  cNode => !cNode[props.children]?.length && cNode.__id__ != v.__id__
+                )
+              }
+              return cache?.__allLeafChildList__
+            },
+            set(val) {
+              v.__treeCache__ ||= {}
+              v.__treeCache__.__allLeafChildList__ = val
+            },
+            enumerable: false
+          })
+        }
+
+        retainFieldObj.__prevNode__ && def(v, '__prevNode__', tree[vi - 1])
+        retainFieldObj.__nextNode__ && def(v, '__nextNode__', tree[vi + 1])
 
         retainFieldObj.__pathIds__ && def(v, '__pathIds__', _getPathLists(v.__id__, '-'))
         if (retainFieldObj.__pathIdsObj__) {

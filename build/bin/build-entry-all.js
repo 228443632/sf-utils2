@@ -12,7 +12,7 @@ const shell = require('shelljs')
 const pkg = require('../../package.json')
 
 const OUTPUT_PATH = path.join(__dirname, '../../src/index-all.js')
-const FILE_PATHS = glob.sync('./src/*/**.js').map(v => v.replace('src/', ''))
+const FILE_PATHS = glob.sync('./src/*/**.{js,ts}').map(v => v.replace('src/', ''))
 
 const EXCLUDE_DIRS = [] // 排出的文件夹
 

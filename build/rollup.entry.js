@@ -9,16 +9,15 @@ import pkg from '../package.json'
 
 import dts from 'rollup-plugin-dts'
 import json from '@rollup/plugin-json'
+import { DTS_PATH } from './utils'
+import fs from 'node:fs'
 
 export default () => {
   return [
     {
       ...rollupConfigBase,
       input: 'src/index.js',
-      external: [
-        ...rollupConfigBase.external,
-        /@babel\/runtime/
-      ],
+      external: [...rollupConfigBase.external, /@babel\/runtime/],
       output: [
         {
           file: `lib/index.cjs.js`,
@@ -51,14 +50,33 @@ export default () => {
               }
             })
           ]
-        },
+        }
       ]
     },
 
     /* 单独生成声明文件 */
     {
       input: 'src/index.js',
-      plugins: [dts(), json()],
+      plugins: [
+        dts(),
+        json(),
+        (function customDts2() {
+          return {
+            name: 'custom-dts2',
+            // transform(code, id) {
+            //   console.log('id', id)
+            //   // return code.replace(/'@\/__types/g, `'sf-utils2/lib/__types`)
+            //   return code
+            // },
+            writeBundle() {
+              // console.log('output', { output, bundle })
+              // const dtsFile = 'index.d.ts'
+              const dtsFileContent = fs.readFileSync(DTS_PATH, 'utf-8')
+              fs.writeFileSync(DTS_PATH, dtsFileContent.replace(/from '@\//g, `from 'sf-utils2/src/`), 'utf-8')
+            }
+          }
+        })()
+      ],
       output: {
         format: 'esm',
         file: 'index.d.ts'

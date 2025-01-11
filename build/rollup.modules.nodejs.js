@@ -36,6 +36,7 @@ export default () => {
     {
       ...rollupConfigBase,
       input,
+      plugins: [...rollupConfigBase.plugins.slice(1)],
       output: {
         dir: 'lib/nodejs',
         format: 'cjs',

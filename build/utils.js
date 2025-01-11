@@ -16,6 +16,12 @@ const ROOT_PATH = path.resolve(__dirname, '../')
 const ENTRY_NAME = path2.basename(pkg.main, path2.extname(pkg.main))
 
 /**
+ * dts 文件路径
+ * @type {string}
+ */
+const DTS_PATH = path2.join(ROOT_PATH, 'index.d.ts')
+
+/**
  * 文档编译输出目录
  * @type {string}
  */
@@ -97,6 +103,7 @@ const uploadFiles = (serverOps = {}) => {
 module.exports = {
   ROOT_PATH,
   ENTRY_NAME,
+  DTS_PATH,
   uploadFiles,
   DOCS_DIST
 }

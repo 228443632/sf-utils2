@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import eachTree from '@/array/eachTree'
 import arrayToObj from '@/array/arrayToObj'
 import isFunction from '@/base/isFunction'
@@ -13,6 +15,7 @@ import {
   __callbackItemInterface
 } from '@/_helper/_helperTreeBase'
 import merge from '@/object/merge'
+import { TCallbackItemInterface, TCallbackListInterface, TEachTreeProps } from '@/_types/_helperTreeBaseType'
 
 /**
  * 根据回调函数过滤树状
@@ -30,12 +33,12 @@ import merge from '@/object/merge'
  */
 function filterTree({
   tree = [],
-  props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
+  props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' } as TEachTreeProps,
   retainChild = false,
   isDeepClone = true,
-  callbackList = __callbackListInterface,
-  callbackItem = __callbackItemInterface
-}) {
+  callbackList = __callbackListInterface as TCallbackListInterface,
+  callbackItem = __callbackItemInterface as TCallbackItemInterface
+}): any[] {
   if (isDeepClone) tree = deepClone(tree)
   if (!isFunction(callbackItem) || callbackItem === __callbackItemInterface) return tree
 

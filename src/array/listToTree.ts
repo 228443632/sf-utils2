@@ -1,6 +1,14 @@
+// @ts-nocheck
+
 import merge from '../object/merge.js'
 import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } from '../_helper/_helperTreeBase.js'
 import arrayToObj from '@/array/arrayToObj'
+import {
+  TCallbackItemInterface,
+  TCallbackListInterface,
+  TEachTreeRetainField,
+  TListToTreeProp
+} from '@/_types/_helperTreeBaseType'
 
 /**
  * @typedef {'__pathIds__', '__pathIdsObj__'} RetainField
@@ -24,11 +32,18 @@ import arrayToObj from '@/array/arrayToObj'
  */
 function listToTree({
   list = [],
-  root = 0,
-  props = { id: 'id', parentId: 'parentId', children: 'children', order: false, orderField: 'order', orderBy: 'asc' },
-  callbackList = __callbackListInterface,
-  callbackItem = __callbackItemInterface,
-  retainField = [],
+  root = 0 as any,
+  props = {
+    id: 'id',
+    parentId: 'parentId',
+    children: 'children',
+    order: false,
+    orderField: 'order',
+    orderBy: 'asc'
+  } as TListToTreeProp,
+  callbackList = __callbackListInterface as TCallbackListInterface,
+  callbackItem = __callbackItemInterface as TCallbackItemInterface,
+  retainField = [] as TEachTreeRetainField[],
   isDeepClone = true
 }) {
   let defProps = {
