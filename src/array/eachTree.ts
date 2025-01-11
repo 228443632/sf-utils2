@@ -29,14 +29,14 @@ import {
  * @return {*[]}
  */
 function eachTree({
-  tree = [],
+  tree = [] as any[],
   props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' } as TEachTreeProps,
   callbackList = __callbackListInterface as TCallbackListInterface,
   callbackItem = __callbackItemInterface as TCallbackItemInterface,
   isDeepClone = true,
   retainField = [] as TEachTreeRetainField[],
   traversalOrder = 'preorder' as TEachTreeTraversalOrder // 默认先序遍历, 可选值 preorder 先进行父->子、 postorder 后进行子->父
-}) {
+}): any[] {
   let defaultOptions = {
     children: 'children',
     order: false,

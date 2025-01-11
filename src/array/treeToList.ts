@@ -42,14 +42,14 @@ function _getNodePathItem(listObj = {}, ID = '') {
  */
 //  Object.defineProperty(item, '_id', { writable: false, value: `${item._pId}-${index + 1}` })
 function treeToList({
-  tree = [],
+  tree = [] as any[],
   props = { children: 'children' } as TTreeToListProp,
   retainChild = false,
   retainPaths = false,
   retainAllChildren = false,
   isDeepClone = true,
   retainParent = false
-}) {
+}): any[] {
   let defaultProps = { children: 'children' }
   props = merge({}, defaultProps, props)
 

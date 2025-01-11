@@ -31,7 +31,7 @@ import {
  * @returns {*[]}
  */
 function listToTree({
-  list = [],
+  list = [] as any[],
   root = 0 as any,
   props = {
     id: 'id',
@@ -45,7 +45,7 @@ function listToTree({
   callbackItem = __callbackItemInterface as TCallbackItemInterface,
   retainField = [] as TEachTreeRetainField[],
   isDeepClone = true
-}) {
+}): any[] {
   let defProps = {
     id: 'id',
     parentId: 'parentId',

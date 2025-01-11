@@ -8,10 +8,19 @@
  * props 属性
  */
 export type TEachTreeProps = Partial<{
-  children: string | 'children' | 'childrenList' | 'child' | 'childs' | 'childList'
+  children:
+    | string
+    | 'children'
+    | 'childrenList'
+    | 'child'
+    | 'childs'
+    | 'childList'
+    | 'subChild'
+    | 'subChildren'
+    | 'subChilds'
   order: boolean
-  orderField: string | 'order'
-  orderBy: string | 'aes' | 'desc' | 'AES' | 'DESC' | 'up' | 'down' | 'UP'
+  orderField: 'order' | string
+  orderBy: 'aes' | 'desc' | 'AES' | 'DESC' | 'up' | 'down' | 'UP'
 }>
 
 /**

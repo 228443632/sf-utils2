@@ -32,7 +32,7 @@ import { TCallbackItemInterface, TCallbackListInterface, TEachTreeProps } from '
  * @returns {*[]}
  */
 function filterTree({
-  tree = [],
+  tree = [] as any[],
   props = { children: 'children', order: false, orderField: 'order', orderBy: 'asc' } as TEachTreeProps,
   retainChild = false,
   isDeepClone = true,
