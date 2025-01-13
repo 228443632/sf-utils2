@@ -33,9 +33,16 @@ function deepClone(obj, isDeep = true) {
         case 'Array':
         case 'Arguments': {
           const restArr = []
-          val.map(item => {
-            restArr.push(handleValueClone(item, isDeep))
-          })
+          const len = val.length
+          for (let i = 0; i < len; i++) {
+            // fix empty item
+            if (i in val) {
+              restArr.push(handleValueClone(val[i], isDeep))
+            } else {
+              // 是空槽值
+              restArr.length++
+            }
+          }
           return restArr
         }
         case 'Set': {
