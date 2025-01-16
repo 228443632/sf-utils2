@@ -45,8 +45,8 @@ type TOptions = Partial<{
 
 function arrayToObj(
   array: any[] = [],
-  property: string | string[],
-  options: TOptions = { valueType: 'object', retainKeyWithNull: false }
+  property?: string | string[],
+  options?: TOptions = { valueType: 'object', retainKeyWithNull: false }
 ): any {
   if (isArray(array)) {
     // 如果property是Function
