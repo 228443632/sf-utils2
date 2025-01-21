@@ -9,6 +9,7 @@
     "importHelpers": true,
     "removeComments": false,
     "declaration": false,
+    "allowImportingTsExtensions": true,
     "declarationMap": false,
     "outDir": "./lib", // 指定输出目录
     "declarationDir": "./lib", // 指定生成声明文件存放目录

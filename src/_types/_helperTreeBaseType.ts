@@ -70,4 +70,9 @@ export type TTreeToListProp = Partial<{
   children: TEachTreeProps['children']
 }>
 
+/**
+ * 通用方法
+ */
+export type TFunction = ((...args: any[]) => any) & Record<string, any>
+
 export default {}
