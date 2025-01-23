@@ -38,7 +38,7 @@ export type TEachTreeTraversalOrder = 'preorder' | 'postorder'
  * @param {any[]} list 每个节点下子节点数组
  * @param {any} parentObj 父节点对象
  */
-export type TCallbackListInterface = (list: any[], parentObj: any) => boolean | undefined
+export type TCallbackListInterface = (list: any[], parentObj: any) => boolean | void
 
 /**
  * @param {any} item 当前树节点
@@ -47,7 +47,7 @@ export type TCallbackListInterface = (list: any[], parentObj: any) => boolean | 
  * @param {any} parentObj 父节点
  * @return {void|boolean}
  */
-export type TCallbackItemInterface = (item: any, index: number, list: any[], parentObj: any) => boolean | undefined
+export type TCallbackItemInterface = (item: any, index: number, list: any[], parentObj: any) => boolean | void
 
 /******************listToTree 类型申明*****************************/
 /**
