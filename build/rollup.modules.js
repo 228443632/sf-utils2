@@ -24,7 +24,7 @@ export default () => {
       }
       input[filePath] = v
     })
-    console.log('测试', input)
+    console.log(input)
   }
 
   const dtsCommonInputObj = Object.entries(input).reduce((p, [k, v]) => {
