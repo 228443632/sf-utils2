@@ -1,7 +1,7 @@
 /**
  * 根据给定函数对数组的元素进行分组
  * @param {any[]} arr 原数组
- * @param {(value:any, index: number, array: any[]) => boolean} fn
+ * @param {((value:any, index: number, array: any[]) => boolean) | string} fn
  * @return {*}
  * @example
  * groupBy([6.1, 4.2, 6.3], Math.floor) // {4: [4.2], 6: [6.1, 6.3]}

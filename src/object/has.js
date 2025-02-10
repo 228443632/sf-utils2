@@ -12,8 +12,8 @@ import _helperObjectFlatten from '@/_helper/_helperObjectFlatten'
  */
 function has(object, key) {
   if (isPlainObject(object)) {
-    key = key.replace(/\.\[/g, '[')
     if (isString(key) && key) {
+      key = key.replace(/\.\[/g, '[')
       if (/\./.test(key)) {
         let isBool = false
         _helperObjectFlatten(object, (_, field) => {

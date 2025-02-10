@@ -1,4 +1,5 @@
 import _helperObjectFlatten from '@/_helper/_helperObjectFlatten'
+import isString from '@/base/isString'
 
 /**
  * 获取对象的属性的值，如果值为 undefined，则返回默认值
@@ -9,7 +10,9 @@ import _helperObjectFlatten from '@/_helper/_helperObjectFlatten'
  */
 function get(obj, property, defaultValue) {
   let result
-  property = property.replace(/\.\[/g, '[')
+  if (isString(property)) {
+    property = property.replace(/\.\[/g, '[')
+  }
   _helperObjectFlatten(obj, (value, field) => {
     if (field === property) {
       result = value

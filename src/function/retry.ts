@@ -118,26 +118,3 @@ async function retry<T>(func: (() => Promise<T>) | Promise<T>, _options?: number
 }
 
 export default retry
-
-async function getNumber() {
-  return Promise.resolve(3)
-}
-async function getError() {
-  console.log('尝试了一次')
-  return Promise.reject(23242)
-}
-
-;(async () => {
-  // 将返回 3
-  // console.log(await retry(getNumber, {
-  //   intervalMs: 1000,
-  //   retries: 2,
-  // }));;
-  // 将抛出异常
-  console.log(
-    await retry(getError, {
-      interval: 1000,
-      retries: 3
-    })
-  )
-})()
