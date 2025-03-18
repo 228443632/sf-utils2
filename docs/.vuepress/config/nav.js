@@ -1,4 +1,5 @@
 const { version } = require('../../../package.json')
+const { DOMAIN_ORIGIN } = require('./constant')
 
 module.exports = [
   { text: '版本v' + version, link: '/' },
@@ -20,7 +21,7 @@ module.exports = [
   },
   {
     text: 'Webpack5.x',
-    items: [{ text: 'webpack5.x教程学习', link: 'http://8.133.185.32/fr/learn-webpack5-docs/' }]
+    items: [{ text: 'webpack5.x教程学习', link: `${DOMAIN_ORIGIN}/fr/learn-webpack5-docs/` }]
   },
   {
     text: 'Linux',
@@ -41,5 +42,5 @@ module.exports = [
   //     { text: 'v3.x', link: 'https://bianpengfei.gitee.io/bianpengfei-utils/v3/' },
   //   ]
   // },
-  { text: '企业级后台模版', link: 'http://8.133.185.32/fr/pc-template/' }
+  { text: '企业级后台模版', link: `${DOMAIN_ORIGIN}/fr/pc-template/` }
 ]

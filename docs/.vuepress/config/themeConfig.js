@@ -1,5 +1,6 @@
 const nav = require('./nav.js')
 const htmlModules = require('./htmlModules.js')
+const { DOMAIN_ORIGIN } = require('./constant')
 
 // Theme Config
 module.exports = {
@@ -54,7 +55,7 @@ module.exports = {
   footer: {
     createYear: 2022,
     copyrightInfo: [
-      '<a href="http://8.133.185.32/fr/@bianpengfei-utils/" target="_blank" style="font-weight:bold">bianpengfei</a>'
+      `<a href="${DOMAIN_ORIGIN}/fr/@bianpengfei-utils/" target="_blank" style="font-weight:bold">bianpengfei</a>`
     ].join('')
   },
 
