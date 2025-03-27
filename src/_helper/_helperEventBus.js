@@ -19,8 +19,11 @@ import parseJsonNoError from '@/base/parseJsonNoError'
  *
  * // Unsubscribe: stop a specific handler from listening to the 'message' event
  *   hub.off('message', handler);
+ *   @param {object} options
+ *   @param {boolean} [options.isCrossTab]
  */
-function _helperEventBus() {
+function _helperEventBus(options = {}) {
+  const { isCrossTab = true } = options || {}
   const __opts = {
     storageKey: '__hub__broadcastChannel'
     // crossTabsMsgType: null // BroadcastChannel storage
@@ -61,12 +64,15 @@ function _helperEventBus() {
      */
     emit(event, ...data) {
       ;(this.hub[event] || []).forEach(handler => handler?.(...data))
-      if (this.broadcastChannel) {
-        this.broadcastChannel.postMessage(data)
-      } else {
-        const global = getGlobalThis()
-        global?.localStorage &&
-          global.localStorage.setItem(this.__opts.storageKey, JSON.stringify([...data, Number(new Date())]))
+      // 如果跨tabs
+      if (isCrossTab) {
+        if (this.broadcastChannel) {
+          this.broadcastChannel.postMessage(data)
+        } else {
+          const global = getGlobalThis()
+          global?.localStorage &&
+            global.localStorage.setItem(this.__opts.storageKey, JSON.stringify([...data, Number(new Date())]))
+        }
       }
     },
     /**
@@ -79,30 +85,34 @@ function _helperEventBus() {
       if (!handler) return
       if (!this.hub[event]) this.hub[event] = []
       this.hub[event].push(handler)
-      if (!this.crossHub[event]) this.crossHub[event] = []
-      let handler2
-      if (this.broadcastChannel) {
-        handler2 = (...args) => {
-          const $0 = args[0]
-          return handler.call(this, ...$0?.data, ...args)
-        }
-        this.broadcastChannel.addEventListener('message', handler2)
-        this.crossHub[event].push(handler2)
-      } else {
-        const global = getGlobalThis()
-        if (global && 'addEventListener' in global) {
+
+      // 如果跨tabs
+      if (isCrossTab) {
+        if (!this.crossHub[event]) this.crossHub[event] = []
+        let handler2
+        if (this.broadcastChannel) {
           handler2 = (...args) => {
             const $0 = args[0]
-            if ($0?.key == this.__opts.storageKey) {
-              return handler.call(this, ...(parseJsonNoError($0?.newValue) || []).slice(0, -1), ...args)
-            }
+            return handler.call(this, ...$0?.data, ...args)
           }
-          global.addEventListener('storage', handler2)
+          this.broadcastChannel.addEventListener('message', handler2)
           this.crossHub[event].push(handler2)
+        } else {
+          const global = getGlobalThis()
+          if (global && 'addEventListener' in global) {
+            handler2 = (...args) => {
+              const $0 = args[0]
+              if ($0?.key == this.__opts.storageKey) {
+                return handler.call(this, ...(parseJsonNoError($0?.newValue) || []).slice(0, -1), ...args)
+              }
+            }
+            global.addEventListener('storage', handler2)
+            this.crossHub[event].push(handler2)
+          }
         }
+        if (handler) handler.off = () => this.off(event, handler)
+        if (handler2) handler2.off = () => this.off(event, handler2)
       }
-      if (handler) handler.off = () => this.off(event, handler)
-      if (handler2) handler2.off = () => this.off(event, handler2)
       return handler
     },
 
@@ -136,11 +146,11 @@ function _helperEventBus() {
       if (j > -1) {
         const handler2 = this.crossHub[event]?.[j]
         if (this.broadcastChannel) {
-          this.broadcastChannel.remove('message', handler2)
+          this.broadcastChannel.removeEventListener('message', handler2)
         } else {
           const global = getGlobalThis()
           if (global && 'addEventListener' in global) {
-            global.addEventListener('storage', handler2)
+            global.removeEventListener('storage', handler2)
           }
         }
         this.crossHub[event]?.splice?.(j, 1)
@@ -163,6 +173,18 @@ function _helperEventBus() {
     offEntire(event) {
       if (event) {
         delete this.hub[event]
+        const eventFuncList = this.crossHub[event]
+        eventFuncList.forEach(eventFunc => {
+          if (this.broadcastChannel) {
+            this.broadcastChannel.removeEventListener('message', eventFunc)
+          } else {
+            const global = getGlobalThis()
+            if (global && 'addEventListener' in global) {
+              global.removeEventListener('storage', eventFunc)
+            }
+          }
+        })
+        this.crossHub[event].length = 0
         delete this.crossHub[event]
       } else {
         this.hub = Object.create({})

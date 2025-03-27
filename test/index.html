@@ -37,10 +37,27 @@
     <script>
       console.log('========================================')
 
-      console.log(sfutils.add('123456789012345678901234567890000', '111', '11.2'))
-      console.log(sfutils.sub('123456789012345678901234567890000', '111', '11.2'))
-      console.log(sfutils.div('123456789012345678901234567890001', '2'))
-      console.log(sfutils.mul('123456789012345678901234567890001', '2', '2', '2', '1.1'))
+      // console.log(sfutils.add('123456789012345678901234567890000', '111', '11.2'))
+      // console.log(sfutils.sub('123456789012345678901234567890000', '111', '11.2'))
+      // console.log(sfutils.div('123456789012345678901234567890001', '2'))
+      // console.log(sfutils.mul('123456789012345678901234567890001', '2', '2', '2', '1.1'))
+
+      const { bus } = sfutils
+
+      let count = 0
+
+      function onSendMsg() {
+        bus.emit('sayhello', window.location.href)
+      }
+
+      bus.on('sayhello', function () {
+        console.log(count, 'sayhello-001', ...arguments)
+
+        count++
+        if (count > 2) {
+          bus.offEntire('sayhello')
+        }
+      })
     </script>
 
     <script>
@@ -81,12 +98,9 @@
         })
       )
 
-			const { to, withTimeout, flatten, has } = sfutils
+      const { to, withTimeout, flatten, has } = sfutils
 
-      console.log(
-				flatten(list )
-      )
-
+      console.log(flatten(list))
 
       const ajax = new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -97,20 +111,17 @@
       })
 
       let person = {
-				id: 1,
+        id: 1,
         name: '张三',
         age: 10,
-        list: [
-					{id: 1, name: 2}
-        ],
+        list: [{ id: 1, name: 2 }],
         child: {
-					id: 1,
-					name: '张三',
+          id: 1,
+          name: '张三'
         }
       }
 
-			console.log('person', has(person, 'child.[0].id'))
-
+      console.log('person', has(person, 'child.[0].id'))
 
       // to(withTimeout(ajax, 1000, () => alert(2))).then(res => {
       //   console.log('result#2', res)
