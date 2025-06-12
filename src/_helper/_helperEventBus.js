@@ -173,7 +173,7 @@ function _helperEventBus(options = {}) {
     offEntire(event) {
       if (event) {
         delete this.hub[event]
-        const eventFuncList = this.crossHub[event]
+        const eventFuncList = this.crossHub[event] || []
         eventFuncList.forEach(eventFunc => {
           if (this.broadcastChannel) {
             this.broadcastChannel.removeEventListener('message', eventFunc)
@@ -184,7 +184,6 @@ function _helperEventBus(options = {}) {
             }
           }
         })
-        this.crossHub[event].length = 0
         delete this.crossHub[event]
       } else {
         this.hub = Object.create({})
