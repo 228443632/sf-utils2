@@ -75,4 +75,12 @@ export type TTreeToListProp = Partial<{
  */
 export type TFunction = ((...args: any[]) => any) & Record<string, any>
 
+/**
+ * 二进制转化参数
+ */
+export type TBaseBlobArrayBufferTransferOptions = {
+  /** */
+  mimeType?: 'application/octet-stream' | (string & {})
+}
+
 export default {}

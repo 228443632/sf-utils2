@@ -4,6 +4,7 @@
     "module": "ESNext",
     "strict": true,
     "jsx": "preserve",
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "WebWorker"],
     "baseUrl": "./",
     "allowJs": true,
     "importHelpers": true,

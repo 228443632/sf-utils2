@@ -1,135 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-    <style>
-      /*.container {*/
-      /*  height: 100vh;*/
-      /*  overflow: auto;*/
-      /*}*/
-      .box-red {
-        width: 100%;
-        height: 50vh;
-      }
-      .box-blue {
-        width: 100%;
-        height: 30vh;
-      }
-      .box-yellow {
-        width: 100%;
-        height: 60vh;
-      }
-      .box-pink {
-        width: 100%;
-        height: 60vh;
-      }
-    </style>
-  </head>
-  <body style="height: 100vh; overflow-y: auto">
-    <div class="container">
-      <button onclick="download()">下载</button>
-      <button onclick="onSendMsg()">发送消息</button>
-      <button onclick="onLocalChange()">local发生变化</button>
-    </div>
-    <script src="./lib/index.umd.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+  <style>
+    /*.container {*/
+    /*  height: 100vh;*/
+    /*  overflow: auto;*/
+    /*}*/
+    .box-red {
+      width: 100%;
+      height: 50vh;
+    }
+    .box-blue {
+      width: 100%;
+      height: 30vh;
+    }
+    .box-yellow {
+      width: 100%;
+      height: 60vh;
+    }
+    .box-pink {
+      width: 100%;
+      height: 60vh;
+    }
+  </style>
+</head>
+<body style="height: 100vh; overflow-y: auto">
+<div class="container">
+  <button onclick="download()">下载</button>
+  <button onclick="onSendMsg()">发送消息</button>
+  <button onclick="onLocalChange()">local发生变化</button>
+  <input type="file" id="input1"></input>
+  <img src="" id="img01">
+</div>
+<script src="./lib/index.umd.js"></script>
 
-    <script>
-      console.log('========================================')
+<script>
+	// import blobToString from "../src/stream/blobToString";
 
-      // console.log(sfutils.add('123456789012345678901234567890000', '111', '11.2'))
-      // console.log(sfutils.sub('123456789012345678901234567890000', '111', '11.2'))
-      // console.log(sfutils.div('123456789012345678901234567890001', '2'))
-      // console.log(sfutils.mul('123456789012345678901234567890001', '2', '2', '2', '1.1'))
+	document.getElementById('input1').addEventListener('change', async function (e) {
+		console.log('e', e.target.files)
+    const file = e.target.files[0]
 
-      const { bus } = sfutils
+    console.time('开始')
+    // const arrayBuffer = await sfutils.blobToArrayBuffer(file)
+		// const base64 = await sfutils.arrayBufferToText(arrayBuffer)
+		// console.log('base64', base64)
+		console.log('base642', await sfutils.base64ToArrayBuffer(file))
+		console.timeEnd('开始')
 
-      let count = 0
+    // data:image/png;base64,
+		// document.querySelector('#img01').src = base64
+	})
 
-      function onSendMsg() {
-        bus.emit('sayhello', window.location.href)
-      }
 
-      bus.on('sayhello', function () {
-        console.log(count, 'sayhello-001', ...arguments)
+</script>
 
-        count++
-        if (count > 2) {
-          bus.offEntire('sayhello')
-        }
-      })
-    </script>
+<script>
+	console.log('========================================')
 
-    <script>
-      const list = [
-        { id: 1, name: '香蕉', pId: null },
-        { id: 2, name: '苹果', pId: null },
-        { id: 3, name: '橘子', pId: null },
-        { id: 1001, name: '香蕉A', pId: 1 },
-        { id: 1002, name: '香蕉B', pId: 1 },
-        { id: 1003, name: '香蕉C', pId: 1 },
-        { id: 1004, name: '苹果A', pId: 2 },
-        { id: 1005, name: '橘子C', pId: 3 },
-        { id: 1006, name: '橘子B', pId: 3 },
-        { id: 1007, name: '苹果D', pId: 2 },
-        { id: 1008, name: '苹果D', pId: 2 },
-        { id: 1009, name: '苹果C', pId: 2 },
-        { id: 1010, name: '橘子A', pId: 3 },
-        { id: 1001001, name: '香蕉A-儿子', pId: 1001 },
-        { id: 1002002, name: '香蕉B-儿子', pId: 1002 },
-        { id: 1003003, name: '香蕉C-儿子', pId: 1003 },
-        { id: 1004004, name: '苹果A-儿子', pId: 1004 },
-        { id: 1005005, name: '橘子C-儿子', pId: 1005 },
-        { id: 1006006, name: '橘子B-儿子', pId: 1006 },
-        { id: 4, name: '西瓜', pId: null },
-        { id: 1011, name: '西瓜A', pId: null },
-        { id: 1012, name: '西瓜B', pId: 4 },
-        { id: 1013, name: '西瓜B-儿子', pId: 1012 },
-        { id: 1001001001, name: '香蕉A-儿子-儿子', pId: 1001001 }
-      ]
+	// console.log(sfutils.add('123456789012345678901234567890000', '111', '11.2'))
+	// console.log(sfutils.sub('123456789012345678901234567890000', '111', '11.2'))
+	// console.log(sfutils.div('123456789012345678901234567890001', '2'))
+	// console.log(sfutils.mul('123456789012345678901234567890001', '2', '2', '2', '1.1'))
 
-      // 将list转成树状结构
-      console.log(
-        sfutils.listToTree({
-          list: list,
-          root: null,
-          retainField: ['__allLeafChildList__'],
-          props: { id: 'id', parentId: 'pId', children: 'children' }
-        })
-      )
+	const { bus } = sfutils
 
-      const { to, withTimeout, flatten, has } = sfutils
+	let count = 0
 
-      console.log(flatten(list))
+	function onSendMsg() {
+		bus.emit('sayhello', window.location.href)
+	}
 
-      const ajax = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({
-            data: 'success'
-          })
-        }, 800)
-      })
+	bus.on('sayhello', function () {
+		console.log(count, 'sayhello-001', ...arguments)
 
-      let person = {
-        id: 1,
-        name: '张三',
-        age: 10,
-        list: [{ id: 1, name: 2 }],
-        child: {
-          id: 1,
-          name: '张三'
-        }
-      }
+		count++
+		if (count > 2) {
+			bus.offEntire('sayhello')
+		}
+	})
+</script>
 
-      console.log('person', has(person, 'child.[0].id'))
+<script>
+	const list = [
+		{ id: 1, name: '香蕉', pId: null },
+		{ id: 2, name: '苹果', pId: null },
+		{ id: 3, name: '橘子', pId: null },
+		{ id: 1001, name: '香蕉A', pId: 1 },
+		{ id: 1002, name: '香蕉B', pId: 1 },
+		{ id: 1003, name: '香蕉C', pId: 1 },
+		{ id: 1004, name: '苹果A', pId: 2 },
+		{ id: 1005, name: '橘子C', pId: 3 },
+		{ id: 1006, name: '橘子B', pId: 3 },
+		{ id: 1007, name: '苹果D', pId: 2 },
+		{ id: 1008, name: '苹果D', pId: 2 },
+		{ id: 1009, name: '苹果C', pId: 2 },
+		{ id: 1010, name: '橘子A', pId: 3 },
+		{ id: 1001001, name: '香蕉A-儿子', pId: 1001 },
+		{ id: 1002002, name: '香蕉B-儿子', pId: 1002 },
+		{ id: 1003003, name: '香蕉C-儿子', pId: 1003 },
+		{ id: 1004004, name: '苹果A-儿子', pId: 1004 },
+		{ id: 1005005, name: '橘子C-儿子', pId: 1005 },
+		{ id: 1006006, name: '橘子B-儿子', pId: 1006 },
+		{ id: 4, name: '西瓜', pId: null },
+		{ id: 1011, name: '西瓜A', pId: null },
+		{ id: 1012, name: '西瓜B', pId: 4 },
+		{ id: 1013, name: '西瓜B-儿子', pId: 1012 },
+		{ id: 1001001001, name: '香蕉A-儿子-儿子', pId: 1001001 }
+	]
 
-      // to(withTimeout(ajax, 1000, () => alert(2))).then(res => {
-      //   console.log('result#2', res)
-      // })
+	// 将list转成树状结构
+	console.log(
+		sfutils.listToTree({
+			list: list,
+			root: null,
+			retainField: ['__allLeafChildList__'],
+			props: { id: 'id', parentId: 'pId', children: 'children' }
+		})
+	)
 
-      withTimeout(to(ajax), 1200, () => alert(3)).then(res => {
-        console.log('result#2', res)
-      })
-    </script>
-  </body>
+	const { to, withTimeout, flatten, has } = sfutils
+
+	console.log(flatten(list))
+
+	const ajax = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve({
+				data: 'success'
+			})
+		}, 800)
+	})
+
+	let person = {
+		id: 1,
+		name: '张三',
+		age: 10,
+		list: [{ id: 1, name: 2 }],
+		child: {
+			id: 1,
+			name: '张三'
+		}
+	}
+
+	console.log('person', has(person, 'child.[0].id'))
+
+	// to(withTimeout(ajax, 1000, () => alert(2))).then(res => {
+	//   console.log('result#2', res)
+	// })
+
+	withTimeout(to(ajax), 1200, () => alert(3)).then(res => {
+		console.log('result#2', res)
+	})
+</script>
+</body>
 </html>

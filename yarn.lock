@@ -7688,6 +7688,11 @@ jiti@^1.13.0:
   resolved "https://registry.npmmirror.com/jiti/-/jiti-1.14.0.tgz"
   integrity sha512-4IwstlaKQc9vCTC+qUXLM1hajy2ImiL9KnLvVYiaHOtS/v3wRjhLlGl121AmgDgx/O43uKmxownJghS5XMya2A==
 
+js-base64@3.7.7:
+  version "3.7.7"
+  resolved "https://registry.npmmirror.com/js-base64/-/js-base64-3.7.7.tgz#e51b84bf78fbf5702b9541e2cb7bfcb893b43e79"
+  integrity sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==
+
 js-cleanup@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmmirror.com/js-cleanup/-/js-cleanup-1.2.0.tgz"
