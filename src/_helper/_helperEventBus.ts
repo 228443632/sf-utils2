@@ -1,5 +1,32 @@
+// @ts-nocheck
+
 import getGlobalThis from '@/base/getGlobalThis'
 import parseJsonNoError from '@/base/parseJsonNoError'
+import isObject from '@/base/isObject'
+import hasOwn from '@/object/hasOwn'
+
+/**
+ * 通用方法
+ */
+type TBusCommonFunc = (...args: any[]) => any
+
+/**
+ * emit事件数据类型
+ */
+type TBusEmitDataType = {
+  /** 是否跨tab 共享消息 */
+  isCrossTab?: boolean
+} & (any & {})
+
+/**
+ * 常规方法
+ * @param {boolean} [isCrossTab] 是否跨tab 共享消息
+ */
+type TBusOnOption = {
+  /** 是否跨tab 共享消息 */
+  isCrossTab: undefined
+}
+
 /**
  * @description 使用、和方法创建一个发布/订阅（发布-订阅）事件中心。emitonoff
  *  支持跨浏览器共享
@@ -31,7 +58,7 @@ function _helperEventBus(options = {}) {
   return {
     /**
      * 全局参数
-     * @return {{}}
+     * @return {Record<string, any>}
      */
     __opts, // 参数
 
@@ -47,63 +74,83 @@ function _helperEventBus(options = {}) {
 
     /**
      * 基座
-     * @return {{}}
-     */
+     * @return {Record<string, any>}
+     * */
     hub: Object.create(null),
 
     /**
      * 跨越tabs 共享
-     * @return {{}}
+     * @return {Record<string, any>}
      */
     crossHub: Object.create(null),
 
     /**
      * emit事件
      * @param {string} event 事件名
-     * @param {any[]} data 值
+     * @param {TBusEmitDataType[]} data 值
      */
-    emit(event, ...data) {
+    emit(event: string, ...data: TBusEmitDataType[]) {
+      const lastArg = data?.at?.(-1)
+
+      // feat: 新增跨tabs 更多参数可以控制自定义
+      let innerIsCrossTab = isCrossTab
+
+      // fix: 如果是内部参数，最后一个是对象且携带了isCrossTab属性
+      if (isObject(lastArg) && hasOwn(lastArg, 'isCrossTab')) {
+        data.pop()
+        innerIsCrossTab = lastArg.isCrossTab
+      }
+
       ;(this.hub[event] || []).forEach(handler => handler?.(...data))
       // 如果跨tabs
-      if (isCrossTab) {
+      if (innerIsCrossTab) {
         if (this.broadcastChannel) {
-          this.broadcastChannel.postMessage(data)
+          this.broadcastChannel.postMessage({ eventId: event, data })
         } else {
           const global = getGlobalThis()
           global?.localStorage &&
-            global.localStorage.setItem(this.__opts.storageKey, JSON.stringify([...data, Number(new Date())]))
+            global.localStorage.setItem(
+              this.__opts.storageKey,
+              JSON.stringify({ eventId: event, data, timestamp: Date.now() })
+            )
         }
       }
     },
     /**
      * on事件
-     * @param {string|number} event 事件名
-     * @param {Function} handler
-     * @return {*|Function}
+     * @param {string} event 事件名
+     * @param {Function} handler 处理方法
+     * @param {TBusOnOption} [option] 选项
+     * @return {*|TBusCommonFunc & {isCrossTab?: boolean} }
      */
-    on(event, handler) {
+    on(event: string, handler: TBusCommonFunc, option?: TBusOnOption) {
       if (!handler) return
       if (!this.hub[event]) this.hub[event] = []
       this.hub[event].push(handler)
 
+      // feat: 新增跨tabs 更多参数可以控制自定义
+      const innerIsCrossTab = handler?.isCrossTab ?? option?.isCrossTab ?? isCrossTab
+
       // 如果跨tabs
-      if (isCrossTab) {
+      if (innerIsCrossTab) {
         if (!this.crossHub[event]) this.crossHub[event] = []
         let handler2
         if (this.broadcastChannel) {
-          handler2 = (...args) => {
-            const $0 = args[0]
-            return handler.call(this, ...$0?.data, ...args)
+          handler2 = structuredMessage => {
+            const { eventId, data = [] } = structuredMessage?.data || {}
+            if (eventId != event) return
+            return handler.call(this, ...data, structuredMessage)
           }
           this.broadcastChannel.addEventListener('message', handler2)
           this.crossHub[event].push(handler2)
         } else {
           const global = getGlobalThis()
           if (global && 'addEventListener' in global) {
-            handler2 = (...args) => {
-              const $0 = args[0]
-              if ($0?.key == this.__opts.storageKey) {
-                return handler.call(this, ...(parseJsonNoError($0?.newValue) || []).slice(0, -1), ...args)
+            handler2 = storageEventMessage => {
+              if (storageEventMessage?.key == this.__opts.storageKey) {
+                const { eventId, data = [] } = parseJsonNoError(storageEventMessage?.newValue) || {}
+                if (eventId != event) return
+                return handler.call(this, ...data, storageEventMessage)
               }
             }
             global.addEventListener('storage', handler2)
@@ -134,9 +181,9 @@ function _helperEventBus(options = {}) {
     /**
      * off事件
      * @param {string} event 事件名
-     * @param {Function} handler
+     * @param {TBusCommonFunc} handler
      */
-    off(event, handler) {
+    off(event, handler: TBusCommonFunc) {
       const i = (this.hub[event] || []).findIndex(h => h === handler)
       if (i > -1) this.hub[event]?.splice?.(i, 1)
       if (this.hub[event]?.length === 0) delete this.hub[event]

@@ -12,7 +12,7 @@ import isPrimitive from '@/base/isPrimitive'
  */
 function intersection(array, property) {
   const arrayFlatten = array.flat(1) || []
-  console.log('array', arrayFlatten)
+  // console.log('array', arrayFlatten)
   const arrayMap$property = arrayToMap(arrayFlatten, property, { valueType: 'array' })
   const [array$0] = arrayFlatten
   const result = []

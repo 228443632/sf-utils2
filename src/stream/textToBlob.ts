@@ -1,16 +1,16 @@
-/**
- * @Description:
- * @Author 卞鹏飞 <228443632@qq.com>
- * @create 12/06/25 PM8:44
- */
-
 import textToArrayBuffer from '@/stream/textToArrayBuffer.ts'
 import type { TBaseBlobArrayBufferTransferOptions } from '@/_types/_helperTreeBaseType.ts'
 
 /**
  * 将字符串转成blob
- * @param text
+ * @param {string} text 文本
  * @param options
+ * @example
+ * ```
+ * textToBlob('卞鹏飞', { mimeType: 'application/octet-stream' })
+ *
+ * ```
+ * @version 3.3.2+
  */
 async function textToBlob(text: string, options?: TBaseBlobArrayBufferTransferOptions): Promise<Blob> {
   const arrayBuffer = await textToArrayBuffer(text)

@@ -1,9 +1,3 @@
-/**
- * @Description:
- * @Author 卞鹏飞 <228443632@qq.com>
- * @create 13/06/25 AM10:06
- */
-
 import type { TBaseBlobArrayBufferTransferOptions } from '@/_types/_helperTreeBaseType.ts'
 import base64ToArrayBuffer from '@/stream/base64ToArrayBuffer.ts'
 
@@ -12,6 +6,7 @@ import base64ToArrayBuffer from '@/stream/base64ToArrayBuffer.ts'
  * @param {string} base64 - 包含前缀的Base64字符串（如 "data:image/png;base64,..."）
  * @param options
  * @returns {Blob}
+ * @version 3.3.2+
  */
 async function base64ToBlob(base64: string, options?: TBaseBlobArrayBufferTransferOptions): Promise<Blob> {
   const arrayBuffer = await base64ToArrayBuffer(base64, options)

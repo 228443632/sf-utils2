@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import isArray from '@/base/isArray'
 
 /**
@@ -7,9 +9,9 @@ import isArray from '@/base/isArray'
  * @param {number} size 每组大小
  * @return {Array}
  */
-function chunk(array, size) {
+function chunk<T>(array: T[], size: number): T[][] {
   let index
-  let result = []
+  let result = [] as T[][]
   let arrLen = size >> 0 || 1
   if (isArray(array)) {
     if (arrLen >= 0 && array.length > arrLen) {

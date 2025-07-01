@@ -1,14 +1,10 @@
-/**
- * @Description:
- * @Author 卞鹏飞 <228443632@qq.com>
- * @create 13/06/25 AM10:09
- */
 import { type TBaseBlobArrayBufferTransferOptions } from '@/_types/_helperTreeBaseType.ts'
 
 /**
  * base64 转成ArrayBuffer
  * @param base64
  * @param options
+ * @version 3.3.2+
  */
 async function base64ToArrayBuffer(base64: string, options?: TBaseBlobArrayBufferTransferOptions) {
   // 1. 分离Base64前缀和数据部分

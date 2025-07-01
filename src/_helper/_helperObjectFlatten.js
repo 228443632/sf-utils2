@@ -6,14 +6,33 @@ import arrayToObj from '@/array/arrayToObj'
 import { PlainObjectType } from '@/_helper/_types'
 
 /**
+ * @typedef {(value: any, key: string) => boolean} TPredicate 选项
+ */
+
+/**
+ * @typedef {Object} THelperObjectFlattenOption 选项
+ * @typedef {boolean} isDeepClone 是否深拷贝，默认值是true
+ */
+/**
+ * 默认选项
+ * @type {THelperObjectFlattenOption}
+ */
+export const THelperObjectFlattenOption = {
+  isDeepClone: false
+}
+
+/**
+ /**
  * 普通对象 平铺化flatten
  * @param {PlainObjectType} obj
- * @param {Function} cb
+ * @param {TPredicate} cb
+ * @param {THelperObjectFlattenOption} [option]
  * @returns {*}
  * @private
  */
-function _helperObjectFlatten(obj, cb) {
-  obj = deepClone(obj)
+function _helperObjectFlatten(obj, cb, option) {
+  const isDeepClone = option?.isDeepClone ?? true
+  if (isDeepClone) obj = deepClone(obj)
   let isSkip = false // 是否跳过
   // 递归，核心逻辑
   const itor = (ob, parentField = '', result = []) => {

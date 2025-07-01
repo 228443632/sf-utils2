@@ -1,9 +1,9 @@
 {
   "name": "sf-utils2",
-  "version": "3.3.1-beta1",
+  "version": "3.3.2-beta1",
   "author": "bianpengfei",
   "license": "MIT",
-  "homepage": "https://bianpengfei.gitee.io/bianpengfei-utils/v3/",
+  "homepage": "https://test.lckj258.com/bianpengfei-utils/v3/",
   "alias-name": "sfutils",
   "main": "lib/index.umd.js",
   "module": "lib/index.esm.js",
@@ -36,7 +36,7 @@
     "no-pub": "npm run build:all",
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
     "pub": "npm run no-pub && npm publish --access public --registry https://registry.npmjs.org/",
-    "pub:inner": "npm publish --access public --registry http://47.97.180.214:8200/",
+    "pub:inner": "npm run no-pub && npm publish --access public --registry http://47.97.180.214:8200/",
     "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub"
   },
   "globalName": "sfutils",
@@ -49,7 +49,8 @@
     ".prettierrc.js",
     "index.d.ts",
     "tsconfig.json",
-    "yarn.lock"
+    "yarn.lock",
+    "types"
   ],
   "keywords": [
     "utils",
@@ -109,6 +110,7 @@
     "cross-env": "7.0.3",
     "crypto-js": "4.1.1",
     "element-ui": "2.15.6",
+    "es-toolkit": "1.39.5",
     "file-saver": "2.0.2",
     "fs-extra": "11.1.0",
     "glob": "7.2.0",
@@ -123,7 +125,6 @@
     "jspdf": "2.3.0",
     "jszip": "3.7.1",
     "lint-staged": "13.0.3",
-    "lodash": "4.17.21",
     "lodash-es": "4.17.21",
     "npm-run-all": "4.1.5",
     "ora": "5.4.1",

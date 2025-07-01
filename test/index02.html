@@ -31,47 +31,35 @@
   </head>
   <body style="height: 100vh; overflow-y: auto">
     <div class="container">
-      <h1>父页面</h1>
-      <button onclick="onSendMsg()">发送消息1001</button>
-      <button onclick="onSendMsg()">发送消息1002</button>
+      <h1>子页面</h1>
+      <button onclick="onSendMsg2()">发送消息1002</button>
+      <button onclick="onSendMsg1()">发送消息1001</button>
     </div>
-
-    <iframe src="./index02.html"></iframe>
     <script src="./lib/index.umd.js"></script>
     <script></script>
 
     <script>
-      const { bus, get } = window.sfutils
+      const { bus } = window.sfutils
+			const onSendMsg1 = () => {
+				console.log('子发送了：', 'hello【1001】', { id: 111 })
+				bus.emit('1001', 'hello【1001】', { id: 111 })
+			}
 
-      let obj = {
-				name: 'a',
-				b: {
-					name: 'b',
-					list: [
-						{name: '1234'}
-          ]
-				}
-      }
-
-			// console.log(get(obj, 'b.list.[0].name'));
-
-
-			const onSendMsg = () => {
-				console.log('父发送了：', 'hello【1001】', { id: 12342 })
-        bus.emit('1001', 'hello【1001】', { id: 12342 })
-      }
-
-      bus.on('1001', (...args) => {
-        console.log('父监听到【1001】：', ...args)
-      })
+			const onSendMsg2 = () => {
+				console.log('子发送了：', 'hello【1002】', { id: 222 })
+				bus.emit('1002', 'hello【1002】', { id: 222 })
+			}
 
 			bus.on('1001', (...args) => {
-				console.log('父监听到【1001-copy】：', ...args)
+				console.log('子监听到【1001】：', ...args)
 			})
 
+			bus.on('1002', (...args) => {
+				console.log('子监听到【1002】：', ...args)
+			})
 
 			bus.on('xxx', (...args) => {
-				console.log('父监听到【xxx】：', ...args)
+				console.log('子监听到【xxx】：', ...args)
 			})
     </script>
 

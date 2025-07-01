@@ -75,7 +75,7 @@ const _storage = {
 
     // 过期删除
     if (storage.expire && storage.expire < nowTime - storage.time) {
-      console.log('带内', this.__config.expire, nowTime - storage.time)
+      // console.log('debug009', this.__config.expire, nowTime - storage.time)
       this.removeItem(key)
       return null
     } else {

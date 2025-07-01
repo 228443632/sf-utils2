@@ -28,6 +28,7 @@ pnpm-debug.log*
 test/lib
 lib
 src/index.js
+src/index.ts
 /docs/.vuepress/compile/
 /src/nodejs/index.js
 /index.d.ts

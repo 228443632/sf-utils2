@@ -5,7 +5,7 @@ import isFunction from '@/base/isFunction'
 import { getPropValue } from '@/array/arrayToMap'
 import isNullable from '@/base/isNullable'
 
-type TOptions = Partial<{
+type TArrayToObjOptions = Partial<{
   valueType: 'object' | 'array'
   retainKeyWithNull?: boolean
 }>
@@ -46,7 +46,7 @@ type TOptions = Partial<{
 function arrayToObj(
   array: any[] = [],
   property?: string | string[],
-  options?: TOptions = { valueType: 'object', retainKeyWithNull: false }
+  options?: TArrayToObjOptions = { valueType: 'object', retainKeyWithNull: false }
 ): any {
   if (isArray(array)) {
     // 如果property是Function

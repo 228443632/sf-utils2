@@ -5,6 +5,7 @@ import { type BlobToArrayBufferOptions } from '@/stream/blobToArrayBuffer.ts'
  * @param buffer - 输入的 ArrayBuffer 或兼容类型（如 Uint8Array.buffer）
  * @param options
  * @returns Promise<string> 解析为 Base64 字符串
+ * @version 3.3.2+
  */
 async function arrayBufferToBase64(buffer: ArrayBufferLike, options?: BlobToArrayBufferOptions): Promise<string> {
   if (!(buffer instanceof ArrayBuffer)) return Promise.reject('参数必须是 ArrayBuffer 类型')

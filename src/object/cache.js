@@ -16,6 +16,10 @@ const cache = {
     expire: 0 //过期时间 单位：秒
   },
 
+  /**
+   * @description 内存缓存对象
+   * @type {Record<string|symbol, any>}
+   */
   data: {},
 
   /**
@@ -36,10 +40,11 @@ const cache = {
   },
 
   /**
+   * @template T
    * 获取内存缓存对象
    * @param {string} key
-   * @param {boolean} autoRetain 是否自动延续
-   * @return {*}
+   * @param {boolean} [autoRetain] 是否自动延续 默认false
+   * @return {T}
    */
   getItem(key, autoRetain = false) {
     key = getPrefixKey(this.prefix, key)
@@ -76,7 +81,7 @@ const cache = {
 
   /**
    * 获取所有items
-   * @return {{}}
+   * @return {Record<string, any>}
    */
   getItemsAll() {
     return Object.keys(this.data).reduce((pre, cur) => {

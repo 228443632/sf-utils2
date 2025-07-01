@@ -1,6 +1,7 @@
 /**
  * 将blob对象序列化为base64
  * @param blob
+ * @version 3.3.2+
  */
 async function blobToBase64(blob: Blob): Promise<string> {
   if (!(blob instanceof Blob)) return Promise.reject('传入的参数blob非Blob对象')

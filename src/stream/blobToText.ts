@@ -1,12 +1,7 @@
 /**
- * @Description:
- * @Author 卞鹏飞 <228443632@qq.com>
- * @create 12/06/25 PM8:44
- */
-
-/**
  * 将blob对象读取文本内容
  * @param blob
+ * @version 3.3.2+
  */
 async function blobToText(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {

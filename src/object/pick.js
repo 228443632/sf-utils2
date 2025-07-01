@@ -7,13 +7,25 @@ import isArray from '@/base/isArray'
 import isFunction from '@/base/isFunction'
 
 /**
+ * @typedef {(value: any, key: string) => boolean} TPredicate 回到函数
+ */
+
+/**
+ * @typedef {Object} THelperObjectFlattenOption 选项
+ * @property {boolean} isDeepClone 是否深拷贝，默认值是true
+ */
+/**
+
+/**
  * 创建一个对象，这个对象组成为从 object 中经 predicate 判断为真值的属性
  * @param {Object} obj
- * @param {string|String[]|Function} predicate
+ * @param {string|String[]|TPredicate} predicate
+ * @param {THelperObjectFlattenOption} [option] 选项
  * @version v3.0.4+
  * @return {{}|*|*[]}
  */
-function pick(obj = {}, predicate) {
+function pick(obj = {}, predicate, option) {
+  const isDeepClone = option?.isDeepClone ?? true
   if (!isPlainObject(obj)) return obj
   let innerObj = {}
   if (isString(predicate)) {
@@ -37,7 +49,7 @@ function pick(obj = {}, predicate) {
   } else {
     innerObj = obj
   }
-  return deepClone(innerObj)
+  return isDeepClone ? deepClone(innerObj) : innerObj
 }
 
 export default pick

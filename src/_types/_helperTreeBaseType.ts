@@ -4,6 +4,8 @@
  * @create 2022/7/20 11:18
  */
 /******************eachTree 类型申明*****************************/
+import { type TPrettifyString } from 'sf-utils2/types/generic-helper.ts'
+
 /**
  * props 属性
  */
@@ -80,7 +82,126 @@ export type TFunction = ((...args: any[]) => any) & Record<string, any>
  */
 export type TBaseBlobArrayBufferTransferOptions = {
   /** */
-  mimeType?: 'application/octet-stream' | (string & {})
+  mimeType?: TPrettifyString<
+    // === 标准文本/数据格式 ===
+    | 'text/plain'
+    | 'text/html'
+    | 'text/xml'
+    | 'text/css'
+    | 'text/javascript'
+    | 'application/json'
+    | 'application/xml'
+    | 'text/markdown'
+    | 'text/x-java'
+    | 'text/x-php'
+    | 'text/x-python'
+    | 'text/x-javascript'
+    | 'text/x-css'
+
+    // === 图像格式 ===
+    | 'image/jpeg'
+    | 'image/png'
+    | 'image/gif'
+    | 'image/webp'
+    | 'image/bmp'
+    | 'image/vnd.microsoft.icon'
+    | 'image/tiff'
+    | 'image/x-tiff'
+    | 'image/x-targa'
+    | 'image/svg+xml'
+    | 'image/x-icon'
+    | 'image/jfif'
+    | 'image/x-png'
+
+    // === 音频/视频格式 ===
+    | 'audio/mpeg'
+    | 'audio/wav'
+    | 'audio/ogg'
+    | 'video/mp4'
+    | 'video/webm'
+    | 'video/ogg'
+    | 'video/quicktime'
+    | 'video/x-msvideo'
+    | 'video/x-flv'
+    | 'video/x-matroska'
+    | 'video/x-ms-asf'
+    | 'video/3gpp'
+    | 'video/3gpp2'
+
+    // === 办公文档（Microsoft Office） ===
+    | 'application/msword'
+    | 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    | 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    | 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    | 'application/vnd.ms-excel'
+    | 'application/vnd.ms-powerpoint'
+    | 'application/vnd.openxmlformats-officedocument.wordprocessingml.template'
+    | 'application/vnd.openxmlformats-officedocument.spreadsheetml.template'
+    | 'application/vnd.openxmlformats-officedocument.presentationml.template'
+    | 'application/vnd.ms-excel.sheet.binary.macroEnabled.12'
+    | 'application/vnd.ms-excel.addin.macroEnabled.12'
+
+    // === WPS Office ===
+    | 'application/vnd.wps-office.doc'
+    | 'application/vnd.wps-office.dps'
+    | 'application/vnd.wps-office.et'
+    | 'application/vnd.wps-office.ett'
+    | 'application/vnd.wps-office.wpt'
+
+    // === OpenOffice/LibreOffice ===
+    | 'application/vnd.oasis.opendocument.text'
+    | 'application/vnd.oasis.opendocument.spreadsheet'
+    | 'application/vnd.oasis.opendocument.presentation'
+    | 'application/vnd.oasis.opendocument.graphics'
+    | 'application/vnd.sun.xml.writer'
+    | 'application/vnd.sun.xml.calc'
+    | 'application/vnd.sun.xml.draw'
+    | 'application/x-fopd'
+
+    // === PDF/OFD/RTF ===
+    | 'application/pdf'
+    | 'application/vnd.ofd+zip'
+    | 'application/rtf'
+
+    // === 3D 模型 ===
+    | 'model/obj'
+    | 'model/3mf'
+    | 'model/stl'
+    | 'model/gltf+json'
+    | 'model/gltf-binary'
+    | 'model/iges'
+    | 'model/step+zip'
+    | 'model/vnd.collada+xml'
+    | 'model/vnd.dwf'
+    | 'model/vnd.autodesk.fbx'
+    | 'model/vnd.dwg'
+    | 'model/vnd.dxf'
+
+    // === CAD/Visio/流程图 ===
+    | 'application/vnd.visio'
+    | 'application/vnd.visio2013'
+    | 'application/x-wmf'
+    | 'application/x-emf'
+    | 'application/x-bpmn+xml'
+
+    // === 电子书/邮件/其他 ===
+    | 'application/epub+zip'
+    | 'message/rfc822'
+    | 'application/xmind'
+    | 'application/vnd.xmind'
+
+    // === 压缩包 ===
+    | 'application/zip'
+    | 'application/x-rar-compressed'
+    | 'application/x-7z-compressed'
+    | 'application/gzip'
+    | 'application/x-tar'
+    | 'application/java-archive'
+
+    // === 其他二进制文件 ===
+    | 'application/octet-stream'
+    // 自定义或非标准类型（通过 `(string & {})` 支持）
+  >
 }
 
 export default {}
