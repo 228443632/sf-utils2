@@ -3,31 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-    <style>
-      /*.container {*/
-      /*  height: 100vh;*/
-      /*  overflow: auto;*/
-      /*}*/
-      .box-red {
-        width: 100%;
-        height: 50vh;
-      }
-
-      .box-blue {
-        width: 100%;
-        height: 30vh;
-      }
-
-      .box-yellow {
-        width: 100%;
-        height: 60vh;
-      }
-
-      .box-pink {
-        width: 100%;
-        height: 60vh;
-      }
-    </style>
   </head>
   <body style="height: 100vh; overflow-y: auto">
     <div class="container">
@@ -35,11 +10,48 @@
       <button onclick="onSendMsg2()">发送消息1002</button>
       <button onclick="onSendMsg1()">发送消息1001</button>
     </div>
-    <script src="./lib/index.umd.js"></script>
-    <script></script>
-
     <script>
-      const { bus } = window.sfutils
+			window.process = {
+				env: {
+					NODE_ENV: 'development'
+				}
+			}
+    </script>
+    <script src="./lib/index.umd.js"></script>
+
+    <script type="module">
+
+			import { Postmate } from '../src/expand/postmate.js'
+
+			console.log('Postmate', Postmate)
+
+			const { bus } = window.sfutils
+			Postmate.debug = true
+
+			setTimeout(() => {
+				let parentRef1
+				const handshake = new Postmate.Model({
+					foo: undefined,
+					mounted: (...args) => {
+						console.log('mountedxxxx', parentRef1.model?.foo, args)
+          },
+          sayName(name1, name2) {
+						console.log('sayName', name1, name2, arguments)
+						return [...arguments]
+          },
+					// Expose you r model to the Parent. Property values may be functions, promises, or regular values
+					height: () => document.height || document.body.offsetHeight
+				});
+				handshake.then(parent => {
+					console.log(parent)
+					parentRef1 = parent
+					// setInterval(() => {
+					// 	console.log('发送')
+					// 	parent.emit('xxx')
+          // }, 500)
+				})
+			}, 0)
+
 			const onSendMsg1 = () => {
 				console.log('子发送了：', 'hello【1001】', { id: 111 })
 				bus.emit('1001', 'hello【1001】', { id: 111 })

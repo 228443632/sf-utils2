@@ -8159,11 +8159,6 @@ locate-path@^7.1.0:
   dependencies:
     p-locate "^6.0.0"
 
-lodash-es@4.17.21:
-  version "4.17.21"
-  resolved "https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz"
-  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
-
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz"
@@ -13632,11 +13627,6 @@ xdg-basedir@^5.0.1, xdg-basedir@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npmmirror.com/xdg-basedir/-/xdg-basedir-5.1.0.tgz#1efba19425e73be1bc6f2a6ceb52a3d2c884c0c9"
   integrity sha512-GCPAHLvrIH13+c0SuacwvRYj2SxJXQ4kaVTT5xgL3kPrz56XxkF21IGhjSE1+W0aw7gpBWRGXLCPnPby6lSpmQ==
-
-xe-utils@3.5.14:
-  version "3.5.14"
-  resolved "https://registry.npmmirror.com/xe-utils/-/xe-utils-3.5.14.tgz#37a983856fc82c8f2d8fcec57a019d3c445d04e0"
-  integrity sha512-Xq6mS8dWwHBQsQUEBXcZYSaBV0KnNLoVWd0vRRDI3nKpbNxfs/LSCK0W21g1edLFnXYfKqg7hh5dakr3RtYY0A==
 
 xtend@^4.0.0, xtend@~4.0.0, xtend@~4.0.1:
   version "4.0.2"

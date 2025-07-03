@@ -1,4 +1,12 @@
 /**
+ * @Description:
+ * @Author 卞鹏飞 <228443632@qq.com>
+ * @create 02/07/25 PM3:11
+ */
+
+const IS_DEV = process.env.NODE_ENV !== 'production'
+
+/**
  * The type of messages our frames our sending
  * @type {String}
  */
@@ -8,7 +16,7 @@ export const messageType = 'application/x-postmate-v1+json'
  * The maximum number of attempts to send a handshake request to the parent
  * @type {Number}
  */
-export const maxHandshakeRequests = 5
+export const maxHandshakeRequests = 2 * 30 // TODO 30s
 
 /**
  * A unique message ID that is used to ensure responses are sent to the correct requests
@@ -69,12 +77,12 @@ export const sanitize = (message, allowedOrigin) => {
  * Takes a model, and searches for a value by the property
  * @param  {Object} model     The dictionary to search against
  * @param  {String} property  A path within a dictionary (i.e. 'window.location.href')
- * @param  {Object} data      Additional information from the get request that is
+ * @param {any[]} funcArgs 参数
  *                            passed to functions in the child model
  * @return {Promise}
  */
-export const resolveValue = (model, property) => {
-  const unwrappedContext = typeof model[property] === 'function' ? model[property]() : model[property]
+export const resolveValue = (model, property, funcArgs = []) => {
+  const unwrappedContext = typeof model[property] === 'function' ? model[property](...funcArgs) : model[property]
   return Postmate.Promise.resolve(unwrappedContext)
 }
 
@@ -109,7 +117,9 @@ export class ParentAPI {
           log(`Parent: Received event emission: ${name}`)
         }
         if (name in this.events) {
-          this.events[name].call(this, data)
+          this.events[name].forEach(callback => {
+            callback.call(this, data)
+          })
         }
       }
     }
@@ -120,11 +130,14 @@ export class ParentAPI {
     }
   }
 
-  get(property) {
+  // TODO
+  get(property, ...funcArgs) {
     return new Postmate.Promise(resolve => {
       // Extract data from response and kill listeners
       const uid = generateNewMessageId()
       const transact = e => {
+        // TODO
+        console.log('transact', e)
         if (e.data.uid === uid && e.data.postmate === 'reply') {
           this.parent.removeEventListener('message', transact, false)
           resolve(e.data.value)
@@ -140,28 +153,35 @@ export class ParentAPI {
           postmate: 'request',
           type: messageType,
           property,
-          uid
+          uid,
+          // TODO
+          funcArgs
         },
         this.childOrigin
       )
     })
   }
 
-  call(property, data) {
+  // TODO
+  call(property, ...funcArgs) {
     // Send information to the child
     this.child.postMessage(
       {
         postmate: 'call',
         type: messageType,
         property,
-        data
+        // TODO
+        funcArgs
       },
       this.childOrigin
     )
   }
 
   on(eventName, callback) {
-    this.events[eventName] = callback
+    if (!this.events[eventName]) {
+      this.events[eventName] = []
+    }
+    this.events[eventName].push(callback)
   }
 
   destroy() {
@@ -192,6 +212,9 @@ export class ChildAPI {
     this.child.addEventListener('message', e => {
       if (!sanitize(e, this.parentOrigin)) return
 
+      // TODO
+      if (!e.data.postmate) return
+
       if (process.env.NODE_ENV !== 'production') {
         log('Child: Received request', e.data)
       }
@@ -200,13 +223,15 @@ export class ChildAPI {
 
       if (e.data.postmate === 'call') {
         if (property in this.model && typeof this.model[property] === 'function') {
-          this.model[property](data)
+          this.model[property](...(e.data.funcArgs || []))
         }
         return
       }
 
+      console.log('debug002', e.data)
       // Reply to Parent
-      resolveValue(this.model, property).then(value =>
+      // TODO
+      resolveValue(this.model, property, e.data.funcArgs || []).then(value =>
         e.source.postMessage(
           {
             property,
@@ -258,6 +283,12 @@ class Postmate {
   /**
    * Sets options related to the Parent
    * @param {Object} object The element to inject the frame into, and the url
+   * @param {Element} [object.container]
+   * @param {Record<string, any>} [object.model]
+   * @param {string} [object.url]
+   * @param {string} [object.name]
+   * @param {string[]} [object.classListArray]
+   * @param {string | undefined} [object.handshakeKey]
    * @return {Promise}
    */
   constructor({
@@ -265,7 +296,8 @@ class Postmate {
     model,
     url,
     name,
-    classListArray = []
+    classListArray = [],
+    handshakeKey
   }) {
     // eslint-disable-line no-undef
     this.parent = window
@@ -275,7 +307,9 @@ class Postmate {
     container.appendChild(this.frame)
     this.child = this.frame.contentWindow || this.frame.contentDocument.parentWindow
     this.model = model || {}
+    this.handshakeKey = handshakeKey
 
+    console.log('url', url)
     return this.sendHandshake(url)
   }
 
@@ -291,8 +325,18 @@ class Postmate {
     return new Postmate.Promise((resolve, reject) => {
       const reply = e => {
         if (!sanitize(e, childOrigin)) return false
+        // TODO
+        console.log('e', e)
+
         if (e.data.postmate === 'handshake-reply') {
           clearInterval(responseInterval)
+
+          // TODO
+          // 如果存在 握手key
+          if (this.handshakeKey && e.data.handshakeKey != this.handshakeKey) {
+            IS_DEV && log('Parent: Handshake reply handshakeKey is mismatched')
+            return reject('Handshake reply handshakeKey is mismatched')
+          }
           if (process.env.NODE_ENV !== 'production') {
             log('Parent: Received handshake reply from Child')
           }
@@ -309,7 +353,7 @@ class Postmate {
         if (process.env.NODE_ENV !== 'production') {
           log('Parent: Invalid handshake reply')
         }
-        return reject('Failed handshake')
+        // return reject('Failed handshake')
       }
 
       this.parent.addEventListener('message', reply, false)
@@ -341,7 +385,7 @@ class Postmate {
       if (this.frame.attachEvent) {
         this.frame.attachEvent('onload', loaded)
       } else {
-        this.frame.onload = loaded
+        this.frame.addEventListener('load', loaded)
       }
 
       if (process.env.NODE_ENV !== 'production') {
@@ -360,11 +404,14 @@ Postmate.Model = class Model {
   /**
    * Initializes the child, model, parent, and responds to the Parents handshake
    * @param {Object} model Hash of values, functions, or promises
+   * @param {'postmate-handshake' | (string & {})} [model.handshakeKey] Hash of values, functions, or promises
    * @return {Promise}       The Promise that resolves when the handshake has been received
    */
   constructor(model) {
     this.child = window
     this.model = model
+    // TODO
+    this.handshakeKey = this.model.handshakeKey
     this.parent = this.child.parent
     return this.sendHandshakeReply()
   }
@@ -390,7 +437,8 @@ Postmate.Model = class Model {
           e.source.postMessage(
             {
               postmate: 'handshake-reply',
-              type: messageType
+              type: messageType,
+              handshakeKey: this.handshakeKey
             },
             e.origin
           )
@@ -400,6 +448,7 @@ Postmate.Model = class Model {
           const defaults = e.data.model
           if (defaults) {
             Object.keys(defaults).forEach(key => {
+              if (key === 'handshakeKey') return
               this.model[key] = defaults[key]
             })
             if (process.env.NODE_ENV !== 'production') {
@@ -420,3 +469,5 @@ Postmate.Model = class Model {
 }
 
 export { Postmate }
+
+export default Postmate

@@ -46,6 +46,9 @@ type TBusOnOption = {
  *
  * // Unsubscribe: stop a specific handler from listening to the 'message' event
  *   hub.off('message', handler);
+ *
+ *   isCrossTab 优先级
+ *   局部方法里面的isCrossTab > this.isCrossTab > options.isCrossTab
  *   @param {object} options
  *   @param {boolean} [options.isCrossTab]
  */
@@ -55,7 +58,14 @@ function _helperEventBus(options = {}) {
     storageKey: '__hub__broadcastChannel'
     // crossTabsMsgType: null // BroadcastChannel storage
   }
+
   return {
+    /**
+     * 是否跨tabs
+     * @type {boolean}
+     */
+    isCrossTab: undefined as boolean,
+
     /**
      * 全局参数
      * @return {Record<string, any>}
@@ -63,7 +73,7 @@ function _helperEventBus(options = {}) {
     __opts, // 参数
 
     /**
-     * @return {BroadcastChannel|null}
+     * @return {BroadcastChannel}
      */
     broadcastChannel: (function () {
       const global = getGlobalThis()
@@ -76,13 +86,13 @@ function _helperEventBus(options = {}) {
      * 基座
      * @return {Record<string, any>}
      * */
-    hub: Object.create(null),
+    hub: Object.create(null) as Record<string, any>,
 
     /**
      * 跨越tabs 共享
      * @return {Record<string, any>}
      */
-    crossHub: Object.create(null),
+    crossHub: Object.create(null) as Record<string, any>,
 
     /**
      * emit事件
@@ -93,7 +103,7 @@ function _helperEventBus(options = {}) {
       const lastArg = data?.at?.(-1)
 
       // feat: 新增跨tabs 更多参数可以控制自定义
-      let innerIsCrossTab = isCrossTab
+      let innerIsCrossTab = this.isCrossTab ?? isCrossTab
 
       // fix: 如果是内部参数，最后一个是对象且携带了isCrossTab属性
       if (isObject(lastArg) && hasOwn(lastArg, 'isCrossTab')) {
@@ -129,7 +139,7 @@ function _helperEventBus(options = {}) {
       this.hub[event].push(handler)
 
       // feat: 新增跨tabs 更多参数可以控制自定义
-      const innerIsCrossTab = handler?.isCrossTab ?? option?.isCrossTab ?? isCrossTab
+      const innerIsCrossTab = handler?.isCrossTab ?? option?.isCrossTab ?? this.isCrossTab ?? isCrossTab
 
       // 如果跨tabs
       if (innerIsCrossTab) {

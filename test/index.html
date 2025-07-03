@@ -36,28 +36,70 @@
       <button onclick="onSendMsg()">发送消息1002</button>
     </div>
 
-    <iframe src="./index02.html"></iframe>
+    <div id="container"></div>
+
+    <div id="container2"></div>
+
+    <script>
+			window.process = {
+				env: {
+					NODE_ENV: 'development'
+				}
+			}
+    </script>
+
+    <!--    <iframe src="./index02.html"></iframe>-->
     <script src="./lib/index.umd.js"></script>
     <script></script>
 
-    <script>
-      const { bus, get } = window.sfutils
+    <script type="module">
+      import { Postmate } from '../src/expand/postmate.js'
+      const { bus, get  } = window.sfutils
+			Postmate.debug = true
+
+      const handshake = new Postmate({
+        container: document.getElementById('container'), // Element to inject frame into
+        url: 'child.html', // Page to load, must have postmate.js. This will also be the origin used for communication.
+        name: 'my-iframe-name', // Set Iframe name attribute. Useful to get `window.name` in the child.
+        classListArray: ['myClass'], //Classes to add to the iframe via classList, useful for styling.
+				model: { foo: 'child1' },
+				handshakeKey: '1234242'
+      })
+
+      handshake.then(child => {
+        // child.get('height').then(height => (child.frame.style.height = `${height}px`))
+        child.on('some-event', data => console.log(data)) // Logs "Hello, World!"
+
+				child.get('sayName', '1234', { name: 'a' }).then(res => console.error(res))
+
+        child.call('mounted', '1', '2', 3, ['蔡徐坤'])
+      })
+
+      // setTimeout(() => {
+			// 	const handshake2 = new Postmate({
+			// 		container: document.getElementById('container2'), // Element to inject frame into
+			// 		url: 'child.html', // Page to load, must have postmate.js. This will also be the origin used for communication.
+			// 		name: 'my-iframe-name2', // Set Iframe name attribute. Useful to get `window.name` in the child.
+			// 		classListArray: ['myClass'], //Classes to add to the iframe via classList, useful for styling.
+			// 		model: { foo: 'child2' }
+			// 	})
+			// 	handshake2.then(child2 => {
+			// 		child2.call('mounted')
+			// 	})
+      // }, 5000)
 
       let obj = {
-				name: 'a',
-				b: {
-					name: 'b',
-					list: [
-						{name: '1234'}
-          ]
-				}
+        name: 'a',
+        b: {
+          name: 'b',
+          list: [{ name: '1234' }]
+        }
       }
 
-			// console.log(get(obj, 'b.list.[0].name'));
+      // console.log(get(obj, 'b.list.[0].name'));
 
-
-			const onSendMsg = () => {
-				console.log('父发送了：', 'hello【1001】', { id: 12342 })
+      const onSendMsg = () => {
+        console.log('父发送了：', 'hello【1001】', { id: 12342 })
         bus.emit('1001', 'hello【1001】', { id: 12342 })
       }
 
@@ -65,14 +107,13 @@
         console.log('父监听到【1001】：', ...args)
       })
 
-			bus.on('1001', (...args) => {
-				console.log('父监听到【1001-copy】：', ...args)
-			})
+      bus.on('1001', (...args) => {
+        console.log('父监听到【1001-copy】：', ...args)
+      })
 
-
-			bus.on('xxx', (...args) => {
-				console.log('父监听到【xxx】：', ...args)
-			})
+      bus.on('xxx', (...args) => {
+        console.log('父监听到【xxx】：', ...args)
+      })
     </script>
 
     <script></script>
