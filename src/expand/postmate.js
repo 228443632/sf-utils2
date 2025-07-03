@@ -137,7 +137,7 @@ export class ParentAPI {
       const uid = generateNewMessageId()
       const transact = e => {
         // TODO
-        console.log('transact', e)
+        // console.log('transact', e)
         if (e.data.uid === uid && e.data.postmate === 'reply') {
           this.parent.removeEventListener('message', transact, false)
           resolve(e.data.value)
@@ -163,7 +163,7 @@ export class ParentAPI {
   }
 
   // TODO
-  call(property, ...funcArgs) {
+  call(property, data, ...funcRestArgs) {
     // Send information to the child
     this.child.postMessage(
       {
@@ -171,7 +171,8 @@ export class ParentAPI {
         type: messageType,
         property,
         // TODO
-        funcArgs
+        data,
+        funcRestArgs
       },
       this.childOrigin
     )
@@ -219,19 +220,18 @@ export class ChildAPI {
         log('Child: Received request', e.data)
       }
 
-      const { property, uid, data } = e.data
+      const { property, uid, data, funcRestArgs = [], funcArgs = [] } = e.data
 
       if (e.data.postmate === 'call') {
         if (property in this.model && typeof this.model[property] === 'function') {
-          this.model[property](...(e.data.funcArgs || []))
+          this.model[property](data, ...funcRestArgs)
         }
         return
       }
 
-      console.log('debug002', e.data)
       // Reply to Parent
       // TODO
-      resolveValue(this.model, property, e.data.funcArgs || []).then(value =>
+      resolveValue(this.model, property, funcArgs).then(value =>
         e.source.postMessage(
           {
             property,
@@ -309,7 +309,7 @@ class Postmate {
     this.model = model || {}
     this.handshakeKey = handshakeKey
 
-    console.log('url', url)
+    // console.log('url', url)
     return this.sendHandshake(url)
   }
 
@@ -326,7 +326,7 @@ class Postmate {
       const reply = e => {
         if (!sanitize(e, childOrigin)) return false
         // TODO
-        console.log('e', e)
+        // console.log('e', e)
 
         if (e.data.postmate === 'handshake-reply') {
           clearInterval(responseInterval)
@@ -337,14 +337,13 @@ class Postmate {
             IS_DEV && log('Parent: Handshake reply handshakeKey is mismatched')
             return reject('Handshake reply handshakeKey is mismatched')
           }
-          if (process.env.NODE_ENV !== 'production') {
-            log('Parent: Received handshake reply from Child')
-          }
+          IS_DEV && log('Parent: Received handshake reply from Child')
           this.parent.removeEventListener('message', reply, false)
           this.childOrigin = e.origin
           if (process.env.NODE_ENV !== 'production') {
             log('Parent: Saving Child origin', this.childOrigin)
           }
+          log('Parent: 握手成功', this.childOrigin)
           return resolve(new ParentAPI(this))
         }
 

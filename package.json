@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.3.2-beta2",
+  "version": "3.3.2-beta3",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "https://test.lckj258.com/bianpengfei-utils/v3/",
@@ -35,7 +35,7 @@
     "release": "release-it patch && yarn no-pub && yarn docs:build",
     "no-pub": "npm run build:all",
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
-    "pub": "npm run no-pub && npm publish --access public --registry https://registry.npmjs.org/",
+    "pub": "npm publish --access public --registry https://registry.npmjs.org/",
     "pub:inner": "npm run no-pub && npm publish --access public --registry http://47.97.180.214:8200/",
     "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub"
   },
