@@ -9,6 +9,7 @@
       <h1>子页面</h1>
       <button onclick="onSendMsg2()">发送消息1002</button>
       <button onclick="onSendMsg1()">发送消息1001</button>
+      <button onclick="closeListener()">关闭监听</button>
     </div>
     <script>
 			window.process = {
@@ -51,10 +52,14 @@
           // }, 500)
 				})
 			}, 0)
+    </script>
+
+    <script>
+			const { bus } = window.sfutils
 
 			const onSendMsg1 = () => {
 				console.log('子发送了：', 'hello【1001】', { id: 111 })
-				bus.emit('1001', 'hello【1001】', { id: 111 })
+				bus.emit('1001', 'hello【1001】', { id: 111 }, {isCrossDomain: true})
 			}
 
 			const onSendMsg2 = () => {
@@ -62,9 +67,14 @@
 				bus.emit('1002', 'hello【1002】', { id: 222 })
 			}
 
-			bus.on('1001', (...args) => {
+
+			const listener001 = bus.on('1001', (...args) => {
 				console.log('子监听到【1001】：', ...args)
-			})
+			}, {isCrossDomain: true})
+
+			const closeListener = () => {
+				listener001.off()
+			}
 
 			bus.on('1002', (...args) => {
 				console.log('子监听到【1002】：', ...args)
@@ -74,7 +84,5 @@
 				console.log('子监听到【xxx】：', ...args)
 			})
     </script>
-
-    <script></script>
   </body>
 </html>

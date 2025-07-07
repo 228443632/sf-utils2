@@ -402,7 +402,7 @@ class Postmate {
 Postmate.Model = class Model {
   /**
    * Initializes the child, model, parent, and responds to the Parents handshake
-   * @param {Object} model Hash of values, functions, or promises
+   * @param {Record<string, any>} model Hash of values, functions, or promises
    * @param {'postmate-handshake' | (string & {})} [model.handshakeKey] Hash of values, functions, or promises
    * @return {Promise}       The Promise that resolves when the handshake has been received
    */

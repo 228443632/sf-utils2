@@ -36,6 +36,8 @@
       <button onclick="onSendMsg()">发送消息1002</button>
     </div>
 
+    <iframe src="http://localhost:3000/child.html"></iframe>
+
     <div id="container"></div>
 
     <div id="container2"></div>
@@ -97,25 +99,27 @@
       }
 
       // console.log(get(obj, 'b.list.[0].name'));
-
-      const onSendMsg = () => {
-        console.log('父发送了：', 'hello【1001】', { id: 12342 })
-        bus.emit('1001', 'hello【1001】', { id: 12342 })
-      }
-
-      bus.on('1001', (...args) => {
-        console.log('父监听到【1001】：', ...args)
-      })
-
-      bus.on('1001', (...args) => {
-        console.log('父监听到【1001-copy】：', ...args)
-      })
-
-      bus.on('xxx', (...args) => {
-        console.log('父监听到【xxx】：', ...args)
-      })
     </script>
 
-    <script></script>
+    <script>
+			const { bus, get  } = window.sfutils
+
+			const onSendMsg = () => {
+				console.log('父发送了：', 'hello【1001】', { id: 12342 })
+				bus.emit('1001', 'hello【1001】', { id: 12342 }, { isCrossDomain: true })
+			}
+
+			bus.on('1001', (...args) => {
+				console.log('父监听到【1001】：', ...args)
+			}, {isCrossDomain: true})
+
+			bus.on('1001', (...args) => {
+				console.log('父监听到【1001-copy】：', ...args)
+			})
+
+			bus.on('xxx', (...args) => {
+				console.log('父监听到【xxx】：', ...args)
+			})
+    </script>
   </body>
 </html>
