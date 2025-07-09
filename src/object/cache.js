@@ -40,11 +40,10 @@ const cache = {
   },
 
   /**
-   * @template T
    * 获取内存缓存对象
    * @param {string} key
    * @param {boolean} [autoRetain] 是否自动延续 默认false
-   * @return {T}
+   * @return {any}
    */
   getItem(key, autoRetain = false) {
     key = getPrefixKey(this.prefix, key)

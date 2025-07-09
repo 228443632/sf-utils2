@@ -2,6 +2,7 @@ import getGlobalThis from '@/base/getGlobalThis'
 import parseJsonNoError from '@/base/parseJsonNoError'
 import isObject from '@/base/isObject'
 import hasOwn from '@/object/hasOwn'
+import _typeof from '@/base/_typeof'
 
 export enum ECrossType {
   /**BroadcastChannel 广播通讯 */
@@ -144,6 +145,7 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
      * @param {TBusEmitDataType[]} data 值
      */
     emit(event: string, ...data: TBusEmitDataType[]) {
+      event = resolveEventName(event)
       const lastArg = data?.at?.(-1)
 
       // feat: 新增跨tabs 更多参数可以控制自定义
@@ -200,6 +202,7 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
      */
     on(event: string, handler: TBusCommonFunc, option?: TBusOnOption) {
       if (!handler) return
+      event = resolveEventName(event)
       if (!this.hub[event]) this.hub[event] = []
       this.hub[event].push(handler)
 
@@ -286,6 +289,7 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
      * @param {TBusCommonFunc} handler
      */
     off(event: string, handler: TBusCommonFunc) {
+      event = resolveEventName(event)
       const i = (this.hub[event] || []).findIndex(h => h === handler)
       if (i > -1) this.hub[event]?.splice?.(i, 1)
       if (this.hub[event]?.length === 0) delete this.hub[event]
@@ -321,6 +325,7 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
      * @param {string} event 事件名
      */
     offEntire(event: string) {
+      event = resolveEventName(event)
       if (event) {
         delete this.hub[event]
         const eventFuncList = this.crossHub[event] || []
@@ -359,6 +364,15 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
       fnEffects.length = 0
     }
   }
+}
+
+/**
+ * 解析事件名称
+ * @description 兼容Symbol
+ * @param eventName
+ */
+function resolveEventName(eventName: Symbol | string) {
+  return _typeof(eventName) == 'Symbol' ? eventName.toString() : String(eventName)
 }
 
 /**
