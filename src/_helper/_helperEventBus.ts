@@ -22,6 +22,11 @@ type TBusCommonFunc = ((...args: any[]) => any) & {
   /** 是否跨tab 共享消息 */
   isCrossTab?: boolean
 
+  /**
+   * 是否跨tab 共享消息
+   */
+  isCrossDomain?: boolean
+
   /** 移除监听消息方法 */
   off?: (...args: any[]) => any
 
@@ -47,7 +52,7 @@ type TBusEmitDataType =
  */
 type TBusOnOption = {
   /** 是否跨tab 共享消息 */
-  isCrossTab?: undefined
+  isCrossTab?: boolean
 
   /** 是否跨域 共享消息 */
   isCrossDomain?: boolean
@@ -55,7 +60,7 @@ type TBusOnOption = {
 
 type THelperEventBusOption = {
   /** 是否跨tab 共享消息 */
-  isCrossTab?: undefined
+  isCrossTab?: boolean
 
   /** 是否跨域 共享消息 */
   isCrossDomain?: boolean
@@ -185,10 +190,10 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
 
       // 跨域
       if (innerIsCrossDomain) {
-        const iframes = getFrames()
-        iframes.forEach(frame => {
-          if (frame.contentWindow?.postMessage) {
-            frame.contentWindow.postMessage({ eventId: event, sign: CROSS_DOMAIN_EVENT_ID_SIGN, data })
+        const iframeWins = getFrames()
+        iframeWins.forEach(frame => {
+          if (frame?.postMessage) {
+            frame.postMessage({ eventId: event, sign: CROSS_DOMAIN_EVENT_ID_SIGN, data })
           }
         })
       }
@@ -378,8 +383,32 @@ function resolveEventName(eventName: Symbol | string) {
 /**
  * 获取所有子frame
  */
-function getFrames() {
-  return Array.from(document.querySelectorAll('iframe')) as HTMLIFrameElement[]
+function getFrames(): Window[] {
+  // return Array.from(document.querySelectorAll('iframe')) as HTMLIFrameElement[]
+  return getParentAndSubFramesFrames()
+}
+
+/**
+ * 获取所有子孙frame 和 祖父frame
+ */
+function getParentAndSubFramesFrames() {
+  return getSubFrames((window.top || window.parent) as Window, [])
+
+  /**
+   * 获取所有子节点
+   * @param frameWin
+   * @param cacheWins
+   */
+  function getSubFrames(frameWin: Window, cacheWins: Window[]) {
+    const list = Array.from(frameWin.frames)
+    if (list.length) {
+      list.forEach(frame => {
+        cacheWins.push(frame)
+        getSubFrames(frame, cacheWins)
+      })
+    }
+    return cacheWins
+  }
 }
 
 export default _helperEventBus
