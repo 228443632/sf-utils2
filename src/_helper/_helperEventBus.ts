@@ -3,6 +3,7 @@ import parseJsonNoError from '@/base/parseJsonNoError'
 import isObject from '@/base/isObject'
 import hasOwn from '@/object/hasOwn'
 import _typeof from '@/base/_typeof'
+import uniq from '@/array/uniq'
 
 export enum ECrossType {
   /**BroadcastChannel 广播通讯 */
@@ -173,6 +174,8 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
         }
       }
 
+      // 如果是跨域，那么关闭跨tabs
+      if (innerIsCrossDomain) innerIsCrossTab = false
       ;(this.hub[event] || []).forEach(handler => handler?.(...data))
       // 如果跨tabs
       if (innerIsCrossTab) {
@@ -193,11 +196,12 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
         const iframeWins = getFrames()
         iframeWins.forEach(frame => {
           if (frame?.postMessage) {
-            frame.postMessage({ eventId: event, sign: CROSS_DOMAIN_EVENT_ID_SIGN, data })
+            frame.postMessage({ eventId: event, sign: CROSS_DOMAIN_EVENT_ID_SIGN, data }, '*')
           }
         })
       }
     },
+
     /**
      * on事件
      * @param {string} event 事件名
@@ -212,9 +216,12 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
       this.hub[event].push(handler)
 
       // feat: 新增跨tabs 更多参数可以控制自定义
-      const innerIsCrossTab = handler?.isCrossTab ?? option?.isCrossTab ?? this.isCrossTab ?? isCrossTab
+      let innerIsCrossTab = handler?.isCrossTab ?? option?.isCrossTab ?? this.isCrossTab ?? isCrossTab
 
       const innerIsCrossDomain = handler?.isCrossDomain ?? option?.isCrossDomain ?? this.isCrossDomain ?? isCrossDomain
+
+      // 如果跨域，那么关闭跨tabs
+      if (innerIsCrossDomain) innerIsCrossTab = false
 
       // 如果跨tabs
       if (innerIsCrossTab) {
@@ -392,20 +399,24 @@ function getFrames(): Window[] {
  * 获取所有子孙frame 和 祖父frame
  */
 function getParentAndSubFramesFrames() {
-  return getSubFrames((window.top || window.parent) as Window, [])
+  const topWin = window.top || window.parent
+  return uniq(getSubFrames(topWin, [topWin]))
 
   /**
    * 获取所有子节点
    * @param frameWin
    * @param cacheWins
    */
+
   function getSubFrames(frameWin: Window, cacheWins: Window[]) {
-    const list = Array.from(frameWin.frames)
-    if (list.length) {
-      list.forEach(frame => {
-        cacheWins.push(frame)
-        getSubFrames(frame, cacheWins)
-      })
+    if (frameWin.frames.length) {
+      for (let i = 0; i < frameWin.frames.length; i++) {
+        const frame = frameWin.frames[i]
+        if (frame && window !== frame && !cacheWins.includes(frame)) {
+          cacheWins.push(frame)
+          getSubFrames(frame, cacheWins)
+        }
+      }
     }
     return cacheWins
   }
