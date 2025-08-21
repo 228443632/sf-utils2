@@ -1,5 +1,5 @@
 import deepClone from './deepClone'
-import isPlainObject from '@/base/isPlainObject'
+import isPlainObject from 'sf-utils2/base/isPlainObject'
 import def from './def'
 
 /**

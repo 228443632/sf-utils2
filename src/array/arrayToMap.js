@@ -1,7 +1,7 @@
-import isArray from '@/base/isArray'
-import isFunction from '@/base/isFunction'
-import isString from '@/base/isString'
-import isNullable from '@/base/isNullable'
+import isArray from 'sf-utils2/base/isArray'
+import isFunction from 'sf-utils2/base/isFunction'
+import isString from 'sf-utils2/base/isString'
+import isNullable from 'sf-utils2/base/isNullable'
 
 /**
  * 根据数组 从对象中获取属性，并且以｜进行分割

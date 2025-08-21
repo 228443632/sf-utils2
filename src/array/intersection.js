@@ -1,6 +1,6 @@
-import arrayToMap from '@/array/arrayToMap'
-import uniq from '@/array/uniq'
-import isPrimitive from '@/base/isPrimitive'
+import arrayToMap from 'sf-utils2/array/arrayToMap'
+import uniq from 'sf-utils2/array/uniq'
+import isPrimitive from 'sf-utils2/base/isPrimitive'
 
 /**
  * 获取多个数组的交集

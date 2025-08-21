@@ -1,9 +1,9 @@
-import deepClone from '@/object/deepClone'
-import isFunction from '@/base/isFunction'
-import isPlainObject from '@/base/isPlainObject'
-import isArray from '@/base/isArray'
-import arrayToObj from '@/array/arrayToObj'
-import { PlainObjectType } from '@/_helper/_types'
+import deepClone from 'sf-utils2/object/deepClone'
+import isFunction from 'sf-utils2/base/isFunction'
+import isPlainObject from 'sf-utils2/base/isPlainObject'
+import isArray from 'sf-utils2/base/isArray'
+import arrayToObj from 'sf-utils2/array/arrayToObj'
+import { PlainObjectType } from 'sf-utils2/_helper/_types'
 
 /**
  * @typedef {(value: any, key: string) => boolean} TPredicate 选项

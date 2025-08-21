@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import arrayToObj from '@/array/arrayToObj'
+import arrayToObj from 'sf-utils2/array/arrayToObj'
 
 /**
  * 数组去重

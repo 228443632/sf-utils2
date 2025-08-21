@@ -1,4 +1,4 @@
-import _typeof from '@/base/_typeof'
+import _typeof from 'sf-utils2/base/_typeof'
 
 /**
  * 是否是字符串

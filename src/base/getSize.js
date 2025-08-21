@@ -1,4 +1,4 @@
-import _typeof from '@/base/_typeof'
+import _typeof from 'sf-utils2/base/_typeof'
 
 /**
  * 返回不同类型的的长度 （对象/数组/Map/Set/String）

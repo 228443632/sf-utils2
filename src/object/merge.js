@@ -1,4 +1,4 @@
-import hasOwn from '@/object/hasOwn'
+import hasOwn from 'sf-utils2/object/hasOwn'
 
 /**
  * 合并对象

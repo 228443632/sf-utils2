@@ -1,8 +1,8 @@
-import isArray from '@/base/isArray'
-import isString from '@/base/isString'
+import isArray from 'sf-utils2/base/isArray'
+import isString from 'sf-utils2/base/isString'
 import getStyle from './getStyle'
-import camelCase from '@/string/camelCase'
-import kebabCase from '@/string/kebabCase'
+import camelCase from 'sf-utils2/string/camelCase'
+import kebabCase from 'sf-utils2/string/kebabCase'
 import { _requestAnimationFrame } from './_constant'
 
 /**

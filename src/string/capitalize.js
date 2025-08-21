@@ -1,4 +1,4 @@
-import isString from '@/base/isString.js'
+import isString from 'sf-utils2/base/isString.js'
 
 /**
  * 首字母大写

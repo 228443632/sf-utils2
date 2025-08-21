@@ -1,4 +1,4 @@
-import isNumber from '@/base/isNumber'
+import isNumber from 'sf-utils2/base/isNumber'
 
 /**
  * 文件大小友好提示

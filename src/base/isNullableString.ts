@@ -1,4 +1,4 @@
-import isNullable from '@/base/isNullable'
+import isNullable from 'sf-utils2/base/isNullable'
 
 /**
  * 判断值是否是 null、undefined、''

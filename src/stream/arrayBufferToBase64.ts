@@ -1,4 +1,4 @@
-import { type BlobToArrayBufferOptions } from '@/stream/blobToArrayBuffer.ts'
+import { type BlobToArrayBufferOptions } from 'sf-utils2/stream/blobToArrayBuffer.ts'
 
 /**
  * 将 ArrayBuffer 转换为 Base64 字符串（高性能兼容方案）

@@ -150,14 +150,14 @@
 //   }
 // ]
 
-import eachTree from '@/array/eachTree'
-import orderBy from '@/array/orderBy'
-import isArray from '@/base/isArray'
-import arrayToMap from '@/array/arrayToMap'
-import isNoNullable from '@/base/isNoNullable'
-import uniq from '@/array/uniq'
-import { _getPathLists, _includesChildPath } from '@/_helper/_helperTreeBase'
-import merge from '@/object/merge'
+import eachTree from 'sf-utils2/array/eachTree'
+import orderBy from 'sf-utils2/array/orderBy'
+import isArray from 'sf-utils2/base/isArray'
+import arrayToMap from 'sf-utils2/array/arrayToMap'
+import isNoNullable from 'sf-utils2/base/isNoNullable'
+import uniq from 'sf-utils2/array/uniq'
+import { _getPathLists, _includesChildPath } from 'sf-utils2/_helper/_helperTreeBase'
+import merge from 'sf-utils2/object/merge'
 
 /**
  * 从集合中，去除父子同时存在的keys，只显示父节点（当父节点下所有子节点都选中时）

@@ -1,5 +1,5 @@
 import getParentScrollElement from './getParentScrollElement'
-import isString from '@/base/isString'
+import isString from 'sf-utils2/base/isString'
 import getAbsOffsetTop from './getAbsOffsetTop'
 import scrollToY from './scrollToY'
 

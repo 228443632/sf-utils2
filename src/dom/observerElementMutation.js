@@ -1,4 +1,4 @@
-import debounce from '@/function/debounce'
+import debounce from 'sf-utils2/function/debounce'
 import getStyle from './getStyle'
 import { _MutationObserver } from './_constant'
 

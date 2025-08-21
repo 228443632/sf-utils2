@@ -1,4 +1,4 @@
-import isNumber from '@/base/isNumber'
+import isNumber from 'sf-utils2/base/isNumber'
 
 /**
  * 反序列化buffer

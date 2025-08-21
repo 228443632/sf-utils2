@@ -1,6 +1,6 @@
 import Decimal from './Decimal'
-import { getNumString } from '@/_helper/_helperNumber'
-import isNoNullable from '@/base/isNoNullable'
+import { getNumString } from 'sf-utils2/_helper/_helperNumber'
+import isNoNullable from 'sf-utils2/base/isNoNullable'
 
 /**
  * 获取总和  sum(...[1, 2, 3])

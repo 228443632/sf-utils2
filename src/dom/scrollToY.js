@@ -1,6 +1,6 @@
 import getScrollTop from './getScrollTop'
 import { _easeInOutQuad, _requestAnimationFrame } from './_constant'
-import isFunction from '@/base/isFunction'
+import isFunction from 'sf-utils2/base/isFunction'
 
 /**
  * 垂直滚动

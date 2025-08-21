@@ -1,5 +1,5 @@
-import _typeof from '@/base/_typeof'
-import isPlainObject from '@/base/isPlainObject'
+import _typeof from 'sf-utils2/base/_typeof'
+import isPlainObject from 'sf-utils2/base/isPlainObject'
 
 /**
  * 清除对象身上的属性

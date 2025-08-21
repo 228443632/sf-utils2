@@ -1,5 +1,5 @@
 import Decimal from './Decimal'
-import isNoNullable from '@/base/isNoNullable'
+import isNoNullable from 'sf-utils2/base/isNoNullable'
 
 /**
  * 获取总和  sum(...[1, 2, 3])

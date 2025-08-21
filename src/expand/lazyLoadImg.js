@@ -1,8 +1,8 @@
-import throttle from '@/function/throttle'
+import throttle from 'sf-utils2/function/throttle'
 import getStyle from '../dom/getStyle'
 import getParentScrollElement from '../dom/getParentScrollElement'
-import { _requestAnimationFrame } from '@/dom/_constant'
-import isElementVisibleInViewport from '@/dom/isElementVisibleInViewport'
+import { _requestAnimationFrame } from 'sf-utils2/dom/_constant'
+import isElementVisibleInViewport from 'sf-utils2/dom/isElementVisibleInViewport'
 
 /**
  * 封装视图的 懒加载图片

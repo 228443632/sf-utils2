@@ -1,11 +1,11 @@
 // @ts-nocheck
 
-import isArray from '@/base/isArray'
+import isArray from 'sf-utils2/base/isArray'
 import merge from '../object/merge'
-import def from '@/object/def'
-import deepClone from '@/object/deepClone'
-import { _includesChildPath } from '@/_helper/_helperTreeBase'
-import { TTreeToListProp } from '@/_types/_helperTreeBaseType'
+import def from 'sf-utils2/object/def'
+import deepClone from 'sf-utils2/object/deepClone'
+import { _includesChildPath } from 'sf-utils2/_helper/_helperTreeBase'
+import { TTreeToListProp } from 'sf-utils2/_types/_helperTreeBaseType'
 
 /**
  * 获取节点 经过的所有父节点 轨迹节点

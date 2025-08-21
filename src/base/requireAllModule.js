@@ -1,4 +1,4 @@
-import isArray from '@/base/isArray'
+import isArray from 'sf-utils2/base/isArray'
 
 /**
  * 模式类型
