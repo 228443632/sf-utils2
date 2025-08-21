@@ -1,11 +1,10 @@
 import isPromise from '@/base/isPromise'
 
 /**
- * @template R, E
  * 方便处理异步promise错误处理
  * @param { Promise | any } promise
  * @param { Record<string, any> } errorExt - 可以传递给err对象的其他信息
- * @return { Promise<[R, E]> }
+ * @return { Promise<[any, any]> }
  * @description 对promise二次加工
  * @example
  * const [res, err] = await asyncTo(api.xxxx)
