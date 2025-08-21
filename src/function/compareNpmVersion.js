@@ -1,4 +1,4 @@
-import isString from 'sf-utils2/base/isString.js'
+import isString from '@/base/isString.js'
 
 // 转成将数组中的数字转成十进制 [1, 2, 3, 4, 0] => 12340
 const _transferNum = (numList = []) => {

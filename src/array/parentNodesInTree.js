@@ -1,4 +1,4 @@
-import isArray from 'sf-utils2/base/isArray'
+import isArray from '@/base/isArray'
 
 /**
  * 根据树状子节点id,依次找到所有父节点路径

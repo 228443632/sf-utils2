@@ -3,7 +3,7 @@
  * @Author 卞鹏飞 <228443632@qq.com>
  * @create 2024/3/21 12:43
  */
-import isNullable from 'sf-utils2/base/isNullable'
+import isNullable from '@/base/isNullable'
 
 const REGEX_FLOAT = /^-?\d+(\.\d+)?$/
 

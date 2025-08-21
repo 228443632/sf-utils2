@@ -1,7 +1,7 @@
 import TimeoutError from '../error/TimeoutError.ts'
-import sleep from 'sf-utils2/function/sleep'
-import { TFunction } from 'sf-utils2/_types/_helperTreeBaseType.ts'
-import isFunction from 'sf-utils2/base/isFunction'
+import sleep from '@/function/sleep'
+import { TFunction } from '@/_types/_helperTreeBaseType.ts'
+import isFunction from '@/base/isFunction'
 
 /**
  * 返回一个在指定延迟后拒绝并抛出 `TimeoutError` 的 Promise。

@@ -1,4 +1,4 @@
-import _helperEventBus from 'sf-utils2/_helper/_helperEventBus'
+import _helperEventBus from '@/_helper/_helperEventBus'
 
 /**
  * bus事件总线

@@ -1,6 +1,6 @@
 import Decimal from './Decimal'
-import { getNumString } from 'sf-utils2/_helper/_helperNumber'
-import isNoNullable from 'sf-utils2/base/isNoNullable'
+import { getNumString } from '@/_helper/_helperNumber'
+import isNoNullable from '@/base/isNoNullable'
 
 /**
  * 相减

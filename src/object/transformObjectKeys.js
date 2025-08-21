@@ -1,7 +1,7 @@
-import isPlainObject from 'sf-utils2/base/isPlainObject.js'
-import isArray from 'sf-utils2/base/isArray'
-import isFunction from 'sf-utils2/base/isFunction'
-import def from 'sf-utils2/object/def'
+import isPlainObject from '@/base/isPlainObject.js'
+import isArray from '@/base/isArray'
+import isFunction from '@/base/isFunction'
+import def from '@/object/def'
 
 /**
  * 转换键名

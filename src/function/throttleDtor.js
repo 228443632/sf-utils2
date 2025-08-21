@@ -1,4 +1,4 @@
-import throttle from 'sf-utils2/function/throttle'
+import throttle from '@/function/throttle'
 
 /**
  * 函数防抖装饰器

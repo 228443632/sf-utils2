@@ -1,4 +1,4 @@
-import isNativeFunction from 'sf-utils2/base/isNativeFunction'
+import isNativeFunction from '@/base/isNativeFunction'
 
 /**
  * 检测当前方法是否是原生js提供的

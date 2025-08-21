@@ -1,5 +1,5 @@
 import setPropPath from './setPropPath'
-import isPlainObject from 'sf-utils2/base/isPlainObject'
+import isPlainObject from '@/base/isPlainObject'
 
 /**
  * 根据findField 从对象中依次遍历出所有符合（属性）key === findField，路径

@@ -1,5 +1,5 @@
-import isSyncFunction from 'sf-utils2/base/isSyncFunction'
-import isAsyncFunction from 'sf-utils2/base/isAsyncFunction'
+import isSyncFunction from '@/base/isSyncFunction'
+import isAsyncFunction from '@/base/isAsyncFunction'
 
 /**
  * 判断是否是普通方法【同步||异步】

@@ -1,5 +1,5 @@
-import isDate from 'sf-utils2/base/isDate'
-import isNullable from 'sf-utils2/base/isNullable'
+import isDate from '@/base/isDate'
+import isNullable from '@/base/isNullable'
 
 /**
  * 判断是否是一个合法的date

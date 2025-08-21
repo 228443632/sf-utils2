@@ -9,7 +9,7 @@
  * @disclaimer_zh 声明：本包的作者不参与注入，因引入本包造成的损失本包作者概不负责。
  */
 import pkg from '../../package.json'
-import isBrowser from 'sf-utils2/base/isBrowser'
+import isBrowser from '@/base/isBrowser'
 ;(() => {
   if (!isBrowser()) return
   if (pkg.strict) return

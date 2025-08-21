@@ -1,4 +1,4 @@
-import isPromise from 'sf-utils2/base/isPromise'
+import isPromise from '@/base/isPromise'
 
 /**
  * 方便处理异步promise错误处理

@@ -1,7 +1,7 @@
-import arrayToMap from 'sf-utils2/array/arrayToMap'
-import isString from 'sf-utils2/base/isString'
-import uniq from 'sf-utils2/array/uniq'
-import isArray from 'sf-utils2/base/isArray'
+import arrayToMap from '@/array/arrayToMap'
+import isString from '@/base/isString'
+import uniq from '@/array/uniq'
+import isArray from '@/base/isArray'
 
 /**
  * 比较两数组之间值的不同

@@ -1,7 +1,7 @@
-import isString from 'sf-utils2/base/isString'
-import isFunction from 'sf-utils2/base/isFunction'
-import arrayToMap from 'sf-utils2/array/arrayToMap'
-import uniq from 'sf-utils2/array/uniq'
+import isString from '@/base/isString'
+import isFunction from '@/base/isFunction'
+import arrayToMap from '@/array/arrayToMap'
+import uniq from '@/array/uniq'
 
 /**
  * @typedef {function(any, any):boolean|number} ConditionFn

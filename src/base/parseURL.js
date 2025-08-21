@@ -1,4 +1,4 @@
-import getGlobalThis from 'sf-utils2/base/getGlobalThis'
+import getGlobalThis from '@/base/getGlobalThis'
 
 /**
  * 解析获取Url

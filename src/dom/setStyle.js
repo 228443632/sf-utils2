@@ -1,6 +1,6 @@
 import { _ieVersion } from './_constant'
-import isPlainObject from 'sf-utils2/base/isPlainObject'
-import camelCase from 'sf-utils2/string/camelCase'
+import isPlainObject from '@/base/isPlainObject'
+import camelCase from '@/string/camelCase'
 
 /**
  * 设置元素样式

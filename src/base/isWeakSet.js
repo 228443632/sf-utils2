@@ -1,4 +1,4 @@
-import _typeof from 'sf-utils2/base/_typeof'
+import _typeof from '@/base/_typeof'
 
 /**
  * 判断是否是一个WeakSet对象

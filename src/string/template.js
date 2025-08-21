@@ -1,4 +1,4 @@
-import merge from 'sf-utils2/object/merge'
+import merge from '@/object/merge'
 
 /**
  * @type {{tmplRE: undefined}}

@@ -1,21 +1,21 @@
 // @ts-nocheck
 
-import eachTree from 'sf-utils2/array/eachTree'
-import arrayToObj from 'sf-utils2/array/arrayToObj'
-import isFunction from 'sf-utils2/base/isFunction'
-import uniq from 'sf-utils2/array/uniq'
-import listToTree from 'sf-utils2/array/listToTree'
-import isPlainObject from 'sf-utils2/base/isPlainObject'
-import def from 'sf-utils2/object/def'
-import deepClone from 'sf-utils2/object/deepClone'
+import eachTree from '@/array/eachTree'
+import arrayToObj from '@/array/arrayToObj'
+import isFunction from '@/base/isFunction'
+import uniq from '@/array/uniq'
+import listToTree from '@/array/listToTree'
+import isPlainObject from '@/base/isPlainObject'
+import def from '@/object/def'
+import deepClone from '@/object/deepClone'
 import {
   _includesChildPath,
   _getPathLists,
   __callbackListInterface,
   __callbackItemInterface
-} from 'sf-utils2/_helper/_helperTreeBase'
-import merge from 'sf-utils2/object/merge'
-import { TCallbackItemInterface, TCallbackListInterface, TEachTreeProps } from 'sf-utils2/_types/_helperTreeBaseType'
+} from '@/_helper/_helperTreeBase'
+import merge from '@/object/merge'
+import { TCallbackItemInterface, TCallbackListInterface, TEachTreeProps } from '@/_types/_helperTreeBaseType'
 
 /**
  * 根据回调函数过滤树状

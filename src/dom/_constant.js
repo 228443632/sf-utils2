@@ -1,4 +1,4 @@
-import isBrowser from 'sf-utils2/base/isBrowser'
+import isBrowser from '@/base/isBrowser'
 
 /**
  * 获取ie 版本

@@ -1,5 +1,5 @@
 import Decimal from './Decimal'
-import { getNumString } from 'sf-utils2/_helper/_helperNumber'
+import { getNumString } from '@/_helper/_helperNumber'
 
 /**
  * 相乘

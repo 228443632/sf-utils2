@@ -1,5 +1,5 @@
-import isArray from 'sf-utils2/base/isArray'
-import isFunction from 'sf-utils2/base/isFunction'
+import isArray from '@/base/isArray'
+import isFunction from '@/base/isFunction'
 
 /**
  * 去除数组中的无效/无用值

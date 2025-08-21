@@ -1,4 +1,4 @@
-import isArray from 'sf-utils2/base/isArray'
+import isArray from '@/base/isArray'
 
 /**
  * 匹配子列表,形成树状

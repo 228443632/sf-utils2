@@ -1,4 +1,4 @@
-import arrayBufferToText from 'sf-utils2/stream/arrayBufferToText.ts'
+import arrayBufferToText from '@/stream/arrayBufferToText.ts'
 
 /**
  * 将文本通过ArrayBuffer对象解密后的文本

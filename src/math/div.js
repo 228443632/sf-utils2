@@ -1,5 +1,5 @@
 import Decimal from './Decimal'
-import { getNumString } from 'sf-utils2/_helper/_helperNumber'
+import { getNumString } from '@/_helper/_helperNumber'
 
 //   return !isNumber(arg2) || isNaN(arg2) || +arg2 == 0 ? 0 : +new Decimal(+arg1 || 0).div(+arg2).toFixed()
 

@@ -1,9 +1,9 @@
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 import getHttpBlob from '../dom/getHttpBlob'
-import isPlainObject from 'sf-utils2/base/isPlainObject'
-import isString from 'sf-utils2/base/isString'
-import uuid from 'sf-utils2/base/uuid'
+import isPlainObject from '@/base/isPlainObject'
+import isString from '@/base/isString'
+import uuid from '@/base/uuid'
 
 /**
  *  批量下载 （压缩包.zip）

@@ -1,4 +1,4 @@
-import _helperObjectFlatten from 'sf-utils2/_helper/_helperObjectFlatten'
+import _helperObjectFlatten from '@/_helper/_helperObjectFlatten'
 
 /**
  * 将对象进行扁平化

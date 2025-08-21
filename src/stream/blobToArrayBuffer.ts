@@ -1,5 +1,5 @@
-import isFunction from 'sf-utils2/base/isFunction'
-import { type TBaseBlobArrayBufferTransferOptions } from 'sf-utils2/_types/_helperTreeBaseType.ts'
+import isFunction from '@/base/isFunction'
+import { type TBaseBlobArrayBufferTransferOptions } from '@/_types/_helperTreeBaseType.ts'
 
 export interface BlobToArrayBufferOptions {
   /** 分片大小， 如果不传入那么将整个一起读取，这样可能导致内存过大， 单位MB */

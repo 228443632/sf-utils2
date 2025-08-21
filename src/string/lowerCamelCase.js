@@ -1,4 +1,4 @@
-import camelCase from 'sf-utils2/string/camelCase'
+import camelCase from '@/string/camelCase'
 
 /**
  * 小驼峰命名，开头是小写

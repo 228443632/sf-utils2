@@ -1,8 +1,8 @@
 // 从 './timeout.ts' 文件中导入 timeout 函数。
 import timeout from './timeout.ts'
-import isFunction from 'sf-utils2/base/isFunction'
-import { TFunction } from 'sf-utils2/_types/_helperTreeBaseType.ts'
-import def from 'sf-utils2/object/def'
+import isFunction from '@/base/isFunction'
+import { TFunction } from '@/_types/_helperTreeBaseType.ts'
+import def from '@/object/def'
 
 /**
  * 执行一个异步函数，并强制应用超时机制。

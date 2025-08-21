@@ -1,5 +1,5 @@
-import isArray from 'sf-utils2/base/isArray'
-import isNoNullable from 'sf-utils2/base/isNoNullable'
+import isArray from '@/base/isArray'
+import isNoNullable from '@/base/isNoNullable'
 
 /**
  * 去除数组中的 是null 、undefined、NaN

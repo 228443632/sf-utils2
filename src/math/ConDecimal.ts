@@ -5,8 +5,8 @@
  */
 
 import Decimal from './Decimal'
-import { getNumString } from 'sf-utils2/_helper/_helperNumber'
-import def from 'sf-utils2/object/def'
+import { getNumString } from '@/_helper/_helperNumber'
+import def from '@/object/def'
 import { type Numeric } from 'decimal.js-light'
 
 Decimal.set({

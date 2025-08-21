@@ -1,8 +1,8 @@
-import isFunction from 'sf-utils2/base/isFunction'
-import isArray from 'sf-utils2/base/isArray'
-import isPlainObject from 'sf-utils2/base/isObject'
-import isMap from 'sf-utils2/base/isMap'
-import isSet from 'sf-utils2/base/isSet'
+import isFunction from '@/base/isFunction'
+import isArray from '@/base/isArray'
+import isPlainObject from '@/base/isObject'
+import isMap from '@/base/isMap'
+import isSet from '@/base/isSet'
 
 /**
  * 创建一个 Web Work 实例

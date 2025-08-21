@@ -1,8 +1,8 @@
-import isPlainObject from 'sf-utils2/base/isPlainObject'
-import { PlainObjectType } from 'sf-utils2/_helper/_types'
-import isString from 'sf-utils2/base/isString'
-import hasOwn from 'sf-utils2/object/hasOwn'
-import _helperObjectFlatten from 'sf-utils2/_helper/_helperObjectFlatten'
+import isPlainObject from '@/base/isPlainObject'
+import { PlainObjectType } from '@/_helper/_types'
+import isString from '@/base/isString'
+import hasOwn from '@/object/hasOwn'
+import _helperObjectFlatten from '@/_helper/_helperObjectFlatten'
 
 /**
  * 判断对象是否含有某一个属性

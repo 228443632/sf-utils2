@@ -2,13 +2,13 @@
 
 import merge from '../object/merge.js'
 import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } from '../_helper/_helperTreeBase.js'
-import arrayToObj from 'sf-utils2/array/arrayToObj'
+import arrayToObj from '@/array/arrayToObj'
 import {
   TCallbackItemInterface,
   TCallbackListInterface,
   TEachTreeRetainField,
   TListToTreeProp
-} from 'sf-utils2/_types/_helperTreeBaseType'
+} from '@/_types/_helperTreeBaseType'
 
 /**
  * @typedef {'__pathIds__', '__pathIdsObj__'} RetainField

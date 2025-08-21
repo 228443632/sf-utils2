@@ -1,5 +1,5 @@
-import isBrowser from 'sf-utils2/base/isBrowser'
-import isFunction from 'sf-utils2/base/isFunction'
+import isBrowser from '@/base/isBrowser'
+import isFunction from '@/base/isFunction'
 
 const COMPLETE = 'COMPLETE'
 const CANCELED = 'CANCELED'
