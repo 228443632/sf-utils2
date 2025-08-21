@@ -41,7 +41,6 @@
   },
   "globalName": "sfutils",
   "files": [
-    "src",
     "lib",
     "package.json",
     "README.md",
