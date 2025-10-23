@@ -1,5 +1,5 @@
-import isString from '@/base/isString'
-import trim from '@/string/trim'
+import isString from 'sf-utils2/base/isString'
+import trim from 'sf-utils2/string/trim'
 import getAbsOffsetTop from './getAbsOffsetTop'
 
 /**

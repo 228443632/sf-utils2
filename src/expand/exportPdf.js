@@ -1,6 +1,6 @@
 import html2canvas from 'html2canvas'
 import Jspdf from 'jspdf'
-import isString from '@/base/isString'
+import isString from 'sf-utils2/base/isString'
 
 /**
  * 导出页面为PDF格式，依赖【缺少 html2canvas库】：推荐版本1.4.0；依赖【缺少 jspdf库】：推荐版本2.3.0

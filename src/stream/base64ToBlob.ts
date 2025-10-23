@@ -1,5 +1,5 @@
-import type { TBaseBlobArrayBufferTransferOptions } from '@/_types/_helperTreeBaseType.ts'
-import base64ToArrayBuffer from '@/stream/base64ToArrayBuffer.ts'
+import type { TBaseBlobArrayBufferTransferOptions } from 'sf-utils2/_types/_helperTreeBaseType.ts'
+import base64ToArrayBuffer from 'sf-utils2/stream/base64ToArrayBuffer.ts'
 
 /**
  * 将Base64字符串转换为Blob对象（自动提取MIME类型）

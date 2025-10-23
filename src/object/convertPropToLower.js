@@ -1,5 +1,5 @@
-import isPlainObject from '@/base/isPlainObject.js'
-import isArray from '@/base/isArray'
+import isPlainObject from 'sf-utils2/base/isPlainObject.js'
+import isArray from 'sf-utils2/base/isArray'
 
 /**
  * 将某个对象或数组里的所有的对象属性转成 大写或者小写

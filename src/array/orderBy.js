@@ -1,6 +1,6 @@
-import isArray from '@/base/isArray'
-import isNullable from '@/base/isNullable'
-import _helperArraySort from '@/_helper/_helperArraySort'
+import isArray from 'sf-utils2/base/isArray'
+import isNullable from 'sf-utils2/base/isNullable'
+import _helperArraySort from 'sf-utils2/_helper/_helperArraySort'
 
 /**
  * 比较 从大到小

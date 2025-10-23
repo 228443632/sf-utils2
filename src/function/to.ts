@@ -1,4 +1,4 @@
-import isPromise from '@/base/isPromise'
+import isPromise from 'sf-utils2/base/isPromise'
 
 /**
  * 方便处理异步promise错误处理
@@ -9,7 +9,7 @@ import isPromise from '@/base/isPromise'
  * @example
  * const [res, err] = await asyncTo(api.xxxx)
  */
-async function to(promise, errorExt = {}) {
+async function to<T = any, E = Error | undefined>(promise, errorExt = {}): Promise<[T, E]> {
   if (isPromise(promise)) {
     return promise
       .then(function (data) {
@@ -25,11 +25,13 @@ async function to(promise, errorExt = {}) {
 
   try {
     const data = await promise
+    // @ts-expect-error
     return [data, undefined]
   } catch (err) {
     if (errorExt) {
-      Object.assign(err, errorExt)
+      Object.assign(err as Error, errorExt)
     }
+    // @ts-expect-error
     return [undefined, err]
   }
 }

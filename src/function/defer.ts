@@ -1,4 +1,4 @@
-import { TFunction } from '@/_types/_helperTreeBaseType.ts'
+import { TFunction } from 'sf-utils2/_types/_helperTreeBaseType.ts'
 
 /**
  * 将 `func` 的调用推迟到当前调用栈清空之后。当调用 `func` 时，任何额外的参数都会传递给它。

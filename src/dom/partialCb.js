@@ -8,7 +8,7 @@
  * @param {Function} afterCb 运行结束回掉函数
  */
 import { _requestAnimationFrame } from './_constant'
-import isPromise from '@/base/isPromise'
+import isPromise from 'sf-utils2/base/isPromise'
 
 function partialCb({ data = [], beforeCb, cb = new Function(), loopLength = 100, afterCb }) {
   const totalLoop = Math.ceil(data.length / loopLength)

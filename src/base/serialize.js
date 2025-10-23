@@ -1,4 +1,4 @@
-import { PlainObjectType } from '@/_helper/_types'
+import { PlainObjectType } from 'sf-utils2/_helper/_types'
 // import 'core-js/stable/url-search-params'
 
 /**

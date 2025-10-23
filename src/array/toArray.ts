@@ -1,4 +1,4 @@
-import isPlainObject from '@/base/isPlainObject'
+import isPlainObject from 'sf-utils2/base/isPlainObject'
 
 /**
  * 将普通数据转为数组结构数据

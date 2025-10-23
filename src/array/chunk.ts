@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import isArray from '@/base/isArray'
+import isArray from 'sf-utils2/base/isArray'
 
 /**
  * 将一个数组分割成大小的组。如果数组不能被平均分配，那么最后一块将是剩下的元素

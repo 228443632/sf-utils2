@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import isArray from '@/base/isArray'
-import isFunction from '@/base/isFunction'
-import { getPropValue } from '@/array/arrayToMap'
-import isNullable from '@/base/isNullable'
+import isArray from 'sf-utils2/base/isArray'
+import isFunction from 'sf-utils2/base/isFunction'
+import { getPropValue } from 'sf-utils2/array/arrayToMap'
+import isNullable from 'sf-utils2/base/isNullable'
 
 type TArrayToObjOptions = Partial<{
   valueType: 'object' | 'array'

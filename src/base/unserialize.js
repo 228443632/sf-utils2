@@ -1,5 +1,5 @@
-import { PlainObjectType } from '@/_helper/_types'
-import isString from '@/base/isString'
+import { PlainObjectType } from 'sf-utils2/_helper/_types'
+import isString from 'sf-utils2/base/isString'
 
 /**
  * 反转序列化查询参数

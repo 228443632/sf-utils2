@@ -1,5 +1,5 @@
-import camelCase from '@/string/camelCase'
-import capitalize from '@/string/capitalize'
+import camelCase from 'sf-utils2/string/camelCase'
+import capitalize from 'sf-utils2/string/capitalize'
 
 /**
  * 大驼峰命名

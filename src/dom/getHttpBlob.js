@@ -1,4 +1,4 @@
-import isPlainObject from '@/base/isPlainObject'
+import isPlainObject from 'sf-utils2/base/isPlainObject'
 
 /**
  * ajax根据http链接地址 获取远程blob

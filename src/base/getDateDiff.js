@@ -1,7 +1,7 @@
-import isInteger from '@/base/isInteger'
-import isString from '@/base/isString'
-import isValidDate from '@/base/isValidDate'
-import isDate from '@/base/isDate'
+import isInteger from 'sf-utils2/base/isInteger'
+import isString from 'sf-utils2/base/isString'
+import isValidDate from 'sf-utils2/base/isValidDate'
+import isDate from 'sf-utils2/base/isDate'
 
 /**
  * 获取时间戳

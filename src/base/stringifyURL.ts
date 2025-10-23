@@ -1,10 +1,10 @@
 // @ts-ignore
 
-import parseURL from '@/base/parseURL'
-import merge from '@/object/merge'
-import deepMerge from '@/object/deepMerge'
-import getGlobalThis from '@/base/getGlobalThis'
-import isBoolean from '@/base/isBoolean'
+import parseURL from 'sf-utils2/base/parseURL'
+import merge from 'sf-utils2/object/merge'
+import deepMerge from 'sf-utils2/object/deepMerge'
+import getGlobalThis from 'sf-utils2/base/getGlobalThis'
+import isBoolean from 'sf-utils2/base/isBoolean'
 
 type TStringifyURLOption = {
   /** 是否深度合并 默认是true */

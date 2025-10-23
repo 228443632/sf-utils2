@@ -3,14 +3,14 @@
  * @Author bianpengfei
  * @create 2022/7/20 11:18
  */
-import isArray from '@/base/isArray.js'
-import merge from '@/object/merge.js'
-import def from '@/object/def'
-import deepClone from '@/object/deepClone'
-import isString from '@/base/isString'
-import _helperArraySort from '@/_helper/_helperArraySort'
-import arrayToObj from '@/array/arrayToObj'
-import isNullable from '@/base/isNullable'
+import isArray from 'sf-utils2/base/isArray.js'
+import merge from 'sf-utils2/object/merge.js'
+import def from 'sf-utils2/object/def'
+import deepClone from 'sf-utils2/object/deepClone'
+import isString from 'sf-utils2/base/isString'
+import _helperArraySort from 'sf-utils2/_helper/_helperArraySort'
+import arrayToObj from 'sf-utils2/array/arrayToObj'
+import isNullable from 'sf-utils2/base/isNullable'
 
 /**
  * @param {Array} list 每个节点下子节点数组

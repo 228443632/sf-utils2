@@ -1,5 +1,5 @@
-import getLength from '@/base/getLength'
-import def from '@/object/def'
+import getLength from 'sf-utils2/base/getLength'
+import def from 'sf-utils2/object/def'
 
 const getPrefixKey = (prefix, key) => {
   return [prefix, key].filter(Boolean).join()

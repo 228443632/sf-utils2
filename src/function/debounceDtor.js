@@ -1,4 +1,4 @@
-import debounce from '@/function/debounce'
+import debounce from 'sf-utils2/function/debounce'
 
 /**
  * 函数节流装饰器

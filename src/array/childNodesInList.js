@@ -1,5 +1,5 @@
-import isArray from '@/base/isArray'
-import arrayToObj from '@/array/arrayToObj'
+import isArray from 'sf-utils2/base/isArray'
+import arrayToObj from 'sf-utils2/array/arrayToObj'
 
 /**
  * 根据 父节点id 获取其 所有子节点信息

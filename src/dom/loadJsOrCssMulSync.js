@@ -1,5 +1,5 @@
-import uniq from '@/array/uniq'
-import arrayToObj from '@/array/arrayToObj'
+import uniq from 'sf-utils2/array/uniq'
+import arrayToObj from 'sf-utils2/array/arrayToObj'
 
 /**
  * 支持批量加载css 和 jsm 例子：loadJsOrCssMulSync(['https://unpkg.com/element-ui/lib/theme-chalk/index.css', 'https://unpkg.com/element-ui/lib/index.js'])

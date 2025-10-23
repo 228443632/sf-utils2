@@ -1,6 +1,6 @@
-import sleep from '@/function/sleep'
-import isFunction from '@/base/isFunction'
-import isNumber from '@/base/isNumber'
+import sleep from 'sf-utils2/function/sleep'
+import isFunction from 'sf-utils2/base/isFunction'
+import isNumber from 'sf-utils2/base/isNumber'
 
 interface RetryOptions {
   /**

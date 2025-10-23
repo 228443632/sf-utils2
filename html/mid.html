@@ -1,0 +1,149 @@
+<!--
+ * @Description:
+ * @Author 卞鹏飞 <228443632@qq.com>
+ * @create 21/08/25 PM2:41
+ -->
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <style>
+      :root {
+        --element-primary-color: #2d49d1;
+      }
+      html,
+      body {
+        width: 100%;
+        max-height: 100vh;
+      }
+      #app-loading__index {
+        display: none;
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        margin: auto;
+        z-index: 99999;
+        pointer-events: none;
+      }
+      .ant-spin-dot {
+        position: relative;
+        display: inline-block;
+        font-size: 20px;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+      }
+      .ant-spin-dot-spin {
+        transform: rotate(45deg);
+        animation: ant-rotate 1.2s infinite linear;
+      }
+      .ant-spin-dot i {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: var(--element-primary-color);
+        transform: scale(0.75);
+        display: block;
+        position: absolute;
+        opacity: 0.3;
+        animation: ant-spin-move 1s infinite linear alternate;
+        transform-origin: 50% 50%;
+      }
+      .ant-spin-dot i:nth-child(1) {
+        left: 0;
+        top: 0;
+      }
+      .ant-spin-dot i:nth-child(2) {
+        right: 0;
+        top: 0;
+        animation-delay: 0.4s;
+      }
+      .ant-spin-dot i:nth-child(3) {
+        right: 0;
+        bottom: 0;
+        animation-delay: 0.8s;
+      }
+      .ant-spin-dot i:nth-child(4) {
+        left: 0;
+        bottom: 0;
+        animation-delay: 1.2s;
+      }
+      @keyframes ant-spin-move {
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes ant-rotate {
+        to {
+          transform: rotate(405deg);
+        }
+      }
+
+      body {
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .video-wrap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+      }
+
+      video {
+        width: 100%;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please
+        enable it to continue.</strong
+      >
+    </noscript>
+
+    <div id="app">
+      <!--页面初始化 loading-->
+      <section id="app-loading__index">
+        <div class="ant-spin-dot ant-spin-dot-spin"><i></i><i></i><i></i><i></i></div>
+      </section>
+    </div>
+
+    <div class="video-wrap">
+      <video controls>
+        <source src="https://znz-sucai.oss-cn-beijing.aliyuncs.com/sucai/video/20250727/1753626938803.mp4" type="video/mp4"></source>
+      </video>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const query = window.location.search
+        const searchParams = new URLSearchParams(query)
+        console.log('searchParams', [...searchParams.entries()])
+        const redirectUrl = searchParams.get('redirect')
+				const video = searchParams.get('video')
+        if (redirectUrl) {
+          window.location.replace(decodeURIComponent(decodeURIComponent(redirectUrl)))
+        } else if (video) {
+        }
+      })
+    </script>
+  </body>
+</html>

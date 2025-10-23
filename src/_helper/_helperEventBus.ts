@@ -1,9 +1,9 @@
-import getGlobalThis from '@/base/getGlobalThis'
-import parseJsonNoError from '@/base/parseJsonNoError'
-import isObject from '@/base/isObject'
-import hasOwn from '@/object/hasOwn'
-import _typeof from '@/base/_typeof'
-import uniq from '@/array/uniq'
+import getGlobalThis from 'sf-utils2/base/getGlobalThis'
+import parseJsonNoError from 'sf-utils2/base/parseJsonNoError'
+import isObject from 'sf-utils2/base/isObject'
+import hasOwn from 'sf-utils2/object/hasOwn'
+import _typeof from 'sf-utils2/base/_typeof'
+import uniq from 'sf-utils2/array/uniq'
 
 export enum ECrossType {
   /**BroadcastChannel 广播通讯 */

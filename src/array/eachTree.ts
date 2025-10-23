@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import merge from '@/object/merge'
+import merge from 'sf-utils2/object/merge'
 import _helperTreeBase, { __callbackItemInterface, __callbackListInterface } from '../_helper/_helperTreeBase.js'
 import {
   TCallbackItemInterface,
@@ -8,7 +8,7 @@ import {
   TEachTreeProps,
   TEachTreeRetainField,
   TEachTreeTraversalOrder
-} from '@/_types/_helperTreeBaseType'
+} from 'sf-utils2/_types/_helperTreeBaseType'
 
 /**
  * @typedef {('__pathIds__'|'__pathIdsObj__')[]} RetainField

@@ -1,10 +1,10 @@
-import isPlainObject from '@/base/isPlainObject'
-import isString from '@/base/isString'
-import deepClone from '@/object/deepClone'
-import arrayToObj from '@/array/arrayToObj'
-import hasOwn from '@/object/hasOwn'
-import isArray from '@/base/isArray'
-import isFunction from '@/base/isFunction'
+import isPlainObject from 'sf-utils2/base/isPlainObject'
+import isString from 'sf-utils2/base/isString'
+import deepClone from 'sf-utils2/object/deepClone'
+import arrayToObj from 'sf-utils2/array/arrayToObj'
+import hasOwn from 'sf-utils2/object/hasOwn'
+import isArray from 'sf-utils2/base/isArray'
+import isFunction from 'sf-utils2/base/isFunction'
 
 /**
  * @typedef {(value: any, key: string) => boolean} TPredicate 回到函数

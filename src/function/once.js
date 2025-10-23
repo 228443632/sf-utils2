@@ -1,4 +1,4 @@
-import noop from '@/function/noop'
+import noop from 'sf-utils2/function/noop'
 
 /**
  * 确保函数只调用一次。
