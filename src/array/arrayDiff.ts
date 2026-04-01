@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import arrayToMap from 'sf-utils2/array/arrayToMap'
 import isString from 'sf-utils2/base/isString'
 import uniq from 'sf-utils2/array/uniq'
@@ -6,12 +8,20 @@ import isArray from 'sf-utils2/base/isArray'
 /**
  * 比较两数组之间值的不同
  * 比如新增哪些数据、删除了哪些数据、
- * @param {Array} newArray 数组1
- * @param {Array} oldArray 数组2
+ * @param {Array} oldArrayValue 数组1 老
+ * @param {Array} newArrayValue 数组2 新
  * @param {string|string[]} [condition] 条件
  * @returns {{delList: *[], addList: *[]}}
  */
-function arrayDiff(newArray, oldArray, condition) {
+function arrayDiff<T1 extends Array<any>, T2 extends Array<any>>(
+  oldArrayValue: T1,
+  newArrayValue: T2,
+  condition: string | string[]
+) {
+  // 转化
+  const newArray = oldArrayValue || []
+  const oldArray = newArrayValue || []
+
   const addList = [], // 新增的数据
     delList = [] // 删除的数据
   if (!condition) {

@@ -1,4 +1,4 @@
-import textToArrayBuffer from 'sf-utils2/stream/textToArrayBuffer.ts'
+import textToArrayBuffer from 'sf-utils2/stream/textToArrayBuffer'
 
 /**
  * 将文本通过ArrayBuffer对象转化加密后的文本

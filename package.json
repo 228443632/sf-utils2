@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.3.5",
+  "version": "3.3.6-beta1",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "https://test.lckj258.com/bianpengfei-utils/v3/",
@@ -12,7 +12,7 @@
   "types": "./index.d.ts",
   "scripts": {
     "prepare": "yarn husky",
-    "dev": "yarn link sf-utils2 && npm run build:init-entry && cross-env NODE_ENV=development rollup -c build/rollup.dev.js -w ",
+    "dev": "npm run build:init-entry && cross-env NODE_ENV=development rollup -c build/rollup.dev.js -w ",
     "build:all": "rimraf lib && npm-run-all --parallel prettier:source build:entry build:modules",
     "build:init-entry": "node build/bin/build-entry.js && node build/bin/build-entry-nodejs.js",
     "build:entry": "npm run build:init-entry && cross-env NODE_ENV=production rollup -c build/rollup.entry.js  && terser lib/index.umd.js -m -o lib/index.umd.min.js",

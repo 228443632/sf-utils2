@@ -1,5 +1,5 @@
-import textToArrayBuffer from 'sf-utils2/stream/textToArrayBuffer.ts'
-import type { TBaseBlobArrayBufferTransferOptions } from 'sf-utils2/_types/_helperTreeBaseType.ts'
+import textToArrayBuffer from 'sf-utils2/stream/textToArrayBuffer'
+import type { TBaseBlobArrayBufferTransferOptions } from 'sf-utils2/_types/_helperTreeBaseType'
 
 /**
  * 将字符串转成blob

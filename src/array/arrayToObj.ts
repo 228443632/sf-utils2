@@ -10,11 +10,24 @@ type TArrayToObjOptions = Partial<{
   retainKeyWithNull?: boolean
 }>
 
+interface IArrayToObjOptionsBase {
+  retainKeyWithNull?: boolean
+}
+
+interface IArrayOptions extends IArrayToObjOptionsBase {
+  valueType?: 'array'
+}
+
+interface IObjectOptions extends IArrayToObjOptionsBase {
+  valueType?: 'object'
+}
+
+type IArrayToObjOptions = IArrayOptions | IObjectOptions | 'array' | 'object'
+
 /**
  * 将数组转成obj
  * @param {any[]} array 数组
- * @param {string|Function|string[]} [property] 主键
- * @param {{valueType: 'object' | 'array', retainKeyWithNull?: boolean}} [options] 是否保留未定义的属性值
+ * @param predicate
  * @returns {*}
  * @example
  *
@@ -43,7 +56,22 @@ type TArrayToObjOptions = Partial<{
  *
  */
 
-function arrayToObj(
+function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[]): Record<string, T>
+function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: IObjectOptions): Record<string, T>
+function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'object'): Record<string, T>
+function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: IArrayOptions): Record<string, T[]>
+function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'array'): Record<string, T[]>
+
+function arrayToObj<T>(
+  array: T[],
+  predicate?: keyof T | (keyof T)[],
+  options?: IArrayToObjOptions
+): Record<string, T[] | T> {
+  if (options === 'object' || options === 'array') options = { valueType: options }
+  return _arrayToObj(array, predicate as string[], options)
+}
+
+function _arrayToObj(
   array: any[] = [],
   property?: string | string[],
   options?: TArrayToObjOptions = { valueType: 'object', retainKeyWithNull: false }

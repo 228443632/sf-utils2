@@ -1,4 +1,4 @@
-import { type TBaseBlobArrayBufferTransferOptions } from 'sf-utils2/_types/_helperTreeBaseType.ts'
+import { type TBaseBlobArrayBufferTransferOptions } from 'sf-utils2/_types/_helperTreeBaseType'
 
 /**
  * base64 转成ArrayBuffer

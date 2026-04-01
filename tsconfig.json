@@ -27,9 +27,9 @@
       "@/*": ["src/*"],
       "+root/*": [""],
       "+libs/*": ["lib/*"],
-      "sf-utils2/*": ["src/*"]
+      "sf-utils2/*": ["src/*", "./*"]
     }
-  },
+  }
   //  "exclude": ["node_modules", "dist", "lib"],
   //  "include": ["src/**/*"]
 }
