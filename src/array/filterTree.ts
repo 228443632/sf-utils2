@@ -144,7 +144,7 @@ function filterTree({
       if (!item['__@retain__']) {
         // 如果是不保留
         const retainParentNode = getRetainParentNode(item)
-        list.splice(index, 1)
+        // list.splice(index, 1)
         const children = item[props.children]
         // console.log('retainParentNode', { retainParentNode, item, children })
         if (children?.length && retainParentNode?.children) {
