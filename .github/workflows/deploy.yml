@@ -13,13 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       # 设置 Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 16
+          cache: 'yarn'
 
       # 🔥 改用 Yarn 安装依赖
       - name: Install Dependencies
