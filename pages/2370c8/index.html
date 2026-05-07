@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>匿名uat配置 | sf-utils2</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/bianpengfei-utils/v3/img/favicon.ico">
+    <meta name="description" content="sfutils 官方文档">
+    <meta name="keywords" content="sfutils，javascript，utils.js">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/bianpengfei-utils/v3/assets/css/1.styles.dd599508.css" as="style"><link rel="preload" href="/bianpengfei-utils/v3/assets/js/app.004872cc.js" as="script"><link rel="preload" href="/bianpengfei-utils/v3/assets/js/3.393801c2.js" as="script"><link rel="preload" href="/bianpengfei-utils/v3/assets/js/161.411f3aac.js" as="script">
+    <link rel="stylesheet" href="/bianpengfei-utils/v3/assets/css/1.styles.dd599508.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/bianpengfei-utils/v3/" class="home-link router-link-active"><img src="/bianpengfei-utils/v3/img/logo.svg" alt="sf-utils2" class="logo"> <span class="site-name can-hide">sf-utils2</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/bianpengfei-utils/v3/" class="nav-link">版本v3.3.6-beta.2</a></div><div class="nav-item"><a href="/bianpengfei-utils/v3/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="指南" class="dropdown-title"><a href="/bianpengfei-utils/v3/pages/021613/" class="link-title">指南</a> <span class="title" style="display:none;">指南</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/021613/" class="nav-link">01.快速开始 🔥</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/e3f3b0/" class="nav-link">02.基础-Base</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/xel48mk0o/" class="nav-link">03.对象-Object</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/x0sf8dktg/" class="nav-link">04.数组-Array</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/x059mk3g/" class="nav-link">05.方法-Function</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/xf6ds06/" class="nav-link">06.字符串-String</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/ad3feb/" class="nav-link">07.数学-Math</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/c256cd/" class="nav-link">08.dom</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/fb9692/" class="nav-link">09.拓展</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Webpack5.x" class="dropdown-title"><!----> <span class="title" style="display:;">Webpack5.x</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://test.lckj258.com/fr/learn-webpack5-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  webpack5.x教程学习
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><!----> <span class="title" style="display:;">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/linux/c2d867/" class="nav-link">例子</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><!----> <span class="title" style="display:;">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/nginx/063ce9/" class="nav-link">教程 🔥</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/nginx/319be7/" class="nav-link">例子配置</a></li></ul></div></div><div class="nav-item"><a href="https://test.lckj258.com/fr/pc-template/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  企业级后台模版
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/bianpengfei-utils/v3/" class="nav-link">版本v3.3.6-beta.2</a></div><div class="nav-item"><a href="/bianpengfei-utils/v3/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="指南" class="dropdown-title"><a href="/bianpengfei-utils/v3/pages/021613/" class="link-title">指南</a> <span class="title" style="display:none;">指南</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/021613/" class="nav-link">01.快速开始 🔥</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/e3f3b0/" class="nav-link">02.基础-Base</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/xel48mk0o/" class="nav-link">03.对象-Object</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/x0sf8dktg/" class="nav-link">04.数组-Array</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/x059mk3g/" class="nav-link">05.方法-Function</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/xf6ds06/" class="nav-link">06.字符串-String</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/ad3feb/" class="nav-link">07.数学-Math</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/c256cd/" class="nav-link">08.dom</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/pages/fb9692/" class="nav-link">09.拓展</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Webpack5.x" class="dropdown-title"><!----> <span class="title" style="display:;">Webpack5.x</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://test.lckj258.com/fr/learn-webpack5-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  webpack5.x教程学习
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><!----> <span class="title" style="display:;">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/linux/c2d867/" class="nav-link">例子</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Nginx" class="dropdown-title"><!----> <span class="title" style="display:;">Nginx</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/nginx/063ce9/" class="nav-link">教程 🔥</a></li><li class="dropdown-item"><!----> <a href="/bianpengfei-utils/v3/nginx/319be7/" class="nav-link">例子配置</a></li></ul></div></div><div class="nav-item"><a href="https://test.lckj258.com/fr/pc-template/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  企业级后台模版
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Nginx配置</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/bianpengfei-utils/v3/nginx/063ce9/" class="sidebar-link">教程🔥</a></li><li><a href="/bianpengfei-utils/v3/nginx/319be7/" class="sidebar-link">指南者留学nginx配置</a></li><li><a href="/bianpengfei-utils/v3/nginx/954d4d/" class="sidebar-link">溧阳口腔nginx配置</a></li><li><a href="/bianpengfei-utils/v3/nginx/xe4kocuu/" class="sidebar-link">本地mac nginx配置</a></li><li><a href="/bianpengfei-utils/v3/nginx/xd7t4srg/" class="sidebar-link">阿里云服务器nginx配置</a></li><li><a href="/bianpengfei-utils/v3/pages/44d40f/" class="sidebar-link">匿名sit配置</a></li><li><a href="/bianpengfei-utils/v3/pages/2370c8/" aria-current="page" class="active sidebar-link">匿名uat配置</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/bianpengfei-utils/v3/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><span data-v-06225672>nginx配置</span></li><li data-v-06225672><span data-v-06225672>Nginx配置</span></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="https://gitee.com/bianpengfei/bianpengfei" target="_blank" title="作者" class="beLink" data-v-06225672>bianpengfei</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2024-02-03</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><!----> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABGpJREFUSA3tVVtoXFUU3fvOI53UlmCaKIFmwEhsE7QK0ipFEdHEKpXaZGrp15SINsXUWvBDpBgQRKi0+KKoFeJHfZA+ED9KKoIU2gYD9UejTW4rVIzm0VSTziPzuNu1z507dibTTjL4U/DAzLn3nL3X2o91ziX6f9wMFdh6Jvbm9nNSV0msViVO6tN1Rm7NMu2OpeJ9lWBUTDxrJbYTS0hInuwciu9eLHlFxCLCZEk3MegsJmZ5K/JD6t7FkFdEvGUo1g7qJoG3MHImqRIn8/nzY1K9UPKKiJmtnUqHVE3Gbuay6vJE/N2FEmuxFjW2nUuE0yQXRRxLiTUAzs36zhZvOXJPdX850EVnnLZkB8prodQoM5JGj7Xk2mvC7JB8tG04Ef5PiXtG0UtxupRQSfTnBoCy554x18yJHI6I+G5Eru4LHmPJZEQsrvPUbMiA8G/WgMK7w7I+ez7++o2ANfbrjvaOl1tFMs+htG3IrZH9/hDX1Pr8Tc0UvH8tcX29KzAgIGcEkINyW5BF9x891hw6VYqgJHEk0huccS7vh3C6gTiODL+26huuBtbct8eZnqLML8PkxGYpuPZBqtqwkSjgc4mB5gbgig5i+y0UDK35LMxXisn9xQtK+nd26gTIHsHe/oblK/b29fUmN/8Y+9jAQrnBp56m1LcDlDp9irKTExSKduXJVWSqdBMA08pEJnEIOB3FPPMybu/oeV8zFeYN3xx576Q6RH+VmplE4ncQV5v+5rzSoyOU7PuEAg8g803PwBJ0CExno/jcMbN8tONYeOmHiuUNryvm3fRUy4tMPVLdAGkUhNWuggGrJcXPv+ouCjz0MKUHz1J2/E8IC9nqTabcxgaBYM0hPhD5Y65FsbxRQKxCQrDjDctW7PUM3HuZunFyifSAqEfuzCp48Il24luWUWZoyJCaPR82jE0+kFA643wRFVni4RYSq3ohJO2pZ7B5dO4xkDWbEpossJPLSrPjYID8rS2UHTlvyNxqIGsg674XJJ7vnh5L7PNwC4hh2sjCI96mzszOTpxLF0T7l88Yz7lAuK6OnL8gXLOnTvpzSb22YG8W7us3jSebFHeeqnXRG1vt+MoUM84LQIBmMsCTAcOauTh0T0l0neQK7m2bLMt2mGxU3HYssS0J2cdv5wljlPsrIuZLAG/2DOZIXgCYT8uMGZN+e2kSirfxZOPCsC0f24nTZzspnVn9VePS1Z5vubmAGGXG8ZFno9Hel0yfA5ZPhF7Dh972BQJ2qCpgH67lmWtBYbvk6sz02wjky2vXyz0XErP/kFB619js1BtwfOV4OPRqOQBjy3Qbk18vigUPPSD5ceHnwck7W9bhAqZdd7SuG7w4/P2F/GaJh8c7e9qgow+Q7cGBo+98WsLkuktFqiZabtXuQTu/Y5ETbR0v7tNSFnvrmu6pjdoan2KjMu8q/Hmj1EfCO2ZGfEIbIXKUlw8qaX9/b2oeSJmFksSeT/Fn0V3nSypChh4Gjh74ybO9aeZ/AN2dwciu2/MhAAAAAElFTkSuQmCC">匿名uat配置<!----></h1>  <div class="theme-vdoing-content content__default"><div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#web-uat</span>
+
+<span class="token comment">#pc</span>
+upstream web-pc-uat <span class="token punctuation">{</span>
+    server <span class="token number">158.233</span>.255.43:30547<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">#mobile</span>
+upstream web-mobile-uat <span class="token punctuation">{</span>
+    server <span class="token number">158.233</span>.255.43:30515<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">#msite</span>
+upstream web-msite-uat <span class="token punctuation">{</span>
+    server <span class="token number">158.233</span>.255.43:30516<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">#backend-uat</span>
+upstream opr-gateway-uat <span class="token punctuation">{</span>
+    server <span class="token number">158.233</span>.255.43:31040<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+upstream platform-gateway-uat <span class="token punctuation">{</span>
+    server <span class="token number">158.233</span>.255.43:31044<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+upstream app-gateway-uat <span class="token punctuation">{</span>
+    server <span class="token number">158.233</span>.255.43:31046<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+upstream track-gateway-uat <span class="token punctuation">{</span>
+    server <span class="token number">158.233</span>.255.43:31048<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+server <span class="token punctuation">{</span>
+    listen <span class="token number">9090</span> ssl<span class="token punctuation">;</span>
+    server_name <span class="token number">39.185</span>.228.190<span class="token punctuation">;</span>
+    <span class="token builtin class-name">set</span> <span class="token variable">$is_mobile</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$http_user_agent</span> ~* <span class="token string">&quot;(Android|iPhone|Windows Phone|UC|Kindle)&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token builtin class-name">set</span> <span class="token variable">$is_mobile</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    access_log logs/access_9090.log main<span class="token punctuation">;</span>
+    error_log logs/error_9090.log<span class="token punctuation">;</span>
+    client_max_body_size 10G<span class="token punctuation">;</span>
+
+    ssl_certificate /opt/nginx/crt/tls.crt<span class="token punctuation">;</span>
+    ssl_certificate_key /opt/nginx/crt/tls.key<span class="token punctuation">;</span>
+    ssl_session_timeout 30m<span class="token punctuation">;</span>
+    charset utf-8<span class="token punctuation">;</span> <span class="token comment">#chinese</span>
+
+    <span class="token comment">#pc adjust to msite</span>
+    location <span class="token operator">=</span> / <span class="token punctuation">{</span>
+        proxy_pass http://web-pc-uat<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$is_mobile</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            rewrite ^/<span class="token punctuation">(</span>.*<span class="token punctuation">)</span>$ msite/ redirect<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">#m站</span>
+    location <span class="token operator">=</span> /msite/ <span class="token punctuation">{</span>
+        proxy_pass http://web-msite-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$is_mobile</span> <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            rewrite ^/msite/<span class="token punctuation">(</span>.*<span class="token punctuation">)</span>$ <span class="token variable">$scheme</span>://<span class="token variable">$host</span> redirect<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">#m站</span>
+    location ^~ /msite/ <span class="token punctuation">{</span>
+        proxy_pass http://web-msite-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        <span class="token comment"># rewrite ^/msite/(.*)$ /$1 break;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">#pc</span>
+    location / <span class="token punctuation">{</span>
+        proxy_pass http://web-pc-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        <span class="token comment">#rewrite ^(.*)$ /system-maintaining/default.html permanent;</span>
+        <span class="token comment"># return 404;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment"># 默认页</span>
+    location ^~ /system-maintaining/ <span class="token punctuation">{</span>
+        <span class="token builtin class-name">alias</span> /opt/nginx/html/<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">#移动端</span>
+    location ^~ /mobile/ <span class="token punctuation">{</span>
+        proxy_pass http://web-mobile-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        <span class="token comment">#rewrite ^(.*)$ /system-maintaining/default.html permanent;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">#uat-backend</span>
+    location /opr <span class="token punctuation">{</span>
+        proxy_pass http://opr-gateway-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header Upgrade <span class="token variable">$http_upgrade</span><span class="token punctuation">;</span>
+        proxy_set_header Connection <span class="token string">&quot;upgrade&quot;</span><span class="token punctuation">;</span>
+        proxy_read_timeout 3600s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location /platform <span class="token punctuation">{</span>
+        proxy_pass http://platform-gateway-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header Upgrade <span class="token variable">$http_upgrade</span><span class="token punctuation">;</span>
+        proxy_set_header Connection <span class="token string">&quot;upgrade&quot;</span><span class="token punctuation">;</span>
+        proxy_read_timeout 3600s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location /app <span class="token punctuation">{</span>
+        proxy_pass http://app-gateway-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header Upgrade <span class="token variable">$http_upgrade</span><span class="token punctuation">;</span>
+        proxy_set_header Connection <span class="token string">&quot;upgrade&quot;</span><span class="token punctuation">;</span>
+        proxy_read_timeout 3600s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    location /track <span class="token punctuation">{</span>
+        proxy_pass http://track-gateway-uat<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header Upgrade <span class="token variable">$http_upgrade</span><span class="token punctuation">;</span>
+        proxy_set_header Connection <span class="token string">&quot;upgrade&quot;</span><span class="token punctuation">;</span>
+        proxy_read_timeout 300s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    location /zsap-pre <span class="token punctuation">{</span>
+        proxy_pass http://158.233.255.19:7777<span class="token punctuation">;</span>
+        client_max_body_size 10G<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header Upgrade <span class="token variable">$http_upgrade</span><span class="token punctuation">;</span>
+        proxy_set_header Connection <span class="token string">&quot;upgrade&quot;</span><span class="token punctuation">;</span>
+        proxy_read_timeout 300s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    location /zsap-uat <span class="token punctuation">{</span>
+        proxy_pass http://158.233.255.7:9000<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$http_host</span><span class="token punctuation">;</span>
+        proxy_connect_timeout 15s<span class="token punctuation">;</span>
+        proxy_send_timeout 15s<span class="token punctuation">;</span>
+        proxy_read_timeout 15s<span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-Proto http<span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-For <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location <span class="token operator">=</span> /zsap-uat <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location <span class="token operator">=</span> /zsap-uat/ <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    location <span class="token operator">=</span> /zsap-pre <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location <span class="token operator">=</span> /zsap-pre/ <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    location /zsap-sit <span class="token punctuation">{</span>
+        proxy_pass http://158.233.255.7:9000<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$http_host</span><span class="token punctuation">;</span>
+        proxy_connect_timeout 15s<span class="token punctuation">;</span>
+        proxy_send_timeout 15s<span class="token punctuation">;</span>
+        proxy_read_timeout 15s<span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-Proto http<span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-For <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location <span class="token operator">=</span> /zsap-sit <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    location <span class="token operator">=</span> /zsap-sit/ <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">#      location = /CJXUzf5H3U.txt {</span>
+    <span class="token comment">#      root /opt/nginx/html;</span>
+    <span class="token comment">#     }</span>
+    location <span class="token operator">=</span> /apple-app-site-association <span class="token punctuation">{</span>
+        root /opt/nginx/html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    location /zsap-dev <span class="token punctuation">{</span>
+        proxy_pass http://158.233.255.7:9000<span class="token punctuation">;</span>
+        proxy_set_header Host <span class="token variable">$http_host</span><span class="token punctuation">;</span>
+        proxy_connect_timeout 15s<span class="token punctuation">;</span>
+        proxy_send_timeout 15s<span class="token punctuation">;</span>
+        proxy_read_timeout 15s<span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-Proto http<span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-For <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location <span class="token operator">=</span> /zsap-dev <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    location <span class="token operator">=</span> /zsap-dev/ <span class="token punctuation">{</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br><span class="line-number">183</span><br><span class="line-number">184</span><br><span class="line-number">185</span><br><span class="line-number">186</span><br><span class="line-number">187</span><br><span class="line-number">188</span><br><span class="line-number">189</span><br><span class="line-number">190</span><br><span class="line-number">191</span><br><span class="line-number">192</span><br><span class="line-number">193</span><br><span class="line-number">194</span><br><span class="line-number">195</span><br><span class="line-number">196</span><br><span class="line-number">197</span><br><span class="line-number">198</span><br><span class="line-number">199</span><br><span class="line-number">200</span><br><span class="line-number">201</span><br><span class="line-number">202</span><br><span class="line-number">203</span><br><span class="line-number">204</span><br><span class="line-number">205</span><br><span class="line-number">206</span><br><span class="line-number">207</span><br><span class="line-number">208</span><br><span class="line-number">209</span><br><span class="line-number">210</span><br><span class="line-number">211</span><br><span class="line-number">212</span><br><span class="line-number">213</span><br><span class="line-number">214</span><br><span class="line-number">215</span><br><span class="line-number">216</span><br><span class="line-number">217</span><br><span class="line-number">218</span><br><span class="line-number">219</span><br><span class="line-number">220</span><br><span class="line-number">221</span><br><span class="line-number">222</span><br><span class="line-number">223</span><br><span class="line-number">224</span><br><span class="line-number">225</span><br><span class="line-number">226</span><br><span class="line-number">227</span><br><span class="line-number">228</span><br><span class="line-number">229</span><br><span class="line-number">230</span><br><span class="line-number">231</span><br><span class="line-number">232</span><br></div></div></div></div> <div class="page-slot page-slot-bottom">
+    <div class="wwads-cn wwads-horizontal" data-id="135" style="width:100%;max-height:90px;"></div>
+  </div> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2024/02/20, 09:23:36</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/bianpengfei-utils/v3/pages/44d40f/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">匿名sit配置</div></a> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/bianpengfei-utils/v3/pages/44d40f/" class="prev">匿名sit配置</a></span> <!----></p></div></div></div> <!----></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2026
+    <span><a href="https://test.lckj258.com/fr/@bianpengfei-utils/" target="_blank" style="font-weight:bold">bianpengfei</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <div class="custom-html-window custom-html-window-rb" style="display:;"><div class="custom-wrapper"><span class="close-but">×</span> <div>
+    <div class="wwads-cn wwads-vertical" data-id="135" style="max-width:200px;"></div>
+    <script>
+        var ele = document.querySelector('.wwads-vertical').parentElement.parentElement;
+        ele.style.maxHeight = 'unset';
+        ele.firstChild.hidden = true;
+    </script>
+  </div></div></div></div><div class="global-ui"><canvas id="vuepress-canvas-cursor"></canvas></div></div>
+    <script src="/bianpengfei-utils/v3/assets/js/app.004872cc.js" defer></script><script src="/bianpengfei-utils/v3/assets/js/3.393801c2.js" defer></script><script src="/bianpengfei-utils/v3/assets/js/161.411f3aac.js" defer></script>
+  </body>
+</html>
