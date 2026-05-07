@@ -11,7 +11,7 @@ const IS_PRO = process.env.NODE_ENV === 'production'
 // 打包静态资源前缀
 // const BASE = IS_PRO ? '/fr/@bianpengfei-utils/v2/' : '/'
 // bianpengfei-utils/v3/
-const BASE = IS_PRO ? '/' : '/'
+const BASE = IS_PRO ? '/sf-utils2' : '/'
 
 module.exports = {
   theme: 'vdoing',
