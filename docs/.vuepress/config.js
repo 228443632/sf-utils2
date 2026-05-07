@@ -26,6 +26,7 @@ module.exports = {
         '+root': ROOT_PATH,
         '@root': ROOT_PATH,
         '@': path.join(ROOT_PATH, 'src'),
+        'sf-utils2': ROOT_PATH,
         ...config.resolve.alias
       },
       extensions: [...config.resolve.extensions, ...['.js', '.vue', '.json']]
@@ -42,6 +43,13 @@ module.exports = {
   chainWebpack: (config, isServer) => {
     // config 是一个 ChainableConfig 的实例
     config.plugin('windiCSSWebpackPlugin').use(WindiCSSWebpackPlugin)
+
+    // 显式指定 Babel 需要转译的目录（如果担心默认行为被意外覆盖）
+    // config.module
+    //   .rule('js')
+    //   .include.add(path.join(ROOT_PATH, 'src')) // 确保 src 被包含
+    //   .end()
+
     // config.plugins.delete('prefetch')
     // config.plugins.delete('preload')
     // config.plugins.push(new WindiCSSWebpackPlugin())
