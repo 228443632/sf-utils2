@@ -19,7 +19,7 @@
     "build:modules": "cross-env NODE_ENV=production rollup -c build/rollup.modules.js && cross-env NODE_ENV=production rollup -c build/rollup.modules.nodejs.js",
     "build:entry-cdn": "cross-env NODE_ENV=production rollup -c build/rollup.entry-cdn.js && terser lib/index.umd.js -m -o lib/index.umd.min.js",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "NODE_OPTIONS=--openssl-legacy-provider vuepress build docs && touch docs/.vuepress/compile/fr/bianpengfei-utils/v3/.spa",
+    "docs:build": "vuepress build docs && touch docs/.vuepress/compile/fr/bianpengfei-utils/v3/.spa",
     "docs:deploy": "npm run docs:build && yarn commit:docs",
     "commit:docs": "node ./build/deploy.js",
     "prettier:docs": "prettier 'docs/01.指南/**/*.md' --config --ignore-unknown .prettierrc.js --write",
@@ -37,7 +37,8 @@
     "sh:unpublish": "npm unpublish sf-utils2@3.0.25-beta-3 --force",
     "pub": "npm publish --access public --registry https://registry.npmjs.org/",
     "pub:inner": "npm run no-pub && npm publish --access public --registry http://47.97.180.214:8200/",
-    "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub"
+    "replase:patch": "release-it patch && npm run build:all && npm run pub:inner && npm run pub",
+    "ssl": "NODE_OPTIONS=--openssl-legacy-provider"
   },
   "globalName": "sfutils",
   "files": [
