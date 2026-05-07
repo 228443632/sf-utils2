@@ -1,0 +1,40 @@
+name: 自动部署 VuePress 文档
+on:
+  push:
+    branches: [ dev1.0 ]  # 提交 main 分支自动触发
+  workflow_dispatch:    # 支持手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 设置 Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # 🔥 改用 Yarn 安装依赖
+      - name: Install Dependencies
+        run: yarn install
+
+      # 🔥 Yarn 构建 VuePress
+      - name: Build VuePress
+        run: yarn docs:build
+
+      # 🔥 部署到 GitHub Pages（使用你的专属 Token）
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # 这里调用你仓库里存储的密钥
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          # 严格对应你 config.js 的 dest 目录
+          publish_dir: ./docs/.vuepress/compile/fr/bianpengfei-utils/v3
+          publish_branch: gh-pages
