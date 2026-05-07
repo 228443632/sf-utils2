@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,7 +23,7 @@ jobs:
 
       # 🔥 改用 Yarn 安装依赖
       - name: Install Dependencies
-        run: yarn config set ignore-engines true && yarn -f
+        run: yarn config set ignore-engines true && yarn install --frozen-lockfile
 
       # 🔥 Yarn 构建 VuePress
       - name: Build VuePress
@@ -34,7 +34,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           # 这里调用你仓库里存储的密钥
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           # 严格对应你 config.js 的 dest 目录
           publish_dir: ./docs/.vuepress/compile/fr/bianpengfei-utils/v3
           publish_branch: gh-pages
