@@ -1,4 +1,5 @@
 import _typeof from 'sf-utils2/base/_typeof'
+import { LoggerUtil } from '@/_helper/LoggerUtil'
 
 /**
  * 浅拷贝/深拷贝
@@ -66,6 +67,8 @@ function _deepClone(obj, isDeep = true) {
   return copyValue(obj, isDeep)
 }
 
+// const logger = new LoggerUtil('sf-utils:deepClone')
+
 /**
  * 浅拷贝/深拷贝
  * @param {Object|Array} obj 对象/数组
@@ -85,3 +88,6 @@ function deepClone<T = any>(obj: T, isDeep = true): T {
 }
 
 export default deepClone
+
+// const a = [1, 2, 3]
+// console.log('aaaa', deepClone(a) === a)

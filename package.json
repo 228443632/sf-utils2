@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.3.6-beta.2",
+  "version": "3.3.6-beta.3",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "https://test.lckj258.com/bianpengfei-utils/v3/",
@@ -18,7 +18,7 @@
     "build:entry": "npm run build:init-entry && cross-env NODE_ENV=production rollup -c build/rollup.entry.js  && terser lib/index.umd.js -m -o lib/index.umd.min.js",
     "build:modules": "cross-env NODE_ENV=production rollup -c build/rollup.modules.js && cross-env NODE_ENV=production rollup -c build/rollup.modules.nodejs.js",
     "build:entry-cdn": "cross-env NODE_ENV=production rollup -c build/rollup.entry-cdn.js && terser lib/index.umd.js -m -o lib/index.umd.min.js",
-    "docs:dev": "vuepress dev docs",
+    "docs:dev": "NODE_OPTIONS=--openssl-legacy-provider vuepress dev docs",
     "docs:build": "npm run build:all && vuepress build docs && touch docs/.vuepress/compile/fr/bianpengfei-utils/v3/.spa",
     "docs:deploy": "npm run docs:build && yarn commit:docs",
     "commit:docs": "node ./build/deploy.js",

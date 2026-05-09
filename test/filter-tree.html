@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script src="./lib/index.umd.js"></script>
+    <script>
+      const tree = [
+        {
+          id: 1,
+          label: '一级 76666',
+          children: [
+            {
+              id: 4,
+              label: '二级 1-1',
+              children: [
+                {
+                  id: 9,
+                  label: '三级 1-1-1'
+                },
+                {
+                  id: 10,
+                  label: '三级 1-1-2',
+                  children: [
+                    {
+                      id: 101,
+                      label: '四级 1-1-2-1'
+                    },
+                    {
+                      id: 102,
+                      label: '四级 1-1-2-2'
+                    },
+                    {
+                      id: 103,
+                      label: '四级 1-1-2-3'
+                    },
+                    {
+                      id: 104,
+                      label: '四级 1-1-2-4'
+                    }
+                  ]
+                },
+                {
+                  id: 11,
+                  label: '101 三级 1-1-1'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 2,
+          label: '一级 2',
+          children: [
+            {
+              id: 5,
+              label: '二级 2-1 一级 '
+            },
+            {
+              id: 6,
+              label: '二级 2-2'
+            }
+          ]
+        },
+        {
+          id: 3,
+          label: '一级 3',
+          children: [
+            {
+              id: 7,
+              label: '二级 3-1'
+            },
+            {
+              id: 8,
+              label: '二级 3-2'
+            },
+            {
+              id: 9,
+              label: '二级 3-四级3-1-2'
+            }
+          ]
+        }
+      ]
+
+      const { filterTree } = window.sfutils
+
+      // let inputText = '76666'
+      let inputText = '一级'
+
+      console.log('tree', tree)
+
+      console.log(
+        JSON.stringify(
+          filterTree({
+            tree: tree,
+            retainChild: false, //是否保留子孙节点
+            retainParent: false,
+            props: { children: 'children' }, // 属性字段映射
+            callbackItem: (item, index, list, parentObj) => {
+              // item => 当前树节点, index => 当前树节点索引, list => 当前树节点数组, parentObj => 父节点
+              // console.log('回调函数的值@callbackItem', item, index, list, parentObj)
+              // 其中item输出的值是:
+              // children: (3) [{…}, {…}, {…}]
+              // id: 1
+              // name: "二级 1-1"
+              // order: 2
+              // parentId: null
+              // __depth__: 1  // 当前节点深度
+              // __id__: "0-1" // 节点经过的路径
+              // __level__: 1 // 当前节点深度
+              // __pId__: "0" // 父节点经过的路径
+              // __rootNode__: {…} // 顶层根节点
+              return item?.label?.includes?.(inputText) // 返回结果为true，即过滤
+            }
+          }),
+          null,
+          2
+        )
+      )
+    </script>
+  </body>
+</html>

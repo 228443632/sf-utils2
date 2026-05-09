@@ -11,7 +11,7 @@ import isNode from '@/base/isNode'
  * 解析URL Hash
  * @param url
  */
-export default function parseURLIncludeHash(url: string) {
+function parseURLIncludeHash(url: string) {
   if (url) {
     const globalThis = getGlobalThis() as typeof global
     let base: string
@@ -45,3 +45,5 @@ export default function parseURLIncludeHash(url: string) {
 //     '/zh-CN/component/table-v2?id2=2&name=zhoujielun'
 //   )
 // )
+
+export default parseURLIncludeHash

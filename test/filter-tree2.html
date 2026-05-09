@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script src="./long_text_F8BC1E9A-E6E7-4702-80CD-DDE0794DEC28.js"></script>
+  </head>
+  <body>
+    <script src="./lib/index.umd.js"></script>
+    <script>
+      const { filterTree } = window.sfutils
+
+      // let inputText = '76666'
+      let inputText = ''
+
+      const deptScopeIds = ['1005500', '10011800900', '100107001800']
+
+      console.log(
+        JSON.stringify(
+          filterTree({
+            tree: window.$mockData?.data,
+            retainChild: false, //是否保留子孙节点
+            retainParent: false,
+            props: { children: 'children' }, // 属性字段映射
+            callbackItem: (item, index, list, parentObj) => {
+              // item => 当前树节点, index => 当前树节点索引, list => 当前树节点数组, parentObj => 父节点
+              // console.log('回调函数的值@callbackItem', item, index, list, parentObj)
+              // 其中item输出的值是:
+              // children: (3) [{…}, {…}, {…}]
+              // id: 1
+              // name: "二级 1-1"
+              // order: 2
+              // parentId: null
+              // __depth__: 1  // 当前节点深度
+              // __id__: "0-1" // 节点经过的路径
+              // __level__: 1 // 当前节点深度
+              // __pId__: "0" // 父节点经过的路径
+              // __rootNode__: {…} // 顶层根节点
+              // return item?.label?.includes?.(inputText) // 返回结果为true，即过滤
+              if (deptScopeIds?.includes(item.id) || deptScopeIds?.includes(item.pid))
+                console.log('filterTree callbackItem', item)
+              return deptScopeIds?.includes(item.id) || deptScopeIds?.includes(item.pid)
+            }
+          }),
+          null,
+          2
+        )
+      )
+    </script>
+  </body>
+</html>

@@ -72,6 +72,6 @@ function stringifyURL(url, query = {}, options: TStringifyURLOption | boolean = 
 
 export default stringifyURL
 
-// console.log('stringUrl', stringifyURL('http://10.18.102.22:20/?cc=123#/home', { id: '蔡徐坤' }, { isSearchParamAfterHash: true }))
+// console.log('stringUrl', stringifyURL('http://10.18.102.22:20/name/#/home', { id: '蔡徐坤' }, { isSearchParamAfterHash: true }))
 //
 // console.log('pase', parseURL('http://10.18.102.22:20/?cc=123#/home'))
