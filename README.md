@@ -9,15 +9,13 @@
 
 # 1.快速开始
 
-::: tip 提示
 基础的表格组件。
-:::
 
 ## npm 安装
 
 ## 1、基础用法
 
-```js
+```bash
 npm i sf-utils2
 ```
 
@@ -27,7 +25,7 @@ npm i sf-utils2
 
 ### 表格 Props
 
-```js
+```bash
 yarn add sf-utils2
 ```
 
@@ -38,7 +36,7 @@ yarn add sf-utils2
 
 ### Column 字段类型对象属性说明
 
-```js
+```bash
 pnpm add sf-utils2
 ```
 
@@ -52,7 +50,7 @@ pnpm add sf-utils2
 
 ## esm 使用
 
-```js
+```javascript
 // 运行在esm中
 import sfutils from 'sf-utils2'
 
@@ -61,7 +59,7 @@ sfutils.uuid()
 
 ## cdn 使用
 
-```js
+```javascript
 window.sfutils.uuid()
 // Type.isNumber
 ```
@@ -88,7 +86,7 @@ window.sfutils.uuid()
 
 ### 2、cdn 方式引入
 
-```js
+```html
 <!-- 引入js -->
 <script src="https://cdn.jsdelivr.net/npm/sf-utils2/lib/index.umd.min.js"></script>
 ```
@@ -104,6 +102,3 @@ window.sfutils.uuid()
   数据结构，并没有返回想要的数据结构，要么后端做处理，要么前端擦屁股。
 - 对平时用到的 webpack、vite 等主流的工程化项目，提供自动注入文件。
 - 提供便捷、准确的数据类型判断
-  - 丰富的 dom 基础操作方法。
-    | 属性 | 说明 | 类型 | 默认值 |
-    | ---- | ---- | ---- | ------ |

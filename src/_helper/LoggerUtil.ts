@@ -3,6 +3,7 @@
  * @Author 卞鹏飞 <228443632@qq.com>
  * @create 25/02/25 PM8:30
  */
+// @ts-nocheck
 
 import getGlobalThis from 'sf-utils2/base/getGlobalThis'
 import isNoNullable from 'sf-utils2/base/isNoNullable'
@@ -17,6 +18,7 @@ export class LoggerUtil {
   private prefix: string
 
   private logFuncName = 'log'
+  private infoFuncName = 'info'
   private errorFuncName = 'error'
   private warnFuncName = 'warn'
   private timeFuncName = 'time'
@@ -30,6 +32,15 @@ export class LoggerUtil {
    */
   constructor(prefix?: string) {
     this.prefix = prefix || ''
+    this.updateProxy()
+  }
+
+  private updateProxy() {
+    this.error = Function.prototype.bind.call(this.console[this.errorFuncName], this.console, this._prefix ?? undefined)
+    this.success = Function.prototype.bind.call(this.console[this.logFuncName], this.console, this._prefix ?? undefined)
+    this.info = Function.prototype.bind.call(this.console[this.infoFuncName], this.console, this._prefix ?? undefined)
+    this.log = Function.prototype.bind.call(this.console[this.logFuncName], this.console, this._prefix ?? undefined)
+    this.warn = Function.prototype.bind.call(this.console[this.warnFuncName], this.console, this._prefix ?? undefined)
   }
 
   get _prefix() {
@@ -40,41 +51,37 @@ export class LoggerUtil {
    * 错误日志
    * @param {...any[]} args - 要打印的日志信息
    */
-  error(...args: any[]): void {
-    this.console[this.errorFuncName](...[this._prefix, ...args].filter(isNoNullable))
-  }
+  error:
+    | typeof console.error
+    /**
+     * 成功日志
+     * @param {...any[]} args - 要打印的日志信息
+     */
+    | undefined
 
   /**
    * 成功日志
    * @param {...any[]} args - 要打印的日志信息
    */
-  success(...args: any[]): void {
-    this.console[this.logFuncName](...[this._prefix, ...args].filter(isNoNullable))
-  }
+  success: typeof console.log
 
   /**
    * 普通信息日志
    * @param {...any[]} args - 要打印的日志信息
    */
-  info(...args: any[]): void {
-    this.console[this.logFuncName](`${this.prefix}:`, ...args)
-  }
+  info: typeof console.log
 
   /**
    * 普通信息日志
    * @param {...any[]} args - 要打印的日志信息
    */
-  log(...args: any[]): void {
-    this.console[this.logFuncName](`[${this.prefix}]:`, ...args)
-  }
+  log: typeof console.log
 
   /**
    * 警告日志
    * @param {...any[]} args - 要打印的日志信息
    */
-  warn(...args: any[]): void {
-    this.console[this.warnFuncName](...[this._prefix, ...args].filter(isNoNullable))
-  }
+  warn: typeof console.warn
 
   /**
    * 记录时间
@@ -94,20 +101,24 @@ export class LoggerUtil {
 
   /**
    * 时间组合
-   * @param args
+   * @param label
    */
-  timeRecords(...args: any[]) {
+  timeRecords(label: string) {
     return {
       /**
        * 记录时间
        */
-      time: (): void => {
-        console.time([this.prefix, ...args].filter(isNoNullable).join(''))
-      },
+      time: Function.prototype.bind.call(
+        this.console[this.timeFuncName],
+        this.console,
+        [this._prefix, label].filter(isNoNullable).join('')
+      ),
 
-      timeEnd: (): void => {
-        console.timeEnd([this.prefix, ...args].filter(isNoNullable).join(''))
-      }
+      timeEnd: Function.prototype.bind.call(
+        this.console[this.timeEndFuncName],
+        this.console,
+        [this._prefix, label].filter(isNoNullable).join('')
+      )
     }
   }
 }

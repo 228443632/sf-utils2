@@ -13,13 +13,11 @@ import fs from 'node:fs/promises'
 
 const rollupModules = () => {
   const input = {}
-  const inputDirGroup = {}
+  const dtsSrcInputs = {}
   const files = glob.sync('./src/*/**.{js,ts}')
   if (Array.isArray(files)) {
     files.forEach(v => {
       // console.log('dir', path2.dirname(v))
-      const dirname = path2.dirname(v)
-      inputDirGroup[dirname] ||= {}
       const pathSplit = v.replace(/^\.\/(.*)\.\w+$/, '$1').split('/')
       let filePath = ''
       if ('nodejs'.includes(pathSplit[1])) {
@@ -28,44 +26,38 @@ const rollupModules = () => {
       } else {
         filePath += pathSplit.slice().pop()
       }
-      input[filePath] = v
-      inputDirGroup[dirname][filePath] = v
+      if (filePath) {
+        input[filePath] = v
+
+        // 按目录分组
+        const groupKey = path2.dirname(v).replace(/^\.\/src\//, '')
+        const filename = path2.basename(v, path2.extname(v))
+        const inputkey = `${groupKey}/${filename}`
+        if (!/^(nodejs)/.test(groupKey)) {
+          dtsSrcInputs[inputkey] = v
+        }
+      }
     })
     // console.log(input)
     // console.log(inputDirGroup)
   }
 
-  const dtsCommonInputObj = Object.entries(input).reduce((p, [k, v]) => {
-    if (/^(?!expand\/)/.test(k)) {
-      p[k] = v
-    }
-    return p
-  }, {})
-
-  const dtsExpandInputObj = Object.entries(input).reduce((p, [k, v]) => {
-    if (/^expand\//.test(k)) {
-      p[k] = v
-    }
-    return p
-  }, {})
+  // const dtsCommonInputObj = Object.entries(input).reduce((p, [k, v]) => {
+  //   if (/^(?!expand\/)/.test(k)) {
+  //     p[k] = v
+  //   }
+  //   return p
+  // }, {})
+  //
+  // const dtsExpandInputObj = Object.entries(input).reduce((p, [k, v]) => {
+  //   if (/^expand\//.test(k)) {
+  //     p[k] = v
+  //   }
+  //   return p
+  // }, {})
+  // const dtsInputs = { ...dtsCommonInputObj, ...dtsExpandInputObj }
 
   const dtsPlugins = [dts(), json()]
-
-  const dtsInputs = { ...dtsCommonInputObj, ...dtsExpandInputObj }
-
-  const moduleDtsDirEnties = Object.keys(inputDirGroup).map(dirname => {
-    return {
-      input: inputDirGroup[dirname],
-      plugins: dtsPlugins,
-      output: {
-        dir: dirname.replace('src', 'lib'),
-        format: 'esm',
-        assetFileNames: `[name].d.ts`
-      }
-    }
-  })
-
-  // const dts =
 
   return [
     {
@@ -80,16 +72,16 @@ const rollupModules = () => {
 
     /* 单独生成声明文件 */
     {
-      input: dtsInputs,
+      ...rollupConfigBase,
+      input: { ...input, ...dtsSrcInputs },
       plugins: dtsPlugins,
       output: {
         dir: 'lib',
         format: 'esm',
         assetFileNames: `[name].d.ts`
       }
-    },
+    }
 
-    ...moduleDtsDirEnties
     // ...dtsRollUpConfigs
     // ...dtsRollUpConfigs
   ]

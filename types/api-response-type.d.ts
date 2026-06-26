@@ -30,5 +30,3 @@ export type TToError = Error & { message: string }
  * to 函数的返回值
  */
 export type TToTupleRes = [IApiResponseType, TToError]
-
-export default {}

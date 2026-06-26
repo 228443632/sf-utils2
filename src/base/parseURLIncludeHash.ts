@@ -5,7 +5,7 @@
  */
 
 import getGlobalThis from 'sf-utils2/base/getGlobalThis'
-import isNode from '@/base/isNode'
+import isNode from 'sf-utils2/base/isNode'
 
 /**
  * 解析URL Hash

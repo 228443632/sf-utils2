@@ -72,7 +72,7 @@ export default () => {
               // console.log('output', { output, bundle })
               // const dtsFile = 'index.d.ts'
               const dtsFileContent = fs.readFileSync(DTS_PATH, 'utf-8')
-              fs.writeFileSync(DTS_PATH, dtsFileContent.replace(/from '@\//g, `from 'sf-utils2/src/`), 'utf-8')
+              fs.writeFileSync(DTS_PATH, dtsFileContent.replace(/from '@\//g, `from 'sf-utils2/`), 'utf-8')
             }
           }
         })()

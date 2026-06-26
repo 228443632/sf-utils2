@@ -1,6 +1,6 @@
-import getGlobalThis from '@/base/getGlobalThis'
-import isNode from '@/base/isNode'
-import isObject from '@/base/isObject.ts'
+import getGlobalThis from 'sf-utils2/base/getGlobalThis'
+import isNode from 'sf-utils2/base/isNode'
+import isObject from 'sf-utils2/base/isObject.ts'
 
 /**
  * stringifyURLIncludeHash 的参数选项

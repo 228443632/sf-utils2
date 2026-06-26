@@ -1,5 +1,5 @@
 import _typeof from 'sf-utils2/base/_typeof'
-import { LoggerUtil } from '@/_helper/LoggerUtil'
+// import { LoggerUtil } from 'sf-utils2/_helper/LoggerUtil'
 
 /**
  * 浅拷贝/深拷贝
