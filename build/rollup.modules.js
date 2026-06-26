@@ -8,12 +8,18 @@ import rollupConfigBase from './rollup.base.js'
 import glob from 'glob'
 import dts from 'rollup-plugin-dts'
 import json from '@rollup/plugin-json'
+import path2 from 'node:path'
+import fs from 'node:fs/promises'
 
-export default () => {
+const rollupModules = () => {
   const input = {}
+  const inputDirGroup = {}
   const files = glob.sync('./src/*/**.{js,ts}')
   if (Array.isArray(files)) {
     files.forEach(v => {
+      // console.log('dir', path2.dirname(v))
+      const dirname = path2.dirname(v)
+      inputDirGroup[dirname] ||= {}
       const pathSplit = v.replace(/^\.\/(.*)\.\w+$/, '$1').split('/')
       let filePath = ''
       if ('nodejs'.includes(pathSplit[1])) {
@@ -23,8 +29,10 @@ export default () => {
         filePath += pathSplit.slice().pop()
       }
       input[filePath] = v
+      inputDirGroup[dirname][filePath] = v
     })
-    console.log(input)
+    // console.log(input)
+    // console.log(inputDirGroup)
   }
 
   const dtsCommonInputObj = Object.entries(input).reduce((p, [k, v]) => {
@@ -44,6 +52,20 @@ export default () => {
   const dtsPlugins = [dts(), json()]
 
   const dtsInputs = { ...dtsCommonInputObj, ...dtsExpandInputObj }
+
+  const moduleDtsDirEnties = Object.keys(inputDirGroup).map(dirname => {
+    return {
+      input: inputDirGroup[dirname],
+      plugins: dtsPlugins,
+      output: {
+        dir: dirname.replace('src', 'lib'),
+        format: 'esm',
+        assetFileNames: `[name].d.ts`
+      }
+    }
+  })
+
+  // const dts =
 
   return [
     {
@@ -65,9 +87,14 @@ export default () => {
         format: 'esm',
         assetFileNames: `[name].d.ts`
       }
-    }
+    },
 
+    ...moduleDtsDirEnties
     // ...dtsRollUpConfigs
     // ...dtsRollUpConfigs
   ]
 }
+
+export default rollupModules
+
+// console.log(fs.writeFile('./mock.json', JSON.stringify(rollupModules(), null, 2)))

@@ -1,6 +1,6 @@
 {
   "name": "sf-utils2",
-  "version": "3.3.6-beta.3",
+  "version": "3.3.7",
   "author": "bianpengfei",
   "license": "MIT",
   "homepage": "https://test.lckj258.com/bianpengfei-utils/v3/",
@@ -80,6 +80,12 @@
     "*.md": [
       "prettier --write"
     ]
+  },
+  "exports": {
+    "./*": {
+      "import": "./lib/*",
+      "require": "./lib/*"
+    }
   },
   "strict": true,
   "devDependencies": {
