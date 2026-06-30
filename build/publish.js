@@ -27,7 +27,12 @@ const releaseConfig = {
     '.': {
       import: './lib/index.esm.js',
       require: './lib/index.umd.js',
-      types: './lib/index.d.ts'
+      types: './index.d.ts'
+    },
+    './index': {
+      import: './lib/index.esm.js',
+      require: './lib/index.umd.js',
+      types: './index.d.ts'
     },
     './lib/*': {
       import: './lib/*',
