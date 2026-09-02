@@ -56,13 +56,17 @@ type IArrayToObjOptions = IArrayOptions | IObjectOptions | 'array' | 'object'
  *
  */
 
-function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[]): Record<string, T>
-function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: IObjectOptions): Record<string, T>
-function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'object'): Record<string, T>
-function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: IArrayOptions): Record<string, T[]>
-function arrayToObj<T>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'array'): Record<string, T[]>
+function arrayToObj<T = any>(array: T[], predicate?: keyof T | (keyof T)[]): Record<string, T>
+function arrayToObj<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: IObjectOptions): Record<string, T>
+function arrayToObj<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'object'): Record<string, T>
+function arrayToObj<T = any>(
+  array: T[],
+  predicate?: keyof T | (keyof T)[],
+  options?: IArrayOptions
+): Record<string, T[]>
+function arrayToObj<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'array'): Record<string, T[]>
 
-function arrayToObj<T>(
+function arrayToObj<T = any>(
   array: T[],
   predicate?: keyof T | (keyof T)[],
   options?: IArrayToObjOptions

@@ -1,6 +1,6 @@
 /**
  * 连接任意多个路径字符串
- * @param {any} args
+ * @param {any[]} args
  * @return {string}
  */
 function stringPathJoin(...args) {
