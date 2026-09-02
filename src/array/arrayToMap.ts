@@ -1,5 +1,5 @@
 import isArray from 'sf-utils2/base/isArray'
-import isFunction from 'sf-utils2/base/isFunction'
+// import isFunction from 'sf-utils2/base/isFunction'
 import isString from 'sf-utils2/base/isString'
 import isNullable from 'sf-utils2/base/isNullable'
 
@@ -15,6 +15,40 @@ export const getPropValue = (object, properties) => {
     .map(prop => object?.[prop])
     .filter(Boolean)
     .join(`|`)
+}
+
+type TArrayToMapOptions = Partial<{
+  valueType: 'object' | 'array'
+  retainKeyWithNull?: boolean
+}>
+
+interface IArrayToMapOptionsBase {
+  retainKeyWithNull?: boolean
+}
+
+interface IArrayOptions extends IArrayToMapOptionsBase {
+  valueType?: 'array'
+}
+
+interface IObjectOptions extends IArrayToMapOptionsBase {
+  valueType?: 'object'
+}
+
+type IArrayToMapOptions = IArrayOptions | IObjectOptions | 'array' | 'object'
+
+function arrayToMap<T = any>(array: T[], predicate?: keyof T | (keyof T)[]): Map<string, T>
+function arrayToMap<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: IObjectOptions): Map<string, T>
+function arrayToMap<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'object'): Map<string, T>
+function arrayToMap<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: IArrayOptions): Map<string, T[]>
+function arrayToMap<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'array'): Map<string, T[]>
+
+function arrayToMap<T = any>(
+  array: T[],
+  predicate?: keyof T | (keyof T)[],
+  options?: IArrayToMapOptions
+): Map<string, T[] | T> {
+  if (options === 'object' || options === 'array') options = { valueType: options }
+  return _arrayToMap(array, predicate as string[], options as any)
 }
 
 /**
@@ -49,14 +83,18 @@ export const getPropValue = (object, properties) => {
    size:4
  *
  */
-function arrayToMap(array = [], property, options = { valueType: 'object', retainKeyWithNull: false }) {
+
+function _arrayToMap(array: any[] = [], property?: string | string[], options?: TArrayToMapOptions): any {
+  array ||= []
+  options ||= { valueType: 'object', retainKeyWithNull: false }
+
   if (isArray(array)) {
     // 如果property是Function
-    if (isFunction(property)) {
-      const map = new Map()
-      array.forEach((v, vi) => property(map, v, vi))
-      return map
-    }
+    // if (isFunction(property)) {
+    //   const map = new Map()
+    //   array.forEach((v, vi) => property(map, v, vi))
+    //   return map
+    // }
     const valueType = String(options?.valueType).toLowerCase() || 'object'
     // 非Function，且property存在
     if (property) {
@@ -76,6 +114,8 @@ function arrayToMap(array = [], property, options = { valueType: 'object', retai
     }
     // property不存在时
     return array.reduce((pre, cur) => {
+      let value = getPropValue(cur, property)
+      // @ts-ignore
       if (options.retainKeyWithNull && isNullable(value)) cur = 'undefined'
       if (cur) {
         if (valueType === 'array') {

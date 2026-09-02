@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import isArray from 'sf-utils2/base/isArray'
-import isFunction from 'sf-utils2/base/isFunction'
+// import isFunction from 'sf-utils2/base/isFunction'
 import { getPropValue } from 'sf-utils2/array/arrayToMap'
 import isNullable from 'sf-utils2/base/isNullable'
 
@@ -65,6 +65,7 @@ function arrayToObj<T = any>(
   options?: IArrayOptions
 ): Record<string, T[]>
 function arrayToObj<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'array'): Record<string, T[]>
+function arrayToObj<T = any>(array: T[], predicate?: keyof T | (keyof T)[], options?: 'object'): Record<string, T>
 
 function arrayToObj<T = any>(
   array: T[],
@@ -82,11 +83,11 @@ function _arrayToObj(
 ): any {
   if (isArray(array)) {
     // 如果property是Function
-    if (isFunction(property)) {
-      const object = {}
-      array.forEach((v, vi) => property(object, v, vi))
-      return object
-    }
+    // if (isFunction(property)) {
+    //   const object = {}
+    //   array.forEach((v, vi) => property(object, v, vi))
+    //   return object
+    // }
     const valueType = String(options?.valueType).toLowerCase() || 'object'
     // 非Function，且property存在
     if (property) {

@@ -102,6 +102,18 @@ export type TPromiseType<T extends (...args: any[]) => Promise<any>> = ReturnTyp
 export type TElementType<T> = T extends Array<infer U> ? U : never
 
 /**
+ * 自定义工具类型来提取数组元素类型
+ * 获取数组元素的类型，两个数组的, 交叉
+ */
+export type TBiIntersectElementType<T1, T2> = TElementType<T1> & TElementType<T2> & {}
+
+/**
+ * 自定义工具类型来提取数组元素类型
+ * 获取数组元素的类型，两个数组的, 联合
+ */
+export type TBiUnionElementType<T1, T2> = (TElementType<T1> | TElementType<T2>) & {}
+
+/**
  * 常规的函数
  */
 export type TCommonFunc = ((...args: any[]) => any) & Record<string, any>
