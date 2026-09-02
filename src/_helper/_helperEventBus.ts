@@ -226,20 +226,20 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
       // 如果跨tabs
       if (innerIsCrossTab) {
         if (!this.crossHub[event]) this.crossHub[event] = []
-        let handler2
+        let handler2CrossTab
         if (this.broadcastChannel) {
-          handler2 = (structuredMessage: MessageEvent) => {
+          handler2CrossTab = (structuredMessage: MessageEvent) => {
             const { eventId, data = [] } = structuredMessage?.data || {}
             if (eventId != event) return
             structuredMessage['__crossType'] = ECrossType.BROADCAST_CHANNEL
             return handler.call(this, ...data, structuredMessage)
           }
-          this.broadcastChannel.addEventListener('message', handler2)
-          this.crossHub[event].push(handler2)
+          this.broadcastChannel.addEventListener('message', handler2CrossTab)
+          this.crossHub[event].push(handler2CrossTab)
         } else {
           const global = getGlobalThis()
           if (global && 'addEventListener' in global) {
-            handler2 = storageEventMessage => {
+            handler2CrossTab = storageEventMessage => {
               if (storageEventMessage?.key == this.__opts.storageKey) {
                 const { eventId, data = [] } = parseJsonNoError(storageEventMessage?.newValue) || {}
                 if (eventId != event) return
@@ -247,12 +247,21 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
                 return handler.call(this, ...data, storageEventMessage)
               }
             }
-            global.addEventListener('storage', handler2)
-            this.crossHub[event].push(handler2)
+            global.addEventListener('storage', handler2CrossTab)
+            this.crossHub[event].push(handler2CrossTab)
           }
         }
-        if (handler) handler.off = () => this.off(event, handler)
-        if (handler2) handler2.off = () => this.off(event, handler2)
+        if (handler) {
+          handler.off = () => {
+            this.off(event, handler)
+            handler2CrossTab && this.off(event, handler2CrossTab)
+          }
+        }
+        if (handler2CrossTab)
+          handler2CrossTab.off = () => {
+            handler && this.off(event, handler)
+            this.off(event, handler2CrossTab)
+          }
       }
 
       // 跨域
@@ -309,13 +318,13 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
       // 跨tab
       const j = (this.crossHub[event] || []).findIndex(h => h === handler)
       if (j > -1) {
-        const handler2 = this.crossHub[event]?.[j]
+        const handler2CrossTab = this.crossHub[event]?.[j]
         if (this.broadcastChannel) {
-          this.broadcastChannel.removeEventListener('message', handler2)
+          this.broadcastChannel.removeEventListener('message', handler2CrossTab)
         } else {
           const global = getGlobalThis()
           if (global && 'addEventListener' in global) {
-            global.removeEventListener('storage', handler2)
+            global.removeEventListener('storage', handler2CrossTab)
           }
         }
         this.crossHub[event]?.splice?.(j, 1)
@@ -406,8 +415,8 @@ function getParentAndSubFramesFrames() {
    * 获取所有子节点
    * @param frameWin
    * @param cacheWins
+   * 注：getSubFrames 遍历跨域 frame 会抛 SecurityError（第 411-419 行）    未包 try/catch，父/子 frame 跨域时访问 frameWin.frames.length/frames[i] 会直接抛错，导致 emit 中断。
    */
-
   function getSubFrames(frameWin: Window, cacheWins: Window[]) {
     if (frameWin.frames.length) {
       for (let i = 0; i < frameWin.frames.length; i++) {
