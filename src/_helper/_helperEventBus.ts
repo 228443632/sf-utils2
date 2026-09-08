@@ -4,6 +4,9 @@ import isObject from 'sf-utils2/base/isObject'
 import hasOwn from 'sf-utils2/object/hasOwn'
 import _typeof from 'sf-utils2/base/_typeof'
 import uniq from 'sf-utils2/array/uniq'
+import isNode from 'sf-utils2/base/isNode'
+import isBrowser from 'sf-utils2/base/isBrowser'
+import isArray from 'sf-utils2/base/isArray'
 
 export enum ECrossType {
   /**BroadcastChannel 广播通讯 */
@@ -127,6 +130,7 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
      * @return {BroadcastChannel}
      */
     broadcastChannel: (function () {
+      if (isNode()) return
       const global = getGlobalThis()
       if ('BroadcastChannel' in global) {
         return new BroadcastChannel(__opts.storageKey)
@@ -143,7 +147,7 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
      * 跨越tabs 共享
      * @return {Record<string, any>}
      */
-    crossHub: Object.create(null) as Record<string, any>,
+    crossHub: Object.create(null) as Record<string, any[]>,
 
     /**
      * emit事件
@@ -159,6 +163,12 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
 
       // feat: 跨域
       let innerIsCrossDomain = this.isCrossDomain ?? isCrossDomain
+
+      // fix 如果是在nodejs 环境，就不要进行跨域跨tabs
+      if (isNode()) {
+        innerIsCrossTab = false
+        innerIsCrossDomain = false
+      }
 
       const isConditionByCrossTab = isObject(lastArg) && hasOwn(lastArg, 'isCrossTab')
       const isConditionByCrossDomain = isObject(lastArg) && hasOwn(lastArg, 'isCrossDomain')
@@ -218,10 +228,16 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
       // feat: 新增跨tabs 更多参数可以控制自定义
       let innerIsCrossTab = handler?.isCrossTab ?? option?.isCrossTab ?? this.isCrossTab ?? isCrossTab
 
-      const innerIsCrossDomain = handler?.isCrossDomain ?? option?.isCrossDomain ?? this.isCrossDomain ?? isCrossDomain
+      let innerIsCrossDomain = handler?.isCrossDomain ?? option?.isCrossDomain ?? this.isCrossDomain ?? isCrossDomain
 
       // 如果跨域，那么关闭跨tabs
       if (innerIsCrossDomain) innerIsCrossTab = false
+
+      // fix 如果是在nodejs 环境，就不要进行跨域跨tabs
+      if (isNode()) {
+        innerIsCrossTab = false
+        innerIsCrossDomain = false
+      }
 
       // 如果跨tabs
       if (innerIsCrossTab) {
@@ -383,6 +399,29 @@ function _helperEventBus(options: THelperEventBusOption = {}) {
     clearEffects(fnEffects: TBusCommonFunc[]) {
       fnEffects.forEach(v => v?.off?.())
       fnEffects.length = 0
+    },
+
+    /**
+     * 销毁整个监听
+     */
+    destroy() {
+      // 修复: Node 环境(>=18)下 BroadcastChannel 在 new 时会持有 refed 的 MessagePort 句柄，
+      // 导致进程事件循环无法清空而挂死；由于 emit/on 内部对 Node 环境已关闭跨 tab 逻辑，
+      // 这里 safe-close 掉不影响任何功能，浏览器环境不执行。
+      if (this.broadcastChannel) {
+        this.broadcastChannel.close()
+      }
+      const global = getGlobalThis()
+      if (isBrowser() && isObject(this.crossHub) && global && 'addEventListener' in global) {
+        Object.keys(this.crossHub).forEach(key => {
+          const eventFuncs = this.crossHub[key]
+          if (isArray(eventFuncs)) {
+            eventFuncs.forEach(eventFunc => {
+              global.removeEventListener('storage', eventFunc)
+            })
+          }
+        })
+      }
     }
   }
 }
