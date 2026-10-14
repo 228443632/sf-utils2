@@ -23,7 +23,7 @@ import {
  * @param {string|'children'|'child'|'childs'|'childList'} [props.children]
  * @param {boolean} [props.order]
  * @param {string|'order'} [props.orderField]
- * @param {string|'aes'|'desc'|'AES'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy] * @param callbackList 回调函数 节点list
+ * @param {string|'asc'|'desc'|'ASC'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy] * @param callbackList 回调函数 节点list
  * @param {RetainField[]} retainField 保留的字段
  * @param callbackList
  * @param callbackItem 回调函数 当前节点

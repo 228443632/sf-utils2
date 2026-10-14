@@ -24,7 +24,7 @@ import { TCallbackItemInterface, TCallbackListInterface, TEachTreeProps } from '
  * @param {string|'children'|'child'|'childs'|'childList'} [props.children]
  * @param {boolean} [props.order]
  * @param {string|'order'} [props.orderField]
- * @param {string|'aes'|'desc'|'AES'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy]
+ * @param {string|'asc'|'desc'|'ASC'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy]
  * @param retainChild 是否保留子孙节点 默认 false
  * @param retainParent 是否保留父级 默认 true
  * @param callbackList 每一层树list 回调函数

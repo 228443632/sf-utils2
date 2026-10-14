@@ -5,7 +5,7 @@
  * @return {number}
  * @private
  */
-export function _helperAse(a, b) {
+export function _helperAsc(a, b) {
   return a < b ? -1 : 1
 }
 
@@ -21,6 +21,6 @@ export function _helperDesc(a, b) {
 }
 
 export default {
-  _helperAse,
+  _helperAsc,
   _helperDesc
 }

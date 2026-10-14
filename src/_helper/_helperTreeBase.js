@@ -97,9 +97,9 @@ export const _getPathNodes = (__id__, treeCacheObjBy__id__) => {
  * 方向
  */
 const sortType = {
-  ase: _helperArraySort._helperDesc, // 从小到大
+  asc: _helperArraySort._helperAsc, // 从小到大
   desc: _helperArraySort._helperDesc, // 从大到小
-  up: _helperArraySort._helperDesc, // 从小到大
+  up: _helperArraySort._helperAsc, // 从小到大
   down: _helperArraySort._helperDesc // 从大到小
 }
 
@@ -142,7 +142,7 @@ const DEFAULT_RETAIN_FIELD = [
  * @param {string|'children'|'child'|'childs'|'childList'} [props.children]
  * @param {boolean} [props.order]
  * @param {string|'order'} [props.orderField]
- * @param {string|'aes'|'desc'|'AES'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy]
+ * @param {string|'asc'|'desc'|'ASC'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy]
  * @private
  */
 const _helperTreeBase = ({

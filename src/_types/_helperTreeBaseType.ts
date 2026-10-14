@@ -22,7 +22,7 @@ export type TEachTreeProps = Partial<{
     | 'subChilds'
   order: boolean
   orderField: 'order' | string
-  orderBy: 'aes' | 'desc' | 'AES' | 'DESC' | 'up' | 'down' | 'UP'
+  orderBy: 'asc' | 'desc' | 'ASC' | 'DESC' | 'up' | 'down' | 'UP'
 }>
 
 /**

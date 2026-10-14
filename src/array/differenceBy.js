@@ -37,15 +37,12 @@ function differenceBy(array1, array2, condition) {
     })
   } else if (isFunction(condition)) {
     // 是有条件 且是方法
-    array1.forEach(a =>
-      array2.forEach(b => {
-        if (!!condition(a, b)) {
-          result.push(a)
-          return true
-        }
-        return false
-      })
-    )
+    // 对于 array1 中的每个元素 a，如果 array2 中不存在元素 b 使得 condition(a, b) 为 true，则 a 属于差集
+    array1.forEach(a => {
+      if (!array2.some(b => condition(a, b))) {
+        result.push(a)
+      }
+    })
   }
   return uniq(result)
 }

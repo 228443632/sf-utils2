@@ -20,7 +20,7 @@ import {
  * @param {string|'children'|'child'|'childs'|'childList'} [props.children]
  * @param {boolean} [props.order]
  * @param {string|'order'} [props.orderField]
- * @param {string|'aes'|'desc'|'AES'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy]
+ * @param {string|'asc'|'desc'|'ASC'|'DESC'|'up'|'down'|'UP'|'down'} [props.orderBy]
  * @param [callbackList] 每一层树list 回调函数
  * @param [callbackItem] 每一项回调函数
  * @param [isDeepClone] 是否深度克隆原树型对象

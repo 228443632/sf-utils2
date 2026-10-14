@@ -7,7 +7,7 @@ import _helperArraySort from 'sf-utils2/_helper/_helperArraySort'
  * @param {string[]} c 对象属性名
  * @return {(function(*, *): void)|*}
  */
-function compareAse(c = []) {
+function compareAsc(c = []) {
   return (a, b) => {
     let i = 0
     let curKey = c[i]
@@ -18,9 +18,9 @@ function compareAse(c = []) {
         }
         curKey = c[++i]
       }
-      return _helperArraySort._helperAse(a[curKey], b[curKey])
+      return _helperArraySort._helperAsc(a[curKey], b[curKey])
     }
-    return _helperArraySort._helperAse(a, b)
+    return _helperArraySort._helperAsc(a, b)
   }
 }
 
@@ -47,9 +47,9 @@ function compareDesc(c) {
 }
 
 const directionsType = {
-  ase: compareAse, // 从小到大
+  asc: compareAsc, // 从小到大
   desc: compareDesc, // 从大到小
-  up: compareAse, // 从小到大
+  up: compareAsc, // 从小到大
   down: compareDesc // 从大到小
 }
 
@@ -57,7 +57,7 @@ const directionsType = {
  * 排序
  * @param {Object[]|string[]|number[]} list
  * @param {string[]} properties
- * @param {('ase' | 'desc' | 'up' | 'down')[]} directions
+ * @param {('asc' | 'desc' | 'up' | 'down')[]} directions
  * @example
  *   var users = [
  *     { 'user': 'fred',   'age': 48 },
@@ -72,7 +72,7 @@ const directionsType = {
 function orderBy(list = [], properties = [], directions = []) {
   if (isArray(list)) {
     const direct = String(directions[0])?.toLowerCase()
-    const compareFn = directionsType[direct] || compareAse
+    const compareFn = directionsType[direct] || compareAsc
     list.sort(compareFn(properties))
   }
   return list

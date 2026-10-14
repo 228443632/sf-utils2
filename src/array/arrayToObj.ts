@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import isArray from 'sf-utils2/base/isArray'
 // import isFunction from 'sf-utils2/base/isFunction'
 import { getPropValue } from 'sf-utils2/array/arrayToMap'
@@ -73,14 +71,11 @@ function arrayToObj<T = any>(
   options?: IArrayToObjOptions
 ): Record<string, T[] | T> {
   if (options === 'object' || options === 'array') options = { valueType: options }
-  return _arrayToObj(array, predicate as string[], options)
+  return _arrayToObj(array, predicate as string[], options as any)
 }
 
-function _arrayToObj(
-  array: any[] = [],
-  property?: string | string[],
-  options?: TArrayToObjOptions = { valueType: 'object', retainKeyWithNull: false }
-): any {
+function _arrayToObj(array: any[] = [], property?: string | string[], options?: TArrayToObjOptions): any {
+  options ||= { valueType: 'object', retainKeyWithNull: false }
   if (isArray(array)) {
     // 如果property是Function
     // if (isFunction(property)) {
@@ -107,7 +102,7 @@ function _arrayToObj(
     }
     // property不存在时
     return array.reduce((pre, cur) => {
-      if (options.retainKeyWithNull && isNullable(value)) cur = 'undefined'
+      if (options.retainKeyWithNull && isNullable(cur)) cur = 'undefined'
       if (cur) {
         if (valueType === 'array') {
           if (!isArray(pre[cur])) pre[cur] = []

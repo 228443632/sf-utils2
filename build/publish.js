@@ -34,6 +34,11 @@ const releaseConfig = {
       require: './lib/index.umd.js',
       types: './index.d.ts'
     },
+    './lib/*.js': {
+      import: './lib/*.js',
+      require: './lib/*.js',
+      types: './lib/*.d.ts'
+    },
     './lib/*': {
       import: './lib/*',
       require: './lib/*',
