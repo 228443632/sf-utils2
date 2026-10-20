@@ -4,10 +4,13 @@ import arrayToObj from 'sf-utils2/array/arrayToObj'
 /**
  * 支持批量加载css 和 jsm 例子：loadJsOrCssMulSync(['https://unpkg.com/element-ui/lib/theme-chalk/index.css', 'https://unpkg.com/element-ui/lib/index.js'])
  * @param {Array} urlList 类型 Array | String
+ * @param {Object} [options] 选项
+ * @param {boolean} [options.allowRepeatInsert] 是否允许重复插入，默认不允许重复插入(false)
  * @returns {Promise<Awaited<unknown>[]>}
  */
-async function loadJsOrCssMulSync(urlList = []) {
+async function loadJsOrCssMulSync(urlList = [], options = {}) {
   urlList = uniq(urlList)
+  const allowRepeatInsert = options?.allowRepeatInsert ?? false
   const getTypeFromUrl = url => {
     // eslint-disable-next-line no-useless-escape
     const _type = /\.[^\.]+$/.exec(url)[0]
@@ -70,12 +73,14 @@ async function loadJsOrCssMulSync(urlList = []) {
   /* eslint-disable no-param-reassign */
   const loadElement = element =>
     new Promise(resolve => {
-      const cssList = Array.from(document.querySelectorAll('link')).map(v => v.href)
-      const scriptList = Array.from(document.querySelectorAll('script'))
-        .map(v => v.src)
-        .filter(Boolean)
-      const listObj = arrayToObj(cssList.concat(scriptList))
-      if (listObj[element.src || element.href]) resolve('已存在')
+      if (!allowRepeatInsert) {
+        const cssList = Array.from(document.querySelectorAll('link')).map(v => v.href)
+        const scriptList = Array.from(document.querySelectorAll('script'))
+          .map(v => v.src)
+          .filter(Boolean)
+        const listObj = arrayToObj(cssList.concat(scriptList))
+        if (listObj[element.src || element.href]) resolve('已存在')
+      }
       const head = document?.getElementsByTagName('head')[0]
       head.appendChild(element)
       if (element.readyState) {

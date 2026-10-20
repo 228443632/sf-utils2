@@ -1,9 +1,12 @@
 import isFunction from 'sf-utils2/base/isFunction'
+import globalThis from './getGlobalThis'
+
 /**
  * 返回uuid
  * @returns {string}
  */
 function uuid() {
+  const crypto = globalThis.crypto
   if (isFunction(crypto?.randomUUID)) return crypto.randomUUID()
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     let r = (Math.random() * 16) | 0,
