@@ -66,7 +66,7 @@ function filterTree({
       treeList.push(item)
       treeListObj$__id__[item.__id__] = item
       if (callbackItem(...arguments)) {
-        item['__@retain__'] = true
+        item['__retain__'] = true
         validIdsList.push(item[__id__])
       }
     }
@@ -126,7 +126,7 @@ function filterTree({
 
   const defaultRootNode = {
     [props.children]: result,
-    ['__@retain__']: true
+    ['__retain__']: true
   }
 
   // 不保留父级
@@ -135,13 +135,13 @@ function filterTree({
     isDeepClone: false,
     props: { children: props.children },
     callbackItem: function (item, index, list, parentObj) {
-      def(item, '__@retain__', item['__@retain__'] ?? false)
+      def(item, '__retain__', item['__retain__'] ?? false)
       if (item.__level__ == 1 || !parentObj) {
         item.__parentNode__ = defaultRootNode
       }
       // console.log('item', item)
       // console.log('item', item)
-      if (!item['__@retain__']) {
+      if (!item['__retain__']) {
         // 如果是不保留
         const retainParentNode = getRetainParentNode(item)
         // list.splice(index, 1)
@@ -153,14 +153,14 @@ function filterTree({
       }
     }
   }).filter(item => {
-    def(item, '__@retain__')
-    return item['__@retain__']
+    def(item, '__retain__')
+    return item['__retain__']
   })
 
   function getRetainParentNode(item) {
     let parentNode = item?.__parentNode__
     while (parentNode) {
-      if (parentNode && parentNode?.['__@retain__']) {
+      if (parentNode && parentNode?.['__retain__']) {
         break
       }
       parentNode = parentNode?.__parentNode__
